@@ -1,12 +1,12 @@
 public class Review {
-    protected NormalUser reviewer;
-    protected Movie movie;
-    protected String reviewcontent;
+    protected String reviewer;
+    protected String movie;
+    protected String review_content;
 
     // Construct a new review content for the specific movie by the reviewer.
-    public Review(NormalUser reviewer, Movie movie, String reviewcontent){
+    public Review(String reviewer, String movie, String review_content){
         this.reviewer = reviewer;
         this.movie = movie;
-        this.reviewcontent = reviewcontent;
+        this.review_content = review_content;
     }
 }
