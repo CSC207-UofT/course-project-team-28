@@ -3,7 +3,9 @@ public class Review {
     protected String movie;
     protected String review_content;
 
-    // Construct a new review content for the specific movie by the reviewer.
+    /**
+     * Construct a new review content for the specific movie by the reviewer.
+      */
     public Review(String reviewer, String movie, String review_content){
         this.reviewer = reviewer;
         this.movie = movie;
