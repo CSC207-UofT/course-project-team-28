@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,43 +10,65 @@ public class NormalUser extends User{
     public BufferedReader userlogin;
     static FileWriter writeuser;
 
-    public NormalUser(String username, String password){
+    public NormalUser(String username, String password) throws IOException {
         super(username, password);
         this.contactinfo = "";
         this.playlist = new ArrayList<String>();
-    }
 
-    public void create_account(String username, String password){
-        // write new user in file
-        NormalUser user = new NormalUser(username, password);
-
-        writeuser = new FileWriter("NormalUser/" + username + ".txt");
+        writeuser = new FileWriter("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\NormalUser\\" + this.username + ".txt");
         writeuser.write(username);
         writeuser.write("\r\n");
         writeuser.write(password);
         writeuser.write("\r\n");
         writeuser.write("c");
         writeuser.write("\r\n");
-        writeuser.write("m");
+        writeuser.write("[]");
         writeuser.close();
-
     }
-    public boolean give_like(String moivename){
 
-        userreader = new FileReader("NormalUser/" + this.username + ".txt");
+//    public void create_account(String username, String password) throws IOException {
+//        // write new user in file
+//        NormalUser user = new NormalUser(username, password);
+//
+//        writeuser = new FileWriter("NormalUser/" + username + ".txt");
+//        writeuser.write(username);
+//        writeuser.write("\r\n");
+//        writeuser.write(password);
+//        writeuser.write("\r\n");
+//        writeuser.write("c");
+//        writeuser.write("\r\n");
+//        writeuser.write("[]");
+//        writeuser.close();
+//
+//    }
+    public boolean give_like(String moivename) throws IOException {
+
+        userreader = new FileReader("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\NormalUser\\" + this.username + ".txt");
         userlogin = new BufferedReader(userreader);
-        writeuser = new FileWriter("NormalUser/" + this.username + ".txt");
+
+        this.playlist.add(moivename);
 
         ArrayList<String> lst = new ArrayList<String>();
         String line = userlogin.readLine();
-        while(!line.equals("")){
+        while(line !=null){
             lst.add(line);
             line = userlogin.readLine();
         }
-        if(!lst[3].contains(moivename)){
-            lst = lst[3].replace("]",", " + moivename + "]");
+        userlogin.close();
+        if (lst.get(3).equals("[]")){
+            lst.set(3, lst.get(3).replace("[]","[" + moivename + "]"));
         }
-        return lst[3].contains(moivename);
+        else if(!lst.get(3).contains(moivename)){
+            lst.set(3, lst.get(3).replace("]",", " + moivename + "]"));
+        }
+
+        writeuser = new FileWriter("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\NormalUser\\" + this.username + ".txt");
+        for(String str: lst){
+            writeuser.write(str);
+            writeuser.write("\r\n");
+        }
+        writeuser.close();
+        return lst.get(3).contains(moivename);
     }
 
 }

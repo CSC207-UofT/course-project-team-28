@@ -1,29 +1,33 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 public class AdminUser extends User{
-    static FileReader userreader = new FileReader("AdminUser.txt");;
-    static BufferedReader userlogin = new BufferedReader(userreader);
-    static FileWriter writeuser = new FileWriter("AdminUser.txt", true);
+    public FileReader userreader = new FileReader("AdminUser.txt");;
+    public BufferedReader userlogin = new BufferedReader(userreader);
+    public FileWriter writeuser = new FileWriter("AdminUser.txt", true);
 
 
-    public AdminUser(String username, String password){
+    public AdminUser(String username, String password) throws IOException {
         super(username, password);
-    }
 
-
-    public void create_account(String username, String password){
-        AdminUser user = new AdminUser(username, password);
-
-        writeuser = new FileWriter("AdminUser/" + username + ".txt");
+        writeuser = new FileWriter("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\AdminUser\\" + username + ".txt");
         writeuser.write(username);
         writeuser.write("\r\n");
         writeuser.write(password);
 
         writeuser.close();
-
-        return user;
     }
+
+
+//    public void create_account(String username, String password) throws IOException {
+//        AdminUser user = new AdminUser(username, password);
+//
+//        writeuser = new FileWriter("AdminUser/" + username + ".txt");
+//        writeuser.write(username);
+//        writeuser.write("\r\n");
+//        writeuser.write(password);
+//
+//        writeuser.close();
+//
+//    }
 
 }
