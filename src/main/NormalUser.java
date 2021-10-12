@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,7 +17,8 @@ public class NormalUser extends User{
         this.contactinfo = "";
         this.playlist = new ArrayList<String>();
 
-        writeuser = new FileWriter("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\NormalUser\\" + this.username + ".txt");
+        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        writeuser = new FileWriter(str1.toString() + "\\main\\NormalUser\\" + this.username + ".txt");
         writeuser.write(username);
         writeuser.write("\r\n");
         writeuser.write(password);
@@ -43,7 +46,8 @@ public class NormalUser extends User{
 //    }
     public boolean give_like(String moivename) throws IOException {
 
-        userreader = new FileReader("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\NormalUser\\" + this.username + ".txt");
+        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        userreader = new FileReader(str1.toString() + "\\main\\NormalUser\\" + this.username + ".txt");
         userlogin = new BufferedReader(userreader);
 
         this.playlist.add(moivename);
@@ -62,7 +66,7 @@ public class NormalUser extends User{
             lst.set(3, lst.get(3).replace("]",", " + moivename + "]"));
         }
 
-        writeuser = new FileWriter("C:\\Users\\MOKILA\\Desktop\\csc207\\207project\\src\\main\\NormalUser\\" + this.username + ".txt");
+        writeuser = new FileWriter(str1.toString() + "\\main\\NormalUser\\" + this.username + ".txt");
         for(String str: lst){
             writeuser.write(str);
             writeuser.write("\r\n");
