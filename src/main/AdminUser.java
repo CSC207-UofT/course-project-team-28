@@ -3,30 +3,24 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class AdminUser extends User{
-    public FileReader userreader = new FileReader("Normal.txt");;
-    public BufferedReader userlogin = new BufferedReader(userreader);
-    public FileWriter writeuser = new FileWriter("Normal.txt", true);
+    static FileReader userreader = new FileReader("AdminUser.txt");;
+    static BufferedReader userlogin = new BufferedReader(userreader);
+    static FileWriter writeuser = new FileWriter("AdminUser.txt", true);
 
 
     public AdminUser(String username, String password){
         super(username, password);
     }
 
-    @Override
-    public AdminUser create_account(String username, String password){
+
+    public void create_account(String username, String password){
         AdminUser user = new AdminUser(username, password);
 
-        while(!userlogin.readLine().equals("")) {
-            userlogin.readLine();
-        }
-        userlogin.readLine();
-        userlogin.close();
-        writeuser.write("U");
+        writeuser = new FileWriter("AdminUser/" + username + ".txt");
+        writeuser.write(username);
         writeuser.write("\r\n");
-        writeuser.write("mokila");
-        writeuser.write("\r\n");
-        writeuser.write("123456");
-        writeuser.write("\r\n");
+        writeuser.write(password);
+
         writeuser.close();
 
         return user;
