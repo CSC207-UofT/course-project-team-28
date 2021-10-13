@@ -1,78 +1,42 @@
 import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+
+/**
+ * Called for read and write user's file.
+ * it should be only called by User class and its subclass.
+ */
 public class NormalUser extends User{
+
     protected String contactinfo;
     protected ArrayList<String> playlist;
+    protected WriteUser wu = new WriteUser();
 
-    public FileReader userreader;
-    public BufferedReader userlogin;
-    static FileWriter writeuser;
 
-    public NormalUser(String username, String password) throws IOException {
+    /**
+     * pass username and password of username to create a new account
+     * it should call WriteUser Class to create a new file for user.
+     */
+    public NormalUser(String username, String password, String contactinfo, ArrayList<String> playlist) throws IOException {
         super(username, password);
-        this.contactinfo = "";
-        this.playlist = new ArrayList<String>();
+        this.contactinfo = contactinfo;
+        this.playlist = playlist;
+        wu.create_file(this);
 
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        writeuser = new FileWriter(str1.toString() + "\\main\\NormalUser\\" + this.username + ".txt");
-        writeuser.write(username);
-        writeuser.write("\r\n");
-        writeuser.write(password);
-        writeuser.write("\r\n");
-        writeuser.write("c");
-        writeuser.write("\r\n");
-        writeuser.write("[]");
-        writeuser.close();
     }
 
-//    public void create_account(String username, String password) throws IOException {
-//        // write new user in file
-//        NormalUser user = new NormalUser(username, password);
-//
-//        writeuser = new FileWriter("NormalUser/" + username + ".txt");
-//        writeuser.write(username);
-//        writeuser.write("\r\n");
-//        writeuser.write(password);
-//        writeuser.write("\r\n");
-//        writeuser.write("c");
-//        writeuser.write("\r\n");
-//        writeuser.write("[]");
-//        writeuser.close();
-//
-//    }
-    public boolean give_like(String moivename) throws IOException {
+    /**
+     * Use existed NormalUser Object to call give_like, pass moviename as parameter.
+     * it should call WriteUser Class to read and write file.
+     */
+    public boolean give_like(String moviename) throws IOException {
+        this.playlist.add(moviename);
 
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        userreader = new FileReader(str1.toString() + "\\main\\NormalUser\\" + this.username + ".txt");
-        userlogin = new BufferedReader(userreader);
+        ArrayList<String> lst1 = new ArrayList<String>();
+        lst1 = wu.give_like_readandwrite(moviename, this.username);
 
-        this.playlist.add(moivename);
 
-        ArrayList<String> lst = new ArrayList<String>();
-        String line = userlogin.readLine();
-        while(line !=null){
-            lst.add(line);
-            line = userlogin.readLine();
-        }
-        userlogin.close();
-        if (lst.get(3).equals("[]")){
-            lst.set(3, lst.get(3).replace("[]","[" + moivename + "]"));
-        }
-        else if(!lst.get(3).contains(moivename)){
-            lst.set(3, lst.get(3).replace("]",", " + moivename + "]"));
-        }
-
-        writeuser = new FileWriter(str1.toString() + "\\main\\NormalUser\\" + this.username + ".txt");
-        for(String str: lst){
-            writeuser.write(str);
-            writeuser.write("\r\n");
-        }
-        writeuser.close();
-        return lst.get(3).contains(moivename);
+        return lst1.get(3).contains(moviename);
     }
 
 }
