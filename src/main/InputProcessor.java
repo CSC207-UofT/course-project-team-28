@@ -6,7 +6,7 @@ public class InputProcessor {
 
     private boolean is_alphanumeric(String s) {
         for (int i = 0; i < s.length(); i ++) {
-            if (! ((char) s[i].isAlphabetic() / (char) s[i].isDigit())) {
+            if (! (Character.isAlphabetic(s.charAt(i)) || Character.isDigit(s.charAt(i)))) {
                 return false;
             }
         }
