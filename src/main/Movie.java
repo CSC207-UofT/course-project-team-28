@@ -18,6 +18,11 @@ public class Movie {
         this.Likes = 0;
     }
 
+    public void GetReviewandLike(HashMap map, int i){
+        this.moviereviews = map;
+        this.Likes = i;
+    }
+
     public void AddReview(Review review){
         this.moviereviews.put(review.review_content, review.reviewer);
     }
