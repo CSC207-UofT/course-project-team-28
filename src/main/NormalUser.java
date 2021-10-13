@@ -39,4 +39,11 @@ public class NormalUser extends User{
         return lst1.get(3).contains(moviename);
     }
 
+    /**
+     * create ArrayList of NormalUser and AdminUser [[AdminUser],[NormalUser]]
+     */
+    public ArrayList<Object> getObject() throws IOException {
+        return wu.get_object_from_file();
+    }
+
 }

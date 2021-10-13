@@ -32,7 +32,7 @@ public class WriteUser implements WriteFile{
             writeuser.write("c");
             writeuser.write("\r\n");
             writeuser.write("[]");
-            writeuser.close();
+            writeuser.close();//!!! remember
         }
         else{
             Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -52,8 +52,8 @@ public class WriteUser implements WriteFile{
     @Override
     public ArrayList<Object> get_object_from_file() throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File NormalUserPath = new File(str1.toString() + "\\main\\NormalUser"); //get full path for folder
-        File AdminUserPath = new File(str1.toString() + "\\main\\AdminUser"); //get full path for folder
+        File NormalUserPath = new File(str1.toString() + "\\main\\NormalUser"); //get full path for NormalUser folder
+        File AdminUserPath = new File(str1.toString() + "\\main\\AdminUser"); //get full path for AdminUser folder
 
         String[] lstOfNormal = NormalUserPath.list();// get all the file name in NormalUser folder
         String[] lstOfAdmin = AdminUserPath.list();// get all the file name in AdminUser folder
@@ -68,6 +68,7 @@ public class WriteUser implements WriteFile{
         else if(lstOfNormal != null){
             for(String nu: lstOfNormal){
                 ArrayList<String> lst = read_file(str1, nu, "NormalUser");
+
                 lst.set(3, lst.get(3).replace("[", "")); //get rid of "[]" in playlist
                 lst.set(3, lst.get(3).replace("]", "")); //get rid of "[]" in playlist
                 String[] pl1 = lst.get(3).split(","); // change playlist from string to array
