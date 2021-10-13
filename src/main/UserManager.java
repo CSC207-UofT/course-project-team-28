@@ -2,16 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class that manage user info
+ * A class that manages user info
  */
 
 public class UserManager {
     private List<AdminUser> lstOfAdminUser;
     private List<NormalUser> lstOfNormalUser;
-    private String contact_info;
 
     /**
-     * Set two empty list of admin users and normal users.
+     * Set two empty lists of admin users and normal users.
      */
 
     public UserManager(){
@@ -36,15 +35,17 @@ public class UserManager {
     }
 
     /**
-     * Update contact info of a normal user
-     * @param nu a normal user
-     * @param contact_info the info needs to be updated
+     * A getter that returns a list of Admin users
      */
+    public List<AdminUser> get_adminuser(){
+        return lstOfAdminUser;
+    }
 
-    public void update_info(NormalUser nu, String contact_info){
-
-
-
+    /**
+     *A getter that returns a list of normal users
+     */
+    public List<NormalUser> get_normaluser(){
+        return lstOfNormalUser;
     }
 
 
