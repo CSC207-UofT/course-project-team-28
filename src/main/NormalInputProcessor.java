@@ -19,14 +19,14 @@ public class NormalInputProcessor {
     }
 
     /**
-     * Return true if the given string (username or password) is alphanumeric.
+     * Return true if the given string (username or password) is alphanumeric, also it is nonempty.
      */
     private boolean is_nonemptyalphanumeric(String s) {
+        if (s.length() < 1) {
+            return false;
+        }
         for (int i = 0; i < s.length(); i ++) {
             if (! (Character.isAlphabetic(s.charAt(i)) || Character.isDigit(s.charAt(i)))) {
-                return false;
-            }
-            if (s.length() < 1) {
                 return false;
             }
         }
