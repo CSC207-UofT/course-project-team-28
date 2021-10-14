@@ -50,7 +50,7 @@ public class WriteMovie implements WriteFile{
 
         ArrayList<Object> Movie_lst = new ArrayList<Object>(); // the list that will be returned, containing Movies.
 
-        if(Movie_lst == null){
+        if(lstOfMovie == null){
             return new ArrayList<Object>();
         }
         else{
@@ -71,6 +71,14 @@ public class WriteMovie implements WriteFile{
             }
         }
         return Movie_lst;
+    }
+
+    public void delete_file(Object movie) throws IOException {
+        Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        File moviefile = new File(p1.toString() + "\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
+        File moviereviewfile = new File(p1.toString() + "\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.txt");
+        Boolean a = moviefile.delete();
+        Boolean b = moviereviewfile.delete();
     }
 
 
