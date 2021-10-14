@@ -106,12 +106,13 @@ public class WriteMovie implements WriteFile{
         return Movie_lst;
     }
 
-    public void delete_file(Object movie) throws IOException {
+    public Boolean delete_file(Object movie) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         File moviefile = new File(p1.toString() + "\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
         File moviereviewfile = new File(p1.toString() + "\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
         Boolean a = moviefile.delete();
         Boolean b = moviereviewfile.delete();
+        return a & b;
     }
 
 
