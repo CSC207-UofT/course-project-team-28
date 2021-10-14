@@ -68,7 +68,7 @@ public class WriteMovie implements WriteFile{
 
     /**
      * Read Moviedata and Moviereviews two folders, create obejct for each movie and return a two-dimensional array.
-     * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata.
+     * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata
      */
 
     @Override

@@ -9,7 +9,7 @@ public class Movie {
 
     /**
      * "moviereviews" is a Hashmap with review content as key and the corresponding user as value.
-     * "Likes" stores the number of likes a movie received.
+     * "Likes" stores the number of likes a movie received
      */
 
     public Movie(String moviename, String movielink) throws IOException {
