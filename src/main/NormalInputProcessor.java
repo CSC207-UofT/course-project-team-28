@@ -61,7 +61,7 @@ public class NormalInputProcessor {
      * create normal user iff the provided username and password is legal
      * username and password must only contain numbers or letters, and username must be unique
      */
-    public boolean register(String un, String pass) {
+    public boolean register(String un, String pass) throws IOException {
         if (! this.is_nonemptyalphanumeric(un)){
             return false;
         }
@@ -69,7 +69,7 @@ public class NormalInputProcessor {
             return false;
         }
         // check if the usename is already used by other users
-        else if (! this.is_nonemptyalphanumeric(pass)){
+        else if (! user_mana.usernameIfUnique(un, "NormalUser")){
             return false;
         }
         else {
