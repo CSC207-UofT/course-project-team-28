@@ -16,7 +16,7 @@ public class UserManager {
      */
     public UserManager() throws IOException {
         ArrayList<AdminUser> aulst = wu.get_object_from_file(); // AdminUser
-        ArrayList<NormalUser> nulst = wu.get_NormalUser_from_file(); // AdminUser
+        ArrayList<NormalUser> nulst = wu.get_NormalUser_from_file(); // NormalUser
         this.lstOfAdminUser = aulst;
         this.lstOfNormalUser = nulst;
     }
@@ -51,13 +51,13 @@ public class UserManager {
      */
 
     public boolean update_info(NormalUser nu, String contact_info) throws IOException {
-        if(nu.contactinfo.equals(contact_info)){
+        if(nu.getContactinfo().equals(contact_info)){
             return true;
         }
         else{
-            nu.contactinfo = contact_info;
+            nu.update_contactinfo(contact_info);
 
-            String str = wu.edit_profile_readandwrite(contact_info, nu.username);
+            String str = wu.edit_profile_readandwrite(contact_info, nu.getusername());
 
             return !str.equals(contact_info);
         }
@@ -69,13 +69,13 @@ public class UserManager {
      * Return True if it is successfully added. If that movie is already in playlist, return false.
      */
     public boolean give_like(NormalUser nu, String moviename) throws IOException {
-        if(nu.playlist.contains(moviename)){
+        if(nu.getplaylist().contains(moviename)){
             return false;
         }
         else {
-            nu.playlist.add(moviename);
+            nu.add_movie_to_playlist(moviename);
 
-            String str = wu.give_like_readandwrite(moviename, nu.username);
+            String str = wu.give_like_readandwrite(moviename, nu.getusername());
 
             return str.contains(moviename);
         }
@@ -88,13 +88,13 @@ public class UserManager {
      * Return True if it is successfully removed. If that movie is not in playlist, return false.
      */
     public boolean undo_like(NormalUser nu, String moviename) throws IOException {
-        if(!nu.playlist.contains(moviename)){
+        if(!nu.getplaylist().contains(moviename)){
             return false;
         }
         else {
-            nu.playlist.remove(moviename);
+            nu.remove_movie_from_playlist(moviename);
 
-            String str = wu.undo_like_readandwrite(moviename, nu.username);
+            String str = wu.undo_like_readandwrite(moviename, nu.getusername());
 
             return !str.contains(moviename);
         }
@@ -152,7 +152,7 @@ public class UserManager {
     }
 
     /**
-     * Use username and password to find the whether user's username unique or not.
+     * Use username and usertype to find the whether user's username unique or not.
      * @param username the username of User
      * @param usertype the type of User, it is either "NormalUser" or "AdminUser"
      * @return return true if user's username unique. Otherwise, return false

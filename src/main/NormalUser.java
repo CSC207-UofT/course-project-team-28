@@ -44,5 +44,25 @@ public class NormalUser extends User{
         return this.password;
     }
 
+    public String getContactinfo(){
+        return this.contactinfo;
+    }
+
+    public ArrayList<String> getplaylist(){
+        return this.playlist;
+    }
+
+    public void update_contactinfo(String contactinfo){
+        this.contactinfo = contactinfo;
+    }
+
+    public void add_movie_to_playlist(String moviename){
+        this.playlist.add(moviename);
+    }
+
+    public void remove_movie_from_playlist(String moviename){
+        this.playlist.remove(moviename);
+    }
+
 
 }
