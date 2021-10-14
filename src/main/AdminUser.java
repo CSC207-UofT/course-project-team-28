@@ -1,5 +1,3 @@
-import java.io.*;
-
 public class AdminUser extends User{
 
     public AdminUser(String username, String password) {

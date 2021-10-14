@@ -151,6 +151,31 @@ public class UserManager {
         return false;
     }
 
+    /**
+     * Use username and password to find the whether user's username unique or not.
+     * @param username the username of User
+     * @param usertype the type of User, it is either "NormalUser" or "AdminUser"
+     * @return return true if user's username unique. Otherwise, return false
+     */
+    public boolean usernameIfUnique(String username, String usertype){
+        if (usertype.equals("AdminUser")){
+            for(AdminUser au: lstOfAdminUser){
+                if(au.getusername().equals(username)){
+                    return false;
+                }
+            }
+        }
+        else{
+            for(NormalUser nu: lstOfNormalUser){
+                if(nu.getusername().equals(username)){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
 
 
 
