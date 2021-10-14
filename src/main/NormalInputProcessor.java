@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,6 +9,7 @@ public class InputProcessor {
     static private ReviewManager rev_mana;
     static private MovieManager mov_mana;
     static private UserManager user_mana;
+    private User curr_u;
 
     public InputProcessor(){
         rev_mana = new ReviewManager();
@@ -80,6 +82,32 @@ public class InputProcessor {
      * return a list of movie names that contains the given string s.
      */
     public ArrayList<String> search(String s){
+
+    }
+
+    /**
+     * when given a String of the normal user's username, return an
+     * array [username, contact info, playlist]
+     */
+    public Arrays profile_page(String s){
+
+    }
+
+
+    /**
+     * when given a String of the movie's name, return an
+     * array [movie name, movie link, reviews, number of likes]
+     */
+    public Arrays movie_profile(String s){
+
+    }
+
+
+    /**
+     * when given a String of the movie's name, return an
+     * array [movie name, movie link, reviews, number of likes]
+     */
+    public void write_review(String rev_content){
 
     }
 
