@@ -21,9 +21,12 @@ public class NormalInputProcessor {
     /**
      * Return true if the given string (username or password) is alphanumeric.
      */
-    private boolean is_alphanumeric(String s) {
+    private boolean is_nonemptyalphanumeric(String s) {
         for (int i = 0; i < s.length(); i ++) {
             if (! (Character.isAlphabetic(s.charAt(i)) || Character.isDigit(s.charAt(i)))) {
+                return false;
+            }
+            if (s.length() < 1) {
                 return false;
             }
         }
@@ -59,18 +62,19 @@ public class NormalInputProcessor {
      * username and password must only contain numbers or letters, and username must be unique
      */
     public boolean register(String un, String pass) {
-        if (! this.is_alphanumeric(un)){
+        if (! this.is_nonemptyalphanumeric(un)){
             return false;
         }
-        else if (! this.is_alphanumeric(pass)){
+        else if (! this.is_nonemptyalphanumeric(pass)){
             return false;
         }
         // check if the usename is already used by other users
-        else if (! this.is_alphanumeric(pass)){
+        else if (! this.is_nonemptyalphanumeric(pass)){
             return false;
         }
-        else{
-            user_mana.add_normaluser();
+        else {
+            user_mana.create_normaluser(un, pass);
+            return true;
         }
     }
 
