@@ -63,7 +63,7 @@ public class WriteMovie implements WriteFile{
                         FileInputStream movier = new FileInputStream(MoviereviewPath.toString() + mr + ".txt");
                         properties.load(movier);
                         moviereview = new HashMap<Object, Object>(properties);
-                    } // find the corresponding review file for movie and change the HashMap created to the stored one
+                    } // Find the corresponding review file for movie and change the HashMap created to the stored one
                 }
                 Movie movie = new Movie(lst.get(0), lst.get(1)); // create object for a single movie
                 movie.GetReviewandLike(moviereview, Integer.parseInt(lst.get(2))); // put in all parameters

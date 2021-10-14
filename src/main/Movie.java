@@ -38,7 +38,7 @@ public class Movie {
      * Method AddReview take only a parameter of Class review, which will store the
      * review content as key and the corresponding user as value. Once a review is written, it
      * should first be stored in the Review Class and then Movie Class will take data from Review
-     * Class and store them.
+     * Class and store them
      */
 
     public void AddLike(){
