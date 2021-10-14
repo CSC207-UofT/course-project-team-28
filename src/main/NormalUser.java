@@ -10,18 +10,16 @@ public class NormalUser extends User{
 
     protected String contactinfo;
     protected ArrayList<String> playlist;
-    protected WriteUser wu = new WriteUser();
 
 
     /**
      * pass username and password of username to create a new account
      * it should call WriteUser Class to create a new file for user.
      */
-    public NormalUser(String username, String password, String contactinfo, ArrayList<String> playlist) throws IOException {
+    public NormalUser(String username, String password, String contactinfo, ArrayList<String> playlist) {
         super(username, password);
         this.contactinfo = contactinfo;
         this.playlist = playlist;
-        wu.create_file(this);
 
     }
 
@@ -36,10 +34,12 @@ public class NormalUser extends User{
         return nu;
     }
 
+    @Override
     public String getusername(){
         return this.username;
     }
 
+    @Override
     public String getuserpassword(){
         return this.password;
     }

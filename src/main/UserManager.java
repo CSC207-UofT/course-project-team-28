@@ -28,6 +28,7 @@ public class UserManager {
      */
     public void create_adminuser(String username, String password) throws IOException {
         AdminUser au = new AdminUser(username, password);
+        wu.create_file(au);
         lstOfAdminUser.add(au);
     }
 
@@ -38,6 +39,7 @@ public class UserManager {
      */
     public void create_normaluser(String username, String password) throws IOException {
         NormalUser nu = new NormalUser(username, password, "", new ArrayList<>());
+        wu.create_file(nu);
         lstOfNormalUser.add(nu);
     }
 
@@ -104,7 +106,7 @@ public class UserManager {
      * @param usertype the type of User, it is either "NormalUser" or "AdminUser"
      * @return return an array of user info
      */
-    public Object[] getObjectArray(String username, String usertype) {
+    public Object[] getUserInfoArray(String username, String usertype) {
         if (usertype.equals("NormalUser")){
             for(NormalUser nu: lstOfNormalUser){
                 if(nu.getusername().equals(username)){

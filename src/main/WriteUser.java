@@ -45,8 +45,7 @@ public class WriteUser implements WriteFile{
     }
 
     /**
-     * Read NormalUser and AdminUser two folders, create obejct for each user and return a two-dimensional array.
-     * [[AdminUser],[NormalUser]]
+     * Read AdminUser's folder, create object for each admin user and return an ArrayList of AdminUser.
      */
     @Override
     public ArrayList<AdminUser> get_object_from_file() throws IOException{
@@ -73,6 +72,9 @@ public class WriteUser implements WriteFile{
         return AdminUser_lst;
     }
 
+    /**
+     * Read NormalUser's folder, create object for each Normal user and return an ArrayList of NormalUser.
+     */
     public ArrayList<NormalUser> get_NormalUser_from_file() throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
         File NormalUserPath = new File(str1 + "\\main\\NormalUser"); //get full path for NormalUser folder

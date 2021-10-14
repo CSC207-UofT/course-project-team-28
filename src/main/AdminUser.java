@@ -2,10 +2,8 @@ import java.io.*;
 
 public class AdminUser extends User{
 
-    public AdminUser(String username, String password) throws IOException {
+    public AdminUser(String username, String password) {
         super(username, password);
-        WriteUser wu = new WriteUser();
-        wu.create_file(this);
     }
 
     @Override
@@ -17,9 +15,12 @@ public class AdminUser extends User{
         return au;
     }
 
+    @Override
     public String getusername(){
         return this.username;
     }
+
+    @Override
     public String getuserpassword(){
         return this.password;
     }
