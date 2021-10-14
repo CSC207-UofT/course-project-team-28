@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.Objects;
 
+import java.util.ArrayList;
+
 public class InputProcessor {
     // delete or add movie(Admin User), call MovieManger
     static private ReviewManager rev_mana;
@@ -53,19 +55,32 @@ public class InputProcessor {
      * create normal user iff the provided username and password is legal
      * username and password must only contain numbers or letters, and username must be unique
      */
-    public boolean create_norm_user(String un, String pass) {
+    public boolean register(String un, String pass) {
         if (! this.is_alphanumeric(un)){
             return false;
         }
         else if (! this.is_alphanumeric(pass)){
             return false;
         }
+        // check if the usename is already used by other users
         else if (! this.is_alphanumeric(pass)){
             return false;
         }
         else{
-
+            user_mana.add_normaluser();
         }
+    }
+
+
+    public boolean login(String un, String pass) {
+
+    }
+
+    /**
+     * return a list of movie names that contains the given string s.
+     */
+    public ArrayList<String> search(String s){
+
     }
 
 
