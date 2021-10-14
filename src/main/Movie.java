@@ -1,17 +1,15 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Movie {
-    public String moviename;
-    public String movielink;
-    public HashMap<String, String> moviereviews;
+    protected String moviename;
+    protected String movielink;
+    public HashMap<Object, Object> moviereviews;
     public int Likes;
-    public WriteMovie wm = new WriteMovie();
 
     /**
      * "moviereviews" is a Hashmap with review content as key and the corresponding user as value.
-     * "Likes" stores the number of likes a movie received.
+     * "Likes" stores the number of likes a movie received
      */
 
     public Movie(String moviename, String movielink) throws IOException {
@@ -19,13 +17,12 @@ public class Movie {
         this.movielink = movielink;
         this.moviereviews = new HashMap<>();
         this.Likes = 0;
-        wm.create_file(this);
     }
 
     /**
      * Helper method for WriteMovie.
      */
-    public void GetReviewandLike(HashMap map, int i){
+    public void GetReviewandLike(HashMap<Object, Object> map, int i){
         this.moviereviews = map;
         this.Likes = i;
     }
@@ -45,14 +42,16 @@ public class Movie {
         this.Likes += 1;
     }
 
-    /**
-     * create ArrayList of Movies [Movie1, Movie2, ...]
-     */
-    public ArrayList<Object> getObject() throws IOException {
-        return wm.get_object_from_file();
+    public String getMoviename(){
+        return this.moviename;
     }
 
-    public void delete_file() throws IOException{
-        wm.delete_file(this);
+    public String getMovielink(){
+        return this.movielink;
     }
+
+    public HashMap<Object, Object> getMovieReviews() {return this.moviereviews; }
+
+    public int getLikes() {return this.Likes; }
+
 }
