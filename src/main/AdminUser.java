@@ -8,5 +8,20 @@ public class AdminUser extends User{
         wu.create_file(this);
     }
 
+    @Override
+    public Object[] getObject() {
+        Object[] au = new Object[2];
+        au[0] = this.username;
+        au[1] = this.password;
+
+        return au;
+    }
+
+    public String getusername(){
+        return this.username;
+    }
+    public String getuserpassword(){
+        return this.password;
+    }
 
 }

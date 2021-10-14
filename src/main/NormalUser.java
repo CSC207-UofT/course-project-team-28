@@ -25,25 +25,24 @@ public class NormalUser extends User{
 
     }
 
-    /**
-     * Use existed NormalUser Object to call give_like, pass moviename as parameter.
-     * it should call WriteUser Class to read and write file.
-     */
-    public boolean give_like(String moviename) throws IOException {
-        this.playlist.add(moviename);
+    @Override
+    public Object[] getObject() {
+        Object[] nu = new Object[4];
+        nu[0] = this.username;
+        nu[1] = this.password;
+        nu[2] = this.contactinfo;
+        nu[3] = this.playlist;
 
-        ArrayList<String> lst1 = new ArrayList<String>();
-        lst1 = wu.give_like_readandwrite(moviename, this.username);
-
-
-        return lst1.get(3).contains(moviename);
+        return nu;
     }
 
-    /**
-     * create ArrayList of NormalUser and AdminUser [[AdminUser],[NormalUser]]
-     */
-    public ArrayList<Object> getObject() throws IOException {
-        return wu.get_object_from_file();
+    public String getusername(){
+        return this.username;
     }
+
+    public String getuserpassword(){
+        return this.password;
+    }
+
 
 }
