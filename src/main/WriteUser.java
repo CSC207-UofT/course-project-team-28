@@ -3,6 +3,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -17,14 +18,14 @@ public class WriteUser implements WriteFile{
 
     /**
      * Called by NormalUser constructor, it aims to create a new file for the new user.
-     * pass username and password of user as parameters.
+     * pass object of user as parameters.
      */
 
     @Override
     public void create_file(Object user) throws IOException {
+        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         if(user instanceof NormalUser) {
-            Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            writeuser = new FileWriter(str1.toString() + "\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+            writeuser = new FileWriter(str1 + "\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
             writeuser.write(((NormalUser) user).username);
             writeuser.write("\r\n");
             writeuser.write(((NormalUser) user).password);
@@ -32,52 +33,33 @@ public class WriteUser implements WriteFile{
             writeuser.write("c");
             writeuser.write("\r\n");
             writeuser.write("[]");
-            writeuser.close();//!!! remember
         }
         else{
-            Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            writeuser = new FileWriter(str1.toString() + "\\main\\AdminUser\\" + ((AdminUser) user).username + ".txt");
+            writeuser = new FileWriter(str1 + "\\main\\AdminUser\\" + ((AdminUser) user).username + ".txt");
             writeuser.write(((AdminUser) user).username);
             writeuser.write("\r\n");
             writeuser.write(((AdminUser) user).password);
 
-            writeuser.close();
         }
+        writeuser.close();//!!! remember
     }
 
     /**
-     * Read NormalUser and AdminUser two folders, create obejct for each user and return a two-dimensional array.
-     * the array at first place is NormalUser, the array at second place is AdminUser.
+     * Read AdminUser's folder, create object for each admin user and return an ArrayList of AdminUser.
      */
     @Override
-    public ArrayList<Object> get_object_from_file() throws IOException{
+    public ArrayList<AdminUser> get_object_from_file() throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File NormalUserPath = new File(str1.toString() + "\\main\\NormalUser"); //get full path for NormalUser folder
-        File AdminUserPath = new File(str1.toString() + "\\main\\AdminUser"); //get full path for AdminUser folder
+        File AdminUserPath = new File(str1 + "\\main\\AdminUser"); //get full path for AdminUser folder
 
-        String[] lstOfNormal = NormalUserPath.list();// get all the file name in NormalUser folder
         String[] lstOfAdmin = AdminUserPath.list();// get all the file name in AdminUser folder
 
-        ArrayList<Object> AdminUser_lst = new ArrayList<Object>();
-        ArrayList<Object> NormalUser_lst = new ArrayList<Object>();
-        ArrayList<Object> user_lst = new ArrayList<Object>();
+        ArrayList<AdminUser> AdminUser_lst = new ArrayList<>();
 
-        if(lstOfNormal == null & lstOfAdmin == null){
-            return new ArrayList<Object>();
+        if(lstOfAdmin == null){
+            return new ArrayList<>();
         }
-        else if(lstOfNormal != null){
-            for(String nu: lstOfNormal){
-                ArrayList<String> lst = read_file(str1, nu, "NormalUser");
 
-                lst.set(3, lst.get(3).replace("[", "")); //get rid of "[]" in playlist
-                lst.set(3, lst.get(3).replace("]", "")); //get rid of "[]" in playlist
-                String[] pl1 = lst.get(3).split(","); // change playlist from string to array
-                ArrayList<String> pl2 = new ArrayList<String>(Arrays.asList(pl1)); // change playlist from array to arraylist
-
-                NormalUser nur = new NormalUser(lst.get(0), lst.get(1), lst.get(2), pl2); // create object foe this single user
-                NormalUser_lst.add(nur);
-            }
-        }
         else{
             for(String au: lstOfAdmin) {
                 ArrayList<String> lst = read_file(str1, au, "AdminUser");
@@ -86,16 +68,46 @@ public class WriteUser implements WriteFile{
                 AdminUser_lst.add(nur);
             }
         }
-        user_lst.add(AdminUser_lst);
-        user_lst.add(NormalUser_lst);
-        return user_lst;
+
+        return AdminUser_lst;
+    }
+
+    /**
+     * Read NormalUser's folder, create object for each Normal user and return an ArrayList of NormalUser.
+     */
+    public ArrayList<NormalUser> get_NormalUser_from_file() throws IOException{
+        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+        File NormalUserPath = new File(str1 + "\\main\\NormalUser"); //get full path for NormalUser folder
+
+        String[] lstOfNormal = NormalUserPath.list();// get all the file name in NormalUser folder
+
+        ArrayList<NormalUser> NormalUser_lst = new ArrayList<>();
+
+        if(lstOfNormal == null ){
+            return new ArrayList<>();
+        }
+        else {
+            for(String nu: lstOfNormal){
+                ArrayList<String> lst = read_file(str1, nu, "NormalUser");
+
+                lst.set(3, lst.get(3).replace("[", "")); //get rid of "[]" in playlist
+                lst.set(3, lst.get(3).replace("]", "")); //get rid of "[]" in playlist
+                String[] pl1 = lst.get(3).split(","); // change playlist from string to array
+                ArrayList<String> pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
+
+                NormalUser nur = new NormalUser(lst.get(0), lst.get(1), lst.get(2), pl2); // create object foe this single user
+                NormalUser_lst.add(nur);// Add single user object into Arraylist
+            }
+        }
+
+        return NormalUser_lst;
     }
 
     /**
      * Called by NormalUser give_like method, it aims to read and write file for playlist in file for the user.
      * pass moviename of movie and username of user as parameters.
      */
-    public ArrayList<String> give_like_readandwrite(String moviename, String username) throws IOException {
+    public String give_like_readandwrite(String moviename, String username) throws IOException {
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         ArrayList<String> lst = read_file(str1, username, "NormalUser");
 
@@ -106,15 +118,43 @@ public class WriteUser implements WriteFile{
             lst.set(3, lst.get(3).replace("]","," + moviename + "]"));
         }
 
-        writeuser = new FileWriter(str1.toString() + "\\main\\NormalUser\\" + username + ".txt");
-        for(String str: lst){
-            writeuser.write(str);
-            writeuser.write("\r\n");
-        }
-        writeuser.close();
+        write_file(str1, username, lst);
 
-        return lst;
+        return lst.get(3);
     }
+
+    public String undo_like_readandwrite(String moviename, String username) throws IOException {
+        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        ArrayList<String> lst = read_file(str1, username, "NormalUser");
+
+        lst.set(3, lst.get(3).replace("[",""));//For playlist String. get rid of "[" and "]"
+        lst.set(3, lst.get(3).replace("]",""));////For playlist String. get rid of "[" and "]"
+        String[] movielst1 = lst.get(3).split(",");// split playlist String into Array
+        ArrayList<String> movielst2 = new ArrayList<>(Arrays.asList(movielst1));// convert Array into ArrayList
+        movielst2.remove(moviename);// remove movie from playlist
+        lst.set(3, movielst2.toString().replaceAll(", ", ","));// Change playlist with new playlist, make sure there is no space around "," in playlist
+
+
+        write_file(str1, username, lst);
+
+        return lst.get(3);
+    }
+
+    public String edit_profile_readandwrite(String newcontactinfo, String username) throws IOException{
+        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        ArrayList<String> lst = read_file(str1, username, "NormalUser");
+
+        lst.set(2, newcontactinfo);
+        write_file(str1, username, lst);
+
+        return lst.get(2);
+    }
+
+
+
+
+
+
 
     /**
      * Helper method, read file
@@ -123,7 +163,7 @@ public class WriteUser implements WriteFile{
         userreader = new FileReader(str1.toString() + "\\main\\" + folder + "\\" + fn);
         userlogin = new BufferedReader(userreader);
 
-        ArrayList<String> lst = new ArrayList<String>();
+        ArrayList<String> lst = new ArrayList<>();
         String line = userlogin.readLine();
         while (line != null) {
             lst.add(line);
@@ -133,4 +173,17 @@ public class WriteUser implements WriteFile{
 
         return lst;
     }
+
+    /**
+     * Helper method, write file
+     */
+    public void write_file(Path str1, String username, ArrayList<String> lst) throws IOException {
+        writeuser = new FileWriter(str1 + "\\main\\NormalUser\\" + username + ".txt");
+        for(String str: lst){
+            writeuser.write(str);
+            writeuser.write("\r\n");
+        }
+        writeuser.close();
+    }
+
 }
