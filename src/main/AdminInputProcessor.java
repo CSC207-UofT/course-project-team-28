@@ -6,14 +6,11 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 public class AdminInputProcessor {
-    static private ReviewManager rev_mana;
     static private MovieManager mov_mana;
     static private UserManager user_mana;
-    private String curr_auname;
     final private String ADMINCODE = "123456";
 
     public AdminInputProcessor() throws IOException {
-        rev_mana = new ReviewManager();
         mov_mana = new MovieManager();
         user_mana = new UserManager();
     }
@@ -70,7 +67,6 @@ public class AdminInputProcessor {
             return false;
         }
         if (user_mana.userIfExist(un, pass, "AdminUser")) {
-            curr_auname = un;
             return true;
         }
         else {
