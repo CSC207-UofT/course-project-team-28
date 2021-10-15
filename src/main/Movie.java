@@ -39,9 +39,7 @@ public class Movie {
      * @return
      */
 
-    public String toString(){
-        return this.moviename;
-    }
+    public String toString() {return this.moviename; }
 
     public void AddLike(){
         this.Likes += 1;
