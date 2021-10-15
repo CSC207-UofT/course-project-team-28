@@ -37,6 +37,7 @@ public class NormalInputProcessor {
      * create normal user iff the provided username and password is legal
      * username and password must be non-empty, only contain numbers or letters,
      * and username must be unique among all the normal users.
+     * Auto-login if registered successfully
      */
     public boolean register(String un, String pass) throws IOException {
         if (! this.is_nonemptyalphanumeric(un)){
@@ -118,28 +119,49 @@ public class NormalInputProcessor {
 
 
     /**
-     * Given a String moviename, return an array [normal username, movie name]
+     * Given a String moviename, add like.
+     * return ture iff added successfully.
      */
-    public Arrays like_movie(String moviename) {
+    public boolean like_movie(String moviename) throws IOException {
+        if (user_mana.give_like(this.curr_nuname, moviename)){
+            if (update movie like) {
+                return true;
+            }
+            else{
+                user_mana.undo_like(this.curr_nuname, moviename);
+                return false;
+            }
+        }
+        return false;
 
+    }
+
+
+
+    /**
+     * Given a String moviename, undo like.
+     * return ture iff added successfully.
+     */
+    public boolean undo_like(String moviename) {
+        if (user_mana.undo_like(this.curr_nuname, moviename)){
+            if (update movie undo like){
+                return true;
+            }
+            else{
+                user_mana.give_like(this.curr_nuname, moviename);
+                return false;
+            }
+        }
+        return false;
     }
 
 
     /**
-     * Given a String newinfo,
-     * return an array [normal username, newnumber]
+     * Given a String newinfo, update the user's profile.
+     * return ture iff updated successfully.
      */
-    public Arrays edit_profile(String newinfo) {
-
+    public boolean edit_profile(String newinfo) throws IOException {
+        return user_mana.update_info(this.curr_nuname, newinfo);
     }
-
-    /**
-     * Given a String of moviename,
-     * return an array [normal username, movie name]
-     */
-    public Arrays undo_like(String moviename) {
-
-    }
-
 
 }
