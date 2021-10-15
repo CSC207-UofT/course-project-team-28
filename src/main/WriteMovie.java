@@ -115,7 +115,9 @@ public class WriteMovie implements WriteFile{
         return a & b;
     }
 
-
+    /**
+     * Helper method
+     */
     public ArrayList<String> read_file(Path str1, String fn, String folder) throws IOException {
         moviereader = new FileReader(str1.toString() + "\\src\\main\\" + folder + "\\" + fn);
         getmovie = new BufferedReader(moviereader);

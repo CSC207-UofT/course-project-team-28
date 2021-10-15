@@ -23,8 +23,7 @@ public class WriteReview implements WriteFile{
     @Override
     public void create_file(Object review) throws IOException {
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        writereview = new FileWriter(path1.toString() + "\\main\\Review\\" + ((Review) review).movie +
-                "\\by\\" + ((Review) review).reviewer);
+        writereview = new FileWriter(path1.toString() + "\\src\\main\\Review\\" + ((Review) review).movie + ".txt");
         writereview.write(((Review) review).reviewer);
         writereview.write("\r\n");
         writereview.write(((Review) review).movie);
@@ -42,7 +41,7 @@ public class WriteReview implements WriteFile{
         // get the path of src
         Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
         // get the path of Review folder
-        File ReviewPath = new File(path2.toString() + "\\main\\Review\\");
+        File ReviewPath = new File(path2.toString() + "\\src\\main\\Review\\");
 
         // get the file name in the Review folder
         String[] lstOfReview = ReviewPath.list();
@@ -67,7 +66,7 @@ public class WriteReview implements WriteFile{
      * read the Review file
      */
     public ArrayList<String> read_file(Path path2, String fileOfReview, String folder) throws IOException{
-        reviewreader = new FileReader(path2.toString() + "\\main\\" + folder + "\\" + fileOfReview);
+        reviewreader = new FileReader(path2.toString() + "\\src\\main\\" + folder + "\\" + fileOfReview);
         getreview = new BufferedReader(reviewreader);
 
         ArrayList<String> result = new ArrayList<String>();
