@@ -52,10 +52,9 @@ public class AdminInputProcessor {
         else if (! user_mana.usernameIfUnique(un, "AdminUser")){
             return false;
         }
-        else {
-            user_mana.create_adminuser(un, pass);
-            return true;
-        }
+        user_mana.create_adminuser(un, pass);
+        login(un, pass, code);
+        return true;
     }
 
     /**
