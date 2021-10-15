@@ -77,19 +77,30 @@ public class AdminInputProcessor {
 
     /**
      * Given a String of moviename and a String of movielink,
-     * upload the movie to the platform.
+     * return true if those strings are non-empty and the movie is not uploaded before,
+     * and can be uploaded.
      */
-    public void upload_movie(String moviename, String movielink) throws IOException {
+    public boolean upload_movie(String moviename, String movielink) throws IOException {
+        if (moviename.length() < 1 & movielink.length() < 3) {
+            return false;
+        }
+        if (mov_mana.get_movie(moviename) != null) {
+            return false;
+        }
         mov_mana.add_movie(moviename, movielink);
+        return true;
     }
 
 
     /**
-     * Given a String of moviename, delete the movie from the platform.
+     * Given a String called moviename,
+     * return true if the movie exists in the platform and can be deleted.
      */
-    public void delete_movie(String moviename) {
+    public boolean delete_movie(String moviename) {
+        if (mov_mana.get_movie(moviename) == null) {
+            return false;
+        }
         mov_mana.delete_movie(moviename);
+        return true;
     }
-
-
 }
