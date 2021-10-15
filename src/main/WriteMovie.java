@@ -23,17 +23,17 @@ public class WriteMovie implements WriteFile{
     @Override
     public void create_file(Object movie) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        writemovie = new FileWriter(p1.toString() + "\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
+        writemovie = new FileWriter(p1.toString() + "\\src\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
         writemovie.write(((Movie) movie).moviename);
         writemovie.write("\r\n");
         writemovie.write(((Movie) movie).movielink);
         writemovie.write("\r\n");
-        writemovie.write(((Movie) movie).Likes);
+        writemovie.write(String.valueOf(((Movie) movie).Likes));
         writemovie.close();
         Properties properties = new Properties();
         properties.putAll(((Movie) movie).moviereviews);
         FileOutputStream fos;
-        fos = new FileOutputStream(p1.toString() + "\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
+        fos = new FileOutputStream(p1.toString() + "\\src\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
         properties.store(fos, null);
         fos.close();
     }
@@ -44,13 +44,13 @@ public class WriteMovie implements WriteFile{
         FileOutputStream fos;
         Properties properties = new Properties();
         properties.put(review.review_content, review.reviewer);
-        File file = new File(p1.toString() + "\\main\\Moviereview\\" + review.movie + " reviews.properties");
+        File file = new File(p1.toString() + "\\src\\main\\Moviereview\\" + review.movie + " reviews.properties");
         fos = new FileOutputStream(file, true);
         properties.store(fos, null);
         fos.close();
     }
 
-    /*
+    /* Replace method for add_review.
     public void add_review(Review review) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         File file = new File(p1.toString() + "\\main\\Moviereview\\" + review.movie + " reviews.properties");
@@ -74,8 +74,8 @@ public class WriteMovie implements WriteFile{
     @Override
     public ArrayList<Object> get_object_from_file() throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File MoviePath = new File(p1.toString() + "\\main\\Moviedata"); //get full path for Moviedata folder
-        File MoviereviewPath = new File(p1.toString() + "\\main\\Moviereview"); //get full path for Moviereview folder
+        File MoviePath = new File(p1.toString() + "\\src\\main\\Moviedata"); //get full path for Moviedata folder
+        File MoviereviewPath = new File(p1.toString() + "\\src\\main\\Moviereview"); //get full path for Moviereview folder
 
         String[] lstOfMovie = MoviePath.list();// get all the file name in Moviedata folder
         String[] lstOfMovieReview = MoviereviewPath.list();// get all the file name in Moviereview folder
@@ -108,8 +108,8 @@ public class WriteMovie implements WriteFile{
 
     public Boolean delete_file(Object movie) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        File moviefile = new File(p1.toString() + "\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
-        File moviereviewfile = new File(p1.toString() + "\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
+        File moviefile = new File(p1.toString() + "\\src\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
+        File moviereviewfile = new File(p1.toString() + "\\src\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
         Boolean a = moviefile.delete();
         Boolean b = moviereviewfile.delete();
         return a & b;
@@ -117,7 +117,7 @@ public class WriteMovie implements WriteFile{
 
 
     public ArrayList<String> read_file(Path str1, String fn, String folder) throws IOException {
-        moviereader = new FileReader(str1.toString() + "\\main\\" + folder + "\\" + fn);
+        moviereader = new FileReader(str1.toString() + "\\src\\main\\" + folder + "\\" + fn);
         getmovie = new BufferedReader(moviereader);
 
         ArrayList<String> lst = new ArrayList<String>();
