@@ -50,7 +50,7 @@ public class WriteMovie implements WriteFile{
         fos.close();
     }
 
-    /* Replace method for add_review.
+    /* Replace method for add_review
     public void add_review(Review review) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         File file = new File(p1.toString() + "\\main\\Moviereview\\" + review.movie + " reviews.properties");
