@@ -6,12 +6,14 @@ public class ReviewManager {
     private final HashMap<String, ArrayList<Review>> MovietoRevs;
     private final HashMap<String, ArrayList<Review>> UsertoRevs;
     private final ArrayList<Review> lst;
+    private static int tot_num;
 
 
     public ReviewManager(){
         this.MovietoRevs = new HashMap<>();
         this.UsertoRevs = new HashMap<>();
         this.lst = new ArrayList<>();
+        tot_num = 0;
     }
 
     /**
@@ -36,7 +38,8 @@ public class ReviewManager {
      */
     public boolean write_review(String uname, String mname, String content) {
         boolean write = true;
-        Review rev = new Review(uname, mname, content);
+        Review rev = new Review(uname, mname, content, tot_num);
+        tot_num = tot_num + 1;
 
         // add the review in file by a helper method
 
@@ -89,8 +92,6 @@ public class ReviewManager {
      * delete a Review from MovietoRevs, UsertoRevs, lst, and delete the Review in txt file.
      * Return ture iff the review has been successfully deleted from the lst/maps and the txt file.
      */
-    public boolean delete_review() {
-
-    }
+    // public boolean delete_review() {}
 
 }
