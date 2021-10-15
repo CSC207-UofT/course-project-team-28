@@ -13,5 +13,15 @@ public class Review {
         this.review_content = review_content;
         this.ID = ID;
     }
+
+    /**
+     * Return a String of review, containing all of its information.
+     * The string will be in the format of:
+     * "ID: {ID}, for movie {movie} - {reviewer}: {review content}."
+     */
+    public String toString() {
+        String idstr = String.valueOf(this.ID);
+        return "ID: " + idstr + ", for movie " + this.movie + " - " + this.reviewer + ": " + this.review_content;
+    }
 }
 

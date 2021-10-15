@@ -23,15 +23,40 @@ public class UserInterface {
             System.out.println("Please enter your password:");
             String password = scanner.nextLine();
             controller.login(username,password);
-            System.out.println("Please enter your phone number");
-            String contactinfo = scanner.nextLine();
-            controller.edit_profile(contactinfo);
-            System.out.println("Enter the name of the movie you'd like to add to your playlist");
-            String moviesname = scanner.nextLine();
-            controller.like_movie(moviesname);
-            System.out.println("Enter your review of the movie");
-            String review_content = scanner.nextLine();
-            controller.write_review(moviesname, review_content);
+            System.out.println("Enter 'Search' to search a movie or 'Profile' to update your info.");
+            String choose = scanner.nextLine();
+            if (choose.equals("Profile")){
+                System.out.println(controller.profile_page(username));
+                System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
+                String choise = scanner.nextLine();
+                if (choise.equals("edit profile")){
+                    System.out.println("Please enter your phone number");
+                    String contactinfo = scanner.nextLine();
+                    controller.edit_profile(contactinfo);
+                } else if (choise.equals("undo-like the movie")){
+                    System.out.println("type the movie name you would like to remove from your playlist");
+                    String mvname = scanner.nextLine();
+                    controller.undo_like(mvname);
+                } else {
+                    System.out.println("wrong input"); // might replace with try...catch
+                }
+            } else if (choose.equals("Search")){
+                System.out.println("Enter the movie name you'd like to find");
+                String moviename = scanner.nextLine();
+                System.out.println(controller.movie_profile(moviename));
+                System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
+                String c = scanner.nextLine();
+                if (c.equals("Write a review")){
+                    System.out.println("Enter your review of the movie");
+                    String review_content = scanner.nextLine();
+                    controller.write_review(moviename, review_content);
+                } else if (c.equals("Like the movie")){
+                    controller.like_movie(moviename);
+                } else if (c.equals("Exit program")){
+                    System.exit(1);
+                }
+            }
+
 
         }else if (choice.equals("Admin register")){
             AdminInputProcessor controller = new AdminInputProcessor();

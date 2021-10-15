@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Movie {
@@ -45,6 +46,10 @@ public class Movie {
         this.Likes += 1;
     }
 
+    public void UndoLike(){
+        this.Likes -= 1;
+    }
+
     public String getMoviename(){
         return this.moviename;
     }
@@ -56,5 +61,14 @@ public class Movie {
     public HashMap<Object, Object> getMovieReviews() {return this.moviereviews; }
 
     public int getLikes() {return this.Likes; }
+
+    public ArrayList getReviewsContnet(){
+        ArrayList<String> contents = new ArrayList<String>();
+        for (Object content: moviereviews.keySet()){
+            contents.add((String) content);
+        }
+        return contents;
+
+    }
 
 }
