@@ -25,7 +25,7 @@ public class WriteUser implements WriteFile{
     public void create_file(Object user) throws IOException {
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         if(user instanceof NormalUser) {
-            writeuser = new FileWriter(str1 + "\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+            writeuser = new FileWriter(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
             writeuser.write(((NormalUser) user).username);
             writeuser.write("\r\n");
             writeuser.write(((NormalUser) user).password);
@@ -35,7 +35,7 @@ public class WriteUser implements WriteFile{
             writeuser.write("[]");
         }
         else{
-            writeuser = new FileWriter(str1 + "\\main\\AdminUser\\" + ((AdminUser) user).username + ".txt");
+            writeuser = new FileWriter(str1 + "\\src\\main\\AdminUser\\" + ((AdminUser) user).username + ".txt");
             writeuser.write(((AdminUser) user).username);
             writeuser.write("\r\n");
             writeuser.write(((AdminUser) user).password);
@@ -50,7 +50,7 @@ public class WriteUser implements WriteFile{
     @Override
     public ArrayList<AdminUser> get_object_from_file() throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File AdminUserPath = new File(str1 + "\\main\\AdminUser"); //get full path for AdminUser folder
+        File AdminUserPath = new File(str1 + "\\src\\main\\AdminUser"); //get full path for AdminUser folder
 
         String[] lstOfAdmin = AdminUserPath.list();// get all the file name in AdminUser folder
 
@@ -77,7 +77,7 @@ public class WriteUser implements WriteFile{
      */
     public ArrayList<NormalUser> get_NormalUser_from_file() throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File NormalUserPath = new File(str1 + "\\main\\NormalUser"); //get full path for NormalUser folder
+        File NormalUserPath = new File(str1 + "\\src\\main\\NormalUser"); //get full path for NormalUser folder
 
         String[] lstOfNormal = NormalUserPath.list();// get all the file name in NormalUser folder
 
@@ -160,7 +160,7 @@ public class WriteUser implements WriteFile{
      * Helper method, read file
      */
     public ArrayList<String> read_file(Path str1, String fn, String folder) throws IOException {
-        userreader = new FileReader(str1.toString() + "\\main\\" + folder + "\\" + fn);
+        userreader = new FileReader(str1.toString() + "\\src\\main\\" + folder + "\\" + fn);
         userlogin = new BufferedReader(userreader);
 
         ArrayList<String> lst = new ArrayList<>();
@@ -178,7 +178,7 @@ public class WriteUser implements WriteFile{
      * Helper method, write file
      */
     public void write_file(Path str1, String username, ArrayList<String> lst) throws IOException {
-        writeuser = new FileWriter(str1 + "\\main\\NormalUser\\" + username + ".txt");
+        writeuser = new FileWriter(str1 + "\\src\\main\\NormalUser\\" + username + ".txt");
         for(String str: lst){
             writeuser.write(str);
             writeuser.write("\r\n");
