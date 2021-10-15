@@ -51,6 +51,7 @@ public class NormalInputProcessor {
         }
         else {
             user_mana.create_normaluser(un, pass);
+            login(un, pass);
             return true;
         }
     }
