@@ -39,7 +39,7 @@ public class WriteMovie implements WriteFile{
     }
 
 
-    public void add_review(Review review) throws IOException {
+    public void add_review_to_file(Review review) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         FileOutputStream fos;
         Properties properties = new Properties();
