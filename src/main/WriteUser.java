@@ -11,9 +11,9 @@ import java.util.List;
  * it should be only called by User class and its subclass.
  */
 public class WriteUser implements WriteFile{
-    public FileReader userreader;
-    public BufferedReader userlogin;
-    public FileWriter writeuser;
+    protected FileReader userreader;
+    protected BufferedReader userlogin;
+    protected FileWriter writeuser;
 
 
     /**

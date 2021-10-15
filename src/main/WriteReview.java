@@ -10,9 +10,9 @@ import java.util.ArrayList;
  */
 
 public class WriteReview implements WriteFile{
-    static FileReader reviewreader;
-    public BufferedReader getreview;
-    static FileWriter writereview;
+    protected FileReader reviewreader;
+    protected BufferedReader getreview;
+    protected FileWriter writereview;
 
 
     /**
@@ -23,7 +23,7 @@ public class WriteReview implements WriteFile{
     @Override
     public void create_file(Object review) throws IOException {
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        writereview = new FileWriter(path1.toString() + "\\src\\main\\Review\\" + ((Review) review).movie + ".txt");
+        writereview = new FileWriter(path1.toString() + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
         writereview.write(((Review) review).reviewer);
         writereview.write("\r\n");
         writereview.write(((Review) review).movie);
