@@ -78,12 +78,13 @@ public class AdminInputProcessor {
         }
     }
 
+
     /**
      * Given a String of moviename and a String of movielink,
      * upload the movie to the platform.
      */
-    public void upload_movie(String moviename, String movielink) {
-
+    public void upload_movie(String moviename, String movielink) throws IOException {
+        mov_mana.add_movie(moviename, movielink);
     }
 
 
@@ -91,7 +92,7 @@ public class AdminInputProcessor {
      * Given a String of moviename, delete the movie from the platform.
      */
     public void delete_movie(String moviename) {
-
+        mov_mana.delete_movie(moviename);
     }
 
 
