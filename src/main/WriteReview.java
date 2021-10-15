@@ -34,7 +34,7 @@ public class WriteReview implements WriteFile{
     }
 
     /**
-     * Read tbe Review folder, create object for each review and return a two-dimensional array.
+     * Read the Review folder, create object for each review and return a two-dimensional array.
      * Each sub-array represents a review, which consists of reviewer, movie and reviewcontent.
      */
     @Override
@@ -66,8 +66,8 @@ public class WriteReview implements WriteFile{
     /**
      * read the Review file
      */
-    public ArrayList<String> read_file(Path path2, String fileOfreview, String folder) throws IOException{
-        reviewreader = new FileReader(path2.toString() + "\\main\\" + folder + "\\" + fileOfreview);
+    public ArrayList<String> read_file(Path path2, String fileOfReview, String folder) throws IOException{
+        reviewreader = new FileReader(path2.toString() + "\\main\\" + folder + "\\" + fileOfReview);
         getreview = new BufferedReader(reviewreader);
 
         ArrayList<String> result = new ArrayList<String>();
