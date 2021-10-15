@@ -130,7 +130,7 @@ public class UserManager {
      * @param usertype the type of User, it is either "NormalUser" or "AdminUser"
      * @return return an array of user info
      */
-    public Object[] getUserInfoArray(String username, String usertype) {
+    public Object[] getUserInfoList(String username, String usertype) {
         if (usertype.equals("NormalUser")){
             for(NormalUser nu: lstOfNormalUser){
                 if(nu.getusername().equals(username)){
