@@ -40,11 +40,45 @@ public class MovieManager {
     }
 
     /**
+     * get the profile of an instance of movie from the overall list of Movies
+     * @param movie_name the name of this instance of Movie
+     * @return profile an array including the profile of the movie.
+     */
+    public ArrayList<Object> get_movieprofile(String movie_name) {
+        Movie movie = this.get_movie(movie_name);
+        ArrayList<Object> profile = new ArrayList<>();
+        profile.add(movie.getMoviename());
+        profile.add(movie.getMovielink());
+        profile.add(movie.getReviewsContnet());
+        profile.add(movie.getLikes());
+        return profile;
+    }
+
+    /**
      * delete an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
     public void delete_movie(String movie_name) {
         Movies.removeIf(m -> m.moviename.equals(movie_name));
+    }
+
+
+    /**
+     * Add an like to an instance of movie from the overall list of Movies
+     * @param movie_name the name of this instance of Movie
+     */
+    public void like_movie(String movie_name) {
+        Movie movie = this.get_movie(movie_name);
+        movie.AddLike();
+    }
+
+    /**
+     * Undo an like to an instance of movie from the overall list of Movies
+     * @param movie_name the name of this instance of Movie
+     */
+    public void undolike_movie(String movie_name) {
+        Movie movie = this.get_movie(movie_name);
+        movie.UndoLike();
     }
 
     /**
