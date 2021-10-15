@@ -10,7 +10,7 @@ public class NormalInputProcessor {
     static private ReviewManager rev_mana;
     static private MovieManager mov_mana;
     static private UserManager user_mana;
-    private User curr_u;
+    private String curr_nuname;
 
     public NormalInputProcessor() throws IOException {
         rev_mana = new ReviewManager();
@@ -19,7 +19,8 @@ public class NormalInputProcessor {
     }
 
     /**
-     * Return true if the given string (username or password) is alphanumeric, also it is nonempty.
+     * Return true if the given string (username or password) is alphanumeric,
+     * also it is nonempty.
      */
     private boolean is_nonemptyalphanumeric(String s) {
         if (s.length() < 1) {
@@ -33,33 +34,11 @@ public class NormalInputProcessor {
         return true;
     }
 
-    /**
-     * Return false if the given string (username) is used in the same usertype before.
-     * Return true if the given string (username) is available to use.
-     */
-    private boolean un_canbeused(String s, String usertype) {
-        List<String> listofadmname = user_mana.get_listadminusername();
-        List<String> listofnormname = user_mana.get_listnormalusername();
-        if (Objects.equals(usertype, "A")) {
-            for (String eachadmname: listofadmname) {
-                if (Objects.equals(s, eachadmname)) {
-                    return false;
-                }
-            }
-        }
-        else {
-            for (String eachnormname: listofnormname) {
-                if (Objects.equals(s, eachnormname)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
     /**
      * create normal user iff the provided username and password is legal
-     * username and password must only contain numbers or letters, and username must be unique
+     * username and password must be non-empty, only contain numbers or letters,
+     * and username must be unique among all the normal users.
      */
     public boolean register(String un, String pass) throws IOException {
         if (! this.is_nonemptyalphanumeric(un)){
@@ -68,7 +47,7 @@ public class NormalInputProcessor {
         else if (! this.is_nonemptyalphanumeric(pass)){
             return false;
         }
-        // check if the usename is already used by other users
+        // check if the username is already used by other users
         else if (! user_mana.usernameIfUnique(un, "NormalUser")){
             return false;
         }
@@ -79,8 +58,17 @@ public class NormalInputProcessor {
     }
 
 
+    /**
+     * If un exists and (un, pass) match, record the un and return true.
+     */
     public boolean login(String un, String pass) {
-
+        if (user_mana.userIfExist(un, pass, "NormalUser")) {
+            curr_nuname = un;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -94,7 +82,7 @@ public class NormalInputProcessor {
      * when given a String of the normal user's username, return an
      * array [username, contact info, playlist]
      */
-    public Arrays profile_page(String s){
+    public Arrays profile_page(String username){
 
     }
 
@@ -103,7 +91,7 @@ public class NormalInputProcessor {
      * when given a String of the movie's name, return an
      * array [movie name, movie link, reviews, number of likes]
      */
-    public Arrays movie_profile(String s){
+    public Arrays movie_profile(String moviename){
 
     }
 
@@ -112,7 +100,32 @@ public class NormalInputProcessor {
      * when given a String of the movie's name, return an
      * array [movie name, movie link, reviews, number of likes]
      */
-    public void write_review(String rev_content){
+    public Arrays write_review(String rev_content) {
+
+    }
+
+
+    /**
+     * Given a String moviename, return an array [normal username, movie name]
+     */
+    public Arrays like_movie(String moviename) {
+
+    }
+
+
+    /**
+     * Given a String newinfo,
+     * return an array [normal username, newnumber]
+     */
+    public Arrays edit_profile(String newinfo) {
+
+    }
+
+    /**
+     * Given a String of moviename,
+     * return an array [normal username, movie name]
+     */
+    public Arrays undo_like(String moviename) {
 
     }
 

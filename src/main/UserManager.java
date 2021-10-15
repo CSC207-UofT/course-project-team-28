@@ -38,19 +38,27 @@ public class UserManager {
      * @param password password of NormalUser
      */
     public void create_normaluser(String username, String password) throws IOException {
-        NormalUser nu = new NormalUser(username, password, "", new ArrayList<>());
+        NormalUser nu = new NormalUser(username, password, "Empty contact info", new ArrayList<>());
         wu.create_file(nu);
         lstOfNormalUser.add(nu);
     }
 
     /**
      * Update contact info of a normal user
-     * @param nu a normal user
+     * @param username the name of normal user
      * @param contact_info the info needs to be updated
-     * @return True if it is successfully removed. If that movie is not in playlist, return false.
+     * @return True if it is successfully updated. Otherwise, return false.
      */
 
-    public boolean update_info(NormalUser nu, String contact_info) throws IOException {
+    public boolean update_info(String username, String contact_info) throws IOException {
+        NormalUser nu = new NormalUser("","","",new ArrayList<>());
+
+        for(NormalUser nu1: lstOfNormalUser){
+            if(nu1.getusername().equals(username)){
+                nu = nu1;
+            }
+        }
+
         if(nu.getContactinfo().equals(contact_info)){
             return true;
         }
@@ -64,11 +72,19 @@ public class UserManager {
     }
 
     /**
-     * Use existed NormalUser Object to call give_like, pass moviename as parameter.
-     * it should call WriteUser Class to read and write file.
-     * Return True if it is successfully added. If that movie is already in playlist, return false.
+     *  @param username the name of normal user
+     *  @param moviename the name of movie
+     *  @return return True if movie is successfully added. Otherwise, return false.
      */
-    public boolean give_like(NormalUser nu, String moviename) throws IOException {
+    public boolean give_like(String username, String moviename) throws IOException {
+        NormalUser nu = new NormalUser("","","",new ArrayList<>());
+
+        for(NormalUser nu1: lstOfNormalUser){
+            if(nu1.getusername().equals(username)){
+                nu = nu1;
+            }
+        }
+
         if(nu.getplaylist().contains(moviename)){
             return false;
         }
@@ -83,11 +99,19 @@ public class UserManager {
     }
 
     /**
-     * Use existed NormalUser Object to call undo_like, pass moviename as parameter.
-     * it should call WriteUser Class to read and write file.
-     * Return True if it is successfully removed. If that movie is not in playlist, return false.
+     *  @param username the name of normal user
+     *  @param moviename the name of movie
+     *  @return return True if movie is successfully removed. Otherwise, return false.
      */
-    public boolean undo_like(NormalUser nu, String moviename) throws IOException {
+    public boolean undo_like(String username, String moviename) throws IOException {
+        NormalUser nu = new NormalUser("","","",new ArrayList<>());
+
+        for(NormalUser nu1: lstOfNormalUser){
+            if(nu1.getusername().equals(username)){
+                nu = nu1;
+            }
+        }
+
         if(!nu.getplaylist().contains(moviename)){
             return false;
         }
@@ -106,7 +130,7 @@ public class UserManager {
      * @param usertype the type of User, it is either "NormalUser" or "AdminUser"
      * @return return an array of user info
      */
-    public Object[] getUserInfoArray(String username, String usertype) {
+    public Object[] getUserInfoList(String username, String usertype) {
         if (usertype.equals("NormalUser")){
             for(NormalUser nu: lstOfNormalUser){
                 if(nu.getusername().equals(username)){

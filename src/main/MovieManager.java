@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +7,7 @@ import java.util.List;
  */
 public class MovieManager {
 
-    private List<Movie> Movies;
+    private final List<Movie> Movies;
 
     /**
      * Creates a MovieManager with a list of movies are empty
@@ -17,10 +18,12 @@ public class MovieManager {
 
     /**
      * Add an instance of movie to the overall list of Movies
-     * @param movie instance of Movie
+     * @param moviename name of Movie
+     * @param movielink the link of the movie
      */
-    public void add_movie(Movie movie) {
-        Movies.add(movie);
+    public void add_movie(String moviename, String movielink) throws IOException {
+        Movie m = new Movie(moviename, movielink);
+        Movies.add(m);
     }
 
     /**
@@ -52,7 +55,7 @@ public class MovieManager {
     public String toString() {
         String res = "";
         for (Movie m : Movies) {
-            res += m.toString;
+            res += m.getMoviename();
             res += ", ";
         }
         return res; //includes a trailing ", "

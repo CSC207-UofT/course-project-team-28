@@ -30,7 +30,7 @@ public class WriteUser implements WriteFile{
             writeuser.write("\r\n");
             writeuser.write(((NormalUser) user).password);
             writeuser.write("\r\n");
-            writeuser.write("c");
+            writeuser.write("Empty contact info");
             writeuser.write("\r\n");
             writeuser.write("[]");
         }
@@ -109,7 +109,7 @@ public class WriteUser implements WriteFile{
      */
     public String give_like_readandwrite(String moviename, String username) throws IOException {
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        ArrayList<String> lst = read_file(str1, username, "NormalUser");
+        ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
 
         if (lst.get(3).equals("[]")){
             lst.set(3, lst.get(3).replace("[]","[" + moviename + "]"));
@@ -125,7 +125,7 @@ public class WriteUser implements WriteFile{
 
     public String undo_like_readandwrite(String moviename, String username) throws IOException {
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        ArrayList<String> lst = read_file(str1, username, "NormalUser");
+        ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
 
         lst.set(3, lst.get(3).replace("[",""));//For playlist String. get rid of "[" and "]"
         lst.set(3, lst.get(3).replace("]",""));////For playlist String. get rid of "[" and "]"
@@ -142,7 +142,7 @@ public class WriteUser implements WriteFile{
 
     public String edit_profile_readandwrite(String newcontactinfo, String username) throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        ArrayList<String> lst = read_file(str1, username, "NormalUser");
+        ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
 
         lst.set(2, newcontactinfo);
         write_file(str1, username, lst);
