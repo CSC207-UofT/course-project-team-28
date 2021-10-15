@@ -36,7 +36,10 @@ public class Movie {
      * review content as key and the corresponding user as value. Once a review is written, it
      * should first be stored in the Review Class and then Movie Class will take data from Review
      * Class and store them
+     * @return
      */
+
+    public String toString() {return this.moviename; }
 
     public void AddLike(){
         this.Likes += 1;

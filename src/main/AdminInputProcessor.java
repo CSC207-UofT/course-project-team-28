@@ -6,14 +6,11 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 public class AdminInputProcessor {
-    static private ReviewManager rev_mana;
     static private MovieManager mov_mana;
     static private UserManager user_mana;
-    private String curr_auname;
     final private String ADMINCODE = "123456";
 
     public AdminInputProcessor() throws IOException {
-        rev_mana = new ReviewManager();
         mov_mana = new MovieManager();
         user_mana = new UserManager();
     }
@@ -70,7 +67,6 @@ public class AdminInputProcessor {
             return false;
         }
         if (user_mana.userIfExist(un, pass, "AdminUser")) {
-            curr_auname = un;
             return true;
         }
         else {
@@ -78,21 +74,33 @@ public class AdminInputProcessor {
         }
     }
 
+
     /**
      * Given a String of moviename and a String of movielink,
-     * upload the movie to the platform.
+     * return true if those strings are non-empty and the movie is not uploaded before,
+     * and can be uploaded.
      */
-    public void upload_movie(String moviename, String movielink) {
-
+    public boolean upload_movie(String moviename, String movielink) throws IOException {
+        if (moviename.length() < 1 & movielink.length() < 3) {
+            return false;
+        }
+        if (mov_mana.get_movie(moviename) != null) {
+            return false;
+        }
+        mov_mana.add_movie(moviename, movielink);
+        return true;
     }
 
 
     /**
-     * Given a String of moviename, delete the movie from the platform.
+     * Given a String called moviename,
+     * return true if the movie exists in the platform and can be deleted.
      */
-    public void delete_movie(String moviename) {
-
+    public boolean delete_movie(String moviename) {
+        if (mov_mana.get_movie(moviename) == null) {
+            return false;
+        }
+        mov_mana.delete_movie(moviename);
+        return true;
     }
-
-
 }

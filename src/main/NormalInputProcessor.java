@@ -82,8 +82,13 @@ public class NormalInputProcessor {
      * when given a String of the normal user's username, return an
      * array [username, contact info, playlist]
      */
-    public Arrays profile_page(String username){
-
+    public ArrayList<Object> profile_page(String username){
+        ArrayList<Object> newarray = new ArrayList<Object>();
+        Object[] wholelist = user_mana.getUserInfoList(username, "NormalUser");
+        newarray.add(wholelist[0]);
+        newarray.add(wholelist[2]);
+        newarray.add(wholelist[3]);
+        return newarray;
     }
 
 
