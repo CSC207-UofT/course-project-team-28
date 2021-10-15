@@ -1,7 +1,5 @@
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 import java.util.ArrayList;
 
@@ -72,23 +70,17 @@ public class NormalInputProcessor {
     }
 
     /**
-     * return a list of movie names that contains the given string s.
+     * if the given movie name exists, return an arraylist [movie name, movie link, reviews,
+     * number of likes], where movie name and movie link are strings, reviews is []
+     *
+     * if not, return an empty arraylist (can be changed to other things if UI needed)
+     * @return
      */
-    public ArrayList<String> search(String s){
-
-    }
-
-    /**
-     * when given a String of the normal user's username, return an
-     * array [username, contact info, playlist]
-     */
-    public ArrayList<Object> profile_page(String username){
-        ArrayList<Object> newarray = new ArrayList<Object>();
-        Object[] wholelist = user_mana.getUserInfoList(username, "NormalUser");
-        newarray.add(wholelist[0]);
-        newarray.add(wholelist[2]);
-        newarray.add(wholelist[3]);
-        return newarray;
+    public ArrayList<Object> search(String mn){
+        if (! mov_mana.movie_profile?(mn)){
+            return mov_mana.movie_profile?(mn);
+        }
+        return new ArrayList<>();
     }
 
 
@@ -102,11 +94,25 @@ public class NormalInputProcessor {
 
 
     /**
-     * when given a String of the movie's name, return an
-     * array [movie name, movie link, reviews, number of likes]
+     * when given a String of the normal user's username, return an
+     * arraylist [username, contact info, playlist]
      */
-    public Arrays write_review(String rev_content) {
+    public ArrayList<Object> profile_page(String username){
+        ArrayList<Object> newarray = new ArrayList<Object>();
+        Object[] wholelist = user_mana.getUserInfoList(username, "NormalUser");
+        newarray.add(wholelist[0]);
+        newarray.add(wholelist[2]);
+        newarray.add(wholelist[3]);
+        return newarray;
+    }
 
+
+    /**
+     * add a review when provided with moviename of the movie and review content
+     * return ture iff a review is successfully added. false otherwise
+     */
+    public boolean write_review(String moviename, String rev_content) {
+        return rev_mana.write_review(this.curr_nuname, moviename, rev_content);
     }
 
 
