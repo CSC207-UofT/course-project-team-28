@@ -22,10 +22,11 @@ public class MovieManager {
      * @param moviename name of Movie
      * @param movielink the link of the movie
      */
-    public void add_movie(String moviename, String movielink) throws IOException {
+    public boolean add_movie(String moviename, String movielink) throws IOException {
         Movie m = new Movie(moviename, movielink);
-        wm.create_file(m);
+        boolean a = wm.create_file(m);
         this.Movies.add(m);
+        return (a && this.Movies.contains(m));
 
     }
 
@@ -71,13 +72,15 @@ public class MovieManager {
      * delete an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
-    public void delete_movie(String movie_name) throws IOException {
+    public boolean delete_movie(String movie_name) throws IOException {
         for (Movie m : this.Movies){
             if (m.moviename.equals(movie_name)){
-                wm.delete_file(m);
+                boolean a = wm.delete_file(m);
                 this.Movies.remove(m);
+                return(a && !this.Movies.contains(m));
             }
         }
+        return false;
     }
 
 
