@@ -16,11 +16,12 @@ public class WriteUser implements WriteFile{
     protected FileWriter writeuser;
 
 
-    /**
-     * Called by NormalUser constructor, it aims to create a new file for the new user.
-     * pass object of user as parameters.
-     */
 
+    /**
+     * Add an admin user to the admin user list.
+     * @param user the object of user
+     * @return return true if the file successfully created.
+     */
     @Override
     public boolean create_file(Object user) throws IOException {
         File file_if_exist;
@@ -44,12 +45,17 @@ public class WriteUser implements WriteFile{
         }
         writeuser.close();//!!! remember
 
-        file_if_exist = new File(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+        if(user instanceof NormalUser){
+            file_if_exist = new File(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+        }
+        else{
+            file_if_exist = new File(str1 + "\\src\\main\\AdminUser\\" + ((AdminUser) user).username + ".txt");
+        }
         return file_if_exist.exists();
     }
 
     /**
-     * Read AdminUser's folder, create object for each admin user and return an ArrayList of AdminUser.
+     * @return read object from AdminUser folder, return an arraylist of AdminUser object.
      */
     @Override
     public ArrayList<AdminUser> get_object_from_file() throws IOException{
@@ -77,7 +83,7 @@ public class WriteUser implements WriteFile{
     }
 
     /**
-     * Read NormalUser's folder, create object for each Normal user and return an ArrayList of NormalUser.
+     * @return read object from NormalUser folder, return an arraylist of NormalUser object.
      */
     public ArrayList<NormalUser> get_NormalUser_from_file() throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
@@ -108,8 +114,10 @@ public class WriteUser implements WriteFile{
     }
 
     /**
-     * Called by NormalUser give_like method, it aims to read and write file for playlist in file for the user.
-     * pass moviename of movie and username of user as parameters.
+     * Add movie to playlist
+     * @param moviename the name of movie
+     * @param username the name of user
+     * @return return a string of new playlist
      */
     public String give_like_readandwrite(String moviename, String username) throws IOException {
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -127,6 +135,12 @@ public class WriteUser implements WriteFile{
         return lst.get(3);
     }
 
+    /**
+     * remove movie from playlist
+     * @param moviename the name of movie
+     * @param username the name of user
+     * @return return a string of new playlist
+     */
     public String undo_like_readandwrite(String moviename, String username) throws IOException {
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
@@ -144,6 +158,12 @@ public class WriteUser implements WriteFile{
         return lst.get(3);
     }
 
+    /**
+     * edit the user contact info
+     * @param newcontactinfo the new contact info of user
+     * @param username the name of user
+     * @return return a string of new contact info
+     */
     public String edit_profile_readandwrite(String newcontactinfo, String username) throws IOException{
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");

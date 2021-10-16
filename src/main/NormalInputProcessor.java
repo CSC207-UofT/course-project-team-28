@@ -72,26 +72,24 @@ public class NormalInputProcessor {
     }
 
     /**
-     * if the given movie name exists, return an arraylist [movie name, movie link, reviews,
-     * number of likes], where movie name and movie link are strings, reviews is []
-     *
-     * if not, return an empty arraylist (can be changed to other things if UI needed)
-     * @return
+     * Should be only called when the movie name <mn> exists in the data base
+     * @return an arraylist [movie name, movie link, reviews, number of likes], where movie name
+     *         and movie link are strings, reviews is [String of review 1 of the moive,
+     *         String of review 2 of the movie, ...]
      */
     public ArrayList<Object> search(String mn){
-        if (! mov_mana.movie_profile?(mn)){
-            return mov_mana.movie_profile?(mn);
-        }
-        return new ArrayList<>();
+        return mov_mana.get_movieprofile(mn);
     }
 
 
     /**
-     * when given a String of the movie's name, return an
-     * array [movie name, movie link, reviews, number of likes]
+     * Should be only called when the movie name <mn> exists in the data base
+     * @return an arraylist [movie name, movie link, reviews, number of likes], where movie name
+     *         and movie link are strings, reviews is [String of review 1 of the moive,
+     *         String of review 2 of the movie, ...]
      */
-    public Arrays movie_profile(String moviename){
-
+    public ArrayList<Object> movie_profile(String moviename){
+        return mov_mana.get_movieprofile(moviename);
     }
 
 
@@ -119,40 +117,37 @@ public class NormalInputProcessor {
 
 
     /**
+     * Should be only called when the movie name <moviename> exists in the data base
      * Given a String moviename, add like.
      * return ture iff added successfully.
      */
     public boolean like_movie(String moviename) throws IOException {
         if (user_mana.give_like(this.curr_nuname, moviename)){
-            if (update movie like) {
-                return true;
-            }
-            else{
-                user_mana.undo_like(this.curr_nuname, moviename);
-                return false;
-            }
+            mov_mana.like_movie(moviename);
+            return true;
         }
-        return false;
-
+        else {
+            user_mana.undo_like(this.curr_nuname, moviename);
+            return false;
+        }
     }
-
 
 
     /**
      * Given a String moviename, undo like.
      * return ture iff added successfully.
      */
-    public boolean undo_like(String moviename) {
-        if (user_mana.undo_like(this.curr_nuname, moviename)){
-            if (update movie undo like){
-                return true;
-            }
-            else{
-                user_mana.give_like(this.curr_nuname, moviename);
-                return false;
-            }
+    public boolean undo_like(String moviename) throws IOException {
+        Object[] user_info = user_mana.getUserInfoList(curr_nuname, "NormalUser");
+        ArrayList<String> user_playlist = (ArrayList<String>) user_info[3];
+        if (user_playlist.contains(moviename)){
+            user_mana.undo_like(this.curr_nuname, moviename);
+            mov_mana.undolike_movie(moviename);
+            return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
 

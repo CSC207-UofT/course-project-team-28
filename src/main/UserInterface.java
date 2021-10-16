@@ -4,11 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * A user interface which interacts with users to prompt to get input from them.
+ */
 
 public class UserInterface {
 
     public static void main(String[] args) throws IOException {
+        // User chooses to register/login as normal or admin user
         System.out.println("Please enter your choice from Register, Login, Admin register and Admin login:");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
@@ -18,23 +21,31 @@ public class UserInterface {
             System.out.println("Please reenter your choice from Register, Login, Admin register and Admin login:");
             choice = scanner.nextLine();
         }
+
+
+        // if user chooses to register
         if (choice.equals("Register")){
             NormalInputProcessor controller = new NormalInputProcessor();
             String username;
             String password;
-            System.out.println("Please enter your username:");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
+
+
+            // if the username/password is invalid, prompt the user to enter again
             while (!(controller.register(username, password))){
                 System.out.println("Something is wrong with your username or password, please try again");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
-                System.out.println("Please enter your password:");
+                System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
             }
             System.out.println("Account successfully created, you are automatically logged in.");
 
+
+            //Proceed to search/profile functions
             System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
             String choose = scanner.nextLine();
             String[] option_1= new String[]{"Search", "Profile"};
@@ -67,6 +78,8 @@ public class UserInterface {
                     System.out.println("wrong input");
                     System.exit(1);
                 }
+
+             // if user choose to search
             } else if (choose.equals("Search")){
                 System.out.println("Enter the movie name you'd like to find");
                 String moviename = scanner.nextLine();
@@ -97,23 +110,25 @@ public class UserInterface {
                 System.out.println("wrong input");
                 System.exit(1);
             }
+        // if user chooses to login as normal user
         }else if (choice.equals("Login")){
             NormalInputProcessor controller = new NormalInputProcessor();
             String username;
             String password;
-            System.out.println("Please enter your username:");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
             while (!(controller.login(username, password))){
                 System.out.println("Username or password incorrect, please try again.");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
-                System.out.println("Please enter your password:");
+                System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
             }
             System.out.println("Login successful.");
 
+            // Proceed to search or profile functions
             System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
             String choose = scanner.nextLine();
             String[] option_1= new String[]{"Search", "Profile"};
@@ -138,10 +153,17 @@ public class UserInterface {
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
                     controller.edit_profile(contactinfo);
+                    System.out.println(controller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
-                    System.out.println("type the movie name you would like to remove from your playlist");
-                    String mvname = scanner.nextLine();
-                    controller.undo_like(mvname);
+                    try {
+                        System.out.println("type the movie name you would like to remove from your playlist");
+                        String mvname = scanner.nextLine();
+                        controller.undo_like(mvname);
+                        System.out.println(controller.profile_page(username));
+                        System.out.println("Movie successfully removed.");
+                    } catch (Exception e) {
+                        System.out.println("Movie does not exit");
+                    }
                 } else {
                     System.out.println("wrong input");
                     System.exit(1);
@@ -177,29 +199,30 @@ public class UserInterface {
                 System.exit(1);
             }
 
-
+        // If user chooses to register as admin, a fixed administration code is needed.
         }else if (choice.equals("Admin register")){
             AdminInputProcessor controller = new AdminInputProcessor();
             String username;
             String password;
             String code;
-            System.out.println("Please enter your username:");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
-            while (!(controller.login(username, password, code))){
+            while (!(controller.register(username, password, code))){
                 System.out.println("Somthing wrong with your username/password/code, please try again.");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
-                System.out.println("Please enter your password:");
+                System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
             }
             System.out.println("Admin account successfully created, you are automatically logged in.");
 
+            // now admin can upload movie or delet movie
             System.out.println("Enter 'Upload movie' or 'Delete movie'.");
             String choose = scanner.nextLine();
 
@@ -226,22 +249,23 @@ public class UserInterface {
             }
 
 
+        //if user chooses to login as admin user.
         }else if (choice.equals("Admin login")){
             AdminInputProcessor controller = new AdminInputProcessor();
             String username;
             String password;
             String code;
-            System.out.println("Please enter your username:");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
             while (!(controller.login(username, password, code))) {
                 System.out.println("Wrong input of username/password/code, please try again.");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
-                System.out.println("Please enter your password:");
+                System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
