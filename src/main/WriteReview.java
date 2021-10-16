@@ -63,7 +63,8 @@ public class WriteReview implements WriteFile{
             for(String r: lstOfReview) {
                 ArrayList<String> lst = read_file(path2, r, "Review");
 
-                Review re = new Review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3))); // create object foe this single review
+                // create object for this single review
+                Review re = new Review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)));
 
                 Review_lst.add(re);
             }
