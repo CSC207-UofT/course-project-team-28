@@ -113,7 +113,7 @@ public class NormalInputProcessor {
      * add a review when provided with moviename of the movie and review content
      * return ture iff a review is successfully added. false otherwise
      */
-    public boolean write_review(String moviename, String rev_content) {
+    public boolean write_review(String moviename, String rev_content) throws IOException {
         return rev_mana.write_review(this.curr_nuname, moviename, rev_content);
     }
 
