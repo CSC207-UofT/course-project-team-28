@@ -17,8 +17,11 @@
 ![Write Movie CRC](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/writemoviecrc.jpeg)
 ![Write Review CRC](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/writereviewcrc.jpeg)
 ![Write File CRC](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/writefilecrc.jpeg)
+![ignore](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/ignore1lncrc.jpeg)
 ****
 **Controller**
 ![AdminInputProcessor](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/adminipcrc.jpeg)
 ![NormalInputProcessor](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/normipcrc.jpeg)
-
+****
+**Command Line Interface**
+![UserInterface](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/uicrc.jpeg)
