@@ -8,6 +8,7 @@ public class ReviewManager {
     private final HashMap<String, ArrayList<Review>> UsertoRevs;
     private final ArrayList<Review> lst;
     private static int tot_num;
+    private static WriteReview wr;
 
 
     public ReviewManager() throws IOException {
@@ -15,9 +16,9 @@ public class ReviewManager {
         this.UsertoRevs = new HashMap<>();
         this.lst = new ArrayList<>();
         tot_num = 0;
+        wr = new WriteReview();
 
         // initialize from the database
-        WriteReview wr = new WriteReview();
         ArrayList<Review> data = wr.get_object_from_file();
         tot_num = data.get(data.size()-1).ID;
         for (int i = 0; i < data.size(); i++){
@@ -25,9 +26,6 @@ public class ReviewManager {
             add_ur(data.get(i).reviewer, data.get(i));
             this.lst.add(data.get(i));
         }
-
-
-
     }
 
 
@@ -51,14 +49,12 @@ public class ReviewManager {
      * create a Review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
-    public boolean write_review(String uname, String mname, String content) {
-        boolean write = true;
+    public boolean write_review(String uname, String mname, String content) throws IOException {
         Review rev = new Review(uname, mname, content, tot_num);
         tot_num = tot_num + 1;
 
         // add the review in file by a helper method
-        // ? zai jian yige writefile?
-
+        boolean write = wr.create_file(rev);
 
         write = add_mr(mname, rev) && write; // update MovietoRevs
 
