@@ -11,12 +11,21 @@ public class UserInterface {
         String choice = scanner.nextLine();
         if (choice.equals("Register")){
             NormalInputProcessor controller = new NormalInputProcessor();
+            String username;
+            String password;
             System.out.println("Please enter your username:");
-            String username = scanner.nextLine();
+            username = scanner.nextLine();
             System.out.println("Please enter your password:");
-            String password = scanner.nextLine();
+            password = scanner.nextLine();
+            while (!(controller.register(username, password))){
+                System.out.println("Something is wrong with your username or password, pleas try again");
+                System.out.println("Please enter your username:");
+                username = scanner.nextLine();
+                System.out.println("Please enter your password:");
+                password = scanner.nextLine();
+            }
             controller.register(username,password);
-            controller.login(username,password);
+            System.out.println("Account successfully created, you are automatically logged in.");
 
             System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
             String choose = scanner.nextLine();
@@ -53,11 +62,21 @@ public class UserInterface {
             }
         }else if (choice.equals("Login")){
             NormalInputProcessor controller = new NormalInputProcessor();
+            String username;
+            String password;
             System.out.println("Please enter your username:");
-            String username = scanner.nextLine();
+            username = scanner.nextLine();
             System.out.println("Please enter your password:");
-            String password = scanner.nextLine();
+            password = scanner.nextLine();
+            while (!(controller.login(username, password))){
+                System.out.println("Username or password incorrect, please try again.");
+                System.out.println("Please enter your username:");
+                username = scanner.nextLine();
+                System.out.println("Please enter your password:");
+                password = scanner.nextLine();
+            }
             controller.login(username,password);
+            System.out.println("Login successful.");
 
             System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
             String choose = scanner.nextLine();
