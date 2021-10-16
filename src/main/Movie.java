@@ -43,7 +43,10 @@ public class Movie {
      * Getter Methods for Movie Class.
      */
 
-    public String toString() {return this.moviename; }
+    public String toString() {
+            return "Movie name: " + this.moviename + ", " + "Link: " + this.movielink + ", " + "Reviews: " +
+                    this.moviereviews + ", " + "# of Likes: " + this.Likes;
+    }
 
     public String getMoviename(){
         return this.moviename;
@@ -74,7 +77,7 @@ public class Movie {
      */
 
     public ArrayList<String> getReviewsContnet(){
-        ArrayList<String> contents = new ArrayList<String>();
+        ArrayList<String> contents = new ArrayList<>();
         for (Object content: moviereviews.keySet()){
             contents.add((String) content);
         }
