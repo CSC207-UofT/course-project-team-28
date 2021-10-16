@@ -18,10 +18,11 @@ public class WriteMovie implements WriteFile{
     /**
      * Creates files for movies and saved in Moviedata,
      * also files for movie reviews separately saved in Moviereviews.
+     * @return boolean
      */
 
     @Override
-    public void create_file(Object movie) throws IOException {
+    public boolean create_file(Object movie) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         writemovie = new FileWriter(p1.toString() + "\\src\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
         writemovie.write(((Movie) movie).moviename);
@@ -36,6 +37,9 @@ public class WriteMovie implements WriteFile{
         fos = new FileOutputStream(p1.toString() + "\\src\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
         properties.store(fos, null);
         fos.close();
+        File moviefile = new File(p1.toString() + "\\src\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
+        File moviereview = new File(p1.toString() + "\\src\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
+        return moviefile.exists() & moviereview.exists();
     }
 
 
@@ -69,7 +73,7 @@ public class WriteMovie implements WriteFile{
     /**
      * Read Moviedata and Moviereviews two folders, create obejct for each movie and return a two-dimensional array.
      * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata
-     * @return
+     * @return ArrayList</Movie>
      */
 
     @Override
@@ -106,6 +110,11 @@ public class WriteMovie implements WriteFile{
         }
         return Movie_lst;
     }
+
+    /**
+     * Delete a movie file with corresponding movie review file.
+     * @return Boolean
+     */
 
     public Boolean delete_file(Object movie) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();

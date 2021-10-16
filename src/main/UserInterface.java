@@ -42,7 +42,8 @@ public class UserInterface {
                     String mvname = scanner.nextLine();
                     controller.undo_like(mvname);
                 } else {
-                    System.out.println("wrong input"); // might replace with try...catch
+                    System.out.println("wrong input");
+                    System.exit(1);
                 }
             } else if (choose.equals("Search")){
                 System.out.println("Enter the movie name you'd like to find");
@@ -58,7 +59,13 @@ public class UserInterface {
                     controller.like_movie(moviename);
                 } else if (c.equals("Exit program")){
                     System.exit(0);
+                } else {
+                    System.out.println("wrong input");
+                    System.exit(1);
                 }
+            } else {
+                System.out.println("wrong input");
+                System.exit(1);
             }
         }else if (choice.equals("Login")){
             NormalInputProcessor controller = new NormalInputProcessor();
@@ -93,7 +100,8 @@ public class UserInterface {
                     String mvname = scanner.nextLine();
                     controller.undo_like(mvname);
                 } else {
-                    System.out.println("wrong input"); // might replace with try...catch
+                    System.out.println("wrong input");
+                    System.exit(1);
                 }
             } else if (choose.equals("Search")){
                 System.out.println("Enter the movie name you'd like to find");
@@ -109,20 +117,35 @@ public class UserInterface {
                     controller.like_movie(moviename);
                 } else if (c.equals("Exit program")){
                     System.exit(0);
+                } else {
+                    System.out.println("wrong input");
+                    System.exit(1);
                 }
             }
 
 
         }else if (choice.equals("Admin register")){
             AdminInputProcessor controller = new AdminInputProcessor();
+            String username;
+            String password;
+            String code;
             System.out.println("Please enter your username:");
-            String username = scanner.nextLine();
+            username = scanner.nextLine();
             System.out.println("Please enter your password:");
-            String password = scanner.nextLine();
+            password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
-            String code = scanner.nextLine();
+            code = scanner.nextLine();
+            while (!(controller.login(username, password, code))){
+                System.out.println("Somthing wrong with your username/password/code, please try again.");
+                System.out.println("Please enter your username:");
+                username = scanner.nextLine();
+                System.out.println("Please enter your password:");
+                password = scanner.nextLine();
+                System.out.println("Please enter your administration code:");
+                code = scanner.nextLine();
+            }
             controller.register(username,password, code);
-            controller.login(username,password, code);
+            System.out.println("Admin account successfully created, you are automatically logged in.");
 
             System.out.println("Enter 'Upload movie' or 'Delete movie'.");
             String choose = scanner.nextLine();
@@ -137,19 +160,33 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 controller.delete_movie(movie_name);
             } else {
-                System.exit(1); // might replace with try...catch
+                System.out.println("wrong input");
+                System.exit(1);
             }
 
 
         }else if (choice.equals("Admin login")){
             AdminInputProcessor controller = new AdminInputProcessor();
+            String username;
+            String password;
+            String code;
             System.out.println("Please enter your username:");
-            String username = scanner.nextLine();
+            username = scanner.nextLine();
             System.out.println("Please enter your password:");
-            String password = scanner.nextLine();
+            password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
-            String code = scanner.nextLine();
+            code = scanner.nextLine();
+            while (!(controller.login(username, password, code))) {
+                System.out.println("Wrong input of username/password/code, please try again.");
+                System.out.println("Please enter your username:");
+                username = scanner.nextLine();
+                System.out.println("Please enter your password:");
+                password = scanner.nextLine();
+                System.out.println("Please enter your administration code:");
+                code = scanner.nextLine();
+            }
             controller.login(username,password, code);
+            System.out.println("Login successful.");
 
             System.out.println("Enter 'Upload movie' or 'Delete movie'.");
             String choose = scanner.nextLine();
@@ -164,17 +201,14 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 controller.delete_movie(movie_name);
             } else {
-                System.exit(1); // might replace with try...catch
+                System.out.println("wrong input");
+                System.exit(1);
             }
 
         }else {
+            System.out.println("wrong input");
             System.exit(1);
         }
-
-
-
-
-
     }
 }
 

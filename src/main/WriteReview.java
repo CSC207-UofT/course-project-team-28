@@ -17,7 +17,8 @@ public class WriteReview implements WriteFile{
 
     /**
      * Called by Review constructor, which is designed for creating a new file to store the new review, including
-     * the reviewer username, movie name and review content.
+     * the reviewer username, movie name and review content. Once it is created successfully, it returns true.
+     * Otherwise, return false.
      */
 
     @Override
