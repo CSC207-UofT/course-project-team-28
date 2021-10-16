@@ -23,5 +23,6 @@ public class Review {
         String idstr = String.valueOf(this.ID);
         return "ID: " + idstr + ", for movie " + this.movie + " - " + this.reviewer + ": " + this.review_content;
     }
+
 }
 
