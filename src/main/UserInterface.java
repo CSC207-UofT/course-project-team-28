@@ -142,17 +142,17 @@ public class UserInterface {
             String username;
             String password;
             String code;
-            System.out.println("Please enter your username:");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
             while (!(controller.register(username, password, code))){
                 System.out.println("Somthing wrong with your username/password/code, please try again.");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
-                System.out.println("Please enter your password:");
+                System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
@@ -183,17 +183,17 @@ public class UserInterface {
             String username;
             String password;
             String code;
-            System.out.println("Please enter your username:");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
-            System.out.println("Please enter your password:");
+            System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
             while (!(controller.login(username, password, code))) {
                 System.out.println("Wrong input of username/password/code, please try again.");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
-                System.out.println("Please enter your password:");
+                System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
