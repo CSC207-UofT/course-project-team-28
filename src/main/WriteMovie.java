@@ -69,10 +69,11 @@ public class WriteMovie implements WriteFile{
     /**
      * Read Moviedata and Moviereviews two folders, create obejct for each movie and return a two-dimensional array.
      * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata
+     * @return
      */
 
     @Override
-    public ArrayList<Object> get_object_from_file() throws IOException {
+    public ArrayList<Movie> get_object_from_file() throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
         File MoviePath = new File(p1.toString() + "\\src\\main\\Moviedata"); //get full path for Moviedata folder
         File MoviereviewPath = new File(p1.toString() + "\\src\\main\\Moviereview"); //get full path for Moviereview folder
@@ -80,7 +81,7 @@ public class WriteMovie implements WriteFile{
         String[] lstOfMovie = MoviePath.list();// get all the file name in Moviedata folder
         String[] lstOfMovieReview = MoviereviewPath.list();// get all the file name in Moviereview folder
 
-        ArrayList<Object> Movie_lst = new ArrayList<>(); // the list that will be returned, containing Movies.
+        ArrayList<Movie> Movie_lst = new ArrayList<>(); // the list that will be returned, containing Movies.
 
         if(lstOfMovie == null){
             return new ArrayList<>();

@@ -95,7 +95,7 @@ public class AdminInputProcessor {
      * Given a String called moviename,
      * return true if the movie exists in the platform and can be deleted.
      */
-    public boolean delete_movie(String moviename) {
+    public boolean delete_movie(String moviename) throws IOException {
         if (mov_mana.get_movie(moviename) == null) {
             return false;
         }

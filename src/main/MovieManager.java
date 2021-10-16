@@ -8,12 +8,13 @@ import java.util.List;
 public class MovieManager {
 
     private final List<Movie> Movies;
+    private final WriteMovie wm = new WriteMovie();
 
     /**
      * Creates a MovieManager with a list of movies are empty
      */
-    public MovieManager() {
-        Movies = new ArrayList<>();
+    public MovieManager() throws IOException {
+        this.Movies = wm.get_object_from_file();
     }
 
     /**
@@ -23,7 +24,9 @@ public class MovieManager {
      */
     public void add_movie(String moviename, String movielink) throws IOException {
         Movie m = new Movie(moviename, movielink);
-        Movies.add(m);
+        wm.create_file(m);
+        this.Movies.add(m);
+
     }
 
     /**
@@ -31,12 +34,22 @@ public class MovieManager {
      * @param movie_name the name of this instance of Movie
      */
     public Movie get_movie(String movie_name) {
-        for (Movie m : Movies) {
+        for (Movie m : this.Movies) {
             if (m.moviename.equals(movie_name)){
                 return m;
             }
         }
         return null;
+    }
+
+    /**
+     * Add a review to an instance of movie
+     * @param movie an instance of Movie
+     * @param review review
+     */
+    public void add_review_to_movie(Movie movie, Review review) throws IOException {
+        movie.AddReview(review);
+        wm.add_review_to_file(review);
     }
 
     /**
@@ -58,8 +71,13 @@ public class MovieManager {
      * delete an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
-    public void delete_movie(String movie_name) {
-        Movies.removeIf(m -> m.moviename.equals(movie_name));
+    public void delete_movie(String movie_name) throws IOException {
+        for (Movie m : this.Movies){
+            if (m.moviename.equals(movie_name)){
+                wm.delete_file(m);
+                this.Movies.remove(m);
+            }
+        }
     }
 
 
@@ -88,7 +106,7 @@ public class MovieManager {
     @Override
     public String toString() {
         String res = "";
-        for (Movie m : Movies) {
+        for (Movie m : this.Movies) {
             res += m.getMoviename();
             res += ", ";
         }
