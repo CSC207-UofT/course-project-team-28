@@ -159,7 +159,7 @@ public class UserInterface {
                         System.out.println("type the movie name you would like to remove from your playlist");
                         String mvname = scanner.nextLine();
                         controller.undo_like(mvname);
-                        System.out.println(controller.profile_page(username));
+                        System.out.println("your new profile is " + controller.profile_page(username));
                         System.out.println("Movie successfully removed.");
                     } catch (Exception e) {
                         System.out.println("Movie does not exit");
@@ -169,34 +169,35 @@ public class UserInterface {
                     System.exit(1);
                 }
             } else if (choose.equals("Search")){
-                System.out.println("Enter the movie name you'd like to find");
-                String moviename = scanner.nextLine();
-                System.out.println(controller.movie_profile(moviename));
-                System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
-                String c = scanner.nextLine();
+                try {
+                    System.out.println("Enter the movie name you'd like to find");
+                    String moviename = scanner.nextLine();
+                    System.out.println(controller.movie_profile(moviename));
+                    System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
+                    String c = scanner.nextLine();
 
-                String[] option_3= new String[]{"Write a review", "Like the movie", "Exit program"};
-                List<String> options_3 = new ArrayList<>(Arrays.asList(option_3));
-                while (!options_3.contains(c)) {
-                    System.out.println("Please reenter 'Write a review', 'Like the movie' or 'Exit program':");
-                    c = scanner.nextLine();
-                }
+                    String[] option_3= new String[]{"Write a review", "Like the movie", "Exit program"};
+                    List<String> options_3 = new ArrayList<>(Arrays.asList(option_3));
+                    while (!options_3.contains(c)) {
+                        System.out.println("Please reenter 'Write a review', 'Like the movie' or 'Exit program':");
+                        c = scanner.nextLine();
+                    }
 
-                if (c.equals("Write a review")){
-                    System.out.println("Enter your review of the movie");
-                    String review_content = scanner.nextLine();
-                    controller.write_review(moviename, review_content);
-                } else if (c.equals("Like the movie")){
-                    controller.like_movie(moviename);
-                } else if (c.equals("Exit program")){
-                    System.exit(0);
-                } else {
-                    System.out.println("wrong input");
-                    System.exit(1);
+                    if (c.equals("Write a review")) {
+                        System.out.println("Enter your review of the movie");
+                        String review_content = scanner.nextLine();
+                        controller.write_review(moviename, review_content);
+                    } else if (c.equals("Like the movie")) {
+                        controller.like_movie(moviename);
+                    } else if (c.equals("Exit program")) {
+                        System.exit(0);
+                    } else {
+                        System.out.println("wrong input");
+                        System.exit(1);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Movie not found");
                 }
-            } else {
-                System.out.println("wrong input");
-                System.exit(1);
             }
 
         // If user chooses to register as admin, a fixed administration code is needed.
