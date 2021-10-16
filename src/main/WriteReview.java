@@ -23,12 +23,14 @@ public class WriteReview implements WriteFile{
     @Override
     public void create_file(Object review) throws IOException {
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        writereview = new FileWriter(path1.toString() + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
+        writereview = new FileWriter(path1 + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
         writereview.write(((Review) review).reviewer);
         writereview.write("\r\n");
         writereview.write(((Review) review).movie);
         writereview.write("\r\n");
         writereview.write(((Review) review).review_content);
+        writereview.write("\r\n");
+        writereview.write(Integer.toString(((Review) review).ID));
         writereview.close();
     }
 
@@ -37,26 +39,27 @@ public class WriteReview implements WriteFile{
      * Each sub-array represents a review, which consists of reviewer, movie and reviewcontent.
      */
     @Override
-    public ArrayList<Object> get_object_from_file() throws IOException{
+    public ArrayList<Review> get_object_from_file() throws IOException{
         // get the path of src
         Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
         // get the path of Review folder
-        File ReviewPath = new File(path2.toString() + "\\src\\main\\Review\\");
+        File ReviewPath = new File(path2 + "\\src\\main\\Review\\");
 
         // get the file name in the Review folder
         String[] lstOfReview = ReviewPath.list();
         // the return list consisting of Reviews
-        ArrayList<Object> Review_lst = new ArrayList<Object>();
+        ArrayList<Review> Review_lst = new ArrayList<>();
 
         // when there is no file in the Review folder
         if(lstOfReview == null){
-            return new ArrayList<Object>();
+            return new ArrayList<>();
         }
         // when there are files in the Review folder
         else{
             for(String r: lstOfReview) {
                 ArrayList<String> lst = read_file(path2, r, "Review");
-                Review_lst.add(lst);
+                Review re = new Review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3))); // create object foe this single review
+                Review_lst.add(re);
             }
         }
         return Review_lst;
@@ -69,7 +72,7 @@ public class WriteReview implements WriteFile{
         reviewreader = new FileReader(path2.toString() + "\\src\\main\\" + folder + "\\" + fileOfReview);
         getreview = new BufferedReader(reviewreader);
 
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
         String line = getreview.readLine();
         while(line != null){
             result.add(line);
