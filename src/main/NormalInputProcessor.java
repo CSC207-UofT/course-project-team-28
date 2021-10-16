@@ -77,7 +77,7 @@ public class NormalInputProcessor {
      *         and movie link are strings, reviews is [String of review 1 of the moive,
      *         String of review 2 of the movie, ...]
      */
-    public ArrayList<Object> search(String mn){
+    public String search(String mn){
         return mov_mana.get_movieprofile(mn);
     }
 
@@ -88,7 +88,7 @@ public class NormalInputProcessor {
      *         and movie link are strings, reviews is [String of review 1 of the moive,
      *         String of review 2 of the movie, ...]
      */
-    public ArrayList<Object> movie_profile(String moviename){
+    public String movie_profile(String moviename){
         return mov_mana.get_movieprofile(moviename);
     }
 

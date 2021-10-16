@@ -56,16 +56,17 @@ public class MovieManager {
     /**
      * get the profile of an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
-     * @return profile an array including the profile of the movie.
+     * @return profile a String including the profile of the movie.
      */
-    public ArrayList<Object> get_movieprofile(String movie_name) {
+    public String get_movieprofile(String movie_name) {
         Movie movie = this.get_movie(movie_name);
-        ArrayList<Object> profile = new ArrayList<>();
-        profile.add(movie.getMoviename());
-        profile.add(movie.getMovielink());
-        profile.add(movie.getReviewsContnet());
-        profile.add(movie.getLikes());
-        return profile;
+//        ArrayList<Object> profile = new ArrayList<>();
+//        profile.add(movie.getMoviename());
+//        profile.add(movie.getMovielink());
+//        profile.add(movie.getReviewsContnet());
+//        profile.add(movie.getLikes());
+//        return profile;
+        return movie.toString();
     }
 
     /**
