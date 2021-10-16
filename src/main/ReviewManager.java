@@ -20,7 +20,9 @@ public class ReviewManager {
 
         // initialize from the database
         ArrayList<Review> data = wr.get_object_from_file();
-        tot_num = data.get(data.size()-1).ID;
+        if (data.size() > 0) {
+            tot_num = data.get(data.size()-1).ID;
+        }
         for (int i = 0; i < data.size(); i++){
             add_mr(data.get(i).movie, data.get(i));
             add_ur(data.get(i).reviewer, data.get(i));
