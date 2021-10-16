@@ -52,8 +52,8 @@ public class ReviewManager {
      * Return ture iff the review has been successfully created and added to the txt file.
      */
     public boolean write_review(String uname, String mname, String content) throws IOException {
-        Review rev = new Review(uname, mname, content, tot_num);
         tot_num = tot_num + 1;
+        Review rev = new Review(uname, mname, content, tot_num);
 
         // add the review in file by a helper method
         WriteReview newwr = new WriteReview();
