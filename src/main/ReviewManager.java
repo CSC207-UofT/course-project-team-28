@@ -56,7 +56,8 @@ public class ReviewManager {
         tot_num = tot_num + 1;
 
         // add the review in file by a helper method
-        boolean write = wr.create_file(rev);
+        WriteReview newwr = new WriteReview();
+        boolean write = newwr.create_file(rev);
 
         write = add_mr(mname, rev) && write; // update MovietoRevs
 
