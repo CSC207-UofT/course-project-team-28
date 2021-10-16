@@ -26,10 +26,11 @@ public class UserManager {
      * @param username username of AdminUser
      * @param password password of AdminUser
      */
-    public void create_adminuser(String username, String password) throws IOException {
+    public boolean create_adminuser(String username, String password) throws IOException {
         AdminUser au = new AdminUser(username, password);
-        wu.create_file(au);
+        boolean file_exist = wu.create_file(au);
         lstOfAdminUser.add(au);
+        return (file_exist && lstOfAdminUser.contains(au));
     }
 
     /**
@@ -37,10 +38,11 @@ public class UserManager {
      * @param username username of NormalUser
      * @param password password of NormalUser
      */
-    public void create_normaluser(String username, String password) throws IOException {
+    public boolean create_normaluser(String username, String password) throws IOException {
         NormalUser nu = new NormalUser(username, password, "Empty contact info", new ArrayList<>());
-        wu.create_file(nu);
+        boolean file_exist = wu.create_file(nu);
         lstOfNormalUser.add(nu);
+        return (file_exist && lstOfNormalUser.contains(nu));
     }
 
     /**

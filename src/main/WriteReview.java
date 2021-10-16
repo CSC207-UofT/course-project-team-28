@@ -17,11 +17,12 @@ public class WriteReview implements WriteFile{
 
     /**
      * Called by Review constructor, which is designed for creating a new file to store the new review, including
-     * the reviewer username, movie name and review content.
+     * the reviewer username, movie name and review content. Once it is created successfully, it returns true.
      */
 
     @Override
-    public void create_file(Object review) throws IOException {
+    public boolean create_file(Object review) throws IOException {
+        File file_if_exist;
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         writereview = new FileWriter(path1 + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
         writereview.write(((Review) review).reviewer);
@@ -32,6 +33,9 @@ public class WriteReview implements WriteFile{
         writereview.write("\r\n");
         writereview.write(Integer.toString(((Review) review).ID));
         writereview.close();
+
+        file_if_exist = new File(path1 + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
+        return file_if_exist.exists();
     }
 
     /**
@@ -57,7 +61,9 @@ public class WriteReview implements WriteFile{
         else{
             for(String r: lstOfReview) {
                 ArrayList<String> lst = read_file(path2, r, "Review");
+
                 Review re = new Review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3))); // create object foe this single review
+
                 Review_lst.add(re);
             }
         }

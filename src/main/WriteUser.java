@@ -22,7 +22,8 @@ public class WriteUser implements WriteFile{
      */
 
     @Override
-    public void create_file(Object user) throws IOException {
+    public boolean create_file(Object user) throws IOException {
+        File file_if_exist;
         Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         if(user instanceof NormalUser) {
             writeuser = new FileWriter(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
@@ -42,6 +43,9 @@ public class WriteUser implements WriteFile{
 
         }
         writeuser.close();//!!! remember
+
+        file_if_exist = new File(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+        return file_if_exist.exists();
     }
 
     /**
