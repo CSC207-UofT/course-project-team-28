@@ -70,7 +70,7 @@ public class Movie {
     }
 
     /**
-     * Get only the review contents of a movie and return them in an ArrayList.
+     * Get only the review contents of a movie and return them in an ArrayList
      */
 
     public ArrayList<String> getReviewsContnet(){
