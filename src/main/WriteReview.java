@@ -21,7 +21,8 @@ public class WriteReview implements WriteFile{
      */
 
     @Override
-    public void create_file(Object review) throws IOException {
+    public boolean create_file(Object review) throws IOException {
+        File file_if_exist;
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         writereview = new FileWriter(path1 + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
         writereview.write(((Review) review).reviewer);
@@ -32,6 +33,9 @@ public class WriteReview implements WriteFile{
         writereview.write("\r\n");
         writereview.write(Integer.toString(((Review) review).ID));
         writereview.close();
+
+        file_if_exist = new File(path1 + "\\src\\main\\Review\\" + ((Review) review).ID + ".txt");
+        return file_if_exist.exists();
     }
 
     /**
