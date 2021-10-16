@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,6 +15,12 @@ public class UserInterface {
         System.out.println("Please enter your choice from Register, Login, Admin register and Admin login:");
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
+        String[] option= new String[]{"Register", "Login", "Admin register", "Admin login"};
+        List<String> options = new ArrayList<>(Arrays.asList(option));
+        while (!options.contains(choice)){
+            System.out.println("Please reenter your choice from Register, Login, Admin register and Admin login:");
+            choice = scanner.nextLine();
+        }
 
 
         // if user chooses to register
@@ -33,17 +42,30 @@ public class UserInterface {
                 System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
             }
-            controller.register(username,password);
             System.out.println("Account successfully created, you are automatically logged in.");
 
 
             //Proceed to search/profile functions
             System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
             String choose = scanner.nextLine();
+            String[] option_1= new String[]{"Search", "Profile"};
+            List<String> options_1 = new ArrayList<>(Arrays.asList(option_1));
+            while (!options_1.contains(choose)) {
+                System.out.println("Please reenter 'Search' to search a movie or 'Profile' to go to the profile page:");
+                choose = scanner.nextLine();
+            }
             if (choose.equals("Profile")){
                 System.out.println(controller.profile_page(username));
                 System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
                 String choise = scanner.nextLine();
+
+                String[] option_2= new String[]{"edit profile", "undo-like the movie"};
+                List<String> options_2 = new ArrayList<>(Arrays.asList(option_2));
+                while (!options_2.contains(choise)) {
+                    System.out.println("Please reenter 'edit profile' or 'undo-like the movie' to remove movie from your playlist:");
+                    choise = scanner.nextLine();
+                }
+
                 if (choise.equals("edit profile")){
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
@@ -64,6 +86,14 @@ public class UserInterface {
                 System.out.println(controller.movie_profile(moviename));
                 System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
                 String c = scanner.nextLine();
+
+                String[] option_3= new String[]{"Write a review", "Like the movie", "Exit program"};
+                List<String> options_3 = new ArrayList<>(Arrays.asList(option_3));
+                while (!options_3.contains(c)) {
+                    System.out.println("Please reenter 'Write a review', 'Like the movie' or 'Exit program':");
+                    c = scanner.nextLine();
+                }
+
                 if (c.equals("Write a review")){
                     System.out.println("Enter your review of the movie");
                     String review_content = scanner.nextLine();
@@ -96,16 +126,29 @@ public class UserInterface {
                 System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
             }
-            controller.login(username,password);
             System.out.println("Login successful.");
 
             // Proceed to search or profile functions
             System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
             String choose = scanner.nextLine();
+            String[] option_1= new String[]{"Search", "Profile"};
+            List<String> options_1 = new ArrayList<>(Arrays.asList(option_1));
+            while (!options_1.contains(choose)) {
+                System.out.println("Please reenter 'Search' to search a movie or 'Profile' to go to the profile page:");
+                choose = scanner.nextLine();
+            }
             if (choose.equals("Profile")){
                 System.out.println(controller.profile_page(username));
                 System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
                 String choise = scanner.nextLine();
+
+                String[] option_2= new String[]{"edit profile", "undo-like the movie"};
+                List<String> options_2 = new ArrayList<>(Arrays.asList(option_2));
+                while (!options_2.contains(choise)) {
+                    System.out.println("Please reenter 'edit profile' or 'undo-like the movie' to remove movie from your playlist:");
+                    choise = scanner.nextLine();
+                }
+
                 if (choise.equals("edit profile")){
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
@@ -116,7 +159,7 @@ public class UserInterface {
                         System.out.println("type the movie name you would like to remove from your playlist");
                         String mvname = scanner.nextLine();
                         controller.undo_like(mvname);
-                        System.out.println(controller.profile_page(username));
+                        System.out.println("your new profile is " + controller.profile_page(username));
                         System.out.println("Movie successfully removed.");
                     } catch (Exception e) {
                         System.out.println("Movie does not exit");
@@ -126,22 +169,34 @@ public class UserInterface {
                     System.exit(1);
                 }
             } else if (choose.equals("Search")){
-                System.out.println("Enter the movie name you'd like to find");
-                String moviename = scanner.nextLine();
-                System.out.println(controller.movie_profile(moviename));
-                System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
-                String c = scanner.nextLine();
-                if (c.equals("Write a review")){
-                    System.out.println("Enter your review of the movie");
-                    String review_content = scanner.nextLine();
-                    controller.write_review(moviename, review_content);
-                } else if (c.equals("Like the movie")){
-                    controller.like_movie(moviename);
-                } else if (c.equals("Exit program")){
-                    System.exit(0);
-                } else {
-                    System.out.println("wrong input");
-                    System.exit(1);
+                try {
+                    System.out.println("Enter the movie name you'd like to find");
+                    String moviename = scanner.nextLine();
+                    System.out.println(controller.movie_profile(moviename));
+                    System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
+                    String c = scanner.nextLine();
+
+                    String[] option_3= new String[]{"Write a review", "Like the movie", "Exit program"};
+                    List<String> options_3 = new ArrayList<>(Arrays.asList(option_3));
+                    while (!options_3.contains(c)) {
+                        System.out.println("Please reenter 'Write a review', 'Like the movie' or 'Exit program':");
+                        c = scanner.nextLine();
+                    }
+
+                    if (c.equals("Write a review")) {
+                        System.out.println("Enter your review of the movie");
+                        String review_content = scanner.nextLine();
+                        controller.write_review(moviename, review_content);
+                    } else if (c.equals("Like the movie")) {
+                        controller.like_movie(moviename);
+                    } else if (c.equals("Exit program")) {
+                        System.exit(0);
+                    } else {
+                        System.out.println("wrong input");
+                        System.exit(1);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Movie not found");
                 }
             }
 
@@ -166,12 +221,19 @@ public class UserInterface {
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
             }
-            controller.register(username,password, code);
             System.out.println("Admin account successfully created, you are automatically logged in.");
 
             // now admin can upload movie or delet movie
             System.out.println("Enter 'Upload movie' or 'Delete movie'.");
             String choose = scanner.nextLine();
+
+            String[] option_4= new String[]{"Upload movie", "Delete movie"};
+            List<String> options_4 = new ArrayList<>(Arrays.asList(option_4));
+            while (!options_4.contains(choose)) {
+                System.out.println("Please reenter 'Upload movie' or 'Delete movie':");
+                choose = scanner.nextLine();
+            }
+
             if (choose.equals("Upload movie")){
                 System.out.println("Please enter the name of the movie");
                 String movie_name = scanner.nextLine();
@@ -209,11 +271,18 @@ public class UserInterface {
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
             }
-            controller.login(username,password, code);
             System.out.println("Login successful.");
 
             System.out.println("Enter 'Upload movie' or 'Delete movie'.");
             String choose = scanner.nextLine();
+
+            String[] option_4= new String[]{"Upload movie", "Delete movie"};
+            List<String> options_4 = new ArrayList<>(Arrays.asList(option_4));
+            while (!options_4.contains(choose)) {
+                System.out.println("Please reenter 'Upload movie' or 'Delete movie':");
+                choose = scanner.nextLine();
+            }
+
             if (choose.equals("Upload movie")){
                 System.out.println("Please enter the name of the movie");
                 String movie_name = scanner.nextLine();

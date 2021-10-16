@@ -1,10 +1,13 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Properties;
+
+import static java.lang.System.out;
 
 /**
  * Called for read and write movie's file.
@@ -35,7 +38,12 @@ public class WriteMovie implements WriteFile{
         properties.putAll(((Movie) movie).moviereviews);
         FileOutputStream fos;
         fos = new FileOutputStream(p1.toString() + "\\src\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
-        properties.store(fos, null);
+        IgnoreFirstLineBufferedWriter ilfw = new IgnoreFirstLineBufferedWriter(new OutputStreamWriter(fos), 0);
+        properties.store(ilfw, null);
+        String string = fos.toString();
+        String sep = System.getProperty("line.separator");
+        String content = string.substring(string.indexOf(sep) + sep.length());
+        out.write(content.getBytes(StandardCharsets.UTF_8));
         fos.close();
         File moviefile = new File(p1.toString() + "\\src\\main\\Moviedata\\" + ((Movie) movie).moviename + ".txt");
         File moviereview = new File(p1.toString() + "\\src\\main\\Moviereview\\" + ((Movie) movie).moviename + " reviews.properties");
@@ -51,6 +59,10 @@ public class WriteMovie implements WriteFile{
         File file = new File(p1.toString() + "\\src\\main\\Moviereview\\" + review.movie + " reviews.properties");
         fos = new FileOutputStream(file, true);
         properties.store(fos, null);
+        String string = fos.toString();
+        String sep = System.getProperty("line.separator");
+        String content = string.substring(string.indexOf(sep) + sep.length());
+        out.write(content.getBytes(StandardCharsets.UTF_8));
         fos.close();
     }
 
@@ -93,16 +105,21 @@ public class WriteMovie implements WriteFile{
         else{
             for(String m: lstOfMovie) {
                 ArrayList<String> lst = read_file(p1, m, "Moviedata");
-                HashMap<Object, Object> moviereview = null; // initialise a HashMap
-                assert lstOfMovieReview != null;
-                for (String mr : lstOfMovieReview) {
-                    if (Objects.equals(mr, m + " reviews")) {
-                        Properties properties = new Properties();
-                        FileInputStream movier = new FileInputStream(MoviereviewPath.toString() + mr + ".properties");
-                        properties.load(movier);
-                        moviereview = new HashMap<Object, Object>(properties);
+                HashMap<Object, Object> moviereview = new HashMap<Object, Object>(); // initialise a HashMap
+                String a = m.replace(".txt", "");
+                FileInputStream movier = new FileInputStream(MoviereviewPath.toString() + "\\" + a + " reviews.properties");
+                PushbackInputStream p = new PushbackInputStream(movier);
+                int b;
+                b = p.read();
+                if (b != -1) {
+                    Properties properties = new Properties();
+                    properties.load(movier);
+                    for (String key : properties.stringPropertyNames()) {
+                        String value = properties.getProperty(key);
+                        moviereview.put(key, value);
+                    }
                     } // Find the corresponding review file for movie and change the HashMap created to the stored one
-                }
+
                 Movie movie = new Movie(lst.get(0), lst.get(1)); // create object for a single movie
                 movie.GetReviewandLike(moviereview, Integer.parseInt(lst.get(2))); // put in all parameters
                 Movie_lst.add(movie);

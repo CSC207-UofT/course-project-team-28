@@ -146,7 +146,7 @@ public class WriteUser implements WriteFile{
         ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
 
         lst.set(3, lst.get(3).replace("[",""));//For playlist String. get rid of "[" and "]"
-        lst.set(3, lst.get(3).replace("]",""));////For playlist String. get rid of "[" and "]"
+        lst.set(3, lst.get(3).replace("]",""));//For playlist String. get rid of "[" and "]"
         String[] movielst1 = lst.get(3).split(",");// split playlist String into Array
         ArrayList<String> movielst2 = new ArrayList<>(Arrays.asList(movielst1));// convert Array into ArrayList
         movielst2.remove(moviename);// remove movie from playlist
