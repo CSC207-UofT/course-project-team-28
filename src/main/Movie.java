@@ -62,7 +62,7 @@ public class Movie {
 
     public int getLikes() {return this.Likes; }
 
-    public ArrayList getReviewsContnet(){
+    public ArrayList<String> getReviewsContnet(){
         ArrayList<String> contents = new ArrayList<String>();
         for (Object content: moviereviews.keySet()){
             contents.add((String) content);

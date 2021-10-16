@@ -57,7 +57,9 @@ public class WriteReview implements WriteFile{
         else{
             for(String r: lstOfReview) {
                 ArrayList<String> lst = read_file(path2, r, "Review");
+
                 Review re = new Review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3))); // create object foe this single review
+
                 Review_lst.add(re);
             }
         }
