@@ -75,12 +75,16 @@ public class UserInterface {
                     try {
                         System.out.println("type the movie name you would like to remove from your playlist");
                         String mvname = scanner.nextLine();
+                        while (!(controller.undo_like(mvname))){
+                            System.out.println("movie is not in your playlist, please enter a movie that is in your playlist: ");
+                            mvname = scanner.nextLine();
+                        }
                         controller.undo_like(mvname);
                         System.out.println("your new profile is " + controller.profile_page(username));
                         System.out.println("Movie successfully removed.");
                         System.out.println("program exits.");
                     } catch (Exception e) {
-                        System.out.println("Movie does not exit");
+                        System.out.println("Something is wrong.");
                         System.out.println("program exits.");
                     }
                 } else {
@@ -179,12 +183,16 @@ public class UserInterface {
                     try {
                         System.out.println("type the movie name you would like to remove from your playlist");
                         String mvname = scanner.nextLine();
+                        while (!(controller.undo_like(mvname))){
+                            System.out.println("movie is not in your playlist, please enter a movie that is in your playlist: ");
+                            mvname = scanner.nextLine();
+                        }
                         controller.undo_like(mvname);
                         System.out.println("your new profile is " + controller.profile_page(username));
                         System.out.println("Movie successfully removed.");
                         System.out.println("program exits.");
                     } catch (Exception e) {
-                        System.out.println("Movie does not exit");
+                        System.out.println("Something is wrong");
                         System.out.println("program exits.");
                     }
                 } else {
