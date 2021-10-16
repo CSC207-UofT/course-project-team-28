@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -9,12 +10,26 @@ public class ReviewManager {
     private static int tot_num;
 
 
-    public ReviewManager(){
+    public ReviewManager() throws IOException {
         this.MovietoRevs = new HashMap<>();
         this.UsertoRevs = new HashMap<>();
         this.lst = new ArrayList<>();
         tot_num = 0;
+
+        // initialize from the database
+        WriteReview wr = new WriteReview();
+        ArrayList<Review> data = wr.get_object_from_file();
+        tot_num = data.get(data.size()-1).ID;
+        for (int i = 0; i < data.size(); i++){
+            add_mr(data.get(i).movie, data.get(i));
+            add_ur(data.get(i).reviewer, data.get(i));
+            this.lst.add(data.get(i));
+        }
+
+
+
     }
+
 
     /**
      * Called only after confirming the username is valid (i.e. the user exists)
@@ -42,6 +57,7 @@ public class ReviewManager {
         tot_num = tot_num + 1;
 
         // add the review in file by a helper method
+        // ? zai jian yige writefile?
 
 
         write = add_mr(mname, rev) && write; // update MovietoRevs
