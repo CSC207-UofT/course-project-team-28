@@ -45,7 +45,12 @@ public class WriteUser implements WriteFile{
         }
         writeuser.close();//!!! remember
 
-        file_if_exist = new File(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+        if(user instanceof NormalUser){
+            file_if_exist = new File(str1 + "\\src\\main\\NormalUser\\" + ((NormalUser) user).username + ".txt");
+        }
+        else{
+            file_if_exist = new File(str1 + "\\src\\main\\AdminUser\\" + ((AdminUser) user).username + ".txt");
+        }
         return file_if_exist.exists();
     }
 
