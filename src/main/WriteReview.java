@@ -35,8 +35,7 @@ public class WriteReview implements WriteFile{
     }
 
     /**
-     * Read the Review folder, create object for each review and return a two-dimensional array.
-     * Each sub-array represents a review, which consists of reviewer, movie and reviewcontent.
+     * Read the Review folder, create object for each review and return an ArrayList, which consists of Review Objects.
      */
     @Override
     public ArrayList<Review> get_object_from_file() throws IOException{
