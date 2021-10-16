@@ -92,6 +92,10 @@ public class UserInterface {
             } else if (choose.equals("Search")){
                 System.out.println("Enter the movie name you'd like to find");
                 String moviename = scanner.nextLine();
+                while (!(if_movie_exist(moviename))) {
+                    System.out.println("Movie does not exits, please re-enter the movie name: ");
+                    moviename = scanner.nextLine();
+                }
                 System.out.println(controller.movie_profile(moviename));
                 System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
                 String c = scanner.nextLine();
@@ -102,6 +106,7 @@ public class UserInterface {
                     System.out.println("Please reenter 'Write a review', 'Like the movie' or 'Exit program':");
                     c = scanner.nextLine();
                 }
+
 
                 if (c.equals("Write a review")){
                     System.out.println("Enter your review of the movie");
