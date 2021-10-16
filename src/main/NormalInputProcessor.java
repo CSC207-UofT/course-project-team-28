@@ -71,6 +71,18 @@ public class NormalInputProcessor {
         }
     }
 
+
+    /**
+     * check if the moviename exists
+     * @return ture iff the movie exists
+     */
+    public boolean if_movie_exist(String moviename){
+        if (mov_mana.get_movie(moviename) == null) {
+            return false;
+        };
+        return true;
+    }
+
     /**
      * Should be only called when the movie name <mn> exists in the data base
      * @return an arraylist [movie name, movie link, reviews, number of likes], where movie name
