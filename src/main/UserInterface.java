@@ -196,6 +196,10 @@ public class UserInterface {
                 try {
                     System.out.println("Enter the movie name you'd like to find");
                     String moviename = scanner.nextLine();
+                    while (!(controller.if_movie_exist(moviename))) {
+                        System.out.println("Movie does not exits, please re-enter the movie name: ");
+                        moviename = scanner.nextLine();
+                    }
                     System.out.println(controller.movie_profile(moviename));
                     System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
                     String c = scanner.nextLine();
