@@ -224,13 +224,13 @@ public class UserInterface {
             System.out.println("Admin account successfully created, you are automatically logged in.");
 
             // now admin can upload movie or delet movie
-            System.out.println("Enter 'Upload movie' or 'Delete movie'.");
+            System.out.println("Enter 'Upload movie'.");
             String choose = scanner.nextLine();
 
-            String[] option_4= new String[]{"Upload movie", "Delete movie"};
+            String[] option_4= new String[]{"Upload movie"};
             List<String> options_4 = new ArrayList<>(Arrays.asList(option_4));
             while (!options_4.contains(choose)) {
-                System.out.println("Please reenter 'Upload movie' or 'Delete movie':");
+                System.out.println("Please reenter 'Upload movie':");
                 choose = scanner.nextLine();
             }
 
@@ -240,10 +240,10 @@ public class UserInterface {
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
                 controller.upload_movie(movie_name, movie_link);
-            } else if (choose.equals("Delete movie")){
-                System.out.println("Please enter the name of the movie");
-                String movie_name = scanner.nextLine();
-                controller.delete_movie(movie_name);
+            //} else if (choose.equals("Delete movie")){
+            //    System.out.println("Please enter the name of the movie");
+            //    String movie_name = scanner.nextLine();
+            //    controller.delete_movie(movie_name);
             } else {
                 System.out.println("wrong input");
                 System.exit(1);
