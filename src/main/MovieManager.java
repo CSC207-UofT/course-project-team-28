@@ -45,10 +45,12 @@ public class MovieManager {
 
     /**
      * Add a review to an instance of movie
-     * @param movie an instance of Movie
-     * @param review review
+     * @param movie_name name of an instance of Movie
+     * @param review_content string content of the review
      */
-    public void add_review_to_movie(Movie movie, Review review) throws IOException {
+    public void add_review_to_movie(String user_name, String movie_name, String review_content) throws IOException {
+        Movie movie = this.get_movie(movie_name);
+        Review review = new Review(user_name, movie_name, review_content, 99);
         movie.AddReview(review);
         wm.add_review_to_file(review);
     }

@@ -44,8 +44,18 @@ public class Movie {
      */
 
     public String toString() {
-            return "Movie name: " + this.moviename + ", " + "Link: " + this.movielink + ", " + "Reviews: " +
-                    this.moviereviews + ", " + "# of Likes: " + this.Likes;
+        StringBuilder reviews = new StringBuilder();
+        for (var entry : this.moviereviews.entrySet()) {
+            reviews.append("[");
+            reviews.append(entry.getKey());
+            reviews.append("---");
+            reviews.append(entry.getValue());
+            reviews.append("]\n");
+        }
+
+
+            return "Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" + "Reviews: " +
+                    reviews + "\n" + "# of Likes: " + this.Likes;
     }
 
     public String getMoviename(){
