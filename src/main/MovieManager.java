@@ -56,19 +56,21 @@ public class MovieManager {
     }
 
     /**
+     * should be called only when movie_name exists
      * get the profile of an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      * @return profile a String including the profile of the movie.
      */
     public String get_movieprofile(String movie_name) {
         Movie movie = this.get_movie(movie_name);
+        return movie.toString();
+
 //        ArrayList<Object> profile = new ArrayList<>();
 //        profile.add(movie.getMoviename());
 //        profile.add(movie.getMovielink());
 //        profile.add(movie.getReviewsContnet());
 //        profile.add(movie.getLikes());
 //        return profile;
-        return movie.toString();
     }
 
     /**
@@ -111,12 +113,12 @@ public class MovieManager {
      */
     @Override
     public String toString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (Movie m : this.Movies) {
-            res += m.getMoviename();
-            res += ", ";
+            res.append(m.getMoviename());
+            res.append(", ");
         }
-        return res; //includes a trailing ", "
+        return res.toString(); //includes a trailing ", "
     }
 
 }
