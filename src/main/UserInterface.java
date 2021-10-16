@@ -92,7 +92,7 @@ public class UserInterface {
             } else if (choose.equals("Search")){
                 System.out.println("Enter the movie name you'd like to find");
                 String moviename = scanner.nextLine();
-                while (!(if_movie_exist(moviename))) {
+                while (!(controller.if_movie_exist(moviename))) {
                     System.out.println("Movie does not exits, please re-enter the movie name: ");
                     moviename = scanner.nextLine();
                 }
