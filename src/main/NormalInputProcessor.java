@@ -135,17 +135,14 @@ public class NormalInputProcessor {
      * return ture iff added successfully.
      */
     public boolean like_movie(String moviename) throws IOException {
-        user_mana.give_like(this.curr_nuname, moviename);
-        mov_mana.like_movie(moviename);
-        return true;
-        //if (user_mana.give_like(this.curr_nuname, moviename)){
-            //mov_mana.like_movie(moviename);
-            //return true;
-        //}
-        //else {
+        if (user_mana.give_like(this.curr_nuname, moviename)){
+            mov_mana.like_movie(moviename);
+            return true;
+        }
+        else {
             //user_mana.undo_like(this.curr_nuname, moviename);
-            //return false;
-        //}
+            return false;
+        }
     }
 
     /**
