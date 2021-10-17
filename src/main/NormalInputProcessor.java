@@ -145,18 +145,25 @@ public class NormalInputProcessor {
         }
     }
 
+    /**
+     * return ture iff the user's playlist is empty.
+     */
+    public boolean empty_playlist() {
+        Object[] user_info = user_mana.getUserInfoList(curr_nuname, "NormalUser");
+        ArrayList<String> user_playlist = (ArrayList<String>) user_info[3];
+        if (user_playlist.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Given a String moviename, undo like.
      * return ture iff added successfully.
      */
     public boolean undo_like(String moviename) throws IOException {
-        Object[] user_info = user_mana.getUserInfoList(curr_nuname, "NormalUser");
-        ArrayList<String> user_playlist = (ArrayList<String>) user_info[3];
-        if (user_playlist.isEmpty()) {
-            return false;
-        }
-        else if (user_playlist.contains(moviename)){
+        if (user_playlist.contains(moviename)){
             user_mana.undo_like(this.curr_nuname, moviename);
             mov_mana.undolike_movie(moviename);
             return true;
