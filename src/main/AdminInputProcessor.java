@@ -80,7 +80,7 @@ public class AdminInputProcessor {
      * and can be uploaded.
      */
     public boolean upload_movie(String moviename, String movielink) throws IOException {
-        if (moviename.length() < 1 & movielink.length() < 3) {
+        if (moviename.length() < 1 | movielink.length() < 3) {
             return false;
         }
         if (mov_mana.get_movie(moviename) != null) {
