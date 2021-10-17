@@ -1,7 +1,7 @@
 ## Progress Report
 
 ### Specification Summary
-To summarize the specifications we wrote, our program provides a platform for normal users to create their own movie playlist by giving likes to their favourite movies and post their reviews for the movies of interest. Besides, they can also modify their playlists, check the number of likes and see reviews of the movie after searching it. Unlike normal users, as another type of user, administrators can upload or delete films.
+To summarize the specifications we wrote, our program provides a platform for normal users to create their own movie playlist by giving likes to their favourite movies and post their reviews for the movies of interest. Besides, they can also modify their playlists, check the number of likes and see reviews of the movie after searching it. Unlike normal users, as another type of user, administrators can upload movies.
 
 ### CRC Model Summary
 According to our CRC model, we have 16 classes in total, each class is assigned with a function according to the clean architecture. Entity includes User, Normal User, Admin User, Movie, Review, which is the innermost part of the code, that creates new objects when other outer classes calls. Use cases are Movie Manager, Review Manager, User Manager, Writeflie, Write Review, Write Movie, Write User, and IgnoreFirstLineBufferedWriter. The managers pack the inputs and interact with write classes to create/write/read the file. There are two controllers, AdminInputProcessor and NormalInuptProcessor. Each is responsible for receiving and processing input from the UI. The UserInterface is the command line interface which receives input.
@@ -13,7 +13,7 @@ The walk-through we wrote contains a scenario for users to write reviews. In ord
 
 ### Skeleton Program Summary
 The code should compile and run as expected (described in scenario walk-through),
-and we do have two unit tests for NormalUser and both passed.
+and we do have several unit tests for NormalUser and both passed. We also extensively tested our program in the shell.
 
 In the movie part, some warnings were shown due to the fact that IntelliJ detects path.toString is redundant. However, if changed as suggested (remove .toString), errors would appear. Also, we have some used codes which are preparations for phase one that have been commented out, which might also cause some warning.
 
