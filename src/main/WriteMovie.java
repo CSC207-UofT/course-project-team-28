@@ -66,6 +66,19 @@ public class WriteMovie implements WriteFile{
         fos.close();
     }
 
+    public String add_like_to_file(Movie movie) throws IOException {
+        Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        ArrayList<String> lst = new ArrayList<>(read_file(p1, movie.moviename + ".txt", "Moviedata"));
+        writemovie = new FileWriter(p1.toString() + "\\src\\main\\Moviedata\\" + movie.moviename + ".txt");
+        lst.set(2, String.valueOf(movie.getLikes()));
+        for(String str: lst){
+            writemovie.write(str);
+            writemovie.write("\r\n");
+        }
+        writemovie.close();
+        return lst.get(2);
+    }
+
     /* Replace method for add_review
     public void add_review(Review review) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
