@@ -99,12 +99,17 @@ public class WriteUser implements WriteFile{
         else {
             for(String nu: lstOfNormal){
                 ArrayList<String> lst = read_file(str1, nu, "NormalUser");
+                ArrayList<String> pl2;
 
                 lst.set(3, lst.get(3).replace("[", "")); //get rid of "[]" in playlist
                 lst.set(3, lst.get(3).replace("]", "")); //get rid of "[]" in playlist
-                String[] pl1 = lst.get(3).split(","); // change playlist from string to array
-                ArrayList<String> pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
-
+                if (lst.get(3).isEmpty()){
+                    pl2 = new ArrayList<>();
+                }
+                else{
+                    String[] pl1 = lst.get(3).split(","); // change playlist from string to array
+                    pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
+                }
                 NormalUser nur = new NormalUser(lst.get(0), lst.get(1), lst.get(2), pl2); // create object foe this single user
                 NormalUser_lst.add(nur);// Add single user object into Arraylist
             }
