@@ -4,6 +4,7 @@ Note:
 
 1.due to the codes that we used in some write file classes to get the path of some folders for our program, please open our project from the folder that is outside of the src folder.
 For example, you should have a directory that looks like --- [The name of Your own folder] -> src -> main -> …
+
 Here, [The name of Your own folder] is a folder that is one level higher than src, please set this folder as the module and open the project from this folder. Otherwise, our program will have bugs. Thanks you!
 
 
