@@ -292,6 +292,13 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
+                while (!(controller.upload_movie(movie_name, movie_link))) {
+                    System.out.println("invalid inputs, please try again: ");
+                    System.out.println("Please enter the name of the movie");
+                    movie_name = scanner.nextLine();
+                    System.out.println("Please enter the link of the movie");
+                    movie_link = scanner.nextLine();
+                }
                 controller.upload_movie(movie_name, movie_link);
                 System.out.println("Movie added");
                 System.out.println("program exits.");
@@ -344,6 +351,13 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
+                while (!(controller.upload_movie(movie_name, movie_link))) {
+                    System.out.println("invalid inputs, please try again.");
+                    System.out.println("Please enter the name of the movie");
+                    movie_name = scanner.nextLine();
+                    System.out.println("Please enter the link of the movie");
+                    movie_link = scanner.nextLine();
+                }
                 controller.upload_movie(movie_name, movie_link);
                 System.out.println("Movie added");
                 System.out.println("program exits.");
