@@ -72,6 +72,9 @@ public class UserInterface {
                     controller.edit_profile(contactinfo);
                     System.out.println("your new profile is: " + controller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
+                    if (controller.empty_playlist()){
+                        System.out.println("You have an empty playlist.");
+                    }
                     try {
                         System.out.println("type the movie name you would like to remove from your playlist");
                         String mvname = scanner.nextLine();
@@ -180,6 +183,9 @@ public class UserInterface {
                     controller.edit_profile(contactinfo);
                     System.out.println("your new profile is: " + controller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
+                    if (controller.empty_playlist()){
+                        System.out.println("You have an empty playlist.");
+                    }
                     try {
                         System.out.println("type the movie name you would like to remove from your playlist");
                         String mvname = scanner.nextLine();
