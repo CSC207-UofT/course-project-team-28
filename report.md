@@ -13,7 +13,7 @@ The walk-through we wrote contains a scenario for users to write reviews. In ord
 
 ### Skeleton Program Summary
 The code should compile and run as expected (described in scenario walk-through),
-and we do have two unit tests for NormalUser and both passed.
+and we do have several unit tests for NormalUser and both passed. We also extensively tested our program in the shell.
 
 In the movie part, some warnings were shown due to the fact that IntelliJ detects path.toString is redundant. However, if changed as suggested (remove .toString), errors would appear. Also, we have some used codes which are preparations for phase one that have been commented out, which might also cause some warning.
 
