@@ -74,7 +74,10 @@ public class UserInterface {
                 } else if (choise.equals("undo-like the movie")){
                     if (controller.empty_playlist()){
                         System.out.println("You have an empty playlist.");
-                    } else {
+                        System.out.println("program exits");
+                        System.exit(0);
+                    }
+                    else {
                         try {
                             System.out.println("type the movie name you would like to remove from your playlist");
                             String mvname = scanner.nextLine();
