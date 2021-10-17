@@ -93,18 +93,20 @@ public class MovieManager {
      * Add an like to an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
-    public void like_movie(String movie_name) {
+    public void like_movie(String movie_name) throws IOException {
         Movie movie = this.get_movie(movie_name);
         movie.AddLike();
+        wm.add_like_to_file(movie);
     }
 
     /**
      * Undo an like to an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
-    public void undolike_movie(String movie_name) {
+    public void undolike_movie(String movie_name) throws IOException {
         Movie movie = this.get_movie(movie_name);
         movie.UndoLike();
+        wm.add_like_to_file(movie);
     }
 
     /**
