@@ -45,27 +45,32 @@ public class MovieManager {
 
     /**
      * Add a review to an instance of movie
-     * @param movie an instance of Movie
-     * @param review review
+     * @param movie_name name of an instance of Movie
+     * @param review_content string content of the review
      */
-    public void add_review_to_movie(Movie movie, Review review) throws IOException {
+    public void add_review_to_movie(String user_name, String movie_name, String review_content) throws IOException {
+        Movie movie = this.get_movie(movie_name);
+        Review review = new Review(user_name, movie_name, review_content, 99);
         movie.AddReview(review);
         wm.add_review_to_file(review);
     }
 
     /**
+     * should be called only when movie_name exists
      * get the profile of an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
-     * @return profile an array including the profile of the movie.
+     * @return profile a String including the profile of the movie.
      */
-    public ArrayList<Object> get_movieprofile(String movie_name) {
+    public String get_movieprofile(String movie_name) {
         Movie movie = this.get_movie(movie_name);
-        ArrayList<Object> profile = new ArrayList<>();
-        profile.add(movie.getMoviename());
-        profile.add(movie.getMovielink());
-        profile.add(movie.getReviewsContnet());
-        profile.add(movie.getLikes());
-        return profile;
+        return movie.toString();
+
+//        ArrayList<Object> profile = new ArrayList<>();
+//        profile.add(movie.getMoviename());
+//        profile.add(movie.getMovielink());
+//        profile.add(movie.getReviewsContnet());
+//        profile.add(movie.getLikes());
+//        return profile;
     }
 
     /**
@@ -108,12 +113,12 @@ public class MovieManager {
      */
     @Override
     public String toString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (Movie m : this.Movies) {
-            res += m.getMoviename();
-            res += ", ";
+            res.append(m.getMoviename());
+            res.append(", ");
         }
-        return res; //includes a trailing ", "
+        return res.toString(); //includes a trailing ", "
     }
 
 }

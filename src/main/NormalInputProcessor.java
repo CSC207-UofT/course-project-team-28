@@ -71,13 +71,25 @@ public class NormalInputProcessor {
         }
     }
 
+
+    /**
+     * check if the moviename exists
+     * @return ture iff the movie exists
+     */
+    public boolean if_movie_exist(String moviename){
+        if (mov_mana.get_movie(moviename) == null) {
+            return false;
+        };
+        return true;
+    }
+
     /**
      * Should be only called when the movie name <mn> exists in the data base
      * @return an arraylist [movie name, movie link, reviews, number of likes], where movie name
      *         and movie link are strings, reviews is [String of review 1 of the moive,
      *         String of review 2 of the movie, ...]
      */
-    public ArrayList<Object> search(String mn){
+    public String search(String mn){
         return mov_mana.get_movieprofile(mn);
     }
 
@@ -88,7 +100,7 @@ public class NormalInputProcessor {
      *         and movie link are strings, reviews is [String of review 1 of the moive,
      *         String of review 2 of the movie, ...]
      */
-    public ArrayList<Object> movie_profile(String moviename){
+    public String movie_profile(String moviename){
         return mov_mana.get_movieprofile(moviename);
     }
 
@@ -112,6 +124,7 @@ public class NormalInputProcessor {
      * return ture iff a review is successfully added. false otherwise
      */
     public boolean write_review(String moviename, String rev_content) throws IOException {
+        mov_mana.add_review_to_movie(curr_nuname, moviename, rev_content);
         return rev_mana.write_review(this.curr_nuname, moviename, rev_content);
     }
 

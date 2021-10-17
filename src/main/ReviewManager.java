@@ -20,7 +20,9 @@ public class ReviewManager {
 
         // initialize from the database
         ArrayList<Review> data = wr.get_object_from_file();
-        tot_num = data.get(data.size()-1).ID;
+        if (data.size() > 0) {
+            tot_num = data.get(data.size()-1).ID;
+        }
         for (int i = 0; i < data.size(); i++){
             add_mr(data.get(i).movie, data.get(i));
             add_ur(data.get(i).reviewer, data.get(i));
@@ -50,10 +52,12 @@ public class ReviewManager {
      * Return ture iff the review has been successfully created and added to the txt file.
      */
     public boolean write_review(String uname, String mname, String content) throws IOException {
-        Review rev = new Review(uname, mname, content, tot_num);
         tot_num = tot_num + 1;
+        Review rev = new Review(uname, mname, content, tot_num);
 
         // add the review in file by a helper method
+        //WriteReview newwr = new WriteReview();
+        //boolean write = newwr.create_file(rev);
         boolean write = wr.create_file(rev);
 
         write = add_mr(mname, rev) && write; // update MovietoRevs
