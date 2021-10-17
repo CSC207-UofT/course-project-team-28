@@ -58,7 +58,8 @@ public class WriteMovie implements WriteFile{
         properties.put(review.review_content, review.reviewer);
         File file = new File(p1.toString() + "\\src\\main\\Moviereview\\" + review.movie + " reviews.properties");
         fos = new FileOutputStream(file, true);
-        properties.store(fos, null);
+        IgnoreFirstLineBufferedWriter ilfw = new IgnoreFirstLineBufferedWriter(new OutputStreamWriter(fos), 0);
+        properties.store(ilfw, null);
         String string = fos.toString();
         String sep = System.getProperty("line.separator");
         String content = string.substring(string.indexOf(sep) + sep.length());
