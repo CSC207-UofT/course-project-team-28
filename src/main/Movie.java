@@ -1,5 +1,4 @@
-import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Movie {
@@ -13,7 +12,7 @@ public class Movie {
      * "Likes" stores the number of likes a movie received
      */
 
-    public Movie(String moviename, String movielink) throws IOException {
+    public Movie(String moviename, String movielink) {
         this.moviename = moviename;
         this.movielink = movielink;
         this.moviereviews = new HashMap<>();
@@ -62,11 +61,6 @@ public class Movie {
         return this.moviename;
     }
 
-    public String getMovielink(){
-        return this.movielink;
-    }
-
-    public HashMap<Object, Object> getMovieReviews() {return this.moviereviews; }
 
     public int getLikes() {return this.Likes; }
 
@@ -82,17 +76,14 @@ public class Movie {
         this.Likes -= 1;
     }
 
-    /**
-     * Get only the review contents of a movie and return them in an ArrayList
-     */
-
-    public ArrayList<String> getReviewsContnet(){
-        ArrayList<String> contents = new ArrayList<>();
-        for (Object content: moviereviews.keySet()){
-            contents.add((String) content);
-        }
-        return contents;
-
-    }
+//    Get only the review contents of a movie and return them in an ArrayList
+//    public ArrayList<String> getReviewsContnet(){
+//        ArrayList<String> contents = new ArrayList<>();
+//        for (Object content: moviereviews.keySet()){
+//            contents.add((String) content);
+//        }
+//        return contents;
+//
+//    }
 
 }
