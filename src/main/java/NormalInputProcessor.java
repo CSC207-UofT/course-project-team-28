@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class NormalInputProcessor {
     public boolean if_movie_exist(String moviename){
         if (mov_mana.get_movie(moviename) == null) {
             return false;
-        };
+        }
         return true;
     }
 
@@ -109,8 +110,9 @@ public class NormalInputProcessor {
      * when given a String of the normal user's username, return an
      * arraylist [username, contact info, playlist]
      */
+    //TODO: should add new User profiles info on profile page
     public ArrayList<Object> profile_page(String username){
-        ArrayList<Object> newarray = new ArrayList<Object>();
+        ArrayList<Object> newarray = new ArrayList<>();
         Object[] wholelist = user_mana.getUserInfoList(username, "NormalUser");
         newarray.add(wholelist[0]);
         newarray.add(wholelist[2]);
@@ -150,12 +152,8 @@ public class NormalInputProcessor {
      */
     public boolean empty_playlist() {
         Object[] user_info = user_mana.getUserInfoList(curr_nuname, "NormalUser");
-        ArrayList<String> user_playlist = (ArrayList<String>) user_info[3];
-        if (user_playlist.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        ArrayList<String> user_playlist = (ArrayList<String>) user_info[6];
+        return user_playlist.isEmpty();
     }
 
     /**
@@ -164,7 +162,7 @@ public class NormalInputProcessor {
      */
     public boolean undo_like(String moviename) throws IOException {
         Object[] user_info = user_mana.getUserInfoList(curr_nuname, "NormalUser");
-        ArrayList<String> user_playlist = (ArrayList<String>) user_info[3];
+        ArrayList<String> user_playlist = (ArrayList<String>) user_info[6];
         if (user_playlist.contains(moviename)){
             user_mana.undo_like(this.curr_nuname, moviename);
             mov_mana.undolike_movie(moviename);
@@ -180,8 +178,15 @@ public class NormalInputProcessor {
      * Given a String newinfo, update the user's profile.
      * return ture iff updated successfully.
      */
-    public boolean edit_profile(String newinfo) throws IOException {
-        return user_mana.update_info(this.curr_nuname, newinfo);
+    //TODO: add new parameter, the corresponding place where call this method in UI need to add onr more parameter
+    public boolean edit_profile(String newInfo, String updateType) throws IOException {
+        if (updateType.equals("coin")){
+            return user_mana.updateCoin(this.curr_nuname, Integer.parseInt(newInfo));
+        }
+        else{
+            return user_mana.updateInfo(this.curr_nuname, newInfo, updateType);
+        }
+
     }
 
 }

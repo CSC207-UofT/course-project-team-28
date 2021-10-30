@@ -14,12 +14,12 @@ public class AdminUser extends User{
     }
 
     @Override
-    public String getusername(){
+    public String getUsername(){
         return this.username;
     }
 
     @Override
-    public String getuserpassword(){
+    public String getUserPassword(){
         return this.password;
     }
 

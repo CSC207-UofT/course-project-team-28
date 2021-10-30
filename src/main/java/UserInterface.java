@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -69,7 +70,7 @@ public class UserInterface {
                 if (choise.equals("edit profile")){
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
-                    controller.edit_profile(contactinfo);
+                    controller.edit_profile(contactinfo, "contactInfo");
                     System.out.println("your new profile is: " + controller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
                     if (controller.empty_playlist()){
@@ -184,7 +185,7 @@ public class UserInterface {
                 if (choise.equals("edit profile")){
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
-                    controller.edit_profile(contactinfo);
+                    controller.edit_profile(contactinfo, "contactInfo");
                     System.out.println("your new profile is: " + controller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
                     if (controller.empty_playlist()){

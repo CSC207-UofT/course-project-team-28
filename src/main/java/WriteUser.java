@@ -11,11 +11,11 @@ import java.util.List;
  * it should be only called by User class and its subclass.
  */
 public class WriteUser implements WriteFile{
-    protected FileReader userreader;
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
-
-
+    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected File AdminUserPath = new File(str1 + "/src/main/res/AdminUser"); //get full path for AdminUser folder
+    protected File NormalUserPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for NormalUser folder
 
     /**
      * Add an admin user to the admin user list.
@@ -25,32 +25,33 @@ public class WriteUser implements WriteFile{
     @Override
     public boolean create_file(Object user) throws IOException {
         File file_if_exist;
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         if(user instanceof NormalUser) {
             writeuser = new FileWriter(str1 + "/src/main/res/NormalUser/" + ((NormalUser) user).username + ".txt");
-            writeuser.write(((NormalUser) user).username);
+            writeuser.write(((NormalUser) user).getUsername());
             writeuser.write("\r\n");
-            writeuser.write(((NormalUser) user).password);
+            writeuser.write(((NormalUser) user).getUserPassword());
             writeuser.write("\r\n");
-            writeuser.write("Empty contact info");
+            writeuser.write(((NormalUser) user).getContactinfo());
+            writeuser.write("\r\n");
+            writeuser.write(((NormalUser) user).getDescription());
+            writeuser.write("\r\n");
+            writeuser.write(((NormalUser) user).getCategory());
+            writeuser.write("\r\n");
+            writeuser.write(String.valueOf(((NormalUser) user).getCoin()));
             writeuser.write("\r\n");
             writeuser.write("[]");
+            writeuser.close();//!!! remember
+            file_if_exist = new File(str1 + "/src/main/res/NormalUser/" + ((NormalUser) user).username + ".txt");
         }
         else{
             writeuser = new FileWriter(str1 + "/src/main/res/AdminUser/" + ((AdminUser) user).username + ".txt");
             writeuser.write(((AdminUser) user).username);
             writeuser.write("\r\n");
             writeuser.write(((AdminUser) user).password);
-
-        }
-        writeuser.close();//!!! remember
-
-        if(user instanceof NormalUser){
-            file_if_exist = new File(str1 + "/src/main/res/NormalUser/" + ((NormalUser) user).username + ".txt");
-        }
-        else{
+            writeuser.close();//!!! remember
             file_if_exist = new File(str1 + "/src/main/res/AdminUser/" + ((AdminUser) user).username + ".txt");
         }
+
         return file_if_exist.exists();
     }
 
@@ -59,9 +60,6 @@ public class WriteUser implements WriteFile{
      */
     @Override
     public ArrayList<AdminUser> get_object_from_file() throws IOException{
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File AdminUserPath = new File(str1 + "/src/main/res/AdminUser"); //get full path for AdminUser folder
-
         String[] lstOfAdmin = AdminUserPath.list();// get all the file name in AdminUser folder
 
         ArrayList<AdminUser> AdminUser_lst = new ArrayList<>();
@@ -72,7 +70,7 @@ public class WriteUser implements WriteFile{
 
         else{
             for(String au: lstOfAdmin) {
-                ArrayList<String> lst = read_file(str1, au, "AdminUser");
+                ArrayList<String> lst = read_file(AdminUserPath + "/" + au);
 
                 AdminUser nur = new AdminUser(lst.get(0), lst.get(1)); // create object foe this single user
                 AdminUser_lst.add(nur);
@@ -86,9 +84,6 @@ public class WriteUser implements WriteFile{
      * @return read object from NormalUser folder, return an arraylist of NormalUser object.
      */
     public ArrayList<NormalUser> get_NormalUser_from_file() throws IOException{
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-        File NormalUserPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for NormalUser folder
-
         String[] lstOfNormal = NormalUserPath.list();// get all the file name in NormalUser folder
 
         ArrayList<NormalUser> NormalUser_lst = new ArrayList<>();
@@ -98,19 +93,19 @@ public class WriteUser implements WriteFile{
         }
         else {
             for(String nu: lstOfNormal){
-                ArrayList<String> lst = read_file(str1, nu, "NormalUser");
+                ArrayList<String> lst = read_file(NormalUserPath + "/" + nu);
                 ArrayList<String> pl2;
 
-                lst.set(3, lst.get(3).replace("[", "")); //get rid of "[]" in playlist
-                lst.set(3, lst.get(3).replace("]", "")); //get rid of "[]" in playlist
-                if (lst.get(3).isEmpty()){
+                lst.set(6, lst.get(6).replace("[", "")); //get rid of "[]" in playlist
+                lst.set(6, lst.get(6).replace("]", "")); //get rid of "[]" in playlist
+                if (lst.get(6).isEmpty()){
                     pl2 = new ArrayList<>();
                 }
                 else{
-                    String[] pl1 = lst.get(3).split(","); // change playlist from string to array
+                    String[] pl1 = lst.get(6).split(","); // change playlist from string to array
                     pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
                 }
-                NormalUser nur = new NormalUser(lst.get(0), lst.get(1), lst.get(2), pl2); // create object foe this single user
+                NormalUser nur = new NormalUser(lst.get(0), lst.get(1), lst.get(2), lst.get(3), lst.get(4), Integer.parseInt(lst.get(5)), pl2);
                 NormalUser_lst.add(nur);// Add single user object into Arraylist
             }
         }
@@ -125,19 +120,18 @@ public class WriteUser implements WriteFile{
      * @return return a string of new playlist
      */
     public String give_like_readandwrite(String moviename, String username) throws IOException {
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
+        ArrayList<String> lst = read_file(NormalUserPath + "/" + username + ".txt");
 
-        if (lst.get(3).equals("[]")){
-            lst.set(3, lst.get(3).replace("[]","[" + moviename + "]"));
+        if (lst.get(6).equals("[]")){
+            lst.set(6, lst.get(6).replace("[]","[" + moviename + "]"));
         }
-        else if(!lst.get(3).contains(moviename)){
-            lst.set(3, lst.get(3).replace("]","," + moviename + "]"));
+        else if(!lst.get(6).contains(moviename)){
+            lst.set(6, lst.get(6).replace("]","," + moviename + "]"));
         }
 
-        write_file(str1, username, lst);
+        write_file(NormalUserPath + "/" + username + ".txt", lst);
 
-        return lst.get(3);
+        return lst.get(6);
     }
 
     /**
@@ -147,8 +141,7 @@ public class WriteUser implements WriteFile{
      * @return return a string of new playlist
      */
     public String undo_like_readandwrite(String moviename, String username) throws IOException {
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
+        ArrayList<String> lst = read_file(NormalUserPath + "/" + username + ".txt");
 
         lst.set(3, lst.get(3).replace("[",""));//For playlist String. get rid of "[" and "]"
         lst.set(3, lst.get(3).replace("]",""));//For playlist String. get rid of "[" and "]"
@@ -158,25 +151,40 @@ public class WriteUser implements WriteFile{
         lst.set(3, movielst2.toString().replaceAll(", ", ","));// Change playlist with new playlist, make sure there is no space around "," in playlist
 
 
-        write_file(str1, username, lst);
+        write_file(NormalUserPath + "/" + username + ".txt", lst);
 
         return lst.get(3);
     }
 
     /**
-     * edit the user contact info
-     * @param newcontactinfo the new contact info of user
+     * edit the user info
+     * @param newUpdate the new contact info of user
      * @param username the name of user
+     * @param writeType the type of info that user wants to update. e.g. contactInfo, description
      * @return return a string of new contact info
      */
-    public String edit_profile_readandwrite(String newcontactinfo, String username) throws IOException{
-        Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        ArrayList<String> lst = read_file(str1, username + ".txt", "NormalUser");
+    public String edit_profile_readandwrite(String newUpdate, String username, String writeType) throws IOException{
+        ArrayList<String> lst = read_file(NormalUserPath + "/" + username + ".txt");
 
-        lst.set(2, newcontactinfo);
-        write_file(str1, username, lst);
+        switch (writeType) {
+            case "contactInfo":
+                lst.set(2, newUpdate);
+                write_file(NormalUserPath + "/" + username + ".txt", lst);
+                return lst.get(2);
+            case "description":
+                lst.set(3, newUpdate);
+                write_file(NormalUserPath + "/" + username + ".txt", lst);
+                return lst.get(3);
+            case "category":
+                lst.set(4, newUpdate);
+                write_file(NormalUserPath + "/" + username + ".txt", lst);
+                return lst.get(4);
+            default:
+                lst.set(5, newUpdate);
+                write_file(NormalUserPath + "/" + username + ".txt", lst);
+                return lst.get(5);
+        }
 
-        return lst.get(2);
     }
 
 
@@ -188,9 +196,8 @@ public class WriteUser implements WriteFile{
     /**
      * Helper method, read file
      */
-    public ArrayList<String> read_file(Path str1, String fn, String folder) throws IOException {
-        userreader = new FileReader(str1.toString() + "/src/main/res/" + folder + "/" + fn);
-        userlogin = new BufferedReader(userreader);
+    public ArrayList<String> read_file(String path) throws IOException {
+        userlogin = new BufferedReader(new FileReader(path));
 
         ArrayList<String> lst = new ArrayList<>();
         String line = userlogin.readLine();
@@ -206,8 +213,8 @@ public class WriteUser implements WriteFile{
     /**
      * Helper method, write file
      */
-    public void write_file(Path str1, String username, ArrayList<String> lst) throws IOException {
-        writeuser = new FileWriter(str1 + "/src/main/res/NormalUser/" + username + ".txt");
+    public void write_file(String path, ArrayList<String> lst) throws IOException {
+        writeuser = new FileWriter(path);
         for(String str: lst){
             writeuser.write(str);
             writeuser.write("\r\n");

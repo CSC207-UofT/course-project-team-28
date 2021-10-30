@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,9 @@ public class UserManager {
     private ArrayList<AdminUser> lstOfAdminUser;
     private ArrayList<NormalUser> lstOfNormalUser;
     protected WriteUser wu = new WriteUser();
+    private AdminUser au;
+    NormalUser nu;
+
 
     /**
      * create ArrayList of NormalUser and AdminUser
@@ -27,7 +31,7 @@ public class UserManager {
      * @param password password of AdminUser
      */
     public boolean create_adminuser(String username, String password) throws IOException {
-        AdminUser au = new AdminUser(username, password);
+        au = new AdminUser(username, password);
         boolean file_exist = wu.create_file(au);
         lstOfAdminUser.add(au);
         return (file_exist && lstOfAdminUser.contains(au));
@@ -39,7 +43,7 @@ public class UserManager {
      * @param password password of NormalUser
      */
     public boolean create_normaluser(String username, String password) throws IOException {
-        NormalUser nu = new NormalUser(username, password, "Empty contact info", new ArrayList<>());
+        nu = new NormalUser(username, password, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
         boolean file_exist = wu.create_file(nu);
         lstOfNormalUser.add(nu);
         return (file_exist && lstOfNormalUser.contains(nu));
@@ -48,30 +52,79 @@ public class UserManager {
     /**
      * Update contact info of a normal user
      * @param username the name of normal user
-     * @param contact_info the info needs to be updated
+     * @param updateInfo the info needs to be updated
+     * @param writeType the type of info that user wants to update. e.g. contactInfo, description
      * @return True if it is successfully updated. Otherwise, return false.
      */
 
-    public boolean update_info(String username, String contact_info) throws IOException {
-        NormalUser nu = new NormalUser("","","",new ArrayList<>());
+    public boolean updateInfo(String username, String updateInfo, String writeType) throws IOException {
+        nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
-            if(nu1.getusername().equals(username)){
+            if(nu1.getUsername().equals(username)){
                 nu = nu1;
             }
         }
 
-        if(nu.getContactinfo().equals(contact_info)){
+        if(writeType.equals("contactInfo")){
+            if(nu.getContactinfo().equals(updateInfo)){
+                return true;
+            }
+            else{
+                nu.updateContactinfo(updateInfo);
+
+                String str = wu.edit_profile_readandwrite(updateInfo, nu.getUsername(), "contactInfo");
+
+                return !str.equals(updateInfo);
+            }
+        }
+        else if(writeType.equals("description")){
+            if(nu.getDescription().equals(updateInfo)){
+                return true;
+            }
+            else{
+                nu.updateDescription(updateInfo);
+
+                String str = wu.edit_profile_readandwrite(updateInfo, nu.getUsername(), "description");
+
+                return !str.equals(updateInfo);
+            }
+        }
+        else{
+            if(nu.getCategory().equals(updateInfo)){
+                return true;
+            }
+            else{
+                nu.updateCategory(updateInfo);
+
+                String str = wu.edit_profile_readandwrite(updateInfo, nu.getUsername(), "category");
+
+                return !str.equals(updateInfo);
+            }
+        }
+    }
+
+    public boolean updateCoin(String username, int coin) throws IOException{
+        nu = new NormalUser("","","","", "", 0, new ArrayList<>());
+
+        for(NormalUser nu1: lstOfNormalUser){
+            if(nu1.getUsername().equals(username)){
+                nu = nu1;
+            }
+        }
+        if(nu.getCoin() == coin){
             return true;
         }
         else{
-            nu.update_contactinfo(contact_info);
+            nu.setCoin(coin);
 
-            String str = wu.edit_profile_readandwrite(contact_info, nu.getusername());
+            String str = wu.edit_profile_readandwrite(Integer.toString(coin), nu.getUsername(), "coin");
 
-            return !str.equals(contact_info);
+            return !str.equals(Integer.toString(coin));
         }
     }
+
+
 
     /**
      *  @param username the name of normal user
@@ -79,21 +132,21 @@ public class UserManager {
      *  @return return True if movie is successfully added. Otherwise, return false.
      */
     public boolean give_like(String username, String moviename) throws IOException {
-        NormalUser nu = new NormalUser("","","",new ArrayList<>());
+        NormalUser nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
-            if(nu1.getusername().equals(username)){
+            if(nu1.getUsername().equals(username)){
                 nu = nu1;
             }
         }
 
-        if(nu.getplaylist().contains(moviename)){
+        if(nu.getPlaylist().contains(moviename)){
             return false;
         }
         else {
-            nu.add_movie_to_playlist(moviename);
+            nu.addMovieToPlaylist(moviename);
 
-            String str = wu.give_like_readandwrite(moviename, nu.getusername());
+            String str = wu.give_like_readandwrite(moviename, nu.getUsername());
 
             return str.contains(moviename);
         }
@@ -106,21 +159,21 @@ public class UserManager {
      *  @return return True if movie is successfully removed. Otherwise, return false.
      */
     public boolean undo_like(String username, String moviename) throws IOException {
-        NormalUser nu = new NormalUser("","","",new ArrayList<>());
+        NormalUser nu = new NormalUser("","","","", "", 0,  new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
-            if(nu1.getusername().equals(username)){
+            if(nu1.getUsername().equals(username)){
                 nu = nu1;
             }
         }
 
-        if(!nu.getplaylist().contains(moviename)){
+        if(!nu.getPlaylist().contains(moviename)){
             return false;
         }
         else {
-            nu.remove_movie_from_playlist(moviename);
+            nu.removeMovieFromPlaylist(moviename);
 
-            String str = wu.undo_like_readandwrite(moviename, nu.getusername());
+            String str = wu.undo_like_readandwrite(moviename, nu.getUsername());
 
             return !str.contains(moviename);
         }
@@ -135,14 +188,14 @@ public class UserManager {
     public Object[] getUserInfoList(String username, String usertype) {
         if (usertype.equals("NormalUser")){
             for(NormalUser nu: lstOfNormalUser){
-                if(nu.getusername().equals(username)){
+                if(nu.getUsername().equals(username)){
                     return nu.getObject();
                 }
             }
         }
         else{
             for(AdminUser au: lstOfAdminUser){
-                if(au.getusername().equals(username)){
+                if(au.getUsername().equals(username)){
                     return au.getObject();
                 }
             }
@@ -161,15 +214,15 @@ public class UserManager {
     public boolean userIfExist(String username, String password, String usertype){
         if (usertype.equals("AdminUser")){
             for(AdminUser au: lstOfAdminUser){
-                if(au.getusername().equals(username)){
-                    return au.getuserpassword().equals(password);
+                if(au.getUsername().equals(username)){
+                    return au.getUserPassword().equals(password);
                 }
             }
         }
         else{
             for(NormalUser nu: lstOfNormalUser){
-                if(nu.getusername().equals(username)){
-                    return nu.getuserpassword().equals(password);
+                if(nu.getUsername().equals(username)){
+                    return nu.getUserPassword().equals(password);
                 }
             }
 
@@ -186,14 +239,14 @@ public class UserManager {
     public boolean usernameIfUnique(String username, String usertype){
         if (usertype.equals("AdminUser")){
             for(AdminUser au: lstOfAdminUser){
-                if(au.getusername().equals(username)){
+                if(au.getUsername().equals(username)){
                     return false;
                 }
             }
         }
         else{
             for(NormalUser nu: lstOfNormalUser){
-                if(nu.getusername().equals(username)){
+                if(nu.getUsername().equals(username)){
                     return false;
                 }
             }
