@@ -8,6 +8,6 @@ abstract class User {
     }
 
     abstract Object[] getObject();
-    abstract String getusername();
-    abstract String getuserpassword();
+    abstract String getUsername();
+    abstract String getUserPassword();
 }

@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -7,26 +8,26 @@ import java.util.List;
  */
 public class MovieManager {
 
-    private final List<Movie> Movies;
-    private final WriteMovie wm = new WriteMovie();
+    private ArrayList<Movie> Movies;
 
     /**
      * Creates a MovieManager with a list of movies are empty
      */
-    public MovieManager() throws IOException {
-        this.Movies = wm.get_object_from_file();
+    public MovieManager(String i){
+        this.Movies = new ArrayList<>();
     }
+
+    public MovieManager(){}
 
     /**
      * Add an instance of movie to the overall list of Movies
      * @param moviename name of Movie
      * @param movielink the link of the movie
      */
-    public boolean add_movie(String moviename, String movielink) throws IOException {
-        Movie m = new Movie(moviename, movielink);
-        boolean a = wm.create_file(m);
+    public boolean add_movie(String moviename, String movielink, HashMap<Object, Object> map, int i) {
+        Movie m = new Movie(moviename, movielink, map, i);
         this.Movies.add(m);
-        return (a && this.Movies.contains(m));
+        return this.Movies.contains(m);
 
     }
 
@@ -46,13 +47,11 @@ public class MovieManager {
     /**
      * Add a review to an instance of movie
      * @param movie_name name of an instance of Movie
-     * @param review_content string content of the review
      */
-    public void add_review_to_movie(String user_name, String movie_name, String review_content) throws IOException {
+    public void add_review_to_movie( String movie_name, Review review) {
         Movie movie = this.get_movie(movie_name);
-        Review review = new Review(user_name, movie_name, review_content, 99);
+
         movie.AddReview(review);
-        wm.add_review_to_file(review);
     }
 
     /**
@@ -73,40 +72,38 @@ public class MovieManager {
 //        return profile;
     }
 
-    /**
-     * delete an instance of movie from the overall list of Movies
-     * @param movie_name the name of this instance of Movie
-     */
-    public boolean delete_movie(String movie_name) throws IOException {
-        for (Movie m : this.Movies){
-            if (m.moviename.equals(movie_name)){
-                boolean a = wm.delete_file(m);
-                this.Movies.remove(m);
-                return(a && !this.Movies.contains(m));
-            }
-        }
-        return false;
-    }
+//    /**
+//     * delete an instance of movie from the overall list of Movies
+//     * @param movie_name the name of this instance of Movie
+//     */
+//    public boolean delete_movie(String movie_name) {
+//        for (Movie m : this.Movies){
+//            if (m.moviename.equals(movie_name)){
+//                this.Movies.remove(m);
+//                return !this.Movies.contains(m);
+//            }
+//        }
+//    }
 
 
     /**
      * Add an like to an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
-    public void like_movie(String movie_name) throws IOException {
+    public void like_movie(String movie_name) {
         Movie movie = this.get_movie(movie_name);
         movie.AddLike();
-        wm.add_like_to_file(movie);
+
     }
 
     /**
      * Undo an like to an instance of movie from the overall list of Movies
      * @param movie_name the name of this instance of Movie
      */
-    public void undolike_movie(String movie_name) throws IOException {
+    public void undolike_movie(String movie_name) {
         Movie movie = this.get_movie(movie_name);
         movie.UndoLike();
-        wm.add_like_to_file(movie);
+
     }
 
     /**
@@ -122,5 +119,6 @@ public class MovieManager {
         }
         return res.toString(); //includes a trailing ", "
     }
+
 
 }

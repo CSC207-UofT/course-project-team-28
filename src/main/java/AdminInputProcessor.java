@@ -1,18 +1,19 @@
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-
-import java.util.ArrayList;
+import java.util.*;
 
 public class AdminInputProcessor {
-    static private MovieManager mov_mana;
-    static private UserManager user_mana;
+    private MovieManager mov_mana;
+    private UserManager user_mana;
     final private String ADMINCODE = "123456";
 
-    public AdminInputProcessor() throws IOException {
-        mov_mana = new MovieManager();
-        user_mana = new UserManager();
+
+    public void setMov_mana(FileInfoGateway gw){
+        this.mov_mana = gw.getMM();
+
+    }
+
+    public void setUser_mana(FileInfoGateway gw){
+        this.user_mana = gw.getUM();
     }
 
     /**
@@ -37,7 +38,7 @@ public class AdminInputProcessor {
      * and username must be unique among all the normal users,
      * also the code should be correct.
      */
-    public boolean register(String un, String pass, String code) throws IOException {
+    public boolean register(String un, String pass, String code) {
         if (! this.is_nonemptyalpnum(un)){
             return false;
         }
@@ -52,8 +53,7 @@ public class AdminInputProcessor {
         else if (! user_mana.usernameIfUnique(un, "AdminUser")){
             return false;
         }
-        user_mana.create_adminuser(un, pass);
-        login(un, pass, code);
+
         return true;
     }
 
@@ -79,27 +79,26 @@ public class AdminInputProcessor {
      * return true if those strings are non-empty and the movie is not uploaded before,
      * and can be uploaded.
      */
-    public boolean upload_movie(String moviename, String movielink) throws IOException {
+    public boolean upload_movie(String moviename, String movielink) {
         if (moviename.length() < 1 | movielink.length() < 3) {
             return false;
         }
         if (mov_mana.get_movie(moviename) != null) {
             return false;
         }
-        mov_mana.add_movie(moviename, movielink);
         return true;
     }
 
 
-    /**
-     * Given a String called moviename,
-     * return true if the movie exists in the platform and can be deleted.
-     */
-    public boolean delete_movie(String moviename) throws IOException {
-        if (mov_mana.get_movie(moviename) == null) {
-            return false;
-        }
-        mov_mana.delete_movie(moviename);
-        return true;
-    }
+//    /**
+//     * Given a String called moviename,
+//     * return true if the movie exists in the platform and can be deleted.
+//     */
+//    public boolean delete_movie(String moviename) {
+//        if (mov_mana.get_movie(moviename) == null) {
+//            return false;
+//        }
+//        mov_mana.delete_movie(moviename);
+//        return true;
+//    }
 }
