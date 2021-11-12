@@ -10,31 +10,31 @@ import java.util.List;
 public class UserManager {
     private ArrayList<AdminUser> lstOfAdminUser;
     private ArrayList<NormalUser> lstOfNormalUser;
-    protected WriteUser wu = new WriteUser();
     private AdminUser au;
-    NormalUser nu;
+    private NormalUser nu;
 
 
     /**
      * create ArrayList of NormalUser and AdminUser
      */
-    public UserManager() throws IOException {
-        ArrayList<AdminUser> aulst = wu.get_object_from_file(); // AdminUser
-        ArrayList<NormalUser> nulst = wu.get_NormalUser_from_file(); // NormalUser
-        this.lstOfAdminUser = aulst;
-        this.lstOfNormalUser = nulst;
+    public UserManager(String i) {
+        this.lstOfAdminUser = new ArrayList<>();
+        this.lstOfNormalUser = new ArrayList<>();
     }
+
+    public UserManager() {}
+
+
 
     /**
      * Add an admin user to the admin user list.
      * @param username username of AdminUser
      * @param password password of AdminUser
      */
-    public boolean create_adminuser(String username, String password) throws IOException {
+    public boolean create_adminuser(String username, String password) {
         au = new AdminUser(username, password);
-        boolean file_exist = wu.create_file(au);
         lstOfAdminUser.add(au);
-        return (file_exist && lstOfAdminUser.contains(au));
+        return lstOfAdminUser.contains(au);
     }
 
     /**
@@ -42,12 +42,16 @@ public class UserManager {
      * @param username username of NormalUser
      * @param password password of NormalUser
      */
-    public boolean create_normaluser(String username, String password) throws IOException {
-        nu = new NormalUser(username, password, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
-        boolean file_exist = wu.create_file(nu);
+    public boolean create_normaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList) {
+        nu = new NormalUser(username, password, contactInfo, description ,category, coin, playList);
         lstOfNormalUser.add(nu);
-        return (file_exist && lstOfNormalUser.contains(nu));
+        return lstOfNormalUser.contains(nu);
     }
+
+//    public void createNormaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList)  {
+//        nu = new NormalUser(username, password, contactInfo, description, category, coin, playList);
+//        lstOfNormalUser.add(nu);
+//    }
 
     /**
      * Update contact info of a normal user
@@ -57,7 +61,7 @@ public class UserManager {
      * @return True if it is successfully updated. Otherwise, return false.
      */
 
-    public boolean updateInfo(String username, String updateInfo, String writeType) throws IOException {
+    public boolean updateInfo(String username, String updateInfo, String writeType) {
         nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
@@ -73,9 +77,9 @@ public class UserManager {
             else{
                 nu.updateContactinfo(updateInfo);
 
-                String str = wu.edit_profile_readandwrite(updateInfo, nu.getUsername(), "contactInfo");
 
-                return !str.equals(updateInfo);
+
+                return nu.getContactinfo().equals(updateInfo);
             }
         }
         else if(writeType.equals("description")){
@@ -85,9 +89,8 @@ public class UserManager {
             else{
                 nu.updateDescription(updateInfo);
 
-                String str = wu.edit_profile_readandwrite(updateInfo, nu.getUsername(), "description");
 
-                return !str.equals(updateInfo);
+                return nu.getDescription().equals(updateInfo);
             }
         }
         else{
@@ -97,14 +100,13 @@ public class UserManager {
             else{
                 nu.updateCategory(updateInfo);
 
-                String str = wu.edit_profile_readandwrite(updateInfo, nu.getUsername(), "category");
 
-                return !str.equals(updateInfo);
+                return nu.getCategory().equals(updateInfo);
             }
         }
     }
 
-    public boolean updateCoin(String username, int coin) throws IOException{
+    public boolean updateCoin(String username, int coin){
         nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
@@ -118,9 +120,7 @@ public class UserManager {
         else{
             nu.setCoin(coin);
 
-            String str = wu.edit_profile_readandwrite(Integer.toString(coin), nu.getUsername(), "coin");
-
-            return !str.equals(Integer.toString(coin));
+            return nu.getCoin() == coin;
         }
     }
 
@@ -131,7 +131,7 @@ public class UserManager {
      *  @param moviename the name of movie
      *  @return return True if movie is successfully added. Otherwise, return false.
      */
-    public boolean give_like(String username, String moviename) throws IOException {
+    public boolean give_like(String username, String moviename) {
         NormalUser nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
@@ -146,9 +146,7 @@ public class UserManager {
         else {
             nu.addMovieToPlaylist(moviename);
 
-            String str = wu.give_like_readandwrite(moviename, nu.getUsername());
-
-            return str.contains(moviename);
+            return nu.getPlaylist().contains(moviename);
         }
 
     }
@@ -158,7 +156,7 @@ public class UserManager {
      *  @param moviename the name of movie
      *  @return return True if movie is successfully removed. Otherwise, return false.
      */
-    public boolean undo_like(String username, String moviename) throws IOException {
+    public boolean undo_like(String username, String moviename) {
         NormalUser nu = new NormalUser("","","","", "", 0,  new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
@@ -173,9 +171,7 @@ public class UserManager {
         else {
             nu.removeMovieFromPlaylist(moviename);
 
-            String str = wu.undo_like_readandwrite(moviename, nu.getUsername());
-
-            return !str.contains(moviename);
+            return !nu.getPlaylist().contains(moviename);
         }
     }
 
@@ -208,11 +204,11 @@ public class UserManager {
      * Use username and password to find the whether user exists or not.
      * @param username the username of User
      * @param password the password of User
-     * @param usertype the type of User, it is either "NormalUser" or "AdminUser"
+     * @param userType the type of User, it is either "NormalUser" or "AdminUser"
      * @return return true if user's username exists in existed user list and match password. Otherwise, return false
      */
-    public boolean userIfExist(String username, String password, String usertype){
-        if (usertype.equals("AdminUser")){
+    public boolean userIfExist(String username, String password, String userType){
+        if (userType.equals("AdminUser")){
             for(AdminUser au: lstOfAdminUser){
                 if(au.getUsername().equals(username)){
                     return au.getUserPassword().equals(password);

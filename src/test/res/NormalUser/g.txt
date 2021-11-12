@@ -1,0 +1,7 @@
+g
+12
+Empty contact info - g
+Empty description - g
+Empty category - g
+300
+[]

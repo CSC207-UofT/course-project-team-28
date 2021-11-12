@@ -1,6 +1,7 @@
 import java.io.IOException;
 
 public interface WriteFile {
-    boolean create_file(Object s) throws IOException;
-    Object get_object_from_file() throws IOException;
+
+    boolean create_file(String a, String b, String c) throws IOException;
+    void get_object_from_file() throws IOException;
 }

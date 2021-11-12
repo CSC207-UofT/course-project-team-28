@@ -13,6 +13,8 @@ public class WriteReview implements WriteFile{
     protected FileReader reviewreader;
     protected BufferedReader getreview;
     protected FileWriter writereview;
+    protected FileInfoGateway gw = new FileInfoGateway();
+    protected NormalInputProcessor nip;
 
 
     /**
@@ -21,56 +23,81 @@ public class WriteReview implements WriteFile{
      * Otherwise, return false.
      */
 
-    @Override
-    public boolean create_file(Object review) throws IOException {
-        File file_if_exist;
-        Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        writereview = new FileWriter(path1 + "/src/main/res/Review/" + ((Review) review).ID + ".txt");
-        writereview.write(((Review) review).reviewer);
-        writereview.write("\r\n");
-        writereview.write(((Review) review).movie);
-        writereview.write("\r\n");
-        writereview.write(((Review) review).review_content);
-        writereview.write("\r\n");
-        writereview.write(Integer.toString(((Review) review).ID));
-        writereview.close();
 
-        file_if_exist = new File(path1 + "/src/main/res/Review/" + ((Review) review).ID + ".txt");
-        return file_if_exist.exists();
+    public WriteReview(NormalInputProcessor nip){
+        get_object_from_file();
+        this.nip = nip;
+        this.nip.setRev_mana(gw);
     }
+
+
+    @Override
+    public boolean create_file(String currUserName, String movieName, String revContent){
+        try {
+            boolean reviewExist = gw.createReviewObject(currUserName, movieName, revContent, -1);
+
+            File file_if_exist;
+            Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+            writereview = new FileWriter(path1 + "/src/main/res/Review/" + gw.reviewID() + ".txt");
+            writereview.write(currUserName);
+            writereview.write("\r\n");
+            writereview.write(movieName);
+            writereview.write("\r\n");
+            writereview.write(revContent);
+            writereview.write("\r\n");
+            writereview.write(Integer.toString(gw.reviewID()));
+            writereview.close();
+
+            file_if_exist = new File(path1 + "/src/main/res/Review/" + gw.reviewID() + ".txt");
+            return file_if_exist.exists() && reviewExist;
+        }
+        catch (IOException e){
+            System.out.println("Cannot create the file");
+            return false;
+        }
+    }
+
+
+
+
+
+
 
     /**
      * Read the Review folder, create object for each review and return an ArrayList, which consists of Review Objects.
      */
     @Override
-    public ArrayList<Review> get_object_from_file() throws IOException{
-        // get the path of src
-        Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        // get the path of Review folder
-        File ReviewPath = new File(path2 + "/src/main/res/Review/");
+    public void get_object_from_file(){
+        try {
+            // get the path of src
+            Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
+            // get the path of Review folder
+            File ReviewPath = new File(path2 + "/src/main/res/Review/");
 
-        // get the file name in the Review folder
-        String[] lstOfReview = ReviewPath.list();
-        // the return list consisting of Reviews
-        ArrayList<Review> Review_lst = new ArrayList<>();
+            // get the file name in the Review folder
+            String[] lstOfReview = ReviewPath.list();
 
-        // when there is no file in the Review folder
-        if(lstOfReview == null){
-            return new ArrayList<>();
-        }
-        // when there are files in the Review folder
-        else{
-            for(String r: lstOfReview) {
-                ArrayList<String> lst = read_file(path2, r, "Review");
+            // when there is no file in the Review folder
+            if (lstOfReview == null) {
 
-                // create object for this single review
-                Review re = new Review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)));
+            }
+            // when there are files in the Review folder
+            else {
+                for (String r : lstOfReview) {
+                    ArrayList<String> lst = read_file(path2, r, "Review");
 
-                Review_lst.add(re);
+                    // create object for this single review
+                    gw.createReviewObject(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)));
+
+                }
             }
         }
-        return Review_lst;
+        catch (IOException e){
+            System.out.println("Unable to get the file from the Movie Folder");
+        }
     }
+
+
 
     /**
      * read the Review file

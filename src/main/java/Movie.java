@@ -12,17 +12,9 @@ public class Movie {
      * "Likes" stores the number of likes a movie received
      */
 
-    public Movie(String moviename, String movielink) {
+    public Movie(String moviename, String movielink, HashMap<Object, Object> map, int i) {
         this.moviename = moviename;
         this.movielink = movielink;
-        this.moviereviews = new HashMap<>();
-        this.Likes = 0;
-    }
-
-    /**
-     * Helper method for WriteMovie.
-     */
-    public void GetReviewandLike(HashMap<Object, Object> map, int i){
         this.moviereviews = map;
         this.Likes = i;
     }

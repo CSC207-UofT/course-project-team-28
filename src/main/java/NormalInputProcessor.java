@@ -6,15 +6,21 @@ import java.util.ArrayList;
 
 public class NormalInputProcessor {
     // delete or add movie(Admin User), call MovieManger
-    static private ReviewManager rev_mana;
-    static private MovieManager mov_mana;
-    static private UserManager user_mana;
+    private ReviewManager rev_mana;
+    private MovieManager mov_mana;
+    private UserManager user_mana;
     private String curr_nuname;
 
-    public NormalInputProcessor() throws IOException {
-        rev_mana = new ReviewManager();
-        mov_mana = new MovieManager();
-        user_mana = new UserManager();
+
+    public void setRev_mana(FileInfoGateway gw){
+        this.rev_mana = gw.getRM();
+    }
+
+    public void setMov_mana(FileInfoGateway gw){
+        this.mov_mana = gw.getMM();
+    }
+    public void setUser_mana(FileInfoGateway gw){
+        this.user_mana = gw.getUM();
     }
 
     /**
@@ -40,7 +46,8 @@ public class NormalInputProcessor {
      * and username must be unique among all the normal users.
      * Auto-login if registered successfully
      */
-    public boolean register(String un, String pass) throws IOException {
+    //TODO
+    public boolean register(String un, String pass) {
         if (! this.is_nonemptyalphanumeric(un)){
             return false;
         }
@@ -52,8 +59,6 @@ public class NormalInputProcessor {
             return false;
         }
         else {
-            user_mana.create_normaluser(un, pass);
-            login(un, pass);
             return true;
         }
     }
@@ -122,21 +127,11 @@ public class NormalInputProcessor {
 
 
     /**
-     * add a review when provided with moviename of the movie and review content
-     * return ture iff a review is successfully added. false otherwise
-     */
-    public boolean write_review(String moviename, String rev_content) throws IOException {
-        mov_mana.add_review_to_movie(curr_nuname, moviename, rev_content);
-        return rev_mana.write_review(this.curr_nuname, moviename, rev_content);
-    }
-
-
-    /**
      * Should be only called when the movie name <moviename> exists in the data base
      * Given a String moviename, add like.
      * return ture iff added successfully.
      */
-    public boolean like_movie(String moviename) throws IOException {
+    public boolean like_movie(String moviename) {
         if (user_mana.give_like(this.curr_nuname, moviename)){
             mov_mana.like_movie(moviename);
             return true;
@@ -179,7 +174,7 @@ public class NormalInputProcessor {
      * return ture iff updated successfully.
      */
     //TODO: add new parameter, the corresponding place where call this method in UI need to add onr more parameter
-    public boolean edit_profile(String newInfo, String updateType) throws IOException {
+    public boolean edit_profile(String newInfo, String updateType) {
         if (updateType.equals("coin")){
             return user_mana.updateCoin(this.curr_nuname, Integer.parseInt(newInfo));
         }

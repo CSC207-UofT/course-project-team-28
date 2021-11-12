@@ -10,8 +10,15 @@ import java.util.Scanner;
  */
 
 public class UserInterface {
+    //TODO
+    private static final NormalInputProcessor nucontroller = new NormalInputProcessor();
+    private static final AdminInputProcessor aucontroller = new AdminInputProcessor();
+    private static final WriteUser wu = new WriteUser(nucontroller, aucontroller);
+    private static final WriteMovie wm = new WriteMovie(nucontroller, aucontroller);
+    private static final WriteReview wr = new WriteReview(nucontroller);
+    private static String userName = "";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // User chooses to register/login as normal or admin user
         System.out.println("Please enter your choice from Register, Login, Admin register and Admin login:");
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +33,6 @@ public class UserInterface {
 
         // if user chooses to register
         if (choice.equals("Register")){
-            NormalInputProcessor controller = new NormalInputProcessor();
             String username;
             String password;
             System.out.println("Please enter your username (should only contains numbers and letter):");
@@ -36,14 +42,19 @@ public class UserInterface {
 
 
             // if the username/password is invalid, prompt the user to enter again
-            while (!(controller.register(username, password))){
+            while (!(nucontroller.register(username, password))){
                 System.out.println("Something is wrong with your username or password, please try again");
                 System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
                 System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
             }
-            System.out.println("Account successfully created, you are automatically logged in.");
+            //TODO
+            userName = username;
+            wu.create_file(username, password, "NormalUser");
+            if(nucontroller.login(username, password)) {
+                System.out.println("Account successfully created, you are automatically logged in.");
+            }
 
 
             //Proceed to search/profile functions
@@ -56,7 +67,7 @@ public class UserInterface {
                 choose = scanner.nextLine();
             }
             if (choose.equals("Profile")){
-                System.out.println(controller.profile_page(username));
+                System.out.println(nucontroller.profile_page(username));
                 System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
                 String choise = scanner.nextLine();
 
@@ -70,10 +81,13 @@ public class UserInterface {
                 if (choise.equals("edit profile")){
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
-                    controller.edit_profile(contactinfo, "contactInfo");
-                    System.out.println("your new profile is: " + controller.profile_page(username));
+
+                    //TODO
+                    nucontroller.edit_profile(contactinfo, "contactInfo");
+                    wu.edit_profile_readandwrite(contactinfo, userName, "contactInfo");
+                    System.out.println("your new profile is: " + nucontroller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
-                    if (controller.empty_playlist()){
+                    if (nucontroller.empty_playlist()){
                         System.out.println("You have an empty playlist.");
                         System.out.println("program exits");
                         System.exit(0);
@@ -82,12 +96,17 @@ public class UserInterface {
                         try {
                             System.out.println("type the movie name you would like to remove from your playlist");
                             String mvname = scanner.nextLine();
-                            while (!(controller.undo_like(mvname))){
+                            while (!(nucontroller.undo_like(mvname))){
                                 System.out.println("movie is not in your playlist, please enter a movie that is in your playlist: ");
                                 mvname = scanner.nextLine();
                             }
-                            controller.undo_like(mvname);
-                            System.out.println("your new profile is " + controller.profile_page(username));
+
+                            //TODO
+                            nucontroller.undo_like(mvname);
+                            wu.undo_like_readandwrite(mvname, userName);
+                            wm.add_like_to_file(mvname, "decrease");
+
+                            System.out.println("your new profile is " + nucontroller.profile_page(username));
                             System.out.println("Movie successfully removed.");
                             System.out.println("program exits.");
                         } catch (Exception e) {
@@ -104,11 +123,11 @@ public class UserInterface {
             } else if (choose.equals("Search")){
                 System.out.println("Enter the movie name you'd like to find");
                 String moviename = scanner.nextLine();
-                while (!(controller.if_movie_exist(moviename))) {
+                while (!(nucontroller.if_movie_exist(moviename))) {
                     System.out.println("Movie does not exits, please re-enter the movie name: ");
                     moviename = scanner.nextLine();
                 }
-                System.out.println(controller.movie_profile(moviename));
+                System.out.println(nucontroller.movie_profile(moviename));
                 System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
                 String c = scanner.nextLine();
 
@@ -123,12 +142,22 @@ public class UserInterface {
                 if (c.equals("Write a review")){
                     System.out.println("Enter your review of the movie");
                     String review_content = scanner.nextLine();
-                    controller.write_review(moviename, review_content);
-                    System.out.println("Check your review: " + controller.movie_profile(moviename));
+
+                    //TODO
+                    //nucontroller.write_review(moviename, review_content);
+                    wr.create_file(userName, moviename, review_content);
+                    wm.add_review_to_file(userName, moviename, review_content);
+
+                    System.out.println("Check your review: " + nucontroller.movie_profile(moviename));
                     System.out.println("program exits.");
                 } else if (c.equals("Like the movie")){
-                    controller.like_movie(moviename);
-                    System.out.println("Check your likes: " + controller.movie_profile(moviename));
+
+                    //TODO
+                    nucontroller.like_movie(moviename);
+                    wu.give_like_readandwrite(moviename, userName);
+                    wm.add_like_to_file(moviename, "Increase");
+
+                    System.out.println("Check your likes: " + nucontroller.movie_profile(moviename));
                     System.out.println("program exits.");
                 } else if (c.equals("Exit program")){
                     System.out.println("Program exits.");
@@ -145,20 +174,20 @@ public class UserInterface {
             }
         // if user chooses to login as normal user
         }else if (choice.equals("Login")){
-            NormalInputProcessor controller = new NormalInputProcessor();
             String username;
             String password;
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
             System.out.println("Please enter your password (should only contains numbers and letter):");
             password = scanner.nextLine();
-            while (!(controller.login(username, password))){
+            while (!(nucontroller.login(username, password))){
                 System.out.println("Username or password incorrect, please try again.");
                 System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
                 System.out.println("Please enter your password (should only contains numbers and letter):");
                 password = scanner.nextLine();
             }
+            userName = username;
             System.out.println("Login successful.");
 
             // Proceed to search or profile functions
@@ -171,7 +200,7 @@ public class UserInterface {
                 choose = scanner.nextLine();
             }
             if (choose.equals("Profile")){
-                System.out.println(controller.profile_page(username));
+                System.out.println(nucontroller.profile_page(username));
                 System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
                 String choise = scanner.nextLine();
 
@@ -185,21 +214,29 @@ public class UserInterface {
                 if (choise.equals("edit profile")){
                     System.out.println("Please enter your phone number");
                     String contactinfo = scanner.nextLine();
-                    controller.edit_profile(contactinfo, "contactInfo");
-                    System.out.println("your new profile is: " + controller.profile_page(username));
+
+                    //TODO
+                    nucontroller.edit_profile(contactinfo, "contactInfo");
+                    wu.edit_profile_readandwrite(contactinfo, userName, "contactInfo");
+                    System.out.println("your new profile is: " + nucontroller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
-                    if (controller.empty_playlist()){
+                    if (nucontroller.empty_playlist()){
                         System.out.println("You have an empty playlist.");
                     } else {
                         try {
                             System.out.println("type the movie name you would like to remove from your playlist");
                             String mvname = scanner.nextLine();
-                            while (!(controller.undo_like(mvname))){
+                            while (!(nucontroller.undo_like(mvname))){
                                 System.out.println("movie is not in your playlist, please enter a movie that is in your playlist: ");
                                 mvname = scanner.nextLine();
                             }
-                            controller.undo_like(mvname);
-                            System.out.println("your new profile is " + controller.profile_page(username));
+
+                            //TODO
+                            nucontroller.undo_like(mvname);
+                            wu.undo_like_readandwrite(mvname, userName);
+                            wm.add_like_to_file(mvname, "decrease");
+
+                            System.out.println("your new profile is " + nucontroller.profile_page(username));
                             System.out.println("Movie successfully removed.");
                             System.out.println("program exits.");
                         } catch (Exception e) {
@@ -216,11 +253,11 @@ public class UserInterface {
                 try {
                     System.out.println("Enter the movie name you'd like to find");
                     String moviename = scanner.nextLine();
-                    while (!(controller.if_movie_exist(moviename))) {
+                    while (!(nucontroller.if_movie_exist(moviename))) {
                         System.out.println("Movie does not exits, please re-enter the movie name: ");
                         moviename = scanner.nextLine();
                     }
-                    System.out.println(controller.movie_profile(moviename));
+                    System.out.println(nucontroller.movie_profile(moviename));
                     System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
                     String c = scanner.nextLine();
 
@@ -234,12 +271,22 @@ public class UserInterface {
                     if (c.equals("Write a review")) {
                         System.out.println("Enter your review of the movie");
                         String review_content = scanner.nextLine();
-                        controller.write_review(moviename, review_content);
-                        System.out.println("Check your review: " + controller.movie_profile(moviename));
+
+                        //TODO
+                        //nucontroller.write_review(moviename, review_content);
+                        wr.create_file(userName, moviename, review_content);
+                        wm.add_review_to_file(userName, moviename, review_content);
+
+                        System.out.println("Check your review: " + nucontroller.movie_profile(moviename));
                         System.out.println("program exits.");
                     } else if (c.equals("Like the movie")) {
-                        controller.like_movie(moviename);
-                        System.out.println("Check your likes: " + controller.movie_profile(moviename));
+
+                        //TODO
+                        nucontroller.like_movie(moviename);
+                        wu.give_like_readandwrite(moviename, userName);
+                        wm.add_like_to_file(moviename, "Increase");
+
+                        System.out.println("Check your likes: " + nucontroller.movie_profile(moviename));
                         System.out.println("program exits.");
                     } else if (c.equals("Exit program")) {
                         System.out.println("program exits.");
@@ -256,7 +303,6 @@ public class UserInterface {
 
         // If user chooses to register as admin, a fixed administration code is needed.
         }else if (choice.equals("Admin register")){
-            AdminInputProcessor controller = new AdminInputProcessor();
             String username;
             String password;
             String code;
@@ -266,7 +312,7 @@ public class UserInterface {
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
-            while (!(controller.register(username, password, code))){
+            while (!(aucontroller.register(username, password, code))){
                 System.out.println("Somthing wrong with your username/password/code, please try again.");
                 System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
@@ -275,7 +321,12 @@ public class UserInterface {
                 System.out.println("Please enter your administration code:");
                 code = scanner.nextLine();
             }
-            System.out.println("Admin account successfully created, you are automatically logged in.");
+            userName = username;
+            wu.create_file(username, password, "AdminUser");
+            if(aucontroller.login(username, password, code)) {
+                System.out.println("Admin account successfully created, you are automatically logged in.");
+            }
+
 
             // now admin can upload movie or delet movie
             System.out.println("Enter 'Upload movie'.");
@@ -293,20 +344,23 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
-                while (!(controller.upload_movie(movie_name, movie_link))) {
+                while (!(aucontroller.upload_movie(movie_name, movie_link))) {
                     System.out.println("invalid inputs, please try again: ");
                     System.out.println("Please enter the name of the movie");
                     movie_name = scanner.nextLine();
                     System.out.println("Please enter the link of the movie");
                     movie_link = scanner.nextLine();
                 }
-                controller.upload_movie(movie_name, movie_link);
+                //TODO
+                //aucontroller.upload_movie(movie_name, movie_link);
+                wm.create_file(movie_name, movie_link, "");
                 System.out.println("Movie added");
                 System.out.println("program exits.");
+
             //} else if (choose.equals("Delete movie")){
             //    System.out.println("Please enter the name of the movie");
             //    String movie_name = scanner.nextLine();
-            //    controller.delete_movie(movie_name);
+            //    aucontroller.delete_movie(movie_name);
             } else {
                 System.out.println("wrong input");
                 System.out.println("program exits.");
@@ -316,7 +370,6 @@ public class UserInterface {
 
         //if user chooses to login as admin user.
         }else if (choice.equals("Admin login")){
-            AdminInputProcessor controller = new AdminInputProcessor();
             String username;
             String password;
             String code;
@@ -326,7 +379,7 @@ public class UserInterface {
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
-            while (!(controller.login(username, password, code))) {
+            while (!(aucontroller.login(username, password, code))) {
                 System.out.println("Wrong input of username/password/code, please try again.");
                 System.out.println("Please enter your username (should only contains numbers and letter):");
                 username = scanner.nextLine();
@@ -352,20 +405,22 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
-                while (!(controller.upload_movie(movie_name, movie_link))) {
+                while (!(aucontroller.upload_movie(movie_name, movie_link))) {
                     System.out.println("invalid inputs, please try again.");
                     System.out.println("Please enter the name of the movie");
                     movie_name = scanner.nextLine();
                     System.out.println("Please enter the link of the movie");
                     movie_link = scanner.nextLine();
                 }
-                controller.upload_movie(movie_name, movie_link);
+                //TODO
+                //aucontroller.upload_movie(movie_name, movie_link);
+                wm.create_file(movie_name, movie_link, "");
                 System.out.println("Movie added");
                 System.out.println("program exits.");
             //} else if (choose.equals("Delete movie")){
             //    System.out.println("Please enter the name of the movie");
             //    String movie_name = scanner.nextLine();
-            //    controller.delete_movie(movie_name);
+            //    aucontroller.delete_movie(movie_name);
             } else {
                 System.out.println("wrong input");
                 System.out.println("program exits.");

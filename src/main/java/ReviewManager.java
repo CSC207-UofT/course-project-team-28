@@ -4,30 +4,23 @@ import java.util.ArrayList;
 
 
 public class ReviewManager {
-    private final HashMap<String, ArrayList<Review>> MovietoRevs;
-    private final HashMap<String, ArrayList<Review>> UsertoRevs;
-    private final ArrayList<Review> lst;
+    private HashMap<String, ArrayList<Review>> MovietoRevs;
+    private HashMap<String, ArrayList<Review>> UsertoRevs;
+    private ArrayList<Review> lst;
     private static int tot_num;
-    private static WriteReview wr;
+    private MovieManager mm;
 
 
-    public ReviewManager() throws IOException {
+    public ReviewManager(String i, MovieManager mm) {
         this.MovietoRevs = new HashMap<>();
         this.UsertoRevs = new HashMap<>();
         this.lst = new ArrayList<>();
+        this.mm = mm;
         tot_num = 0;
-        wr = new WriteReview();
+    }
 
-        // initialize from the database
-        ArrayList<Review> data = wr.get_object_from_file();
-        if (data.size() > 0) {
-            tot_num = data.get(data.size()-1).ID;
-        }
-        for (int i = 0; i < data.size(); i++){
-            add_mr(data.get(i).movie, data.get(i));
-            add_ur(data.get(i).reviewer, data.get(i));
-            this.lst.add(data.get(i));
-        }
+    public ReviewManager() {
+
     }
 
 
@@ -51,24 +44,41 @@ public class ReviewManager {
      * create a Review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
-    public boolean write_review(String uname, String mname, String content) throws IOException {
-        tot_num = tot_num + 1;
-        Review rev = new Review(uname, mname, content, tot_num);
+    public boolean write_review(String uname, String mname, String content, int ID) {
+        Review rev;
+        if (ID == -1){
+            tot_num = tot_num + 1;
+            rev = new Review(uname, mname, content, tot_num);
 
-        // add the review in file by a helper method
-        //WriteReview newwr = new WriteReview();
-        //boolean write = newwr.create_file(rev);
-        boolean write = wr.create_file(rev);
+            // add the review in file by a helper method
+            //WriteReview newwr = new WriteReview();
+            //boolean write = newwr.create_file(rev);
 
-        write = add_mr(mname, rev) && write; // update MovietoRevs
+        }
+        else{
+            rev = new Review(uname, mname, content, ID);
 
-        write = add_ur(uname, rev) && write; // update UsertoRevs
-
-        // update lst
+            // add the review in file by a helper method
+            //WriteReview newwr = new WriteReview();
+            //boolean write = newwr.create_file(rev);
+        }
         this.lst.add(rev);
+        tot_num = lst.get(lst.size()-1).ID;
 
-        return write;
+        if (this.mm.get_movie(mname) != null){
+            this.mm.add_review_to_movie(mname, rev);
+        }
+
+        return add_mr(mname, rev) && add_ur(uname, rev);
     }
+
+
+    public int getReviewID(){
+        return tot_num;
+    }
+
+
+
 
     /**
      * update MovietoRevs by write_review, return ture iff successfully updated.
