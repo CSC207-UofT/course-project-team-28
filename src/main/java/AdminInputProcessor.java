@@ -37,7 +37,7 @@ public class AdminInputProcessor {
      * and username must be unique among all the normal users,
      * also the code should be correct.
      */
-    public boolean register(String un, String pass, String code) {
+    public boolean register(String un, String pass, String code, WriteUser wu) {
         if (! this.is_nonemptyalpnum(un)){
             return false;
         }
@@ -52,8 +52,7 @@ public class AdminInputProcessor {
         else if (! user_mana.usernameIfUnique(un, "AdminUser")){
             return false;
         }
-
-        return true;
+        return wu.create_file(un, pass, "AdminUser");
     }
 
     /**
