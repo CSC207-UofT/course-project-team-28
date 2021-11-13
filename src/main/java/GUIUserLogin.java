@@ -3,11 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUIUserLogin extends SharedView {
-    private static final NormalInputProcessor nucontroller = new NormalInputProcessor();
-    private static final AdminInputProcessor aucontroller = new AdminInputProcessor();
-    private static final WriteUser wu = new WriteUser(nucontroller, aucontroller);
-    private static final WriteMovie wm = new WriteMovie(nucontroller, aucontroller);
-    private static final WriteReview wr = new WriteReview(nucontroller);
+    private static final InstanceMain IM = new InstanceMain();
     private static String userName = "";
     private static JFrame frame;
     private static JPanel panel;
@@ -72,9 +68,9 @@ public class GUIUserLogin extends SharedView {
         boolean login = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            login = (aucontroller.login(username, password, code));
+            login = (IM.aucontroller.login(username, password, code));
         } else {
-            login = nucontroller.login(username, password);
+            login = IM.nucontroller.login(username, password);
         }
         if (login){
             loginResult.setText("Login successful.");
