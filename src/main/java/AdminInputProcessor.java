@@ -6,7 +6,6 @@ public class AdminInputProcessor {
     private UserManager user_mana;
     final private String ADMINCODE = "123456";
 
-
     public void setMov_mana(MovieManager mm){
         this.mov_mana = mm;
 
