@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUIUserLogin implements ActionListener {
+public class GUIUserLogin extends SharedView {
     private static final NormalInputProcessor nucontroller = new NormalInputProcessor();
     private static final AdminInputProcessor aucontroller = new AdminInputProcessor();
     private static final WriteUser wu = new WriteUser(nucontroller, aucontroller);
@@ -18,11 +18,10 @@ public class GUIUserLogin implements ActionListener {
     private static JTextField passwordText;
     private final JLabel adminCodeLable = new JLabel("Administrator Code");
     private final JTextField adminCodeText = new JTextField(20);
-    private boolean isAdmin;
 
     //gui
     public GUIUserLogin(Boolean isAdmin){
-        this.isAdmin = isAdmin;
+        super(isAdmin);
         frame = new JFrame();
         panel = new JPanel();
         frame.setSize(350,200);
@@ -49,7 +48,12 @@ public class GUIUserLogin implements ActionListener {
         panel.add(passwordText);
         JButton loginButton = new JButton("login");
         loginButton.setBounds(10, 110, 80, 25);
-        loginButton.addActionListener(this);
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                OnLoginClick(actionEvent);
+            }
+        });
         panel.add(loginButton);
         loginResult = new JLabel("");
         loginResult.setBounds(10, 130, 300, 25);
@@ -62,8 +66,7 @@ public class GUIUserLogin implements ActionListener {
         }
     }
     //actions
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public void OnLoginClick(ActionEvent e) {
         String username = usernameText.getText();
         String password = passwordText.getText();
         boolean login = false;
@@ -81,8 +84,13 @@ public class GUIUserLogin implements ActionListener {
 
     }
 
-    public static JFrame getFrame() {
+    public JFrame getFrame() {
         return frame;
+    }
+
+    @Override
+    protected void nextView(View view) {
+
     }
 }
 

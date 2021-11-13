@@ -8,7 +8,7 @@ public class GUI {
 //        GUINormalUserReg guinureg = new GUINormalUserReg();
 //        GUINormalUserLogin guinulogin = new GUINormalUserLogin();
 //        GUIAdminUserLogin guiaulogin = new GUIAdminUserLogin();
-        GUIUserLogin gui = new GUIUserLogin(true);
+        View gui = new GUIMain();
         gui.getFrame().setVisible(true);
 
 
