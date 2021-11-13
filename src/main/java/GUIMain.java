@@ -13,7 +13,7 @@ public class GUIMain extends View {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                nextView(new GUIUserRegister(false));
             }
         });
         loginButton.addActionListener(new ActionListener() {
@@ -26,6 +26,12 @@ public class GUIMain extends View {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 nextView(new GUIUserLogin(true));
+            }
+        });
+        adminRegisterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                nextView(new GUIUserRegister(true));
             }
         });
     }
