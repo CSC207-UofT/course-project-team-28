@@ -17,12 +17,10 @@ public class UserManager {
     /**
      * create ArrayList of NormalUser and AdminUser
      */
-    public UserManager(String i) {
+    public UserManager() {
         this.lstOfAdminUser = new ArrayList<>();
         this.lstOfNormalUser = new ArrayList<>();
     }
-
-    public UserManager() {}
 
 
     /**
@@ -30,7 +28,7 @@ public class UserManager {
      * @param username username of AdminUser
      * @param password password of AdminUser
      */
-    public boolean create_adminuser(String username, String password) {
+    public boolean createAdminuser(String username, String password) {
         au = new AdminUser(username, password);
         lstOfAdminUser.add(au);
         return lstOfAdminUser.contains(au);
@@ -41,7 +39,7 @@ public class UserManager {
      * @param username username of NormalUser
      * @param password password of NormalUser
      */
-    public boolean create_normaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList) {
+    public boolean createNormaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList) {
         nu = new NormalUser(username, password, contactInfo, description ,category, coin, playList);
         lstOfNormalUser.add(nu);
         return lstOfNormalUser.contains(nu);
@@ -131,7 +129,7 @@ public class UserManager {
      *  @param moviename the name of movie
      *  @return return True if movie is successfully added. Otherwise, return false.
      */
-    public boolean give_like(String username, String moviename) {
+    public boolean giveLike(String username, String moviename) {
         NormalUser nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){
@@ -156,7 +154,7 @@ public class UserManager {
      *  @param moviename the name of movie
      *  @return return True if movie is successfully removed. Otherwise, return false.
      */
-    public boolean undo_like(String username, String moviename) {
+    public boolean undoLike(String username, String moviename) {
         NormalUser nu = new NormalUser("","","","", "", 0,  new ArrayList<>());
 
         for(NormalUser nu1: lstOfNormalUser){

@@ -11,16 +11,12 @@ public class ReviewManager {
     private MovieManager mm;
 
 
-    public ReviewManager(String i, MovieManager mm) {
+    public ReviewManager(MovieManager mm) {
         this.MovietoRevs = new HashMap<>();
         this.UsertoRevs = new HashMap<>();
         this.lst = new ArrayList<>();
         this.mm = mm;
         tot_num = 0;
-    }
-
-    public ReviewManager() {
-
     }
 
 
@@ -48,7 +44,7 @@ public class ReviewManager {
         Review rev;
         if (ID == -1){
             tot_num = tot_num + 1;
-            rev = new Review(uname, mname, content, numCoin,tot_num);
+            rev = new Review(uname, mname, content, numCoin, tot_num);
 
             // add the review in file by a helper method
             //WriteReview newwr = new WriteReview();
@@ -56,7 +52,7 @@ public class ReviewManager {
 
         }
         else{
-            rev = new Review(uname, mname, content, numCoin,ID);
+            rev = new Review(uname, mname, content, numCoin, ID);
 
             // add the review in file by a helper method
             //WriteReview newwr = new WriteReview();

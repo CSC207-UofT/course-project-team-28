@@ -15,7 +15,6 @@ public class WriteReview implements WriteFile{
     protected FileReader reviewreader;
     protected BufferedReader getreview;
     protected FileWriter writereview;
-//    protected FileInfoGateway gw = new FileInfoGateway();
     protected NormalInputProcessor nip;
 
 
@@ -31,7 +30,7 @@ public class WriteReview implements WriteFile{
     public WriteReview(NormalInputProcessor nip, ReviewManager rm){
         this.rm = rm;
 
-        get_object_from_file();
+        getObjectFromFile();
 
 
         this.nip = nip;
@@ -40,7 +39,7 @@ public class WriteReview implements WriteFile{
 
 
     @Override
-    public boolean create_file(String currUserName, String movieName, String revContent){
+    public boolean createFile(String currUserName, String movieName, String revContent){
         try {
 
             boolean reviewExist = this.rm.write_review(currUserName, movieName, revContent, 0,-1);
@@ -81,7 +80,7 @@ public class WriteReview implements WriteFile{
      * Read the Review folder, create object for each review and return an ArrayList, which consists of Review Objects.
      */
     @Override
-    public void get_object_from_file(){
+    public void getObjectFromFile(){
         try {
             // get the path of src
             Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -98,7 +97,7 @@ public class WriteReview implements WriteFile{
             // when there are files in the Review folder
             else {
                 for (String r : lstOfReview) {
-                    ArrayList<String> lst = read_file(path2, r, "Review");
+                    ArrayList<String> lst = readFile(path2, r, "Review");
 
                     // create object for this single review
                     this.rm.write_review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
@@ -116,7 +115,7 @@ public class WriteReview implements WriteFile{
     /**
      * read the Review file
      */
-    public ArrayList<String> read_file(Path path2, String fileOfReview, String folder) throws IOException{
+    public ArrayList<String> readFile(Path path2, String fileOfReview, String folder) throws IOException{
         reviewreader = new FileReader(path2.toString() + "/src/main/res/" + folder + "/" + fileOfReview);
         getreview = new BufferedReader(reviewreader);
 

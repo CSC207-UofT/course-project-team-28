@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUIMain">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="a3b21" class="javax.swing.JButton" binding="registerButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Register"/>
+        </properties>
+      </component>
+      <component id="e538c" class="javax.swing.JButton" binding="loginButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Login"/>
+        </properties>
+      </component>
+      <component id="26753" class="javax.swing.JButton" binding="adminRegisterButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Admin Register"/>
+        </properties>
+      </component>
+      <component id="2c458" class="javax.swing.JButton" binding="adminLoginButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Admin Login"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

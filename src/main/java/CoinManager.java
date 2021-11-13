@@ -11,7 +11,7 @@ public class CoinManager {
      * Creates a CoinManager.
      */
 
-    public CoinManager(UserManager um, ReviewManager rm) throws IOException {
+    public CoinManager(UserManager um, ReviewManager rm) {
         this.um = um;
         this.rm = rm;
     }

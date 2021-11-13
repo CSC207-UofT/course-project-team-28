@@ -47,7 +47,7 @@ public class UserInterface {
             }
             //TODO
             userName = username;
-            IM.wu.create_file(username, password, "NormalUser");
+            IM.wu.createFile(username, password, "NormalUser");
             if(IM.nucontroller.login(username, password)) {
                 System.out.println("Account successfully created, you are automatically logged in.");
             }
@@ -80,7 +80,7 @@ public class UserInterface {
 
                     //TODO
                     IM.nucontroller.edit_profile(contactinfo, "contactInfo");
-                    IM.wu.edit_profile_readandwrite(contactinfo, userName, "contactInfo");
+                    IM.wu.editProfileReadAndWrite(contactinfo, userName, "contactInfo");
 
                     System.out.println("your new profile is: " + IM.nucontroller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
@@ -100,8 +100,8 @@ public class UserInterface {
 
                             //TODO
                             IM.nucontroller.undo_like(mvname);
-                            IM.wu.undo_like_readandwrite(mvname, userName);
-                            IM.wm.add_like_to_file(mvname, "decrease");
+                            IM.wu.undoLikeReadAndWrite(mvname, userName);
+                            IM.wm.addLikeToFile(mvname, "decrease");
 
                             System.out.println("your new profile is " + IM.nucontroller.profile_page(username));
                             System.out.println("Movie successfully removed.");
@@ -142,8 +142,8 @@ public class UserInterface {
 
                     //TODO
                     //nucontroller.write_review(moviename, review_content);
-                    IM.wr.create_file(userName, moviename, review_content);
-                    IM.wm.add_review_to_file(userName, moviename, review_content);
+                    IM.wr.createFile(userName, moviename, review_content);
+                    IM.wm.addReviewToFile(userName, moviename, review_content);
 
                     System.out.println("Check your review: " + IM.nucontroller.movie_profile(moviename));
                     System.out.println("program exits.");
@@ -151,8 +151,8 @@ public class UserInterface {
 
                     //TODO
                     IM.nucontroller.like_movie(moviename);
-                    IM.wu.give_like_readandwrite(moviename, userName);
-                    IM.wm.add_like_to_file(moviename, "Increase");
+                    IM.wu.givelikeReadAndWrite(moviename, userName);
+                    IM.wm.addLikeToFile(moviename, "Increase");
 
                     System.out.println("Check your likes: " + IM.nucontroller.movie_profile(moviename));
                     System.out.println("program exits.");
@@ -214,7 +214,7 @@ public class UserInterface {
 
                     //TODO
                     IM.nucontroller.edit_profile(contactinfo, "contactInfo");
-                    IM.wu.edit_profile_readandwrite(contactinfo, userName, "contactInfo");
+                    IM.wu.editProfileReadAndWrite(contactinfo, userName, "contactInfo");
                     System.out.println("your new profile is: " + IM.nucontroller.profile_page(username));
                 } else if (choise.equals("undo-like the movie")){
                     if (IM.nucontroller.empty_playlist()){
@@ -230,8 +230,8 @@ public class UserInterface {
 
                             //TODO
                             IM.nucontroller.undo_like(mvname);
-                            IM.wu.undo_like_readandwrite(mvname, userName);
-                            IM.wm.add_like_to_file(mvname, "decrease");
+                            IM.wu.undoLikeReadAndWrite(mvname, userName);
+                            IM.wm.addLikeToFile(mvname, "decrease");
 
                             System.out.println("your new profile is " + IM.nucontroller.profile_page(username));
                             System.out.println("Movie successfully removed.");
@@ -271,8 +271,8 @@ public class UserInterface {
 
                         //TODO
                         //nucontroller.write_review(moviename, review_content);
-                        IM.wr.create_file(userName, moviename, review_content);
-                        IM.wm.add_review_to_file(userName, moviename, review_content);
+                        IM.wr.createFile(userName, moviename, review_content);
+                        IM.wm.addReviewToFile(userName, moviename, review_content);
 
                         System.out.println("Check your review: " + IM.nucontroller.movie_profile(moviename));
                         System.out.println("program exits.");
@@ -280,8 +280,8 @@ public class UserInterface {
 
                         //TODO
                         IM.nucontroller.like_movie(moviename);
-                        IM.wu.give_like_readandwrite(moviename, userName);
-                        IM.wm.add_like_to_file(moviename, "Increase");
+                        IM.wu.givelikeReadAndWrite(moviename, userName);
+                        IM.wm.addLikeToFile(moviename, "Increase");
 
                         System.out.println("Check your likes: " + IM.nucontroller.movie_profile(moviename));
                         System.out.println("program exits.");
@@ -319,7 +319,7 @@ public class UserInterface {
                 code = scanner.nextLine();
             }
             userName = username;
-            IM.wu.create_file(username, password, "AdminUser");
+            IM.wu.createFile(username, password, "AdminUser");
             if(IM.aucontroller.login(username, password, code)) {
                 System.out.println("Admin account successfully created, you are automatically logged in.");
             }
@@ -350,7 +350,7 @@ public class UserInterface {
                 }
                 //TODO
                 //aucontroller.upload_movie(movie_name, movie_link);
-                IM.wm.create_file(movie_name, movie_link, "");
+                IM.wm.createFile(movie_name, movie_link, "");
                 System.out.println("Movie added");
                 System.out.println("program exits.");
 
@@ -411,7 +411,7 @@ public class UserInterface {
                 }
                 //TODO
                 //aucontroller.upload_movie(movie_name, movie_link);
-                IM.wm.create_file(movie_name, movie_link, "");
+                IM.wm.createFile(movie_name, movie_link, "");
                 System.out.println("Movie added");
                 System.out.println("program exits.");
             //} else if (choose.equals("Delete movie")){
