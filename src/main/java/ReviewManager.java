@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class ReviewManager {
      * Called only after confirming the username is valid (i.e. the user exists)
      * Takes the username of NormalUser and return a list of reviews written by the user.
      */
-    public ArrayList<Review> RevsofUser(String username){
+    public ArrayList<Review> RevsOfUser(String username){
         return this.UsertoRevs.get(username);
     }
 
@@ -36,7 +35,7 @@ public class ReviewManager {
      * Called only after confirming the moviename is valid (i.e. the movie exists)
      * Takes the name of Movie and return a list of reviews for the Movie.
      */
-    public ArrayList<Review> RevsofMovie(String moviename){
+    public ArrayList<Review> RevsOfMovie(String moviename){
         return this.MovietoRevs.get(moviename);
     }
 
@@ -44,7 +43,7 @@ public class ReviewManager {
      * create a Review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
-    public boolean write_review(String uname, String mname, String content, int numCoin ,int ID) {
+    public boolean writeReview(String uname, String mname, String content, int numCoin , int ID) {
         Review rev;
         if (ID == -1){
             tot_num = tot_num + 1;
@@ -69,7 +68,7 @@ public class ReviewManager {
             this.mm.add_review_to_movie(mname, rev);
         }
 
-        return add_mr(mname, rev) && add_ur(uname, rev);
+        return addMr(mname, rev) && addUr(uname, rev);
     }
 
 
@@ -79,11 +78,32 @@ public class ReviewManager {
 
 
 
+    /**
+     * find a review with review_id, and add 1 coin
+     */
+    public void addCoin(int review_id) {
+        for (Review review : this.lst){
+            if (review.ID == review_id){
+                review.numCoin = review.numCoin + 1;
+            }
+        }
+    }
+
+    /**
+     * find a review with review_id, and delete 1 coin
+     */
+    public void reduceCoin(int review_id) {
+        for (Review review : this.lst){
+            if (review.ID == review_id){
+                review.numCoin = review.numCoin - 1;
+            }
+        }
+    }
 
     /**
      * update MovietoRevs by write_review, return ture iff successfully updated.
      */
-    private boolean add_mr(String mname, Review rev){
+    private boolean addMr(String mname, Review rev){
         if (this.MovietoRevs.containsKey(mname)) {
             this.MovietoRevs.get(mname).add(rev);
         }
@@ -100,7 +120,7 @@ public class ReviewManager {
     /**
      * update MovietoRevs by write_review, return ture iff successfully updated.
      */
-    private boolean add_ur(String uname, Review rev){
+    private boolean addUr(String uname, Review rev){
         if (this.UsertoRevs.containsKey(uname)) {
             this.UsertoRevs.get(uname).add(rev);
         }
@@ -114,10 +134,11 @@ public class ReviewManager {
         return true;
     }
 
+
     /**
      * delete a Review from MovietoRevs, UsertoRevs, lst, and delete the Review in txt file.
      * Return ture iff the review has been successfully deleted from the lst/maps and the txt file.
      */
-    // public boolean delete_review() {}
+    // public boolean deleteReview() {}
 
 }
