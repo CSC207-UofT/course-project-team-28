@@ -89,9 +89,6 @@ public class WriteUser implements WriteFile{
 
     }
 
-    /**
-     * @return read object from AdminUser folder, return an arraylist of AdminUser object.
-     */
 
     @Override
     public void get_object_from_file() {
@@ -118,9 +115,6 @@ public class WriteUser implements WriteFile{
     }
 
 
-    /**
-     * @return read object from NormalUser folder, return an arraylist of NormalUser object.
-     */
     public void get_NormalUser_from_file(){
         try{
             String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in NormalUser folder
@@ -248,16 +242,18 @@ public class WriteUser implements WriteFile{
                     write_file(halfNuPath + username + ".txt", lst);
                     return lst.get(4).toString();
                 default:
-                    lst.set(5, newUpdate);
+                    // give a positive or negative
+                    int coin = Integer.parseInt((String) lst.get(5)) + Integer.parseInt(newUpdate);
+
+                    lst.set(5, Integer.toString(coin));
                     write_file(halfNuPath + username + ".txt", lst);
                     return lst.get(5).toString();
             }
         }
         catch (IOException e){
             System.out.println("Unable to edit user profile");
+            return "";
         }
-        return "";
-
     }
 
 

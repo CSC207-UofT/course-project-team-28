@@ -106,6 +106,11 @@ public class UserManager {
         }
     }
 
+    /**
+     *  @param username the name of normal user
+     *  @param coin the amount of the coin that need to be changed
+     *  @return return True if change is successfully made. Otherwise, return false.
+     */
     public boolean updateCoin(String username, int coin){
         nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
@@ -114,14 +119,10 @@ public class UserManager {
                 nu = nu1;
             }
         }
-        if(nu.getCoin() == coin){
-            return true;
-        }
-        else{
-            nu.setCoin(coin);
 
-            return nu.getCoin() == coin;
-        }
+        nu.setCoin(nu.getCoin() + coin);
+
+        return true;
     }
 
 
