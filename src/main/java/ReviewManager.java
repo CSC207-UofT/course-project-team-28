@@ -44,11 +44,11 @@ public class ReviewManager {
      * create a Review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
-    public boolean write_review(String uname, String mname, String content, int ID) {
+    public boolean write_review(String uname, String mname, String content, int numCoin ,int ID) {
         Review rev;
         if (ID == -1){
             tot_num = tot_num + 1;
-            rev = new Review(uname, mname, content, tot_num);
+            rev = new Review(uname, mname, content, numCoin,tot_num);
 
             // add the review in file by a helper method
             //WriteReview newwr = new WriteReview();
@@ -56,7 +56,7 @@ public class ReviewManager {
 
         }
         else{
-            rev = new Review(uname, mname, content, ID);
+            rev = new Review(uname, mname, content, numCoin,ID);
 
             // add the review in file by a helper method
             //WriteReview newwr = new WriteReview();
