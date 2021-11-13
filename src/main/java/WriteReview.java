@@ -43,7 +43,7 @@ public class WriteReview implements WriteFile{
     public boolean create_file(String currUserName, String movieName, String revContent){
         try {
 
-            boolean reviewExist = this.rm.write_review(currUserName, movieName, revContent, 0,-1);
+            boolean reviewExist = this.rm.writeReview(currUserName, movieName, revContent, 0,-1);
 
             File file_if_exist;
             Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -101,7 +101,7 @@ public class WriteReview implements WriteFile{
                     ArrayList<String> lst = read_file(path2, r, "Review");
 
                     // create object for this single review
-                    this.rm.write_review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
+                    this.rm.writeReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
 
                 }
             }
