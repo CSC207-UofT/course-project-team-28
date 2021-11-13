@@ -19,7 +19,7 @@ public class AdminInputProcessor {
      * Return true if the given string (username or password) is alphanumeric,
      * also it is nonempty.
      */
-    private boolean is_nonemptyalpnum(String s) {
+    private boolean isnonemptyalpnum(String s) {
         if (s.length() < 1) {
             return false;
         }
@@ -38,10 +38,10 @@ public class AdminInputProcessor {
      * also the code should be correct.
      */
     public boolean register(String un, String pass, String code, WriteUser wu) {
-        if (! this.is_nonemptyalpnum(un)){
+        if (! this.isnonemptyalpnum(un)){
             return false;
         }
-        else if (! this.is_nonemptyalpnum(pass)){
+        else if (! this.isnonemptyalpnum(pass)){
             return false;
         }
         // check if the admincode is correct
@@ -52,7 +52,7 @@ public class AdminInputProcessor {
         else if (! user_mana.usernameIfUnique(un, "AdminUser")){
             return false;
         }
-        return wu.create_file(un, pass, "AdminUser");
+        return wu.createFile(un, pass, "AdminUser");
     }
 
     /**
@@ -77,7 +77,7 @@ public class AdminInputProcessor {
      * return true if those strings are non-empty and the movie is not uploaded before,
      * and can be uploaded.
      */
-    public boolean upload_movie(String moviename, String movielink) {
+    public boolean uploadMovie(String moviename, String movielink) {
         if (moviename.length() < 1 | movielink.length() < 3) {
             return false;
         }
