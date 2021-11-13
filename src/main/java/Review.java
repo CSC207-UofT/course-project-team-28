@@ -8,11 +8,11 @@ public class Review {
     /**
      * Construct a new review content for the specific movie by the reviewer.
       */
-    public Review(String reviewer, String movie, String review_content, int ID){
+    public Review(String reviewer, String movie, String review_content, int numCoin, int ID){
         this.reviewer = reviewer;
         this.movie = movie;
         this.review_content = review_content;
-        this.numCoin = 0;
+        this.numCoin = numCoin;
         this.ID = ID;
     }
 

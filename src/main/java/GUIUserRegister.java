@@ -2,31 +2,29 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUIUserLogin extends SharedView {
+public class GUIUserRegister extends SharedView {
     private static String userName = "";
     private static JFrame frame;
     private static JPanel panel;
     private static JLabel usernameLabel;
     private static JLabel pswLabel;
-    private static JLabel loginResult;
+    private static JLabel RegResult;
+    private static JLabel RegCondition;
     private static JTextField usernameText;
     private static JTextField passwordText;
     private final JLabel adminCodeLabel = new JLabel("Administrator Code");
     private final JTextField adminCodeText = new JTextField(20);
-
-    //gui
-    public GUIUserLogin(Boolean isAdmin){
+    public GUIUserRegister(Boolean isAdmin){
         super(isAdmin);
-        frame = new JFrame("Login");
+        frame = new JFrame("Register");
         panel = new JPanel();
         frame.setSize(350,200);
         frame.add(panel);
         placeComponents(panel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
-
     }
-    // place components on GUI
+    //Place components on GUI
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
         usernameLabel = new JLabel("Username");
@@ -35,51 +33,56 @@ public class GUIUserLogin extends SharedView {
         usernameText = new JTextField(20);
         usernameText.setBounds(130,20,165,25);
         panel.add(usernameText);
+        RegCondition = new JLabel("(numbers and letters only)");
+        RegCondition.setBounds(10,39,300,25);
+        panel.add(RegCondition);
         pswLabel = new JLabel("Password");
-        pswLabel.setBounds(10,50,80,25);
+        pswLabel.setBounds(10,60,80,25);
         panel.add(pswLabel);
         passwordText = new JPasswordField(20);
-        passwordText.setBounds(130,50,165,25);
+        passwordText.setBounds(130,60,165,25);
         panel.add(passwordText);
-        JButton loginButton = new JButton("login");
-        loginButton.setBounds(10, 110, 80, 25);
-        loginButton.addActionListener(new ActionListener() {
+        JButton RegButton = new JButton("Register");
+        RegButton.setBounds(10, 110, 90, 25);
+        RegButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                OnLoginClick(actionEvent);
+                OnRegClick(actionEvent);
             }
         });
-        panel.add(loginButton);
-        loginResult = new JLabel("");
-        loginResult.setBounds(10, 130, 300, 25);
-        panel.add(loginResult);
+        panel.add(RegButton);
+        RegResult = new JLabel("");
+        RegResult.setBounds(10, 130, 300, 25);
+        panel.add(RegResult);
         if(isAdmin){
             adminCodeLabel.setBounds(10,80,120,25);
             panel.add(adminCodeLabel);
             adminCodeText.setBounds(130,80,165,25);
             panel.add(adminCodeText);
         }
+
     }
-    //actions
-    public void OnLoginClick(ActionEvent e) {
-        String username = usernameText.getText();
+    public void OnRegClick(ActionEvent e) {
+        userName = usernameText.getText();
         String password = passwordText.getText();
-        boolean login = false;
+        boolean register = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            login = (IM.aucontroller.login(username, password, code));
+            register = (IM.aucontroller.register(userName, password, code)); // IM.wu
         } else {
-            login = IM.nucontroller.login(username, password);
+            register = (IM.nucontroller.register(userName, password)); //IM.wu
         }
-        if (login){
-            loginResult.setText("Login successful.");
-        }else {
-            loginResult.setText("Username or password incorrect, please try again.");
+        if(register){
+            RegResult.setText("Account successfully created.");
+        } else {
+            RegResult.setText("Something is wrong with your username or password.");
         }
 
     }
 
-    public JFrame getFrame() {
+
+    @Override
+    protected JFrame getFrame() {
         return frame;
     }
 
@@ -88,4 +91,3 @@ public class GUIUserLogin extends SharedView {
 
     }
 }
-
