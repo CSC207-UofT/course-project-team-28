@@ -46,7 +46,7 @@ public class AdminInputProcessor {
             return false;
         }
         // check if the admincode is correct
-        else if (!Objects.equals(code, ADMINCODE)) {
+        else if (!code.equals(ADMINCODE)) {
             return false;
         }
         // check if the username is already used by other users
