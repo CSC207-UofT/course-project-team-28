@@ -9,7 +9,7 @@ public class NormalInputProcessor {
     private ReviewManager rev_mana;
     private MovieManager mov_mana;
     private UserManager user_mana;
-//    private CoinManager coinMana;
+    private CoinManager coinMana;
     private String curr_nuname;
 
 
@@ -25,7 +25,7 @@ public class NormalInputProcessor {
         this.user_mana = um;
     }
 
-//    public void setCoinMana(CoinManager cm){ this.coinMana = cm;}
+    public void setCoinMana(CoinManager cm){ this.coinMana = cm;}
 
     /**
      * Return true if the given string (username or password) is alphanumeric,

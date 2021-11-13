@@ -13,11 +13,9 @@ public class MovieManager {
     /**
      * Creates a MovieManager with a list of movies are empty
      */
-    public MovieManager(String i){
+    public MovieManager(){
         this.Movies = new ArrayList<>();
     }
-
-    public MovieManager(){}
 
     /**
      * Add an instance of movie to the overall list of Movies
