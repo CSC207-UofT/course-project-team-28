@@ -13,10 +13,11 @@ import static java.lang.System.out;
  */
 
 public class WriteMovie implements WriteFile{
-    public FileReader moviereader;
-    public BufferedReader getmovie;
-    public FileWriter writemovie;
-    protected FileInfoGateway gw = new FileInfoGateway();
+    private MovieManager mm;
+
+    protected FileReader moviereader;
+    protected BufferedReader getmovie;
+    protected FileWriter writemovie;
     protected NormalInputProcessor nip;
     protected AdminInputProcessor aip;
 
@@ -26,12 +27,14 @@ public class WriteMovie implements WriteFile{
      * @return boolean
      */
 
-    public WriteMovie(NormalInputProcessor nip, AdminInputProcessor aip){
+    public WriteMovie(NormalInputProcessor nip, AdminInputProcessor aip, MovieManager mm){
+        this.mm = mm;
         get_object_from_file();
+
         this.nip = nip;
         this.aip = aip;
-        this.nip.setMov_mana(gw);
-        this.aip.setMov_mana(gw);
+        this.nip.setMov_mana(mm);
+        this.aip.setMov_mana(mm);
     }
 
     @Override
@@ -60,7 +63,9 @@ public class WriteMovie implements WriteFile{
             File moviefile = new File(p1 + "/src/main/res/Moviedata/" + movieName + ".txt");
             File moviereview = new File(p1 + "/src/main/res/Moviereview/" + movieName + " reviews.properties");
 
-            return moviefile.exists() && moviereview.exists() && gw.createMovieObject(movieName, movieLink, new HashMap<>(), 0);
+            this.mm.add_movie(movieName, movieLink, new HashMap<>(), 0);
+
+            return moviefile.exists() && moviereview.exists() && this.mm.add_movie(movieName, movieLink, new HashMap<>(), 0);
         }
         catch (IOException e){
             System.out.println("Cannot create the file");
@@ -166,8 +171,8 @@ public class WriteMovie implements WriteFile{
                         }
                     } // Find the corresponding review file for movie and change the HashMap created to the stored one
 
-                    gw.createMovieObject(lst.get(0), lst.get(1), moviereview, Integer.parseInt(lst.get(2))); // create object for a single movie
-
+                     // create object for a single movie
+                    this.mm.add_movie(lst.get(0), lst.get(1), moviereview, Integer.parseInt(lst.get(2)));
                 }
             }
         }

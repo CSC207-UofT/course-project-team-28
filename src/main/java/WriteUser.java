@@ -16,6 +16,9 @@ import static java.util.Collections.addAll;
  * it should be only called by User class and its subclass.
  */
 public class WriteUser implements WriteFile{
+
+    private final UserManager um;
+
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
@@ -23,30 +26,35 @@ public class WriteUser implements WriteFile{
     protected File NormalUserFolderPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for NormalUser folder
     protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for AdminUser file
     protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for NormalUser file
-    protected FileInfoGateway gw = new FileInfoGateway();
+
     protected NormalInputProcessor nip;
     protected AdminInputProcessor aip;
 
 
-    public  WriteUser(NormalInputProcessor nip, AdminInputProcessor aip){
+    public  WriteUser(NormalInputProcessor nip, AdminInputProcessor aip, UserManager um){
+        this.um = um;
         get_object_from_file();
+
         this.nip = nip;
         this.aip = aip;
-        this.nip.setUser_mana(gw);
-        this.aip.setUser_mana(gw);
+        this.nip.setUser_mana(this.um);
+        this.aip.setUser_mana(this.um);
     }
 
 
-    public  WriteUser(String normalPath, String adminPath, NormalInputProcessor nip, AdminInputProcessor aip){
+    public  WriteUser(String normalPath, String adminPath, NormalInputProcessor nip, AdminInputProcessor aip, UserManager um){
         this.AdminUserFolderPath = new File(adminPath);
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";
         this.halfNuPath = normalPath + "/";
         get_object_from_file();
+
+        this.um = um;
+
         this.nip = nip;
         this.aip = aip;
-        this.nip.setUser_mana(gw);
-        this.aip.setUser_mana(gw);
+        this.nip.setUser_mana(this.um);
+        this.aip.setUser_mana(this.um);
     }
 
     /**
@@ -73,14 +81,16 @@ public class WriteUser implements WriteFile{
 
                 write_file(halfNuPath + userName + ".txt", infoList);
                 file_if_exist = new File(halfNuPath + userName + ".txt");
+                this.um.create_normaluser(userName, userPassword, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
             }
             else{
 
                 write_file(halfAuPath + userName + ".txt", infoList);
                 file_if_exist = new File(halfAuPath  + userName + ".txt");
+                this.um.create_adminuser(userName, userPassword);
             }
 
-            return file_if_exist.exists() && gw.createNewUserObject(userName, userPassword, userType, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
+            return file_if_exist.exists() && this.um.userIfExist(userName, userPassword, userType);
         }
         catch (IOException e){
             System.out.println("Cannot create the file");
@@ -102,8 +112,7 @@ public class WriteUser implements WriteFile{
                 for(String au: lstOfAdmin) {
                     ArrayList<Object> lst = read_file(halfAuPath + au);
 
-                    gw.createNewUserObject(lst.get(0).toString(), lst.get(1).toString(), "AdminUser",
-                            "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
+                    this.um.create_adminuser(lst.get(0).toString(), lst.get(1).toString());
                 }
             }
             get_NormalUser_from_file();
@@ -134,7 +143,7 @@ public class WriteUser implements WriteFile{
                         String[] pl1 = lst.get(6).toString().split(","); // change playlist from string to array
                         pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
                     }
-                    gw.createNewUserObject(lst.get(0).toString(), lst.get(1).toString(), "NormalUser", lst.get(2).toString(),
+                    this.um.create_normaluser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString(),
                             lst.get(3).toString(), lst.get(4).toString(), Integer.parseInt(lst.get(5).toString()), pl2);
 
                 }
@@ -145,20 +154,6 @@ public class WriteUser implements WriteFile{
             System.out.println("Unable to get the file from the NormalUser Folder");
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
     /**

@@ -25,7 +25,6 @@ public class UserManager {
     public UserManager() {}
 
 
-
     /**
      * Add an admin user to the admin user list.
      * @param username username of AdminUser
@@ -252,6 +251,15 @@ public class UserManager {
         return true;
     }
 
+
+    public boolean checkCoinBiggerThanOne(String username){
+        for(NormalUser nu: lstOfNormalUser){
+            if(nu.getUsername().equals(username)){
+                return nu.getCoin() >= 1;
+            }
+        }
+        return false;
+    }
 
 
 

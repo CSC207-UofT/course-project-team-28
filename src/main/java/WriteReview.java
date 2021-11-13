@@ -10,11 +10,15 @@ import java.util.ArrayList;
  */
 
 public class WriteReview implements WriteFile{
+    private final ReviewManager rm ;
+
     protected FileReader reviewreader;
     protected BufferedReader getreview;
     protected FileWriter writereview;
-    protected FileInfoGateway gw = new FileInfoGateway();
+//    protected FileInfoGateway gw = new FileInfoGateway();
     protected NormalInputProcessor nip;
+
+
 
 
     /**
@@ -24,31 +28,39 @@ public class WriteReview implements WriteFile{
      */
 
 
-    public WriteReview(NormalInputProcessor nip){
+    public WriteReview(NormalInputProcessor nip, ReviewManager rm){
+        this.rm = rm;
+
         get_object_from_file();
+
+
         this.nip = nip;
-        this.nip.setRev_mana(gw);
+        this.nip.setRev_mana(this.rm);
     }
 
 
     @Override
     public boolean create_file(String currUserName, String movieName, String revContent){
         try {
-            boolean reviewExist = gw.createReviewObject(currUserName, movieName, revContent, -1);
+
+            boolean reviewExist = this.rm.write_review(currUserName, movieName, revContent, -1);
 
             File file_if_exist;
             Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            writereview = new FileWriter(path1 + "/src/main/res/Review/" + gw.reviewID() + ".txt");
+            writereview = new FileWriter(path1 + "/src/main/res/Review/" + this.rm.getReviewID() + ".txt");
             writereview.write(currUserName);
             writereview.write("\r\n");
             writereview.write(movieName);
             writereview.write("\r\n");
             writereview.write(revContent);
             writereview.write("\r\n");
-            writereview.write(Integer.toString(gw.reviewID()));
+            writereview.write(Integer.toString(this.rm.getReviewID()));
             writereview.close();
 
-            file_if_exist = new File(path1 + "/src/main/res/Review/" + gw.reviewID() + ".txt");
+            file_if_exist = new File(path1 + "/src/main/res/Review/" + this.rm.getReviewID() + ".txt");
+
+
+
             return file_if_exist.exists() && reviewExist;
         }
         catch (IOException e){
@@ -87,7 +99,7 @@ public class WriteReview implements WriteFile{
                     ArrayList<String> lst = read_file(path2, r, "Review");
 
                     // create object for this single review
-                    gw.createReviewObject(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)));
+                    this.rm.write_review(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)));
 
                 }
             }

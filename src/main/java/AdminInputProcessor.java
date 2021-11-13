@@ -7,13 +7,13 @@ public class AdminInputProcessor {
     final private String ADMINCODE = "123456";
 
 
-    public void setMov_mana(FileInfoGateway gw){
-        this.mov_mana = gw.getMM();
+    public void setMov_mana(MovieManager mm){
+        this.mov_mana = mm;
 
     }
 
-    public void setUser_mana(FileInfoGateway gw){
-        this.user_mana = gw.getUM();
+    public void setUser_mana(UserManager um){
+        this.user_mana = um;
     }
 
     /**
