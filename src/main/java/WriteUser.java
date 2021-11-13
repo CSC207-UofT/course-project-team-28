@@ -33,7 +33,7 @@ public class WriteUser implements WriteFile{
 
     public  WriteUser(NormalInputProcessor nip, AdminInputProcessor aip, UserManager um){
         this.um = um;
-        get_object_from_file();
+        getObjectFromFile();
 
         this.nip = nip;
         this.aip = aip;
@@ -47,7 +47,7 @@ public class WriteUser implements WriteFile{
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";
         this.halfNuPath = normalPath + "/";
-        get_object_from_file();
+        getObjectFromFile();
 
         this.um = um;
 
@@ -64,95 +64,79 @@ public class WriteUser implements WriteFile{
      */
 
     @Override
-    public boolean create_file(String userName, String userPassword, String userType) {
-        try{
-            File file_if_exist;
-            ArrayList<Object> infoList = new ArrayList<>();
-            infoList.add(userName);
-            infoList.add(userPassword);
+    public boolean createFile(String userName, String userPassword, String userType) {
+        File file_if_exist;
+        ArrayList<Object> infoList = new ArrayList<>();
+        infoList.add(userName);
+        infoList.add(userPassword);
 
 
-            if(userType.equals("NormalUser")) {
-                infoList.add("Empty contact info");
-                infoList.add("Empty description");
-                infoList.add("Empty category");
-                infoList.add("300");
-                infoList.add("[]");
+        if(userType.equals("NormalUser")) {
+            infoList.add("Empty contact info");
+            infoList.add("Empty description");
+            infoList.add("Empty category");
+            infoList.add("300");
+            infoList.add("[]");
 
-                write_file(halfNuPath + userName + ".txt", infoList);
-                file_if_exist = new File(halfNuPath + userName + ".txt");
-                this.um.create_normaluser(userName, userPassword, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
-            }
-            else{
-
-                write_file(halfAuPath + userName + ".txt", infoList);
-                file_if_exist = new File(halfAuPath  + userName + ".txt");
-                this.um.create_adminuser(userName, userPassword);
-            }
-
-            return file_if_exist.exists() && this.um.userIfExist(userName, userPassword, userType);
+            writeFile(halfNuPath + userName + ".txt", infoList);
+            file_if_exist = new File(halfNuPath + userName + ".txt");
+            this.um.createNormaluser(userName, userPassword, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
         }
-        catch (IOException e){
-            System.out.println("Cannot create the file");
-            return false;
+        else{
+
+            writeFile(halfAuPath + userName + ".txt", infoList);
+            file_if_exist = new File(halfAuPath  + userName + ".txt");
+            this.um.createAdminuser(userName, userPassword);
         }
+
+        return file_if_exist.exists() && this.um.userIfExist(userName, userPassword, userType);
 
     }
 
 
     @Override
-    public void get_object_from_file() {
-        try{
-            String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in AdminUser folder
+    public void getObjectFromFile() {
+        String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in AdminUser folder
 
-            if(lstOfAdmin == null){
-            }
-
-            else{
-                for(String au: lstOfAdmin) {
-                    ArrayList<Object> lst = read_file(halfAuPath + au);
-
-                    this.um.create_adminuser(lst.get(0).toString(), lst.get(1).toString());
-                }
-            }
-            get_NormalUser_from_file();
+        if(lstOfAdmin == null){
         }
-        catch (IOException e){
-            System.out.println("Unable to get the file from the AdminUser Folder");
+
+        else{
+            for(String au: lstOfAdmin) {
+                ArrayList<Object> lst = readFile(halfAuPath + au);
+
+                this.um.createAdminuser(lst.get(0).toString(), lst.get(1).toString());
+            }
         }
+        getNormalUserFromFile();
 
     }
 
 
-    public void get_NormalUser_from_file(){
-        try{
-            String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in NormalUser folder
-            if(lstOfNormal == null ){
-            }
-            else {
-                for(String nu: lstOfNormal){
-                    ArrayList<Object> lst = read_file(halfNuPath + nu);
-                    ArrayList<String> pl2;
+    public void getNormalUserFromFile(){
+        String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in NormalUser folder
+        if(lstOfNormal == null ){
+        }
+        else {
+            for(String nu: lstOfNormal){
+                ArrayList<Object> lst = readFile(halfNuPath + nu);
+                ArrayList<String> pl2;
 
-                    lst.set(6, lst.get(6).toString().replace("[", "")); //get rid of "[" in playlist
-                    lst.set(6, lst.get(6).toString().replace("]", "")); //get rid of "]" in playlist
-                    if (lst.get(6).toString().isEmpty()){
-                        pl2 = new ArrayList<>();
-                    }
-                    else{
-                        String[] pl1 = lst.get(6).toString().split(","); // change playlist from string to array
-                        pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
-                    }
-                    this.um.create_normaluser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString(),
-                            lst.get(3).toString(), lst.get(4).toString(), Integer.parseInt(lst.get(5).toString()), pl2);
-
+                lst.set(6, lst.get(6).toString().replace("[", "")); //get rid of "[" in playlist
+                lst.set(6, lst.get(6).toString().replace("]", "")); //get rid of "]" in playlist
+                if (lst.get(6).toString().isEmpty()){
+                    pl2 = new ArrayList<>();
                 }
-            }
+                else{
+                    String[] pl1 = lst.get(6).toString().split(","); // change playlist from string to array
+                    pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
+                }
+                this.um.createNormaluser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString(),
+                        lst.get(3).toString(), lst.get(4).toString(), Integer.parseInt(lst.get(5).toString()), pl2);
 
+            }
         }
-        catch (IOException e){
-            System.out.println("Unable to get the file from the NormalUser Folder");
-        }
+
     }
     
 
@@ -162,25 +146,19 @@ public class WriteUser implements WriteFile{
      * @param username the name of user
      * @return return a string of new playlist
      */
-    public String give_like_readandwrite(String movieName, String username){
-        try{
-            ArrayList<Object> lst = read_file(halfNuPath + username + ".txt");
+    public String givelikeReadAndWrite(String movieName, String username){
+        ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
-            if (lst.get(6).equals("[]")){
-                lst.set(6, lst.get(6).toString().replace("[]","[" + movieName + "]"));
-            }
-            else if(!lst.get(6).toString().contains(movieName)){
-                lst.set(6, lst.get(6).toString().replace("]","," + movieName + "]"));
-            }
-
-            write_file(halfNuPath + username + ".txt", lst);
-
-            return lst.get(6).toString();
+        if (lst.get(6).equals("[]")){
+            lst.set(6, lst.get(6).toString().replace("[]","[" + movieName + "]"));
         }
-        catch (IOException e){
-            System.out.println("Unable to add the movie to user playlist");
+        else if(!lst.get(6).toString().contains(movieName)){
+            lst.set(6, lst.get(6).toString().replace("]","," + movieName + "]"));
         }
-        return "";
+
+        writeFile(halfNuPath + username + ".txt", lst);
+
+        return lst.get(6).toString();
     }
 
     /**
@@ -189,26 +167,20 @@ public class WriteUser implements WriteFile{
      * @param username the name of user
      * @return return a string of new playlist
      */
-    public String undo_like_readandwrite(String moviename, String username) {
-        try{
-            ArrayList<Object> lst = read_file(halfNuPath + username + ".txt");
+    public String undoLikeReadAndWrite(String moviename, String username) {
+        ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
-            lst.set(6, lst.get(6).toString().replace("[",""));//For playlist String. get rid of "[" and "]"
-            lst.set(6, lst.get(6).toString().replace("]",""));//For playlist String. get rid of "[" and "]"
-            String[] movielst1 = lst.get(6).toString().split(",");// split playlist String into Array
-            ArrayList<String> movielst2 = new ArrayList<>(Arrays.asList(movielst1));// convert Array into ArrayList
-            movielst2.remove(moviename);// remove movie from playlist
-            lst.set(6, movielst2.toString().replaceAll(", ", ","));// Change playlist with new playlist, make sure there is no space around "," in playlist
+        lst.set(6, lst.get(6).toString().replace("[",""));//For playlist String. get rid of "[" and "]"
+        lst.set(6, lst.get(6).toString().replace("]",""));//For playlist String. get rid of "[" and "]"
+        String[] movielst1 = lst.get(6).toString().split(",");// split playlist String into Array
+        ArrayList<String> movielst2 = new ArrayList<>(Arrays.asList(movielst1));// convert Array into ArrayList
+        movielst2.remove(moviename);// remove movie from playlist
+        lst.set(6, movielst2.toString().replaceAll(", ", ","));// Change playlist with new playlist, make sure there is no space around "," in playlist
 
 
-            write_file(halfNuPath + username + ".txt", lst);
+        writeFile(halfNuPath + username + ".txt", lst);
 
-            return lst.get(6).toString();
-        }
-        catch (IOException e){
-            System.out.println("Unable to remove the movie to user playlist");
-        }
-        return "";
+        return lst.get(6).toString();
 
     }
 
@@ -219,35 +191,29 @@ public class WriteUser implements WriteFile{
      * @param writeType the type of info that user wants to update. e.g. contactInfo, description
      * @return return a string of new contact info
      */
-    public String edit_profile_readandwrite(String newUpdate, String username, String writeType) {
-        try{
-            ArrayList<Object> lst = read_file(halfNuPath + username + ".txt");
+    public String editProfileReadAndWrite(String newUpdate, String username, String writeType) {
+        ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
-            switch (writeType) {
-                case "contactInfo":
-                    lst.set(2, newUpdate);
-                    write_file(halfNuPath + username + ".txt", lst);
-                    return lst.get(2).toString();
-                case "description":
-                    lst.set(3, newUpdate);
-                    write_file(halfNuPath + username + ".txt", lst);
-                    return lst.get(3).toString();
-                case "category":
-                    lst.set(4, newUpdate);
-                    write_file(halfNuPath + username + ".txt", lst);
-                    return lst.get(4).toString();
-                default:
-                    // give a positive or negative
-                    int coin = Integer.parseInt((String) lst.get(5)) + Integer.parseInt(newUpdate);
+        switch (writeType) {
+            case "contactInfo":
+                lst.set(2, newUpdate);
+                writeFile(halfNuPath + username + ".txt", lst);
+                return lst.get(2).toString();
+            case "description":
+                lst.set(3, newUpdate);
+                writeFile(halfNuPath + username + ".txt", lst);
+                return lst.get(3).toString();
+            case "category":
+                lst.set(4, newUpdate);
+                writeFile(halfNuPath + username + ".txt", lst);
+                return lst.get(4).toString();
+            default:
+                // give a positive or negative
+                int coin = Integer.parseInt((String) lst.get(5)) + Integer.parseInt(newUpdate);
 
-                    lst.set(5, Integer.toString(coin));
-                    write_file(halfNuPath + username + ".txt", lst);
-                    return lst.get(5).toString();
-            }
-        }
-        catch (IOException e){
-            System.out.println("Unable to edit user profile");
-            return "";
+                lst.set(5, Integer.toString(coin));
+                writeFile(halfNuPath + username + ".txt", lst);
+                return lst.get(5).toString();
         }
     }
 
@@ -259,7 +225,7 @@ public class WriteUser implements WriteFile{
     /**
      * Helper method, read file
      */
-    public ArrayList<Object> read_file(String path) throws IOException {
+    public ArrayList<Object> readFile(String path) {
         ArrayList<Object> lst = new ArrayList<>();
         try{
             userlogin = new BufferedReader(new FileReader(path));
@@ -282,7 +248,7 @@ public class WriteUser implements WriteFile{
     /**
      * Helper method, write file
      */
-    public void write_file(String path, ArrayList<Object> lst) throws IOException {
+    public void writeFile(String path, ArrayList<Object> lst) {
         try{
             writeuser = new FileWriter(path);
             for(Object str: lst){
