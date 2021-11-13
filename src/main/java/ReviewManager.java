@@ -79,6 +79,27 @@ public class ReviewManager {
 
 
 
+    /**
+     * find a review with review_id, and add 1 coin
+     */
+    public void addCoin(int review_id) {
+        for (Review review : this.lst){
+            if (review.ID == review_id){
+                review.numCoin = review.numCoin + 1;
+            }
+        }
+    }
+
+    /**
+     * find a review with review_id, and delete 1 coin
+     */
+    public void reduceCoin(int review_id) {
+        for (Review review : this.lst){
+            if (review.ID == review_id){
+                review.numCoin = review.numCoin - 1;
+            }
+        }
+    }
 
     /**
      * update MovietoRevs by write_review, return ture iff successfully updated.
@@ -113,6 +134,7 @@ public class ReviewManager {
 
         return true;
     }
+
 
     /**
      * delete a Review from MovietoRevs, UsertoRevs, lst, and delete the Review in txt file.
