@@ -9,19 +9,23 @@ public class NormalInputProcessor {
     private ReviewManager rev_mana;
     private MovieManager mov_mana;
     private UserManager user_mana;
+//    private CoinManager coinMana;
     private String curr_nuname;
 
 
-    public void setRev_mana(FileInfoGateway gw){
-        this.rev_mana = gw.getRM();
+    public void setRev_mana(ReviewManager rm){
+        this.rev_mana = rm;
     }
 
-    public void setMov_mana(FileInfoGateway gw){
-        this.mov_mana = gw.getMM();
+    public void setMov_mana(MovieManager mm){
+        this.mov_mana = mm;
     }
-    public void setUser_mana(FileInfoGateway gw){
-        this.user_mana = gw.getUM();
+
+    public void setUser_mana(UserManager um){
+        this.user_mana = um;
     }
+
+//    public void setCoinMana(CoinManager cm){ this.coinMana = cm;}
 
     /**
      * Return true if the given string (username or password) is alphanumeric,

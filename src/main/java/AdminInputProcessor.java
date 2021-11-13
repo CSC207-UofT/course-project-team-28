@@ -7,13 +7,13 @@ public class AdminInputProcessor {
     final private String ADMINCODE = "123456";
 
 
-    public void setMov_mana(FileInfoGateway gw){
-        this.mov_mana = gw.getMM();
+    public void setMov_mana(MovieManager mm){
+        this.mov_mana = mm;
 
     }
 
-    public void setUser_mana(FileInfoGateway gw){
-        this.user_mana = gw.getUM();
+    public void setUser_mana(UserManager um){
+        this.user_mana = um;
     }
 
     /**
@@ -46,7 +46,7 @@ public class AdminInputProcessor {
             return false;
         }
         // check if the admincode is correct
-        else if (!Objects.equals(code, ADMINCODE)) {
+        else if (!code.equals(ADMINCODE)) {
             return false;
         }
         // check if the username is already used by other users

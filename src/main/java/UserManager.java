@@ -25,7 +25,6 @@ public class UserManager {
     public UserManager() {}
 
 
-
     /**
      * Add an admin user to the admin user list.
      * @param username username of AdminUser
@@ -106,6 +105,11 @@ public class UserManager {
         }
     }
 
+    /**
+     *  @param username the name of normal user
+     *  @param coin the amount of the coin that need to be changed
+     *  @return return True if change is successfully made. Otherwise, return false.
+     */
     public boolean updateCoin(String username, int coin){
         nu = new NormalUser("","","","", "", 0, new ArrayList<>());
 
@@ -114,14 +118,10 @@ public class UserManager {
                 nu = nu1;
             }
         }
-        if(nu.getCoin() == coin){
-            return true;
-        }
-        else{
-            nu.setCoin(coin);
 
-            return nu.getCoin() == coin;
-        }
+        nu.setCoin(nu.getCoin() + coin);
+
+        return true;
     }
 
 
@@ -251,6 +251,15 @@ public class UserManager {
         return true;
     }
 
+
+    public boolean checkCoinBiggerThanOne(String username){
+        for(NormalUser nu: lstOfNormalUser){
+            if(nu.getUsername().equals(username)){
+                return nu.getCoin() >= 1;
+            }
+        }
+        return false;
+    }
 
 
 
