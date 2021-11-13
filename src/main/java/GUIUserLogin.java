@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUINormalUserLogin implements ActionListener {
+public class GUIUserLogin implements ActionListener {
     private static final NormalInputProcessor nucontroller = new NormalInputProcessor();
     private static final AdminInputProcessor aucontroller = new AdminInputProcessor();
     private static final WriteUser wu = new WriteUser(nucontroller, aucontroller);
@@ -13,13 +13,16 @@ public class GUINormalUserLogin implements ActionListener {
     private static JPanel panel;
     private static JLabel usernameLable;
     private static JLabel pswLable;
-    private static JLabel success;
-    private static JLabel fail;
+    private static JLabel loginResult;
     private static JTextField usernameText;
     private static JTextField passwordText;
+    private final JLabel adminCodeLable = new JLabel("Administrator Code");
+    private final JTextField adminCodeText = new JTextField(20);
+    private boolean isAdmin;
 
     //gui
-    public GUINormalUserLogin(){
+    public GUIUserLogin(Boolean isAdmin){
+        this.isAdmin = isAdmin;
         frame = new JFrame();
         panel = new JPanel();
         frame.setSize(350,200);
@@ -27,6 +30,7 @@ public class GUINormalUserLogin implements ActionListener {
         placeComponents(panel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
     }
     // place components on GUI
     private void placeComponents(JPanel panel) {
@@ -35,37 +39,50 @@ public class GUINormalUserLogin implements ActionListener {
         usernameLable.setBounds(10,20,80,25);
         panel.add(usernameLable);
         usernameText = new JTextField(20);
-        usernameText.setBounds(100,20,165,25);
+        usernameText.setBounds(130,20,165,25);
         panel.add(usernameText);
         pswLable = new JLabel("Password");
         pswLable.setBounds(10,50,80,25);
         panel.add(pswLable);
         passwordText = new JPasswordField(20);
-        passwordText.setBounds(100,50,165,25);
+        passwordText.setBounds(130,50,165,25);
         panel.add(passwordText);
         JButton loginButton = new JButton("login");
-        loginButton.setBounds(10, 80, 80, 25);
+        loginButton.setBounds(10, 110, 80, 25);
         loginButton.addActionListener(this);
         panel.add(loginButton);
-        success = new JLabel("");
-        success.setBounds(10, 100, 300, 25);
-        panel.add(success);
-        fail = new JLabel("");
-        fail.setBounds(10, 100, 300, 25);
-        panel.add(fail);
+        loginResult = new JLabel("");
+        loginResult.setBounds(10, 130, 300, 25);
+        panel.add(loginResult);
+        if(isAdmin){
+            adminCodeLable.setBounds(10,80,120,25);
+            panel.add(adminCodeLable);
+            adminCodeText.setBounds(130,80,165,25);
+            panel.add(adminCodeText);
+        }
     }
     //actions
     @Override
-    public void actionPerformed(ActionEvent login) {
+    public void actionPerformed(ActionEvent e) {
         String username = usernameText.getText();
         String password = passwordText.getText();
-        if (nucontroller.login(username, password)){
-            success.setText("Login successful.");
+        boolean login = false;
+        if(isAdmin){
+            String code = adminCodeText.getText();
+            login = (aucontroller.login(username, password, code));
+        } else {
+            login = nucontroller.login(username, password);
+        }
+        if (login){
+            loginResult.setText("Login successful.");
         }else {
-            fail.setText("Username or password incorrect, please try again.");
+            loginResult.setText("Username or password incorrect, please try again.");
         }
 
     }
+
+    public static JFrame getFrame() {
+        return frame;
+    }
 }
 
-}
