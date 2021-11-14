@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class GUIProfile extends View {
@@ -20,6 +21,7 @@ public class GUIProfile extends View {
         jTabbedPane.add("Playlist",panel2);
         jTabbedPane.add("Category",panel3);
         PlaceThingsOnP1(panel1);
+        PlaceThingsOnP2(panel2);
     }
     private void PlaceThingsOnP1(JPanel p1){
         p1.setLayout(null);
@@ -48,8 +50,11 @@ public class GUIProfile extends View {
     }
     private void PlaceThingsOnP2(JPanel p2){
         p2.setLayout(null);
-        JList PlayList = new JList();
-
+        ArrayList<String> playList = (ArrayList<String>) IM.ncu.profilePage(userName)[6];
+        JList PlayList = new JList(playList.toArray());
+        PlayList.setBounds(10,10,500,500);
+        p2.add(PlayList);
+        PlayList.setFont(font1);
     }
 
     @Override
