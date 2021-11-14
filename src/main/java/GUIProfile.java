@@ -1,19 +1,23 @@
 import javax.swing.*;
 
 public class GUIProfile extends View {
-    JLabel username;
+    JLabel userNameUpLabel;
     JTextArea jTextArea;
     JTabbedPane jTabbedPane;
-    public GUIProfile(boolean b){
-        username = new JLabel();
+    JLabel usernameLabel;
+    JPanel panel1;
+    JPanel panel2;
+    JPanel panel3;
+    public GUIProfile(){
+        userNameUpLabel = new JLabel();
         jTextArea = new JTextArea(200,200);
-        JPanel panel1 = new JPanel();
+        panel1 = new JPanel();
         panel1.add(jTextArea);
-        JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
-        panel1.add(username);
+        panel2 = new JPanel();
+        panel3 = new JPanel();
+        panel1.add(userNameUpLabel);
         jTabbedPane = new JTabbedPane();
-        jTabbedPane.setBounds(50,50,300,300);
+        jTabbedPane.setBounds(35,30,700,500);
         jTabbedPane.add("User Profile",panel1);
         jTabbedPane.add("Playlist",panel2);
         jTabbedPane.add("Category",panel3);

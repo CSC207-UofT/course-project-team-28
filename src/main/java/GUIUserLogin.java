@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUIUserLogin extends SharedView {
-    private static String userName = "";
+    public static String userName = "";
     private static JPanel panel;
     private static JLabel usernameLabel;
     private static JLabel pswLabel;
@@ -41,7 +41,7 @@ public class GUIUserLogin extends SharedView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnLoginClick(actionEvent);
-                nextView(new GUIProfile(false), true);
+                nextView(new GUIProfile(), true);
 
             }
         });
@@ -58,14 +58,14 @@ public class GUIUserLogin extends SharedView {
     }
     //actions
     public void OnLoginClick(ActionEvent e) {
-        String username = usernameText.getText();
+        userName = usernameText.getText();
         String password = passwordText.getText();
         boolean login = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            login = (IM.aucontroller.login(username, password, code));
+            login = (IM.aucontroller.login(userName, password, code));
         } else {
-            login = IM.nucontroller.login(username, password);
+            login = IM.nucontroller.login(userName, password);
         }
         if (login){
             loginResult.setText("Login successful.");
