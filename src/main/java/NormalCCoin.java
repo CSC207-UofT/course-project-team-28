@@ -10,8 +10,10 @@ public class NormalCCoin extends NormalController{
      * Given the username and reviewid, update the number of coins that the user has,
      * and update the number of coins that the review earns.
      */
-    public boolean giveCoinToRev(int reviewId){
-        return coinMana.GiveCoinToReview(currNuname, reviewId);
+    public boolean giveCoinToRev(int reviewId, WriteReview wr, WriteUser wu){
+        return coinMana.GiveCoinToReview(currNuname, reviewId) &&
+                wu.editProfileReadAndWrite("-1", currNuname, "coin");
+        //TODO: need to change coin in writeReview
     }
 
 
@@ -19,8 +21,9 @@ public class NormalCCoin extends NormalController{
      * Update the number of coins that the user has after a review.
      * Note: number of coins of that the user +1.
      */
-    public void EarnCoinAfterWriteRev(){
+    public void EarnCoinAfterWriteRev(WriteUser wu){
         coinMana.EarnCoinAfterReview(currNuname);
+        wu.editProfileReadAndWrite("1", currNuname, "coin");
     }
 
 
