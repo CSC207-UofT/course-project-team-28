@@ -5,7 +5,7 @@ public class UI_admin_register {
 
     public static void main(Scanner scanner, InstanceMain IM) {
 
-        List<String> result = admin_helper.login(scanner, IM);
+        List<String> result = admin_helper.register(scanner, IM);
         String userName = result.get(0);
         String password = result.get(1);
         String code = result.get(2);
