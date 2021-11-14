@@ -4,4 +4,4 @@ Ella
 Empty description
 Empty category
 300
-[]
+[Apple,Candy]
