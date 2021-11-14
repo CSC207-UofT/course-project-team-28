@@ -88,6 +88,9 @@ public class GUIUserRegister extends SharedView {
 
     @Override
     protected void nextView(View view) {
-
+        JFrame nextFrame = view.getFrame();
+        nextFrame.setLocationRelativeTo(null);
+        nextFrame.setVisible(true);
+        frame.dispose();
     }
 }
