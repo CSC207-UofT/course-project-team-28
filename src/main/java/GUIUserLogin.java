@@ -41,6 +41,8 @@ public class GUIUserLogin extends SharedView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnLoginClick(actionEvent);
+                nextView(new GUIProfile(false), true);
+
             }
         });
         panel.add(loginButton);

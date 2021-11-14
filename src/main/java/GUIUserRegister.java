@@ -67,7 +67,7 @@ public class GUIUserRegister extends SharedView {
             register = (IM.nucontroller.register(userName, password)); //IM.wu
         }
         if(register){
-            JOptionPane.showMessageDialog(null, "Successfully registered", ":)", JOptionPane.PLAIN_MESSAGE );
+            JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );
             this.getFrame().dispose();
         } else {
             RegResult.setText("Something is wrong with your username or password.");
