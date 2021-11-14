@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class UI_register {
 
     public static void main(Scanner scanner, InstanceMain IM) {
-        List<String> result = user_helper.login(scanner, IM);
+        List<String> result = user_helper.register(scanner, IM);
         String username = result.get(0);
         String password = result.get(1);
         IM.wu.create_file(username, password, "NormalUser");

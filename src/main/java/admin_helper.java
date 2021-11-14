@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class admin_helper {
-    public static List<String> login(Scanner scanner, InstanceMain IM){
+    public static List<String> register(Scanner scanner, InstanceMain IM){
         String username;
         String password;
         String code;
@@ -15,6 +15,28 @@ public class admin_helper {
         System.out.println("Please enter your administration code:");
         code = scanner.nextLine();
         while (!(IM.aucontroller.register(username, password, code))) {
+            System.out.println("Wrong input of username/password/code, please try again.");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
+            username = scanner.nextLine();
+            System.out.println("Please enter your password (should only contains numbers and letter):");
+            password = scanner.nextLine();
+            System.out.println("Please enter your administration code:");
+            code = scanner.nextLine();
+        }
+        return Arrays.asList(username, password, code);
+    }
+
+    public static List<String> login(Scanner scanner, InstanceMain IM){
+        String username;
+        String password;
+        String code;
+        System.out.println("Please enter your username (should only contains numbers and letter):");
+        username = scanner.nextLine();
+        System.out.println("Please enter your password (should only contains numbers and letter):");
+        password = scanner.nextLine();
+        System.out.println("Please enter your administration code:");
+        code = scanner.nextLine();
+        while (!(IM.aucontroller.login(username, password, code))) {
             System.out.println("Wrong input of username/password/code, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class user_helper {
-    public static List<String> login(Scanner scanner, InstanceMain IM){
+    public static List<String> register(Scanner scanner, InstanceMain IM){
         String username;
         String password;
         System.out.println("Please enter your username (should only contains numbers and letter):");
@@ -12,6 +12,22 @@ public class user_helper {
         System.out.println("Please enter your password (should only contains numbers and letter):");
         password = scanner.nextLine();
         while (!(IM.nucontroller.register(username, password))){
+            System.out.println("Username or password incorrect, please try again.");
+            System.out.println("Please enter your username (should only contains numbers and letter):");
+            username = scanner.nextLine();
+            System.out.println("Please enter your password (should only contains numbers and letter):");
+            password = scanner.nextLine();
+        }
+        return Arrays.asList(username, password);
+    }
+    public static List<String> login(Scanner scanner, InstanceMain IM){
+        String username;
+        String password;
+        System.out.println("Please enter your username (should only contains numbers and letter):");
+        username = scanner.nextLine();
+        System.out.println("Please enter your password (should only contains numbers and letter):");
+        password = scanner.nextLine();
+        while (!(IM.nucontroller.login(username, password))){
             System.out.println("Username or password incorrect, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
