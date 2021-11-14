@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 
 public class GUIUserRegister extends SharedView {
     private static String userName = "";
-    private static JFrame frame;
     private static JPanel panel;
     private static JLabel usernameLabel;
     private static JLabel pswLabel;
@@ -16,13 +15,8 @@ public class GUIUserRegister extends SharedView {
     private final JTextField adminCodeText = new JTextField(20);
     public GUIUserRegister(Boolean isAdmin){
         super(isAdmin);
-        frame = new JFrame("Register");
         panel = new JPanel();
-        frame.setSize(350,200);
-        frame.add(panel);
         placeComponents(panel);
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setVisible(true);
     }
     //Place components on GUI
     private void placeComponents(JPanel panel) {
@@ -68,26 +62,25 @@ public class GUIUserRegister extends SharedView {
         boolean register = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            register = (IM.aucontroller.register(userName, password, code)); // IM.wu
+            register = (IM.aucontroller.register(userName, password, code, IM.wu));
         } else {
-            register = (IM.nucontroller.register(userName, password)); //IM.wu
+            register = (IM.nucontroller.register(userName, password, IM.wu));
         }
         if(register){
-            RegResult.setText("Account successfully created.");
+            JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );
+            this.getFrame().dispose();
         } else {
             RegResult.setText("Something is wrong with your username or password.");
         }
 
     }
 
-
-    @Override
-    protected JFrame getFrame() {
+    public JFrame getFrame() {
+        JFrame frame = super.getFrame();
+        frame.setTitle("Register");
+        frame.setSize(350,200);
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         return frame;
-    }
-
-    @Override
-    protected void nextView(View view) {
-
     }
 }

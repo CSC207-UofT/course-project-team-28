@@ -7,7 +7,7 @@ public class UI_register {
         List<String> result = user_helper.register(scanner, IM);
         String username = result.get(0);
         String password = result.get(1);
-        IM.wu.create_file(username, password, "NormalUser");
+        IM.wu.createFile(username, password, "NormalUser");
         if(IM.nucontroller.login(username, password)) {
             System.out.println("Account successfully created, you are automatically logged in.");
         }

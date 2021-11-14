@@ -3,8 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUIUserLogin extends SharedView {
-    private static String userName = "";
-    private static JFrame frame;
     private static JPanel panel;
     private static JLabel usernameLabel;
     private static JLabel pswLabel;
@@ -17,13 +15,8 @@ public class GUIUserLogin extends SharedView {
     //gui
     public GUIUserLogin(Boolean isAdmin){
         super(isAdmin);
-        frame = new JFrame("Login");
         panel = new JPanel();
-        frame.setSize(350,200);
-        frame.add(panel);
         placeComponents(panel);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
 
     }
     // place components on GUI
@@ -47,6 +40,8 @@ public class GUIUserLogin extends SharedView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnLoginClick(actionEvent);
+                nextView(new GUIProfile(), true);
+
             }
         });
         panel.add(loginButton);
@@ -62,14 +57,14 @@ public class GUIUserLogin extends SharedView {
     }
     //actions
     public void OnLoginClick(ActionEvent e) {
-        String username = usernameText.getText();
+        userName = usernameText.getText();
         String password = passwordText.getText();
         boolean login = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            login = (IM.aucontroller.login(username, password, code));
+            login = (IM.aucontroller.login(userName, password, code));
         } else {
-            login = IM.nucontroller.login(username, password);
+            login = IM.nucontroller.login(userName, password);
         }
         if (login){
             loginResult.setText("Login successful.");
@@ -80,12 +75,14 @@ public class GUIUserLogin extends SharedView {
     }
 
     public JFrame getFrame() {
+        JFrame frame = super.getFrame();
+        frame.setTitle("Login");
+        frame.setSize(350,200);
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return frame;
     }
 
-    @Override
-    protected void nextView(View view) {
 
-    }
 }
 

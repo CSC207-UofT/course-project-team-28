@@ -18,7 +18,7 @@ public class WriteMovie implements WriteFile{
     protected FileReader moviereader;
     protected BufferedReader getmovie;
     protected FileWriter writemovie;
-    protected NormalInputProcessor nip;
+    protected NormalCUser nip;
     protected AdminInputProcessor aip;
 
     /**
@@ -27,18 +27,18 @@ public class WriteMovie implements WriteFile{
      * @return boolean
      */
 
-    public WriteMovie(NormalInputProcessor nip, AdminInputProcessor aip, MovieManager mm){
+    public WriteMovie(NormalCUser nip, AdminInputProcessor aip, MovieManager mm){
         this.mm = mm;
-        get_object_from_file();
+        getObjectFromFile();
 
         this.nip = nip;
         this.aip = aip;
-        this.nip.setMov_mana(mm);
+        this.nip.setMovMana(mm);
         this.aip.setMov_mana(mm);
     }
 
     @Override
-    public boolean create_file(String movieName, String movieLink, String z) {
+    public boolean createFile(String movieName, String movieLink, String z) {
 
         try{
             Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -74,7 +74,7 @@ public class WriteMovie implements WriteFile{
     }
 
 
-    public void add_review_to_file(String userName, String movieName, String reviewContent) {
+    public void addReviewToFile(String userName, String movieName, String reviewContent) {
         try {
             Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
             FileOutputStream fos;
@@ -96,10 +96,10 @@ public class WriteMovie implements WriteFile{
 
     }
 
-    public void add_like_to_file(String movieName, String state) {
+    public void addLikeToFile(String movieName, String state) {
         try {
             Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            ArrayList<String> lst = new ArrayList<>(read_file(p1, movieName + ".txt", "Moviedata"));
+            ArrayList<String> lst = new ArrayList<>(readFile(p1, movieName + ".txt", "Moviedata"));
             writemovie = new FileWriter(p1 + "/src/main/res/Moviedata/" + movieName + ".txt");
             if (state.equals("Increase")){
 
@@ -143,7 +143,7 @@ public class WriteMovie implements WriteFile{
      */
 
     @Override
-    public void get_object_from_file() {
+    public void getObjectFromFile() {
         try {
             Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
             File MoviePath = new File(p1 + "/src/main/res/Moviedata"); //get full path for Moviedata folder
@@ -155,7 +155,7 @@ public class WriteMovie implements WriteFile{
 
             } else {
                 for (String m : lstOfMovie) {
-                    ArrayList<String> lst = read_file(p1, m, "Moviedata");
+                    ArrayList<String> lst = readFile(p1, m, "Moviedata");
                     HashMap<Object, Object> moviereview = new HashMap<>(); // initialise a HashMap
                     String a = m.replace(".txt", "");
                     FileInputStream movier = new FileInputStream(MoviereviewPath + "/" + a + " reviews.properties");
@@ -186,7 +186,7 @@ public class WriteMovie implements WriteFile{
      * @return Boolean
      */
 
-    public Boolean delete_file(Object movie) {
+    public Boolean deleteFile(Object movie) {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         File moviefile = new File(p1 + "/src/main/res/Moviedata/" + ((Movie) movie).moviename + ".txt");
         File moviereviewfile = new File(p1 + "/src/main/res/Moviereview/" + ((Movie) movie).moviename + " reviews.properties");
@@ -198,7 +198,7 @@ public class WriteMovie implements WriteFile{
     /**
      * Helper method
      */
-    public ArrayList<String> read_file(Path str1, String fn, String folder) throws IOException {
+    public ArrayList<String> readFile(Path str1, String fn, String folder) throws IOException {
         moviereader = new FileReader(str1.toString() + "/src/main/res/" + folder + "/" + fn);
         getmovie = new BufferedReader(moviereader);
 

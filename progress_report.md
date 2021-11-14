@@ -7,7 +7,7 @@ To summarize the specifications we wrote, our program provides a platform for no
 According to our CRC model, we have 16 classes in total, each class is assigned with a function according to the clean architecture. Entity includes User, Normal User, Admin User, Movie, Review, which is the innermost part of the code, that creates new objects when other outer classes calls. Use cases are Movie Manager, Review Manager, User Manager, Writeflie, Write Review, Write Movie, Write User, and IgnoreFirstLineBufferedWriter. The managers pack the inputs and interact with write classes to create/write/read the file. There are two controllers, AdminInputProcessor and NormalInuptProcessor. Each is responsible for receiving and processing input from the UI. The UserInterface is the command line interface which receives input.
 
 ### Walk-through Summary
-In the program, Controllers (AdminInputProcessor and NormalInputProcessor) will receive necessary inputs typed by users from the Command Line Interface (UserInterface in this case), and pass them to Use Cases (all the xxxManager). After that, entities will receive all the information needed and those Use Cases (all the Writexxx) will record the changes.
+In the program, Controllers (AdminInputProcessor and NormalCUser) will receive necessary inputs typed by users from the Command Line Interface (UserInterface in this case), and pass them to Use Cases (all the xxxManager). After that, entities will receive all the information needed and those Use Cases (all the Writexxx) will record the changes.
 
 The walk-through we wrote contains a scenario for users to write reviews. In order to write reviews for each movie, users should register an account first, and do the movie search in the program; after that, the user is able to write reviews and see others’ reviews for the specific movie. The reviews created by users will be recorded into files. The whole process of writing reviews follows the order mentioned above.
 
@@ -26,14 +26,14 @@ We are struggling with some special techniques and special usage of Property Cla
 
 When we wrote UserInterface, we encountered some corner cases. There are some questions we had: What is the scanner receiving when the user just pushes enter? How to use Try...Catch statement more efficiently, for example, when the method I call only returns true or false, the try-catch block is no longer useful, but there are still some weird cases (like when the user just pushes enter as input) that catches exceptions.We might need to break the large block of UI into some small blocks of code using some helper methods.
 
-Both AdminInputProcessor and NormalInputProcessor use the same private helper method, which is a duplicating use of code. We have not come up with an appropriate solution to it.
+Both AdminInputProcessor and NormalCUser use the same private helper method, which is a duplicating use of code. We have not come up with an appropriate solution to it.
 
 ### Some Good Designs
 Our structure of code works well because our design of code perfectly follows the Clean Architecture Model, each layer has its own clear functions, which makes our code tidy and clean.
 In addition, the program has considered a lot of corner conditions and added some exception handling features, so when the program runs it would be less likely to have errors which cause the program to break.
 
 ### Contribution Summary
-In this project, Jing Pan completed the User, AdminUser, NormalUser UserManager, WriteFile and WriteUser. Jacquelyn Wang worked on the ReviewManager, and also completed NormalInputProcessor with Yuxuan Li, and Yuxuan also completed AdminInputProcessor and the unittest of NormalUser Class. Fan Pan and Haitao Qiu worked together for UserInterface. Haitao Qiu also completed MovieManager class. Jiaxi Li finished Review and WriteReview classes. Hao Han worked for classes Movie, WriteMovie and the helper class called IgnoreFirstLineBufferedWriter.
+In this project, Jing Pan completed the User, AdminUser, NormalUser UserManager, WriteFile and WriteUser. Jacquelyn Wang worked on the ReviewManager, and also completed NormalCUser with Yuxuan Li, and Yuxuan also completed AdminInputProcessor and the unittest of NormalUser Class. Fan Pan and Haitao Qiu worked together for UserInterface. Haitao Qiu also completed MovieManager class. Jiaxi Li finished Review and WriteReview classes. Hao Han worked for classes Movie, WriteMovie and the helper class called IgnoreFirstLineBufferedWriter.
 
 ### Future Plans
 We hope to add another function, “coins”, for our programs. In our plan, normal users can earn coins after registration and give coins to their favourite reviewers. When the amount of coins sent by normal users reaches a certain amount, they can get tickets, which could be used to unlock functions, like changing their username and increasing the limit number of playlists.

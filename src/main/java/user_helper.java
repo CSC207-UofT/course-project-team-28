@@ -11,7 +11,7 @@ public class user_helper {
         username = scanner.nextLine();
         System.out.println("Please enter your password (should only contains numbers and letter):");
         password = scanner.nextLine();
-        while (!(IM.nucontroller.register(username, password))){
+        while (!(IM.nucontroller.register(username, password, IM.wu))){
             System.out.println("Username or password incorrect, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
@@ -48,7 +48,7 @@ public class user_helper {
             choose = scanner.nextLine();
         }
         if (choose.equals("Profile")){
-            System.out.println(IM.nucontroller.profile_page(userName));
+            System.out.println(IM.nucontroller.profilePage(userName));
             System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
             String choice = scanner.nextLine();
 
