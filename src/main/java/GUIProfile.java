@@ -21,14 +21,14 @@ public class GUIProfile extends View {
     }
     private void PlaceThingsOnP1(JPanel p1){
         p1.setLayout(null);
-        JLabel usernameLabel = new JLabel("Username: " + IM.nucontroller.profile_page(userName).get(0));
+        JLabel usernameLabel = new JLabel("Username: " + IM.nucontroller.profile_page(userName)[0]);
         usernameLabel.setFont(font1);
         usernameLabel.setBounds(20,20,700,200);
-        JLabel coinLabel = new JLabel("number of coins: " + "300");//IM.nucontroller.profile_page(userName).get(4)
+        JLabel coinLabel = new JLabel("number of coins: " + IM.nucontroller.profile_page(userName)[5]);
         coinLabel.setBounds(20, 60, 300, 200);
-        JLabel contactInfoLabel = new JLabel("Contact info: " + IM.nucontroller.profile_page(userName).get(1));
+        JLabel contactInfoLabel = new JLabel("Contact info: " + IM.nucontroller.profile_page(userName)[2]);
         contactInfoLabel.setBounds(20, 90, 700, 200);
-        JLabel description = new JLabel("User description: " + IM.nucontroller.profile_page(userName).get(2));
+        JLabel description = new JLabel("User description: " + IM.nucontroller.profile_page(userName)[3]);
         description.setBounds(20, 120, 700, 200);
         JButton EditContactInfo = new JButton("Edit");
         EditContactInfo.setBounds(150,180,60,20);
@@ -55,8 +55,4 @@ public class GUIProfile extends View {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return frame;
     }
-
-//    public static void main(String[] args) {
-//        new GUIProfile(false);
-//    }
 }

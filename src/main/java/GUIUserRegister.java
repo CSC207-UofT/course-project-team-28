@@ -62,9 +62,9 @@ public class GUIUserRegister extends SharedView {
         boolean register = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            register = (IM.aucontroller.register(userName, password, code)); // IM.wu
+            register = (IM.aucontroller.register(userName, password, code, IM.wu));
         } else {
-            register = (IM.nucontroller.register(userName, password)); //IM.wu
+            register = (IM.nucontroller.register(userName, password, IM.wu));
         }
         if(register){
             JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );

@@ -38,13 +38,13 @@ public class UserInterface {
 
 
             // if the username/password is invalid, prompt the user to enter again
-            while (!(IM.nucontroller.register(username, password))){
-                System.out.println("Something is wrong with your username or password, please try again");
-                System.out.println("Please enter your username (should only contains numbers and letter):");
-                username = scanner.nextLine();
-                System.out.println("Please enter your password (should only contains numbers and letter):");
-                password = scanner.nextLine();
-            }
+//            while (!(IM.nucontroller.register(username, password))){
+//                System.out.println("Something is wrong with your username or password, please try again");
+//                System.out.println("Please enter your username (should only contains numbers and letter):");
+//                username = scanner.nextLine();
+//                System.out.println("Please enter your password (should only contains numbers and letter):");
+//                password = scanner.nextLine();
+//            }
             //TODO
             userName = username;
             IM.wu.createFile(username, password, "NormalUser");
@@ -309,15 +309,15 @@ public class UserInterface {
             password = scanner.nextLine();
             System.out.println("Please enter your administration code:");
             code = scanner.nextLine();
-            while (!(IM.aucontroller.register(username, password, code))){
-                System.out.println("Somthing wrong with your username/password/code, please try again.");
-                System.out.println("Please enter your username (should only contains numbers and letter):");
-                username = scanner.nextLine();
-                System.out.println("Please enter your password (should only contains numbers and letter):");
-                password = scanner.nextLine();
-                System.out.println("Please enter your administration code:");
-                code = scanner.nextLine();
-            }
+//            while (!(IM.aucontroller.register(username, password, code))){
+//                System.out.println("Somthing wrong with your username/password/code, please try again.");
+//                System.out.println("Please enter your username (should only contains numbers and letter):");
+//                username = scanner.nextLine();
+//                System.out.println("Please enter your password (should only contains numbers and letter):");
+//                password = scanner.nextLine();
+//                System.out.println("Please enter your administration code:");
+//                code = scanner.nextLine();
+//            }
             userName = username;
             IM.wu.createFile(username, password, "AdminUser");
             if(IM.aucontroller.login(username, password, code)) {
@@ -341,7 +341,7 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
-                while (!(IM.aucontroller.upload_movie(movie_name, movie_link))) {
+                while (!(IM.aucontroller.uploadMovie(movie_name, movie_link))) {
                     System.out.println("invalid inputs, please try again: ");
                     System.out.println("Please enter the name of the movie");
                     movie_name = scanner.nextLine();
@@ -402,7 +402,7 @@ public class UserInterface {
                 String movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 String movie_link = scanner.nextLine();
-                while (!(IM.aucontroller.upload_movie(movie_name, movie_link))) {
+                while (!(IM.aucontroller.uploadMovie(movie_name, movie_link))) {
                     System.out.println("invalid inputs, please try again.");
                     System.out.println("Please enter the name of the movie");
                     movie_name = scanner.nextLine();
