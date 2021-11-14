@@ -11,7 +11,7 @@ public class user_helper {
         username = scanner.nextLine();
         System.out.println("Please enter your password (should only contains numbers and letter):");
         password = scanner.nextLine();
-        while (!(IM.nucontroller.login(username, password))){
+        while (!(IM.nucontroller.register(username, password))){
             System.out.println("Username or password incorrect, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
