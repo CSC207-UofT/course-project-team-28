@@ -14,7 +14,7 @@ public class admin_helper {
         password = scanner.nextLine();
         System.out.println("Please enter your administration code:");
         code = scanner.nextLine();
-        while (!(IM.aucontroller.register(username, password, code))) {
+        while (!(IM.aucontroller.register(username, password, code, IM.wu))) {
             System.out.println("Wrong input of username/password/code, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
@@ -43,7 +43,7 @@ public class admin_helper {
             String movie_name = scanner.nextLine();
             System.out.println("Please enter the link of the movie");
             String movie_link = scanner.nextLine();
-            while (!(IM.aucontroller.upload_movie(movie_name, movie_link))) {
+            while (!(IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm))) {
                 System.out.println("invalid inputs, please try again: ");
                 System.out.println("Please enter the name of the movie");
                 movie_name = scanner.nextLine();
@@ -51,8 +51,7 @@ public class admin_helper {
                 movie_link = scanner.nextLine();
             }
             //TODO
-            //aucontroller.upload_movie(movie_name, movie_link);
-            IM.wm.create_file(movie_name, movie_link, "");
+            IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm);
             System.out.println("Movie added");
             System.out.println("program exits.");
 

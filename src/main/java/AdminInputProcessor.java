@@ -77,14 +77,14 @@ public class AdminInputProcessor {
      * return true if those strings are non-empty and the movie is not uploaded before,
      * and can be uploaded.
      */
-    public boolean uploadMovie(String moviename, String movielink) {
+    public boolean uploadMovie(String moviename, String movielink, WriteMovie wm) {
         if (moviename.length() < 1 | movielink.length() < 3) {
             return false;
         }
         if (mov_mana.get_movie(moviename) != null) {
             return false;
         }
-        return true;
+        return wm.createFile(moviename, movielink, "");
     }
 
 

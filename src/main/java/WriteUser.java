@@ -21,22 +21,28 @@ public class WriteUser implements WriteFile{
     protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for AdminUser file
     protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for NormalUser file
 
-    protected NormalCUser nip;
+    protected NormalCUser ncu;
+    protected NormalCCoin ncc;
+    protected NormalCMovie ncm;
     protected AdminInputProcessor aip;
 
 
-    public  WriteUser(NormalCUser nip, AdminInputProcessor aip, UserManager um){
+    public  WriteUser(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, UserManager um){
         this.um = um;
         getObjectFromFile();
 
-        this.nip = nip;
+        this.ncu = ncu;
+        this.ncc = ncc;
+        this.ncm = ncm;
         this.aip = aip;
-        this.nip.setUserMana(this.um);
+        this.ncu.setUserMana(this.um);
+        this.ncc.setUserMana(this.um);
+        this.ncm.setUserMana(this.um);
         this.aip.setUser_mana(this.um);
     }
 
 
-    public  WriteUser(String normalPath, String adminPath, NormalCUser nip, AdminInputProcessor aip, UserManager um){
+    public  WriteUser(String normalPath, String adminPath, NormalCUser ncu, AdminInputProcessor aip, UserManager um){
         this.AdminUserFolderPath = new File(adminPath);
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";
@@ -45,9 +51,9 @@ public class WriteUser implements WriteFile{
 
         this.um = um;
 
-        this.nip = nip;
+        this.ncu = ncu;
         this.aip = aip;
-        this.nip.setUserMana(this.um);
+        this.ncu.setUserMana(this.um);
         this.aip.setUser_mana(this.um);
     }
 
@@ -185,29 +191,29 @@ public class WriteUser implements WriteFile{
      * @param writeType the type of info that user wants to update. e.g. contactInfo, description
      * @return return a string of new contact info
      */
-    public String editProfileReadAndWrite(String newUpdate, String username, String writeType) {
+    public boolean editProfileReadAndWrite(String newUpdate, String username, String writeType) {
         ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
         switch (writeType) {
             case "contactInfo":
                 lst.set(2, newUpdate);
                 writeFile(halfNuPath + username + ".txt", lst);
-                return lst.get(2).toString();
+                return lst.get(2).toString().equals(newUpdate);
             case "description":
                 lst.set(3, newUpdate);
                 writeFile(halfNuPath + username + ".txt", lst);
-                return lst.get(3).toString();
+                return lst.get(3).toString().equals(newUpdate);
             case "category":
                 lst.set(4, newUpdate);
                 writeFile(halfNuPath + username + ".txt", lst);
-                return lst.get(4).toString();
+                return lst.get(4).toString().equals(newUpdate);
             default:
                 // give a positive or negative
                 int coin = Integer.parseInt((String) lst.get(5)) + Integer.parseInt(newUpdate);
 
                 lst.set(5, Integer.toString(coin));
                 writeFile(halfNuPath + username + ".txt", lst);
-                return lst.get(5).toString();
+                return lst.get(5).toString().equals(newUpdate);
         }
     }
 

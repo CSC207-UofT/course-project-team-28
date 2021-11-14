@@ -9,7 +9,10 @@ public class UI_admin_register {
         String userName = result.get(0);
         String password = result.get(1);
         String code = result.get(2);
-        IM.wu.create_file(userName, password, "AdminUser");
+        IM.ncu.setCurrNuname(userName);
+        IM.ncm.setCurrNuname(userName);
+        IM.ncc.setCurrNuname(userName);
+
         if(IM.aucontroller.login(userName, password, code)) {
             System.out.println("Admin account successfully created, you are automatically logged in.");
         }

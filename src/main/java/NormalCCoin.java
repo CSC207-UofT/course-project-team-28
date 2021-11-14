@@ -1,8 +1,7 @@
 public class NormalCCoin extends NormalController{
 
-    public NormalCCoin(String currNuname) {
+    public NormalCCoin() {
         super();
-        this.currNuname = currNuname;
     }
 
 

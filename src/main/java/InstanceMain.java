@@ -1,6 +1,8 @@
 public class InstanceMain {
     //controller
-    public final NormalCUser nucontroller = new NormalCUser();
+    public final NormalCUser ncu = new NormalCUser();
+    public final NormalCCoin ncc = new NormalCCoin();
+    public final NormalCMovie ncm = new NormalCMovie();
     public final AdminInputProcessor aucontroller = new AdminInputProcessor();
 
     //use case
@@ -10,11 +12,13 @@ public class InstanceMain {
     public final CoinManager cm = new CoinManager(um, rm);
 
     //gateway
-    public final WriteUser wu = new WriteUser(nucontroller, aucontroller, um);
-    public final WriteMovie wm = new WriteMovie(nucontroller, aucontroller, mm);
-    public final WriteReview wr = new WriteReview(nucontroller, rm);
+    public final WriteUser wu = new WriteUser(ncu, ncc, ncm, aucontroller, um);
+    public final WriteMovie wm = new WriteMovie(ncu, ncc, ncm, aucontroller, mm);
+    public final WriteReview wr = new WriteReview(ncu, ncc, ncm, rm);
 
     public InstanceMain(){
-        nucontroller.setCoinMana(cm);
+        ncu.setCoinMana(cm);
     }
+
+
 }
