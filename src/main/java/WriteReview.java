@@ -15,7 +15,7 @@ public class WriteReview implements WriteFile{
     protected FileReader reviewreader;
     protected BufferedReader getreview;
     protected FileWriter writereview;
-    protected NormalInputProcessor nip;
+    protected NormalCUser nip;
 
 
 
@@ -27,14 +27,14 @@ public class WriteReview implements WriteFile{
      */
 
 
-    public WriteReview(NormalInputProcessor nip, ReviewManager rm){
+    public WriteReview(NormalCUser nip, ReviewManager rm){
         this.rm = rm;
 
         getObjectFromFile();
 
 
         this.nip = nip;
-        this.nip.setRev_mana(this.rm);
+        this.nip.setRevMana(this.rm);
     }
 
 

@@ -22,7 +22,7 @@
 **Controller**
 
 ![AdminInputProcessor](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/adminipcrc.jpeg)
-![NormalInputProcessor](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/normipcrc.jpeg)
+![NormalCUser](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/normipcrc.jpeg)
 ****
 **Command Line Interface**
 
