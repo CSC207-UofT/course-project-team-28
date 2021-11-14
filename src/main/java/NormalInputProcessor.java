@@ -25,7 +25,7 @@ public class NormalInputProcessor {
         this.user_mana = um;
     }
 
-    public void setCoinMana(CoinManager cm){ this.coinMana = cm;}
+    public void setCoinMana(CoinManager cm) { this.coinMana = cm;}
 
     /**
      * Return true if the given string (username or password) is alphanumeric,
@@ -43,15 +43,14 @@ public class NormalInputProcessor {
         return true;
     }
 
-
+    //user
     /**
      * create normal user iff the provided username and password is legal
      * username and password must be non-empty, only contain numbers or letters,
      * and username must be unique among all the normal users.
-     * Auto-login if registered successfully
+     * DO NOT auto-login if registered successfully
      */
-    //TODO
-    public boolean register(String un, String pass) {
+    public boolean register(String un, String pass, WriteUser wu) {
         if (! this.is_nonemptyalphanumeric(un)){
             return false;
         }
@@ -63,6 +62,7 @@ public class NormalInputProcessor {
             return false;
         }
         else {
+            wu.createFile(un, pass, "NormalUser");
             return true;
         }
     }
@@ -81,6 +81,39 @@ public class NormalInputProcessor {
         }
     }
 
+
+    /**
+     * when given a String of the normal user's username, return an
+     * arraylist [username, password, contact info, description, category, coin, playlist]
+     */
+    //TODO: should add new User profiles info on profile page
+    public Object[] profile_page(String username){
+        return user_mana.getUserInfoList(username, "NormalUser");
+//        ArrayList<Object> newarray = new ArrayList<>();
+//        Object[] wholelist = user_mana.getUserInfoList(username, "NormalUser");
+//        newarray.add(wholelist[0]);
+//        newarray.add(wholelist[2]);
+//        newarray.add(wholelist[3]);
+//        return newarray;
+    }
+
+    /**
+     * Given a String newinfo, update the user's profile.
+     * return ture iff updated successfully.
+     */
+    //TODO: add new parameter, the corresponding place where call this method in UI need to add onr more parameter
+    public boolean edit_profile(String newInfo, String updateType) {
+        if (updateType.equals("coin")){
+            return user_mana.updateCoin(this.curr_nuname, Integer.parseInt(newInfo));
+        }
+        else{
+            return user_mana.updateInfo(this.curr_nuname, newInfo, updateType);
+        }
+
+    }
+
+
+    //movie
 
     /**
      * check if the moviename exists
@@ -115,19 +148,6 @@ public class NormalInputProcessor {
     }
 
 
-    /**
-     * when given a String of the normal user's username, return an
-     * arraylist [username, contact info, playlist]
-     */
-    //TODO: should add new User profiles info on profile page
-    public ArrayList<Object> profile_page(String username){
-        ArrayList<Object> newarray = new ArrayList<>();
-        Object[] wholelist = user_mana.getUserInfoList(username, "NormalUser");
-        newarray.add(wholelist[0]);
-        newarray.add(wholelist[2]);
-        newarray.add(wholelist[3]);
-        return newarray;
-    }
 
 
     /**
@@ -136,7 +156,7 @@ public class NormalInputProcessor {
      * return ture iff added successfully.
      */
     public boolean like_movie(String moviename) {
-        if (user_mana.give_like(this.curr_nuname, moviename)){
+        if (user_mana.giveLike(this.curr_nuname, moviename)){
             mov_mana.like_movie(moviename);
             return true;
         }
@@ -159,11 +179,11 @@ public class NormalInputProcessor {
      * Given a String moviename, undo like.
      * return ture iff added successfully.
      */
-    public boolean undo_like(String moviename) throws IOException {
+    public boolean undo_like(String moviename) {
         Object[] user_info = user_mana.getUserInfoList(curr_nuname, "NormalUser");
         ArrayList<String> user_playlist = (ArrayList<String>) user_info[6];
         if (user_playlist.contains(moviename)){
-            user_mana.undo_like(this.curr_nuname, moviename);
+            user_mana.undoLike(this.curr_nuname, moviename);
             mov_mana.undolike_movie(moviename);
             return true;
         }
@@ -173,19 +193,5 @@ public class NormalInputProcessor {
     }
 
 
-    /**
-     * Given a String newinfo, update the user's profile.
-     * return ture iff updated successfully.
-     */
-    //TODO: add new parameter, the corresponding place where call this method in UI need to add onr more parameter
-    public boolean edit_profile(String newInfo, String updateType) {
-        if (updateType.equals("coin")){
-            return user_mana.updateCoin(this.curr_nuname, Integer.parseInt(newInfo));
-        }
-        else{
-            return user_mana.updateInfo(this.curr_nuname, newInfo, updateType);
-        }
-
-    }
 
 }
