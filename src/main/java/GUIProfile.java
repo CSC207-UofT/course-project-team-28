@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
@@ -33,7 +35,13 @@ public class GUIProfile extends View {
         JLabel description = new JLabel("User description: " + IM.ncu.profilePage(userName)[3]);
         description.setBounds(20, 120, 700, 200);
         JButton EditContactInfo = new JButton("Edit");
-        EditContactInfo.setBounds(150,180,60,20);
+        EditContactInfo.setBounds(180,180,60,20);
+        EditContactInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                nextView(new GUIEditContactInfo(), false);
+            }
+        });
         p1.add(usernameLabel);
         p1.add(coinLabel);
         p1.add(contactInfoLabel);
@@ -47,8 +55,7 @@ public class GUIProfile extends View {
         PlayList.setBounds(10,10,500,500);
         p2.add(PlayList);
         PlayList.setFont(font1);
-        }
-
+    }
 
     @Override
     public JFrame getFrame() {
