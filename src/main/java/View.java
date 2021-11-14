@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public abstract class View {
     protected static final InstanceMain IM = new InstanceMain();
+    protected static String userName = "";
 
     private final JFrame frame = new JFrame();
 
