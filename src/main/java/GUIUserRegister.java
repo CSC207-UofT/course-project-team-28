@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 
 public class GUIUserRegister extends SharedView {
     private static String userName = "";
-    private static JFrame frame;
     private static JPanel panel;
     private static JLabel usernameLabel;
     private static JLabel pswLabel;
@@ -16,13 +15,8 @@ public class GUIUserRegister extends SharedView {
     private final JTextField adminCodeText = new JTextField(20);
     public GUIUserRegister(Boolean isAdmin){
         super(isAdmin);
-        frame = new JFrame("Register");
         panel = new JPanel();
-        frame.setSize(350,200);
-        frame.add(panel);
         placeComponents(panel);
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setVisible(true);
     }
     //Place components on GUI
     private void placeComponents(JPanel panel) {
@@ -73,24 +67,20 @@ public class GUIUserRegister extends SharedView {
             register = (IM.nucontroller.register(userName, password)); //IM.wu
         }
         if(register){
-            RegResult.setText("Account successfully created.");
+            JOptionPane.showMessageDialog(null, "Successfully registered", ":)", JOptionPane.PLAIN_MESSAGE );
+            this.getFrame().dispose();
         } else {
             RegResult.setText("Something is wrong with your username or password.");
         }
 
     }
 
-
-    @Override
-    protected JFrame getFrame() {
+    public JFrame getFrame() {
+        JFrame frame = super.getFrame();
+        frame.setTitle("Register");
+        frame.setSize(350,200);
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         return frame;
-    }
-
-    @Override
-    protected void nextView(View view) {
-        JFrame nextFrame = view.getFrame();
-        nextFrame.setLocationRelativeTo(null);
-        nextFrame.setVisible(true);
-        frame.dispose();
     }
 }
