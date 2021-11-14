@@ -72,7 +72,7 @@ public class admin_helper {
                 System.out.println("Please enter the link of the movie");
                 movie_link = scanner.nextLine();
             }
-            //TODO
+
             IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm);
             System.out.println("Movie added");
             System.out.println("program exits.");
