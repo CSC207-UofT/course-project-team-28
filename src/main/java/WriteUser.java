@@ -1,14 +1,8 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static java.util.Collections.addAll;
 
 
 /**
@@ -27,22 +21,22 @@ public class WriteUser implements WriteFile{
     protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for AdminUser file
     protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for NormalUser file
 
-    protected NormalInputProcessor nip;
+    protected NormalCUser nip;
     protected AdminInputProcessor aip;
 
 
-    public  WriteUser(NormalInputProcessor nip, AdminInputProcessor aip, UserManager um){
+    public  WriteUser(NormalCUser nip, AdminInputProcessor aip, UserManager um){
         this.um = um;
         getObjectFromFile();
 
         this.nip = nip;
         this.aip = aip;
-        this.nip.setUser_mana(this.um);
+        this.nip.setUserMana(this.um);
         this.aip.setUser_mana(this.um);
     }
 
 
-    public  WriteUser(String normalPath, String adminPath, NormalInputProcessor nip, AdminInputProcessor aip, UserManager um){
+    public  WriteUser(String normalPath, String adminPath, NormalCUser nip, AdminInputProcessor aip, UserManager um){
         this.AdminUserFolderPath = new File(adminPath);
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";
@@ -53,7 +47,7 @@ public class WriteUser implements WriteFile{
 
         this.nip = nip;
         this.aip = aip;
-        this.nip.setUser_mana(this.um);
+        this.nip.setUserMana(this.um);
         this.aip.setUser_mana(this.um);
     }
 

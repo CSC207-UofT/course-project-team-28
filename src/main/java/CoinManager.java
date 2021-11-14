@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents the entire system of coins

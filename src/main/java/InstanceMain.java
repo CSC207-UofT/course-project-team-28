@@ -1,6 +1,6 @@
 public class InstanceMain {
     //controller
-    public final NormalInputProcessor nucontroller = new NormalInputProcessor();
+    public final NormalCUser nucontroller = new NormalCUser();
     public final AdminInputProcessor aucontroller = new AdminInputProcessor();
 
     //use case

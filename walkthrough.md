@@ -8,7 +8,7 @@ In the profile, users can create a playlist of movies that they like, and write 
 *Scenario write review:* 
 
 The **UserInterface** (a UI) gathers user’s review input as a string, 
-and passes it to the class **NormalInputProcessor** (a controller). 
+and passes it to the class **NormalCUser** (a controller). 
 The controller then packs the review with the corresponding movie name, 
 which is delivered to **ReviewManager** (a use case) and **Review** (entity) creates a new Review object. 
 The use case matches the review and movie name with username, 

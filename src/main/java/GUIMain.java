@@ -8,49 +8,45 @@ public class GUIMain extends View {
     private JButton loginButton;
     private JButton adminRegisterButton;
     private JButton adminLoginButton;
-    private JFrame jFrame;
     public GUIMain() {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserRegister(false));
+                nextView(new GUIUserRegister(false),false);
             }
         });
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserLogin(false));
+                nextView(new GUIUserLogin(false), true);
             }
         });
         adminLoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserLogin(true));
+                nextView(new GUIUserLogin(true), true);
             }
         });
         adminRegisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserRegister(true));
+                nextView(new GUIUserRegister(true),false);
             }
         });
     }
 
     @Override
     protected JFrame getFrame() {
-        jFrame = new JFrame("App");
+        JFrame jFrame = super.getFrame();
+        jFrame.setTitle("Our App");
         jFrame.setSize(300, 120);
         jFrame.setContentPane(panel1);
-        jFrame.setLocationRelativeTo(null);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return jFrame;
     }
 
-    @Override
-    protected void nextView(View view) {
-        JFrame nextFrame = view.getFrame();
-        nextFrame.setLocationRelativeTo(null);
-        nextFrame.setVisible(true);
-        jFrame.dispose();
+    public static void main(String[] args){
+        View gui = new GUIMain();
+        gui.nextView(gui,false);
     }
 }
