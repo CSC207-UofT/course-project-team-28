@@ -15,7 +15,9 @@ public class WriteReview implements WriteFile{
     protected FileReader reviewreader;
     protected BufferedReader getreview;
     protected FileWriter writereview;
-    protected NormalCUser nip;
+    protected NormalCUser ncu;
+    protected NormalCCoin ncc;
+    protected NormalCMovie ncm;
 
 
 
@@ -27,14 +29,18 @@ public class WriteReview implements WriteFile{
      */
 
 
-    public WriteReview(NormalCUser nip, ReviewManager rm){
+    public WriteReview(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, ReviewManager rm){
         this.rm = rm;
 
         getObjectFromFile();
 
 
-        this.nip = nip;
-        this.nip.setRevMana(this.rm);
+        this.ncu = ncu;
+        this.ncc = ncc;
+        this.ncm = ncm;
+        this.ncu.setRevMana(this.rm);
+        this.ncc.setRevMana(this.rm);
+        this.ncm.setRevMana(this.rm);
     }
 
 

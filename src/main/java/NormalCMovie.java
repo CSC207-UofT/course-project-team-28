@@ -2,9 +2,8 @@ import java.util.ArrayList;
 
 public class NormalCMovie extends NormalController{
 
-    public NormalCMovie(String currNuname) {
+    public NormalCMovie() {
         super();
-        this.currNuname = currNuname;
     }
 
 
@@ -50,9 +49,11 @@ public class NormalCMovie extends NormalController{
      * Given a String moviename, add like.
      * return ture iff added successfully.
      */
-    public boolean likeMovie(String moviename) {
+    public boolean likeMovie(String moviename, WriteMovie wm, WriteUser wu) {
         if (userMana.giveLike(this.currNuname, moviename)){
+            wm.addLikeToFile( moviename, "Increase");
             movMana.like_movie(moviename);
+            wu.givelikeReadAndWrite(moviename, this.currNuname);
             return true;
         }
         else {
@@ -74,12 +75,14 @@ public class NormalCMovie extends NormalController{
      * Given a String moviename, undo like.
      * return ture iff added successfully.
      */
-    public boolean undoLike(String moviename) {
+    public boolean undoLike(String moviename, WriteMovie wm, WriteUser wu) {
         Object[] user_info = userMana.getUserInfoList(currNuname, "NormalUser");
         ArrayList<String> user_playlist = (ArrayList<String>) user_info[6];
         if (user_playlist.contains(moviename)){
             userMana.undoLike(this.currNuname, moviename);
             movMana.undolike_movie(moviename);
+            wm.addLikeToFile(moviename, "Decrease");
+            wu.undoLikeReadAndWrite(moviename, this.currNuname);
             return true;
         }
         else{
@@ -91,10 +94,9 @@ public class NormalCMovie extends NormalController{
      * add a review when provided with moviename of the movie and review content
      * return ture iff a review is successfully added. false otherwise
      */
-    public boolean writeReview(String movieName, String revContent, WriteReview wr) {
-        movMana.add_review_to_movie(currNuname, movieName, revContent);
-        return revMana.writeReview(this.currNuname, movieName, revContent, 0, -1) &&
-                wr.createFile(currNuname, movieName, revContent);
+    public boolean writeReview(String movieName, String revContent, WriteReview wr, WriteMovie wm) {
+        wm.addReviewToFile(this.currNuname, movieName, revContent);
+        return wr.createFile(currNuname, movieName, revContent);
     }
 
 

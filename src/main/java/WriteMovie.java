@@ -18,7 +18,9 @@ public class WriteMovie implements WriteFile{
     protected FileReader moviereader;
     protected BufferedReader getmovie;
     protected FileWriter writemovie;
-    protected NormalCUser nip;
+    protected NormalCUser ncu;
+    protected NormalCCoin ncc;
+    protected NormalCMovie ncm;
     protected AdminInputProcessor aip;
 
     /**
@@ -27,14 +29,18 @@ public class WriteMovie implements WriteFile{
      * @return boolean
      */
 
-    public WriteMovie(NormalCUser nip, AdminInputProcessor aip, MovieManager mm){
+    public WriteMovie(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, MovieManager mm){
         this.mm = mm;
         getObjectFromFile();
 
-        this.nip = nip;
+        this.ncu = ncu;
+        this.ncc = ncc;
+        this.ncm = ncm;
         this.aip = aip;
-        this.nip.setMovMana(mm);
-        this.aip.setMov_mana(mm);
+        this.ncu.setMovMana(this.mm);
+        this.ncc.setMovMana(this.mm);
+        this.ncm.setMovMana(this.mm);
+        this.aip.setMov_mana(this.mm);
     }
 
     @Override

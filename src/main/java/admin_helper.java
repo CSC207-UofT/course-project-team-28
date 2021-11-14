@@ -65,16 +65,15 @@ public class admin_helper {
             String movie_name = scanner.nextLine();
             System.out.println("Please enter the link of the movie");
             String movie_link = scanner.nextLine();
-            while (!(IM.aucontroller.uploadMovie(movie_name, movie_link))) {
+            while (!(IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm))) {
                 System.out.println("invalid inputs, please try again: ");
                 System.out.println("Please enter the name of the movie");
                 movie_name = scanner.nextLine();
                 System.out.println("Please enter the link of the movie");
                 movie_link = scanner.nextLine();
             }
-            //TODO
-            //aucontroller.upload_movie(movie_name, movie_link);
-            IM.wm.createFile(movie_name, movie_link, "");
+
+            IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm);
             System.out.println("Movie added");
             System.out.println("program exits.");
 

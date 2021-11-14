@@ -64,7 +64,7 @@ public class GUIUserLogin extends SharedView {
             String code = adminCodeText.getText();
             login = (IM.aucontroller.login(userName, password, code));
         } else {
-            login = IM.nucontroller.login(userName, password);
+            login = IM.ncu.login(userName, password);
         }
         if (login){
             loginResult.setText("Login successful.");

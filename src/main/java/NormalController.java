@@ -6,8 +6,8 @@ public class NormalController {
     protected ReviewManager revMana;
     protected CoinManager coinMana;
 
-    public NormalController() {
-        this.currNuname = "";
+    public void setCurrNuname(String currNuname) {
+        this.currNuname = currNuname;
     }
 
     public void setRevMana(ReviewManager rm) {
