@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class UserInterface {
     private static final InstanceMain IM = new InstanceMain();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // User chooses to register/login as normal or admin user
         System.out.println("Please enter your choice from Register, Login, Admin register and Admin login:");
         Scanner scanner = new Scanner(System.in);
