@@ -68,10 +68,12 @@ public class NormalCUser extends NormalController {
     //TODO: add new parameter, the corresponding place where call this method in UI need to add onr more parameter
     public boolean editProfile(String newInfo, String updateType, WriteUser wu) {
         if (updateType.equals("coin")){
-            return userMana.updateCoin(this.currNuname, Integer.parseInt(newInfo)) && wu.editProfileReadAndWrite(newInfo, this.currNuname, "coin");
+            return userMana.updateCoin(this.currNuname, Integer.parseInt(newInfo)) &&
+                    wu.editProfileReadAndWrite(newInfo, this.currNuname, "coin");
         }
         else{
-            return userMana.updateInfo(this.currNuname, newInfo, updateType) &&  wu.editProfileReadAndWrite(newInfo, this.currNuname, "contactInfo");
+            return userMana.updateInfo(this.currNuname, newInfo, updateType) &&
+                    wu.editProfileReadAndWrite(newInfo, this.currNuname, "contactInfo");
         }
 
     }

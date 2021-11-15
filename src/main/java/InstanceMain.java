@@ -18,6 +18,7 @@ public class InstanceMain {
 
     public InstanceMain(){
         ncu.setCoinMana(cm);
+        ncc.setCoinMana(cm);
     }
 
 

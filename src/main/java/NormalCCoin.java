@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class NormalCCoin extends NormalController{
 
     public NormalCCoin() {
@@ -6,14 +8,15 @@ public class NormalCCoin extends NormalController{
 
 
     /**
+     * !!!Should only be called with a valid reviewId
      * Return true if the number of coins that the user has is greater or equal to 1.
      * Given the username and reviewid, update the number of coins that the user has,
      * and update the number of coins that the review earns.
      */
-    public boolean giveCoinToRev(int reviewId, WriteReview wr, WriteUser wu){
+    public boolean giveCoinToRev(int reviewId, WriteReview wr, WriteUser wu) throws IOException {
         return coinMana.GiveCoinToReview(currNuname, reviewId) &&
-                wu.editProfileReadAndWrite("-1", currNuname, "coin");
-        //TODO: need to change coin in writeReview
+                wu.editProfileReadAndWrite("-1", currNuname, "coin") &&
+                wr.addCoinsToReview(reviewId, 1);
     }
 
 
