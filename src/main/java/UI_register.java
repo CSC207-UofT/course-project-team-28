@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class UI_register {
 
-    public static void main(Scanner scanner, InstanceMain IM) {
+    public static void main(Scanner scanner, InstanceMain IM) throws IOException {
         List<String> result = user_helper.register(scanner, IM);
         String username = result.get(0);
         String password = result.get(1);
