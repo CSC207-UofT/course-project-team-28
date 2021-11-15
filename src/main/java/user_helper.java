@@ -122,6 +122,7 @@ public class user_helper {
 
                 //TODO
                 IM.ncm.writeReview(moviename, review_content, IM.wr, IM.wm);
+                IM.ncc.EarnCoinAfterWriteRev(IM.wu);
 
                 System.out.println("Check your review: " + IM.ncm.movieProfile(moviename));
                 System.out.println("program exits.");
