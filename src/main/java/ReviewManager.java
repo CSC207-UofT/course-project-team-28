@@ -43,12 +43,20 @@ public class ReviewManager {
         ArrayList<Review> lst = this.MovietoRevs.get(moviename);
         StringBuilder temp = new StringBuilder();
 
-        for (Review rev : lst){
-            temp.append("\n[");
-            temp.append(rev.toString());
-            temp.append("]");
+        if(lst != null){
+            for (Review rev : lst){
+                temp.append("\n[");
+                temp.append(rev.toString());
+                temp.append("]");
+            }
+            return String.valueOf(temp);
         }
-        return String.valueOf(temp);
+        else {
+            temp.append("\n[");
+            temp.append("No review");
+            temp.append("]");
+            return String.valueOf(temp);
+        }
     }
 
 
@@ -150,7 +158,7 @@ public class ReviewManager {
     }
 
 
-    /**
+    /*
      * delete a Review from MovietoRevs, UsertoRevs, lst, and delete the Review in txt file.
      * Return ture iff the review has been successfully deleted from the lst/maps and the txt file.
      */
