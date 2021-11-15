@@ -39,7 +39,7 @@ public class GUIProfile extends View {
         JLabel description = new JLabel("User description: " + IM.ncu.profilePage(userName)[3]);
         description.setBounds(20, 120, 700, 200);
         JButton EditContactInfo = new JButton("Edit");
-        EditContactInfo.setBounds(180,180,60,20);
+        EditContactInfo.setBounds(280,180,60,20);
         EditContactInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

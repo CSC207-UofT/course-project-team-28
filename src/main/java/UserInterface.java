@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -29,16 +30,16 @@ public class UserInterface {
         if (choice.equals("Register")){
             UI_register.main(scanner, IM);
 
-        // if user chooses to log in as normal user
+            // if user chooses to log in as normal user
         }else if (choice.equals("Login")){
             UI_login.main(scanner, IM);
 
-        // If user chooses to register as admin, a fixed administration code is needed.
+            // If user chooses to register as admin, a fixed administration code is needed.
         }else if (choice.equals("Admin register")){
             UI_admin_register.main(scanner, IM);
 
 
-        //if user chooses to log in as admin user.
+            //if user chooses to log in as admin user.
         }else if (choice.equals("Admin login")){
             UI_admin_login.main(scanner, IM);
 
@@ -49,8 +50,3 @@ public class UserInterface {
         }
     }
 }
-
-
-
-
-
