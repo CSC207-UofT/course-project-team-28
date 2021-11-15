@@ -27,7 +27,16 @@ public class WriteUser implements WriteFile{
     protected AdminInputProcessor aip;
 
 
-    public  WriteUser(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, UserManager um){
+    /**
+     * call getObjectFromFile method first, then store all the object into all Manager classes, finally, store those
+     * Manager classes into controller.
+     * @param ncu NormalCUser(Controller) instance
+     * @param ncc NormalCCoin(Controller) instance
+     * @param ncm NormalCMovie(Controller) instance
+     * @param aip AdminInputProcessor(Controller) instance
+     * @param um UserManager(Use Case) instance
+     */
+    public WriteUser(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, UserManager um){
         this.um = um;
         getObjectFromFile();
 
@@ -42,27 +51,43 @@ public class WriteUser implements WriteFile{
     }
 
 
-    public  WriteUser(String normalPath, String adminPath, NormalCUser ncu, AdminInputProcessor aip, UserManager um){
+    /**
+     * Constructor for test use only
+     * @param normalPath NormalUser test folder path
+     * @param adminPath AdminUser test folder path
+     * @param ncu NormalCUser(Controller) instance
+     * @param ncc NormalCCoin(Controller) instance
+     * @param ncm NormalCMovie(Controller) instance
+     * @param aip AdminInputProcessor(Controller) instance
+     * @param um UserManager(Use Case) instance
+     */
+    public WriteUser(String normalPath, String adminPath, NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, UserManager um){
         this.AdminUserFolderPath = new File(adminPath);
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";
         this.halfNuPath = normalPath + "/";
-        getObjectFromFile();
 
         this.um = um;
+        getObjectFromFile();
 
         this.ncu = ncu;
+        this.ncc = ncc;
+        this.ncm = ncm;
         this.aip = aip;
         this.ncu.setUserMana(this.um);
+        this.ncc.setUserMana(this.um);
+        this.ncm.setUserMana(this.um);
         this.aip.setUser_mana(this.um);
     }
 
-    /**
-     * Add an admin user to the admin user list.
-     * @param userName the name of user
-     * @return return true if the file successfully created.
-     */
 
+
+    /**
+     * Depending the usertype, create the admin user or normal user file, and add user object to UserManager.
+     * @param userName the name of user
+     * @param userPassword the password of user
+     * @return return true if the file and object successfully created.
+     */
     @Override
     public boolean createFile(String userName, String userPassword, String userType) {
         File file_if_exist;
@@ -93,7 +118,10 @@ public class WriteUser implements WriteFile{
 
     }
 
-
+    /**
+     * At the beginning state of program, this method will read all the file in the AdminUser folder and create object for
+     * each user, then store all the user object into UserManager.
+     */
     @Override
     public void getObjectFromFile() {
         String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in AdminUser folder
@@ -113,6 +141,11 @@ public class WriteUser implements WriteFile{
     }
 
 
+    /**
+     * At the beginning state of program, this method will read all the file in the NormalUser folder and create object for
+     * each user, then store all the user object into UserManager.
+     * It is automatically called by <getObjectFromFile> method
+     */
     public void getNormalUserFromFile(){
         String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in NormalUser folder
         if(lstOfNormal == null ){
@@ -141,7 +174,7 @@ public class WriteUser implements WriteFile{
     
 
     /**
-     * Add movie to playlist
+     * Add movie to user playlist in the file
      * @param movieName the name of movie
      * @param username the name of user
      * @return return a string of new playlist
@@ -162,7 +195,7 @@ public class WriteUser implements WriteFile{
     }
 
     /**
-     * remove movie from playlist
+     * remove movie from playlist in the file
      * @param moviename the name of movie
      * @param username the name of user
      * @return return a string of new playlist
@@ -185,11 +218,11 @@ public class WriteUser implements WriteFile{
     }
 
     /**
-     * edit the user info
+     * edit the user info in the file.
      * @param newUpdate the new contact info of user
      * @param username the name of user
      * @param writeType the type of info that user wants to update. e.g. contactInfo, description
-     * @return return a string of new contact info
+     * @return return true if update completed. Otherwise, return false.
      */
     public boolean editProfileReadAndWrite(String newUpdate, String username, String writeType) {
         ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
@@ -209,11 +242,12 @@ public class WriteUser implements WriteFile{
                 return lst.get(4).toString().equals(newUpdate);
             default:
                 // give a positive or negative
+                String originalCoin = (String) lst.get(5);
                 int coin = Integer.parseInt((String) lst.get(5)) + Integer.parseInt(newUpdate);
 
                 lst.set(5, Integer.toString(coin));
                 writeFile(halfNuPath + username + ".txt", lst);
-                return lst.get(5).toString().equals(newUpdate);
+                return lst.get(5).toString().equals(Integer.toString(Integer.parseInt(originalCoin) + Integer.parseInt(newUpdate)));
         }
     }
 

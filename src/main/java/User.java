@@ -1,4 +1,9 @@
+
+/**
+ * Parent abstract class of all kind of users
+ */
 abstract class User {
+
     protected String username;
     protected String password;
 
@@ -7,6 +12,9 @@ abstract class User {
         this.password = password;
     }
 
+    /**
+     * getter
+     */
     abstract Object[] getObject();
     abstract String getUsername();
     abstract String getUserPassword();
