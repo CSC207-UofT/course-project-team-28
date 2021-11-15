@@ -24,6 +24,7 @@ public class GUIEditContactInfo extends View{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnSaveClick(actionEvent);
+                nextView(new GUIProfile(), true);
             }
         });
         SaveButton.setBounds(200,80,80,30);
@@ -34,8 +35,10 @@ public class GUIEditContactInfo extends View{
     public void OnSaveClick(ActionEvent e){
         String contactInfo = jTextField.getText();
         IM.ncu.editProfile(contactInfo, "contactinfo", IM.wu);
+//        profile.SetContactInfoText("Contact Info: " + jTextField.getText());
         this.getFrame().dispose();
     }
+
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
