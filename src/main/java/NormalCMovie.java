@@ -37,7 +37,7 @@ public class NormalCMovie extends NormalController{
      *         and movie link are strings, reviews is [String of review 1 of the moive,
      *         String of review 2 of the movie, ...]
      */
-    public String movieProfile(String moviename){
+    public String movieProfile(String moviename) {
         return movMana.get_movieprofile(moviename);
     }
 
