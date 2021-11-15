@@ -7,9 +7,10 @@ public class GUIEditContactInfo extends View{
     private JLabel jLabel;
     private JTextField jTextField;
     private JButton SaveButton;
-    public GUIEditContactInfo() {
+    public GUIEditContactInfo(View previous) {
+        super(previous);
         jPanel = new JPanel();
-       PlaceThingsOnPanel(jPanel);
+        PlaceThingsOnPanel(jPanel);
     }
     private void PlaceThingsOnPanel(JPanel p){
         p.setLayout(null);
@@ -24,7 +25,6 @@ public class GUIEditContactInfo extends View{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnSaveClick(actionEvent);
-                nextView(new GUIProfile(), true);
             }
         });
         SaveButton.setBounds(200,80,80,30);
@@ -34,9 +34,15 @@ public class GUIEditContactInfo extends View{
     }
     public void OnSaveClick(ActionEvent e){
         String contactInfo = jTextField.getText();
-        IM.ncu.editProfile(contactInfo, "contactinfo", IM.wu);
-//        profile.SetContactInfoText("Contact Info: " + jTextField.getText());
+        IM.ncu.editProfile(contactInfo, "contactInfo", IM.wu);
+        previous.UpdateText();
         this.getFrame().dispose();
+    }
+
+
+    @Override
+    protected void UpdateText() {
+
     }
 
     @Override

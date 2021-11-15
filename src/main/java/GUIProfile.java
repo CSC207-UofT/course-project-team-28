@@ -13,7 +13,8 @@ public class GUIProfile extends View {
     private final JPanel panel2;
     private final JPanel panel3;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
-    public GUIProfile(){
+    public GUIProfile(View previous){
+        super(previous);
         panel1 = new JPanel();
         panel2 = new JPanel();
         panel3 = new JPanel();
@@ -42,9 +43,10 @@ public class GUIProfile extends View {
         EditContactInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIEditContactInfo(), true);
+                OnButtonClick(actionEvent);
             }
         });
+        UpdateText();
         p1.add(usernameLabel);
         p1.add(coinLabel);
         p1.add(contactInfoLabel);
@@ -59,9 +61,17 @@ public class GUIProfile extends View {
         p2.add(PlayList);
         PlayList.setFont(font1);
     }
-//    public void SetContactInfoText(String s){
-//        contactInfoLabel.setText(s);
-//    }
+    private void OnButtonClick(ActionEvent e) {
+        nextView(new GUIEditContactInfo(this), false);
+
+    }
+//    private int aa = 0;
+    @Override
+    protected void UpdateText() {
+        System.out.println(IM.ncu.profilePage(userName)[2]);
+        contactInfoLabel.setText("Contact Info: " + IM.ncu.profilePage(userName)[2]);
+//        contactInfoLabel.setText(String.valueOf(aa++));
+    }
 
     @Override
     public JFrame getFrame() {
