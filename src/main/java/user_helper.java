@@ -141,6 +141,7 @@ public class user_helper {
                 System.out.println("Program exits.");
                 System.exit(0);
             } else if (c.equals("Give coin to review")){
+                System.out.println("Please enter the review id: ");
                 String reviewid = scanner.nextLine();
                 Integer review_id = Integer.parseInt(reviewid);
 
