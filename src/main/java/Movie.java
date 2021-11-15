@@ -49,6 +49,13 @@ public class Movie {
                     reviews + "\n" + "# of Likes: " + this.Likes;
     }
 
+
+    public String toStringnoreview() {
+
+        return "Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" +
+                "# of Likes: " + this.Likes;
+    }
+
     public String getMoviename(){
         return this.moviename;
     }

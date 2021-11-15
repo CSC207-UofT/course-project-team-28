@@ -60,7 +60,7 @@ public class MovieManager {
      */
     public String get_movieprofile(String movie_name) {
         Movie movie = this.get_movie(movie_name);
-        return movie.toString();
+        return movie.toStringnoreview();
 
 //        ArrayList<Object> profile = new ArrayList<>();
 //        profile.add(movie.getMoviename());
