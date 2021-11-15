@@ -1,10 +1,17 @@
 import javax.swing.*;
 
 public abstract class View {
+    protected final View previous;
+    private final JFrame frame = new JFrame();
     protected static final InstanceMain IM = new InstanceMain();
     protected static String userName = "";
 
-    private final JFrame frame = new JFrame();
+    public View(View previous) {
+        this.previous = previous;
+    }
+
+
+    protected abstract void UpdateText();
 
     protected JFrame getFrame() {
         return frame;

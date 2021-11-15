@@ -13,8 +13,8 @@ public class GUIUserLogin extends SharedView {
     private final JTextField adminCodeText = new JTextField(20);
 
     //gui
-    public GUIUserLogin(Boolean isAdmin){
-        super(isAdmin);
+    public GUIUserLogin(View view, Boolean isAdmin){
+        super(view, isAdmin);
         panel = new JPanel();
         placeComponents(panel);
 
@@ -40,7 +40,7 @@ public class GUIUserLogin extends SharedView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnLoginClick(actionEvent);
-                nextView(new GUIProfile(), true);
+
 
             }
         });
@@ -71,6 +71,11 @@ public class GUIUserLogin extends SharedView {
         }else {
             loginResult.setText("Username or password incorrect, please try again.");
         }
+        nextView(new GUIProfile(this), true);
+    }
+
+    @Override
+    protected void UpdateText() {
 
     }
 
