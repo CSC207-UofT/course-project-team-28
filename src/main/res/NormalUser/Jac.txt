@@ -1,7 +1,7 @@
-Ella
+Jac
 123
-647
+Empty contact info
 Empty description
 Empty category
 300
-[Apple,Candy]
+[]
