@@ -259,6 +259,14 @@ public class UserManager {
         return false;
     }
 
+    public ArrayList<NormalUser> getNormalUserList(){
+        return lstOfNormalUser;
+    }
+
+    public ArrayList<AdminUser> getAdminUserList(){
+        return lstOfAdminUser;
+    }
+
 
 
 }

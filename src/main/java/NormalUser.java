@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 
 /**
- * Called for read and write user's file.
- * it should be only called by User class and its subclass.
+ * Represent Normal User
  */
 public class NormalUser extends User{
 
@@ -14,8 +13,14 @@ public class NormalUser extends User{
     protected ArrayList<String> playlist;
 
     /**
-     * pass username and password of username to create a new account
-     * it should call WriteUser Class to create a new file for user.
+     * create the object for user
+     * @param username the user name of user
+     * @param password the password of user
+     * @param contactinfo the contact information of user
+     * @param description the description of user itself
+     * @param category the category pf movie that user like
+     * @param coin the coin that user have
+     * @param playlist the playlist of movie of movie
      */
     public NormalUser(String username, String password, String contactinfo, String description, String category, int coin, ArrayList<String> playlist) {
         super(username, password);
@@ -27,6 +32,9 @@ public class NormalUser extends User{
 
     }
 
+    /**
+     * @return return all the info of user.
+     */
     @Override
     public Object[] getObject() {
         Object[] nu = new Object[7];
@@ -41,6 +49,9 @@ public class NormalUser extends User{
         return nu;
     }
 
+    /**
+     * getter of user
+     */
     @Override
     public String getUsername(){
         return this.username;
@@ -67,6 +78,10 @@ public class NormalUser extends User{
 
     public String getCategory(){ return this.category; }
 
+
+    /**
+     * setter of user
+     */
     public void updateContactinfo(String contactinfo){
         this.contactinfo = contactinfo;
     }
