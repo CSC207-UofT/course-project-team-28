@@ -13,8 +13,8 @@ public class GUIUserRegister extends SharedView {
     private static JTextField passwordText;
     private final JLabel adminCodeLabel = new JLabel("Administrator Code");
     private final JTextField adminCodeText = new JTextField(20);
-    public GUIUserRegister(Boolean isAdmin){
-        super(isAdmin);
+    public GUIUserRegister(View view, Boolean isAdmin){
+        super(view, isAdmin);
         panel = new JPanel();
         placeComponents(panel);
     }
@@ -72,6 +72,11 @@ public class GUIUserRegister extends SharedView {
         } else {
             RegResult.setText("Something is wrong with your username or password.");
         }
+
+    }
+
+    @Override
+    protected void UpdateText() {
 
     }
 

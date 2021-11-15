@@ -8,31 +8,37 @@ public class GUIMain extends View {
     private JButton loginButton;
     private JButton adminRegisterButton;
     private JButton adminLoginButton;
-    public GUIMain() {
+    public GUIMain(View previous) {
+        super(previous);
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserRegister(false),false);
+                nextView(new GUIUserRegister(previous,false),false);
             }
         });
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserLogin(false), true);
+                nextView(new GUIUserLogin(previous,false), true);
             }
         });
         adminLoginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserLogin(true), true);
+                nextView(new GUIUserLogin(previous,true), true);
             }
         });
         adminRegisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                nextView(new GUIUserRegister(true),false);
+                nextView(new GUIUserRegister(previous,true),false);
             }
         });
+    }
+
+    @Override
+    protected void UpdateText() {
+
     }
 
     @Override
@@ -46,7 +52,7 @@ public class GUIMain extends View {
     }
 
     public static void main(String[] args){
-        View gui = new GUIMain();
+        View gui = new GUIMain(null);
         gui.nextView(gui,false);
     }
 }
