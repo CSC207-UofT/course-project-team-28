@@ -1,7 +1,7 @@
 c
 12
-Empty contact info - c
-Empty description - c
-Empty category - c
+Empty ContactInfo
+Empty description
+Empty category
 300
 []

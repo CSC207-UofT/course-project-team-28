@@ -1,9 +1,22 @@
+
+/**
+ * Represent Admin User
+ */
 public class AdminUser extends User{
 
+    /**
+     * create the object for user
+     * @param username the user name of user
+     * @param password the password of user
+     */
     public AdminUser(String username, String password) {
         super(username, password);
     }
 
+
+    /**
+     * @return return all the info of user.
+     */
     @Override
     public Object[] getObject() {
         Object[] au = new Object[2];
@@ -13,6 +26,9 @@ public class AdminUser extends User{
         return au;
     }
 
+    /**
+     * @return getter of AdminUser
+     */
     @Override
     public String getUsername(){
         return this.username;
