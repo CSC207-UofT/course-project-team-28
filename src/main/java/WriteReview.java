@@ -77,9 +77,15 @@ public class WriteReview implements WriteFile{
     }
 
 
-
-
-
+    /** add coins to the review.
+     */
+    public boolean addCoinsToReview(int id, int numCoin) throws IOException {
+        Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        ArrayList<String> revLst = new ArrayList<>(readFile(p1, id+".txt", "Review"));
+        writereview = new FileWriter(p1 + "/src/main/res/Review/" + id + ".txt");
+        revLst.set(3, Integer.toString(Integer.parseInt(revLst.get(3))) + numCoin);
+        return true;
+    }
 
 
     /**

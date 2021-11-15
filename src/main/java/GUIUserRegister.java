@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUIUserRegister extends SharedView {
-    private static String userName = "";
+//    private static String userName = "";
     private static JPanel panel;
     private static JLabel usernameLabel;
     private static JLabel pswLabel;

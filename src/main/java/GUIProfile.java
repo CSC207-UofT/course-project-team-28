@@ -1,9 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
 public class GUIProfile extends View {
+    public JLabel contactInfoLabel;
+    private JLabel coinLabel;
     private final JTabbedPane jTabbedPane;
     private final JPanel panel1;
     private final JPanel panel2;
@@ -26,14 +30,21 @@ public class GUIProfile extends View {
         JLabel usernameLabel = new JLabel("Username: " + IM.ncu.profilePage(userName)[0]);
         usernameLabel.setFont(font1);
         usernameLabel.setBounds(20,20,700,200);
-        JLabel coinLabel = new JLabel("number of coins: " + IM.ncu.profilePage(userName)[5]);
+        coinLabel = new JLabel("number of coins: " + IM.ncu.profilePage(userName)[5]);
         coinLabel.setBounds(20, 60, 300, 200);
-        JLabel contactInfoLabel = new JLabel("Contact info: " + IM.ncu.profilePage(userName)[2]);
+        contactInfoLabel = new JLabel();
+        contactInfoLabel.setText("Contact Info: " + IM.ncu.profilePage(userName)[2]);
         contactInfoLabel.setBounds(20, 90, 700, 200);
         JLabel description = new JLabel("User description: " + IM.ncu.profilePage(userName)[3]);
         description.setBounds(20, 120, 700, 200);
         JButton EditContactInfo = new JButton("Edit");
-        EditContactInfo.setBounds(150,180,60,20);
+        EditContactInfo.setBounds(180,180,60,20);
+        EditContactInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                nextView(new GUIEditContactInfo(), true);
+            }
+        });
         p1.add(usernameLabel);
         p1.add(coinLabel);
         p1.add(contactInfoLabel);
@@ -47,8 +58,10 @@ public class GUIProfile extends View {
         PlayList.setBounds(10,10,500,500);
         p2.add(PlayList);
         PlayList.setFont(font1);
-        }
-
+    }
+//    public void SetContactInfoText(String s){
+//        contactInfoLabel.setText(s);
+//    }
 
     @Override
     public JFrame getFrame() {
