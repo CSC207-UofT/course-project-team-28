@@ -33,12 +33,10 @@ public class NormalCMovie extends NormalController{
 
     /**
      * Should be only called when the movie name <mn> exists in the data base
-     * @return an arraylist [movie name, movie link, reviews, number of likes], where movie name
-     *         and movie link are strings, reviews is [String of review 1 of the moive,
-     *         String of review 2 of the movie, ...]
+     * @return an String with movie name, movie link, number of likes, reviews
      */
     public String movieProfile(String moviename) {
-        return movMana.get_movieprofile(moviename);
+        return movMana.get_movieprofile(moviename) + "\n" + revMana.RevsOfMovieString(moviename);
     }
 
 

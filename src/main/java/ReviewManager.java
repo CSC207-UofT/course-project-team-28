@@ -36,6 +36,25 @@ public class ReviewManager {
     }
 
     /**
+     * Called only after confirming the moviename is valid (i.e. the movie exists)
+     * Takes the name of Movie and return a string form of reviews for the Movie.
+     */
+    public String RevsOfMovieString(String moviename){
+        ArrayList<Review> lst = this.MovietoRevs.get(moviename);
+        StringBuilder temp = new StringBuilder();
+
+        for (Review rev : lst){
+            temp.append("\n[");
+            temp.append(rev.toString());
+            temp.append("]");
+        }
+        return String.valueOf(temp);
+    }
+
+
+
+
+    /**
      * create a Review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
