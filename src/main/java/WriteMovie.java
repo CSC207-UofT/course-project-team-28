@@ -22,6 +22,13 @@ public class WriteMovie implements WriteFile{
     protected NormalCCoin ncc;
     protected NormalCMovie ncm;
     protected AdminInputProcessor aip;
+    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected File MovieFolderPath = new File(str1 + "/src/main/res/Moviedata"); //get full path for Moviedata folder
+    protected File MovieReFolderPath = new File(str1 + "/src/main/res/Moviereview"); //get full path for Moviereview folder
+    protected String ReadPath = str1 + "/src/main/res/"; //get path for readfile mthod
+    protected String MoviePath = str1 + "/src/main/res/Moviedata/"; //get path to moviedata folder
+    protected String MovierePath = str1 + "/src/main/res/Moviereview/"; //get path to moviereview folder
+
 
     /**
      * Creates files for movies and saved in Moviedata,
@@ -29,7 +36,46 @@ public class WriteMovie implements WriteFile{
      * @return boolean
      */
 
+    /**
+     * call getObjectFromFile method first, then store all the object into all Manager classes, finally, store those
+     * Manager classes into controller.
+     * @param ncu NormalCUser(Controller) instance
+     * @param ncc NormalCCoin(Controller) instance
+     * @param ncm NormalCMovie(Controller) instance
+     * @param aip AdminInputProcessor(Controller) instance
+     * @param mm MovieManager(Use Case) instance
+     */
     public WriteMovie(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, MovieManager mm){
+        this.mm = mm;
+        getObjectFromFile();
+
+        this.ncu = ncu;
+        this.ncc = ncc;
+        this.ncm = ncm;
+        this.aip = aip;
+        this.ncu.setMovMana(this.mm);
+        this.ncc.setMovMana(this.mm);
+        this.ncm.setMovMana(this.mm);
+        this.aip.setMov_mana(this.mm);
+    }
+
+    /**
+     * Constructor for test use only
+     * @param moviePath Movie test folder path
+     * @param ncu NormalCUser(Controller) instance
+     * @param ncc NormalCCoin(Controller) instance
+     * @param ncm NormalCMovie(Controller) instance
+     * @param aip AdminInputProcessor(Controller) instance
+     * @param mm MovieManager(Use Case) instance
+     */
+    public WriteMovie(String moviePath, String movierePath, String readPath, NormalCUser ncu, NormalCCoin ncc,
+                      NormalCMovie ncm, AdminInputProcessor aip, MovieManager mm){
+        this.MovieFolderPath = new File(moviePath);
+        this.MovieReFolderPath = new File(movierePath);
+        this.MoviePath = moviePath +"/";
+        this.MovierePath = movierePath + "/";
+        this.ReadPath = readPath + "/";
+
         this.mm = mm;
         getObjectFromFile();
 
@@ -47,8 +93,7 @@ public class WriteMovie implements WriteFile{
     public boolean createFile(String movieName, String movieLink, String z) {
 
         try{
-            Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            writemovie = new FileWriter(p1 + "/src/main/res/Moviedata/" + movieName + ".txt");
+            writemovie = new FileWriter(MoviePath + movieName + ".txt");
             writemovie.write(movieName);
             writemovie.write("\r\n");
             writemovie.write(movieLink);
@@ -58,7 +103,7 @@ public class WriteMovie implements WriteFile{
             Properties properties = new Properties();
             properties.putAll(new HashMap<>());
             FileOutputStream fos;
-            fos = new FileOutputStream(p1 + "/src/main/res/Moviereview/" + movieName + " reviews.properties");
+            fos = new FileOutputStream(MovierePath + movieName + " reviews.properties");
             IgnoreFirstLineBufferedWriter ilfw = new IgnoreFirstLineBufferedWriter(new OutputStreamWriter(fos), 0);
             properties.store(ilfw, null);
             String string = fos.toString();
@@ -66,8 +111,8 @@ public class WriteMovie implements WriteFile{
             String content = string.substring(string.indexOf(sep) + sep.length());
             out.write(content.getBytes(StandardCharsets.UTF_8));
             fos.close();
-            File moviefile = new File(p1 + "/src/main/res/Moviedata/" + movieName + ".txt");
-            File moviereview = new File(p1 + "/src/main/res/Moviereview/" + movieName + " reviews.properties");
+            File moviefile = new File(MoviePath + movieName + ".txt");
+            File moviereview = new File(MovierePath + movieName + " reviews.properties");
 
             this.mm.add_movie(movieName, movieLink, new HashMap<>(), 0);
 
@@ -82,11 +127,10 @@ public class WriteMovie implements WriteFile{
 
     public void addReviewToFile(String userName, String movieName, String reviewContent) {
         try {
-            Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
             FileOutputStream fos;
             Properties properties = new Properties();
             properties.put(reviewContent, userName);
-            File file = new File(p1 + "/src/main/res/Moviereview/" + movieName + " reviews.properties");
+            File file = new File(MovierePath + movieName + " reviews.properties");
             fos = new FileOutputStream(file, true);
             IgnoreFirstLineBufferedWriter ilfw = new IgnoreFirstLineBufferedWriter(new OutputStreamWriter(fos), 0);
             properties.store(ilfw, null);
@@ -104,9 +148,8 @@ public class WriteMovie implements WriteFile{
 
     public void addLikeToFile(String movieName, String state) {
         try {
-            Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            ArrayList<String> lst = new ArrayList<>(readFile(p1, movieName + ".txt", "Moviedata"));
-            writemovie = new FileWriter(p1 + "/src/main/res/Moviedata/" + movieName + ".txt");
+            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata"));
+            writemovie = new FileWriter(MoviePath + movieName + ".txt");
             if (state.equals("Increase")){
 
                 lst.set(2,Integer.toString(Integer.parseInt(lst.get(2)) + 1));
@@ -145,15 +188,12 @@ public class WriteMovie implements WriteFile{
     /**
      * Read Moviedata and Moviereviews two folders, create obejct for each movie and return a two-dimensional array.
      * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata
-     * @return ArrayList</Movie>
      */
 
     @Override
     public void getObjectFromFile() {
         try {
-            Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-            File MoviePath = new File(p1 + "/src/main/res/Moviedata"); //get full path for Moviedata folder
-            File MoviereviewPath = new File(p1 + "/src/main/res/Moviereview"); //get full path for Moviereview folder
+            File MoviePath = new File(MovierePath); //get full path for Moviedata folder
 
             String[] lstOfMovie = MoviePath.list();// get all the file name in Moviedata folder
 
@@ -161,10 +201,10 @@ public class WriteMovie implements WriteFile{
 
             } else {
                 for (String m : lstOfMovie) {
-                    ArrayList<String> lst = readFile(p1, m, "Moviedata");
+                    ArrayList<String> lst = readFile(m, "Moviedata");
                     HashMap<Object, Object> moviereview = new HashMap<>(); // initialise a HashMap
                     String a = m.replace(".txt", "");
-                    FileInputStream movier = new FileInputStream(MoviereviewPath + "/" + a + " reviews.properties");
+                    FileInputStream movier = new FileInputStream(MovierePath + "/" + a + " reviews.properties");
                     PushbackInputStream p = new PushbackInputStream(movier);
                     int b;
                     b = p.read();
@@ -193,9 +233,8 @@ public class WriteMovie implements WriteFile{
      */
 
     public Boolean deleteFile(Object movie) {
-        Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        File moviefile = new File(p1 + "/src/main/res/Moviedata/" + ((Movie) movie).moviename + ".txt");
-        File moviereviewfile = new File(p1 + "/src/main/res/Moviereview/" + ((Movie) movie).moviename + " reviews.properties");
+        File moviefile = new File(MoviePath + ((Movie) movie).moviename + ".txt");
+        File moviereviewfile = new File(MovierePath + ((Movie) movie).moviename + " reviews.properties");
         Boolean a = moviefile.delete();
         Boolean b = moviereviewfile.delete();
         return a & b;
@@ -204,8 +243,8 @@ public class WriteMovie implements WriteFile{
     /**
      * Helper method
      */
-    public ArrayList<String> readFile(Path str1, String fn, String folder) throws IOException {
-        moviereader = new FileReader(str1.toString() + "/src/main/res/" + folder + "/" + fn);
+    public ArrayList<String> readFile(String fn, String folder) throws IOException {
+        moviereader = new FileReader(ReadPath + folder + "/" + fn);
         getmovie = new BufferedReader(moviereader);
 
         ArrayList<String> lst = new ArrayList<>();
