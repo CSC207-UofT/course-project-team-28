@@ -118,5 +118,8 @@ public class MovieManager {
         return res.toString(); //includes a trailing ", "
     }
 
+    public ArrayList<Movie> getMovies(){
+        return Movies;
+    }
 
 }
