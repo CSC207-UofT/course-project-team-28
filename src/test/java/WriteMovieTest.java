@@ -48,14 +48,16 @@ public class WriteMovieTest {
             HashMap<Object, Object> map = new HashMap<>();
             map.put("hahaha", "Ella");
 
-            assertTrue(wm.createFile("LOL", "123456abc", "a"));
+            assertTrue(wm.createFile("LL", "123456abc", "a"));
+            assertTrue(wm.deleteFile("LL"));
 
-            wm.addLikeToFile("LOL","Increase");
-            wm.addLikeToFile("LOL","Increase");
+            wm.addLikeToFile("LL","Increase");
+            wm.addLikeToFile("LL","Increase");
 
-            assertTrue(fileContentTest(wm.readFile("LOL", "Moviedata"), this.readFile("LOL","Moviedata")));
+            assertTrue(fileContentTest(wm.readFile("LL", "Moviedata"), this.readFile("LL","Moviedata")));
+//            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Moviedata/" + "LL" + ".txt")));
+//            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Moviereview/" + "LL" + " reviews.properties")));
 
-            assertTrue(wm.deleteFile("LOL"));
 
         }
         catch (IOException e){
@@ -67,15 +69,12 @@ public class WriteMovieTest {
     @Test
     public void testgetObjectFromFile() {
         HashMap<Object, Object> map = new HashMap<>();
-        mm.add_movie("Apple", "shdjhadshjasfhkasf", map, 0);
-        mm.add_movie("Banana", "hjkdhfjshakjs", map, 0);
-        mm.add_movie("Candy", "hudiadakjk", map, 0);
 
         ArrayList<Movie> l = mm.getMovies();
 
-        assertEquals(3, l.size());
+        assertEquals(6, l.size());
 
-        Object[] moviefile = {"Apple", "Banana", "Candy"};
+        Object[] moviefile = {"Apple", "Banana", "Candy", "Happy Life", "Team28", "Water"};
 
         for (int i = 0; i < 3; i++){
             assertEquals(l.get(i).getMoviename(), moviefile[i]);
@@ -85,7 +84,7 @@ public class WriteMovieTest {
 
     public boolean fileContentTest(ArrayList<String> ul, ArrayList<String> infoList) {
         for (int i = 0; i < ul.size(); i++){
-            if (!infoList.get(i).equals(ul.get(i).toString()))
+            if (!infoList.get(i).equals(ul.get(i)))
                 return false;
         }
         return true;

@@ -193,9 +193,9 @@ public class WriteMovie implements WriteFile{
     @Override
     public void getObjectFromFile() {
         try {
-            File MoviePath = new File(MovierePath); //get full path for Moviedata folder
+            File MoviePathFile = new File(MoviePath); //get full path for Moviedata folder
 
-            String[] lstOfMovie = MoviePath.list();// get all the file name in Moviedata folder
+            String[] lstOfMovie = MoviePathFile.list();// get all the file name in Moviedata folder
 
             if (lstOfMovie == null) {
 
@@ -232,9 +232,9 @@ public class WriteMovie implements WriteFile{
      * @return Boolean
      */
 
-    public Boolean deleteFile(Object movie) {
-        File moviefile = new File(MoviePath + ((Movie) movie).moviename + ".txt");
-        File moviereviewfile = new File(MovierePath + ((Movie) movie).moviename + " reviews.properties");
+    public Boolean deleteFile(String movie) {
+        File moviefile = new File(str1 + "/src/test/res/Moviedata/" + movie + ".txt");
+        File moviereviewfile = new File(str1 + "/src/test/res/Moviereview/" + movie + " reviews.properties");
         Boolean a = moviefile.delete();
         Boolean b = moviereviewfile.delete();
         return a & b;

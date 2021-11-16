@@ -65,7 +65,6 @@ public class NormalCUser extends NormalController {
      * Given a String newinfo, update the user's profile.
      * return ture iff updated successfully.
      */
-    //TODO: add new parameter, the corresponding place where call this method in UI need to add onr more parameter
     public boolean editProfile(String newInfo, String updateType, WriteUser wu) {
         if (updateType.equals("coin")){
             return userMana.updateCoin(this.currNuname, Integer.parseInt(newInfo)) &&
@@ -73,7 +72,7 @@ public class NormalCUser extends NormalController {
         }
         else{
             return userMana.updateInfo(this.currNuname, newInfo, updateType) &&
-                    wu.editProfileReadAndWrite(newInfo, this.currNuname, "contactInfo");
+                    wu.editProfileReadAndWrite(newInfo, this.currNuname, updateType);
         }
 
     }
