@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class UI_login {
-    public static void main(Scanner scanner, InstanceMain IM) {
+    public static void main(Scanner scanner, InstanceMain IM) throws IOException {
         List<String> result = user_helper.login(scanner, IM);
         String username = result.get(0);
 
