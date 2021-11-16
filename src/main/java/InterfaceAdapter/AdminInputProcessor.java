@@ -30,7 +30,8 @@ public class AdminInputProcessor {
      * create admin user iff the provided username and password is legal
      * username and password must be non-empty, only contain numbers or letters,
      * and username must be unique among all the normal users,
-     * also the code should be correct.
+     * also the code should be correct. In the same time, if all conditions are met,
+     * the account will be created.
      */
     public boolean register(String userName, String password, String code) {
         if (! this.isnonemptyalpnum(userName)){
