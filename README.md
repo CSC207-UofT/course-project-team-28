@@ -2,6 +2,7 @@
 
 Note:
 
+
 1.If you want to see text-form UI, please run UserInterface class; If you want to see the GUI, please run the GUIMain in GUIMain folder, which is at the bottom of the java folder.
 
 2. due to the codes that we used in some write file classes to get the path of some folders for our program, please open our project from the folder that is outside of the src folder.
