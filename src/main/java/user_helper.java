@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +38,7 @@ public class user_helper {
         return Arrays.asList(username, password);
     }
 
-    public static void ui_user_body(Scanner scanner, InstanceMain IM, String userName){
+    public static void ui_user_body(Scanner scanner, InstanceMain IM, String userName) throws IOException {
         //Proceed to search/profile functions
         System.out.println("Enter 'Search' to search a movie or 'Profile' to go to the profile page.");
         String choose = scanner.nextLine();
@@ -60,11 +61,13 @@ public class user_helper {
             }
 
             if (choice.equals("edit profile")){
-                System.out.println("Please enter your phone number");
-                String contactinfo = scanner.nextLine();
+                System.out.println("Please choose the datatype you want to edit from 'contactInfo', 'description' or 'category'");
+                String datatype = scanner.nextLine();
+                System.out.println("Please enter the info content you want to update");
+                String info = scanner.nextLine();
 
                 //TODO
-                IM.ncu.editProfile(contactinfo, "contactInfo", IM.wu);
+                IM.ncu.editProfile(info, datatype, IM.wu);
 
                 System.out.println("your new profile is: " + Arrays.toString(IM.ncu.profilePage(userName)));
             } else if (choice.equals("undo-like the movie")){
@@ -105,13 +108,13 @@ public class user_helper {
                 moviename = scanner.nextLine();
             }
             System.out.println(IM.ncm.movieProfile(moviename));
-            System.out.println("Enter 'Write a review', 'Like the movie' or 'Exit program'");
+            System.out.println("Enter 'Write a review', 'Like the movie', 'Give coin to review' or 'Exit program'");
             String c = scanner.nextLine();
 
-            String[] option_3= new String[]{"Write a review", "Like the movie", "Exit program"};
+            String[] option_3= new String[]{"Write a review", "Like the movie", "Give coin to review", "Exit program"};
             List<String> options_3 = new ArrayList<>(Arrays.asList(option_3));
             while (!options_3.contains(c)) {
-                System.out.println("Please reenter 'Write a review', 'Like the movie' or 'Exit program':");
+                System.out.println("Please reenter 'Write a review', 'Like the movie', 'Give coin to review' or 'Exit program':");
                 c = scanner.nextLine();
             }
 
@@ -123,6 +126,7 @@ public class user_helper {
                 //TODO
                 IM.ncm.writeReview(moviename, review_content, IM.wr, IM.wm);
                 IM.ncc.EarnCoinAfterWriteRev(IM.wu);
+                System.out.println("You wrote a review and earned one coin");
 
                 System.out.println("Check your review: " + IM.ncm.movieProfile(moviename));
                 System.out.println("program exits.");
@@ -136,7 +140,16 @@ public class user_helper {
             } else if (c.equals("Exit program")){
                 System.out.println("Program exits.");
                 System.exit(0);
-            } else {
+            } else if (c.equals("Give coin to review")){
+                String reviewid = scanner.nextLine();
+                Integer review_id = Integer.parseInt(reviewid);
+
+                //TODO
+                IM.ncc.giveCoinToRev(review_id, IM.wr, IM.wu);
+
+                System.out.println("You gave a coin to review " + reviewid );
+                System.out.println("program exits.");
+            }else {
                 System.out.println("wrong input");
                 System.out.println("Program exits.");
                 System.exit(1);
