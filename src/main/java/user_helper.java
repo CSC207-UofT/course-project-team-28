@@ -49,7 +49,10 @@ public class user_helper {
             choose = scanner.nextLine();
         }
         if (choose.equals("Profile")){
-            System.out.println(Arrays.toString(IM.ncu.profilePage(userName)));
+            Object[] arr = IM.ncu.profilePage(userName);
+            Object profile = arr[0];
+            System.arraycopy(arr, 2, arr, 0, 5);
+            System.out.println(profile +"\n" + Arrays.toString(arr));
             System.out.println("Enter 'edit profile' or 'undo-like the movie' to remove movie from your playlist");
             String choice = scanner.nextLine();
 
@@ -141,14 +144,15 @@ public class user_helper {
                 System.out.println("Program exits.");
                 System.exit(0);
             } else if (c.equals("Give coin to review")){
+                System.out.println("please enter the review id:");
                 String reviewid = scanner.nextLine();
-                Integer review_id = Integer.parseInt(reviewid);
+                if (!reviewid.equals("")) {
+                    Integer review_id = Integer.parseInt(reviewid);
+                    IM.ncc.giveCoinToRev(review_id, IM.wr, IM.wu);
+                    System.out.println("You gave a coin to review " + reviewid );
+                    System.out.println("program exits.");
+                }
 
-                //TODO
-                IM.ncc.giveCoinToRev(review_id, IM.wr, IM.wu);
-
-                System.out.println("You gave a coin to review " + reviewid );
-                System.out.println("program exits.");
             }else {
                 System.out.println("wrong input");
                 System.out.println("Program exits.");
