@@ -16,6 +16,30 @@ The class NormalInputProcessor in phase 0 is splitted to 4 classes. With NormalC
 5. Create a new class, InstanceMain, on Interface Adapter layer
 InstanceMain declares all the instances of the controller, gateway and use case class that will be needed when the program runs, so that UI and GUI can use the instance in the InstanceMain class without declaring the new instance, it prevents some unknown bugs.
 
+### Clean architecture
+To follow clean architecture, a new class InstanceMain is added in the Interface Adapter layer, and the outermost layer GUI can only interact with it.
+1. As the lowest level, our Frameworks and Drivers consist of two main parts, UI and GUI for Phase 1. (In Phase 2, UI will be replaced with GUI completely.) 
+
+   **GUI**: View, Shared view (as a child cass of View), GUIEditContactInfo, GUIProfile, GUIMain, GUIUserLogin, GUIUserRegister
+   
+   **UI**: UserInterface, UI_login, UI_register, UI_admin_login, UI_admin_register, admin_helper, user_helper
+2. The second lowest level, Interface Adapters include Controller and Gateway-related classes. 
+
+   **Controller**: NormalController, NormalCCoin, NormalCUser, NormalCMovie, AdminInputProcessor
+   
+   **Gateway**: WriteFile, WriteUser, WriteReview, WriteMoive
+   
+   **Interface Adapter**: InstanceMain
+3. At a higher level, Use Case consists of our Manager classes. Following the Dependency Rule, Use Case knows nothing about UI and GUI.
+
+   **Manager**: UserManager, MovieManager, CoinManager, ReviewManager
+4. The highest level is Entity, which can be manipulated by Use Case.
+
+   **Entity**: User, Review, Movie
+   
+Following the Dependency Rule, source code dependencies point only toward higher-level policies (from Frameworks & Drivers to Entity). And the name of functions, classes and variables declared in lower level must not be mentioned by the code in higher level.
+
+
 
 
 ### SOLID
