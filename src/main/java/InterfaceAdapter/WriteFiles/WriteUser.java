@@ -24,10 +24,10 @@ public class WriteUser implements WriteFile{
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-    protected File AdminUserFolderPath = new File(str1 + "/src/main/res/Core.User.AdminUser"); //get full path for Core.User.AdminUser folder
-    protected File NormalUserFolderPath = new File(str1 + "/src/main/res/Core.User.NormalUser"); //get full path for Core.User.NormalUser folder
-    protected String halfAuPath = str1 + "/src/main/res/Core.User.AdminUser/"; //get half path for Core.User.AdminUser file
-    protected String halfNuPath = str1 + "/src/main/res/Core.User.NormalUser/"; //get half path for Core.User.NormalUser file
+    protected File AdminUserFolderPath = new File(str1 + "/src/main/res/AdminUser"); //get full path for Core.User.AdminUser folder
+    protected File NormalUserFolderPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for Core.User.NormalUser folder
+    protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for Core.User.AdminUser file
+    protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for Core.User.NormalUser file
 
     protected NormalCUser ncu;
     protected NormalCCoin ncc;

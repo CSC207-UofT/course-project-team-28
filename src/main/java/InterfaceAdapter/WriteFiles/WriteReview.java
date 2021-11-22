@@ -59,7 +59,7 @@ public class WriteReview implements WriteFile{
 
             File file_if_exist;
             Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            writereview = new FileWriter(path1 + "/src/main/res/Core.Review/" + this.rm.getReviewID() + ".txt");
+            writereview = new FileWriter(path1 + "/src/main/res/Review/" + this.rm.getReviewID() + ".txt");
             writereview.write(currUserName);
             writereview.write("\r\n");
             writereview.write(movieName);
@@ -71,7 +71,7 @@ public class WriteReview implements WriteFile{
             writereview.write(Integer.toString(this.rm.getReviewID()));
             writereview.close();
 
-            file_if_exist = new File(path1 + "/src/main/res/Core.Review/" + this.rm.getReviewID() + ".txt");
+            file_if_exist = new File(path1 + "/src/main/res/Review/" + this.rm.getReviewID() + ".txt");
 
 
 
@@ -89,7 +89,7 @@ public class WriteReview implements WriteFile{
     public boolean addCoinsToReview(int id, int numCoin) throws IOException {
         Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         ArrayList<String> revLst = new ArrayList<>(readFile(p1, id+".txt", "Review"));
-        writereview = new FileWriter(p1 + "/src/main/res/Core.Review/" + id + ".txt");
+        writereview = new FileWriter(p1 + "/src/main/res/Review/" + id + ".txt");
         revLst.set(3, Integer.toString(Integer.parseInt(revLst.get(3))) + numCoin);
         return true;
     }
@@ -104,7 +104,7 @@ public class WriteReview implements WriteFile{
             // get the path of src
             Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
             // get the path of Core.Review folder
-            File ReviewPath = new File(path2 + "/src/main/res/Core.Review/");
+            File ReviewPath = new File(path2 + "/src/main/res/Review/");
 
             // get the file name in the Core.Review folder
             String[] lstOfReview = ReviewPath.list();
@@ -125,7 +125,7 @@ public class WriteReview implements WriteFile{
             }
         }
         catch (IOException e){
-            System.out.println("Unable to get the file from the Core.Movie Folder");
+            System.out.println("Unable to get the file from the Movie Folder");
         }
     }
 
