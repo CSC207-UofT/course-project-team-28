@@ -1,3 +1,4 @@
+import InterfaceAdapter.Controller.NormalController;
 import org.junit.Before;
 import org.junit.Test;
 

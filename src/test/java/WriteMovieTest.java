@@ -1,14 +1,18 @@
+import Core.Movie;
+import InterfaceAdapter.Controller.AdminInputProcessor;
+import InterfaceAdapter.Controller.NormalCCoin;
+import InterfaceAdapter.Controller.NormalCMovie;
+import InterfaceAdapter.Controller.NormalCUser;
+import InterfaceAdapter.WriteFiles.WriteMovie;
+import UseCase.MovieManager;
 import org.junit.*;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
@@ -61,7 +65,7 @@ public class WriteMovieTest {
 
         }
         catch (IOException e){
-            System.out.println("create file test for Movie fails");
+            System.out.println("create file test for Core.Movie fails");
         }
 
     }

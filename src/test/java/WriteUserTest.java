@@ -1,3 +1,11 @@
+import Core.User.AdminUser;
+import Core.User.NormalUser;
+import InterfaceAdapter.Controller.AdminInputProcessor;
+import InterfaceAdapter.Controller.NormalCCoin;
+import InterfaceAdapter.Controller.NormalCMovie;
+import InterfaceAdapter.Controller.NormalCUser;
+import InterfaceAdapter.WriteFiles.WriteUser;
+import UseCase.UserManager;
 import org.junit.*;
 
 import java.io.IOException;
@@ -36,7 +44,7 @@ public class WriteUserTest {
         um = new UserManager();
 
         playList = new ArrayList<>(Arrays.asList("Apple", "Banana", "Candy", "Happy Life", "Team28", "Water"));
-        wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser", ncu, ncc, ncm, aucontroller, um);
+        wu = new WriteUser(str1 + "/src/test/res/Core.User.NormalUser", str1 + "/src/test/res/Core.User.AdminUser", ncu, ncc, ncm, aucontroller, um);
     }
 
     @Test
@@ -46,13 +54,13 @@ public class WriteUserTest {
 
             assertTrue(um.userIfExist("Nico", "123","NormalUser"));
 
-            assertTrue(fileContentTest(um.getUserInfoList("Nico", "NormalUser"), wu.readFile(str1 + "/src/test/res/NormalUser/" + "Nico" + ".txt")));
+            assertTrue(fileContentTest(um.getUserInfoList("Nico", "NormalUser"), wu.readFile(str1 + "/src/test/res/Core.User.NormalUser/" + "Nico" + ".txt")));
 
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/NormalUser/" + "Nico" + ".txt")));
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Core.User.NormalUser/" + "Nico" + ".txt")));
 
         }
         catch (IOException e){
-            System.out.println("create file test for NormalUser fails");
+            System.out.println("create file test for Core.User.NormalUser fails");
         }
 
     }
@@ -64,12 +72,12 @@ public class WriteUserTest {
 
             assertTrue(um.userIfExist("Ella", "12","AdminUser"));
 
-            assertTrue(fileContentTest(um.getUserInfoList("Ella", "AdminUser"), wu.readFile(str1 + "/src/test/res/AdminUser/" + "Ella" + ".txt")));
+            assertTrue(fileContentTest(um.getUserInfoList("Ella", "AdminUser"), wu.readFile(str1 + "/src/test/res/Core.User.AdminUser/" + "Ella" + ".txt")));
 
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/AdminUser/" + "Ella" + ".txt")));
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Core.User.AdminUser/" + "Ella" + ".txt")));
         }
         catch (IOException e){
-            System.out.println("create file test for AdminUser fails");
+            System.out.println("create file test for Core.User.AdminUser fails");
         }
 
     }

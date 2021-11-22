@@ -1,8 +1,8 @@
+import Core.User.NormalUser;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 

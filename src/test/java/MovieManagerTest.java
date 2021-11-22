@@ -1,6 +1,8 @@
 import java.util.*;
 
 
+import Core.Review;
+import UseCase.MovieManager;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +18,7 @@ public class MovieManagerTest {
     @Test
     public void TestGetMovie(){
         mm.add_movie("go", "www.go.com",null , 0);
-        Assert.assertEquals("go", mm.get_movie("go").moviename);
+        Assert.assertEquals("go", mm.get_movie("go").getMoviename());
     }
 
     @Test
@@ -31,7 +33,7 @@ public class MovieManagerTest {
     @Test
     public void TestGet_movieprofile() {
         mm.add_movie("go", "www.go.com",null , 0);
-        String a = "Movie name: " + "go" + ", \n" + "Link: " + "www.go.com" + ", \n" +
+        String a = "Core.Movie name: " + "go" + ", \n" + "Link: " + "www.go.com" + ", \n" +
                 "# of Likes: " + "0";
         Assert.assertEquals(a, mm.get_movieprofile("go"));
     }

@@ -1,6 +1,5 @@
-import junit.framework.TestCase;
+import Core.Review;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

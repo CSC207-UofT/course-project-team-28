@@ -2,6 +2,9 @@ import java.io.IOException;
 import java.util.*;
 
 
+import Core.Movie;
+import Core.Review;
+import UseCase.MovieManager;
 import org.junit.Assert;
 import org.junit.Test;
 
