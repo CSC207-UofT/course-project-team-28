@@ -1,5 +1,7 @@
 package Framework.GUI;
 
+import InterfaceAdapter.InstanceMain;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,9 +66,9 @@ public class GUIUserRegister extends SharedView {
         boolean register = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            register = (IM.aucontroller.register(userName, password, code, IM.wu));
+            register = (InstanceMain.getAdminInputProcessor().register(userName, password, code));
         } else {
-            register = (IM.ncu.register(userName, password, IM.wu));
+            register = (InstanceMain.getNormalCUser().register(userName, password));
         }
         if(register){
             JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );

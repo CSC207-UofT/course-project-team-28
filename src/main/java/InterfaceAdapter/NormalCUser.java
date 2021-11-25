@@ -1,6 +1,8 @@
-package InterfaceAdapter.Controller;
+package InterfaceAdapter;
 
-import InterfaceAdapter.WriteFiles.WriteUser;
+import Framework.DataAccess.WriteUser;
+
+import java.util.ArrayList;
 
 public class NormalCUser extends NormalController {
 
@@ -17,20 +19,20 @@ public class NormalCUser extends NormalController {
      * and username must be unique among all the normal users.
      * DO NOT auto-login if registered successfully
      */
-    public boolean register(String un, String pass, WriteUser wu) {
-        if (! this.isNonemptyalphanumeric(un)){
+    public boolean register(String userName, String password) {
+        if (! this.isNonemptyalphanumeric(userName)){
             return false;
         }
-        else if (! this.isNonemptyalphanumeric(pass)){
+        else if (! this.isNonemptyalphanumeric(password)){
             return false;
         }
         // check if the username is already used by other users
-        else if (! userMana.usernameIfUnique(un, "NormalUser")){
+        else if (! InstanceMain.getUserManager().usernameIfUnique(userName, "NormalUser")){
             return false;
         }
         else {
-            wu.createFile(un, pass, "NormalUser");
-            return true;
+
+            return InstanceMain.getUserManager().createNewNormaluser(userName, password);
         }
     }
 
@@ -38,9 +40,9 @@ public class NormalCUser extends NormalController {
     /**
      * If un exists and (un, pass) match, record the un and return true.
      */
-    public boolean login(String un, String pass) {
-        if (userMana.userIfExist(un, pass, "NormalUser")) {
-            currNuname = un;
+    public boolean login(String userName, String password) {
+        if (InstanceMain.getUserManager().userIfExist(userName, password, "NormalUser")) {
+            this.currNormalName = userName;
             return true;
         }
         else {
@@ -54,7 +56,7 @@ public class NormalCUser extends NormalController {
      * arraylist [username, password, contact info, description, category, coin, playlist]
      */
     public Object[] profilePage(String username){
-        return userMana.getUserInfoList(username, "NormalUser");
+        return InstanceMain.getUserManager().getUserInfoList(username, "NormalUser");
 //        ArrayList<Object> newarray = new ArrayList<>();
 //        Object[] wholelist = user_mana.getUserInfoList(username, "Core.User.NormalUser");
 //        newarray.add(wholelist[0]);
@@ -67,14 +69,12 @@ public class NormalCUser extends NormalController {
      * Given a String newinfo, update the user's profile.
      * return ture iff updated successfully.
      */
-    public boolean editProfile(String newInfo, String updateType, WriteUser wu) {
+    public boolean editProfile(String newInfo, String updateType) {
         if (updateType.equals("coin")){
-            return userMana.updateCoin(this.currNuname, Integer.parseInt(newInfo)) &&
-                    wu.editProfileReadAndWrite(newInfo, this.currNuname, "coin");
+            return InstanceMain.getUserManager().updateCoin(this.currNormalName, Integer.parseInt(newInfo));
         }
         else{
-            return userMana.updateInfo(this.currNuname, newInfo, updateType) &&
-                    wu.editProfileReadAndWrite(newInfo, this.currNuname, updateType);
+            return InstanceMain.getUserManager().updateInfo(this.currNormalName, newInfo, updateType);
         }
 
     }

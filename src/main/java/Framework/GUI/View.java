@@ -1,13 +1,20 @@
 package Framework.GUI;
 
-import InterfaceAdapter.Controller.InstanceMain;
+import Framework.DataAccess.WriteMovie;
+import Framework.DataAccess.WriteReview;
+import Framework.DataAccess.WriteUser;
+import InterfaceAdapter.InstanceMain;
 
 import javax.swing.*;
 
 public abstract class View {
     protected final View previous;
     private final JFrame frame = new JFrame();
-    protected static final InstanceMain IM = new InstanceMain();
+    WriteUser writeUser = new WriteUser();
+    WriteMovie writeMovie = new WriteMovie();
+    WriteReview writeReview = new WriteReview();
+    //InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
+
     protected static String userName = "";
 
     public View(View previous) {
@@ -28,6 +35,6 @@ public abstract class View {
         if (disposeCurrent) {
             frame.dispose();
         }
-    };
+    }
 
 }

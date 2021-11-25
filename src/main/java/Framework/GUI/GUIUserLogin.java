@@ -1,5 +1,7 @@
 package Framework.GUI;
 
+import InterfaceAdapter.InstanceMain;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,9 +66,9 @@ public class GUIUserLogin extends SharedView {
         boolean login = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            login = (IM.aucontroller.login(userName, password, code));
+            login = (InstanceMain.getAdminInputProcessor().login(userName, password, code));
         } else {
-            login = IM.ncu.login(userName, password);
+            login = InstanceMain.getNormalCUser().login(userName, password);
         }
         if (login){
             loginResult.setText("Login successful.");

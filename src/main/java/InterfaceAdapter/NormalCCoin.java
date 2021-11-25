@@ -1,7 +1,7 @@
-package InterfaceAdapter.Controller;
+package InterfaceAdapter;
 
-import InterfaceAdapter.WriteFiles.WriteReview;
-import InterfaceAdapter.WriteFiles.WriteUser;
+import Framework.DataAccess.WriteReview;
+import Framework.DataAccess.WriteUser;
 
 import java.io.IOException;
 
@@ -18,10 +18,9 @@ public class NormalCCoin extends NormalController{
      * Given the username and reviewid, update the number of coins that the user has,
      * and update the number of coins that the review earns.
      */
-    public boolean giveCoinToRev(int reviewId, WriteReview wr, WriteUser wu) throws IOException {
-        return coinMana.GiveCoinToReview(currNuname, reviewId) &&
-                wu.editProfileReadAndWrite("-1", currNuname, "coin") &&
-                wr.addCoinsToReview(reviewId, 1);
+    public boolean giveCoinToRev(int reviewID) {
+        return InstanceMain.getCoinManager().GiveCoinToReview(this.currNormalName, reviewID);
+
     }
 
 
@@ -29,9 +28,8 @@ public class NormalCCoin extends NormalController{
      * Update the number of coins that the user has after a review.
      * Note: number of coins of that the user +1.
      */
-    public void EarnCoinAfterWriteRev(WriteUser wu){
-        coinMana.EarnCoinAfterReview(currNuname);
-        wu.editProfileReadAndWrite("1", currNuname, "coin");
+    public boolean EarnCoinAfterWriteRev(){
+        return InstanceMain.getCoinManager().EarnCoinAfterReview(this.currNormalName);
     }
 
 
