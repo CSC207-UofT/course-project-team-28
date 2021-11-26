@@ -10,10 +10,7 @@ import javax.swing.*;
 public abstract class View {
     protected final View previous;
     private final JFrame frame = new JFrame();
-    WriteUser writeUser = new WriteUser();
-    WriteMovie writeMovie = new WriteMovie();
-    WriteReview writeReview = new WriteReview();
-    //InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
+
 
     protected static String userName = "";
 

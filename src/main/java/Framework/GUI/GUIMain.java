@@ -1,5 +1,10 @@
 package Framework.GUI;
 
+import Framework.DataAccess.WriteMovie;
+import Framework.DataAccess.WriteReview;
+import Framework.DataAccess.WriteUser;
+import InterfaceAdapter.InstanceMain;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +15,14 @@ public class GUIMain extends View {
     private JButton loginButton;
     private JButton adminRegisterButton;
     private JButton adminLoginButton;
+
     public GUIMain(View previous) {
         super(previous);
+        WriteUser writeUser = new WriteUser();
+        WriteReview writeReview = new WriteReview();
+        WriteMovie writeMovie = new WriteMovie();
+        InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
+
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
