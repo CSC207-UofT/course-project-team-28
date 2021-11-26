@@ -1,5 +1,7 @@
 package Framework.GUI;
 
+import InterfaceAdapter.InstanceMain;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +22,7 @@ public class GUIEditContactInfo extends View{
         jLabel = new JLabel("Enter your new phone number: ");
         jLabel.setBounds(5,40,300,30);
         jTextField = new JTextField();
-        jTextField.setText((String)IM.ncu.profilePage(userName)[2]);
+        jTextField.setText((String) InstanceMain.getNormalCUser().profilePage(userName)[2]);
         jTextField.setBounds(200,40,150,30);
         SaveButton = new JButton("Save");
         SaveButton.addActionListener(new ActionListener() {
@@ -36,7 +38,7 @@ public class GUIEditContactInfo extends View{
     }
     public void OnSaveClick(ActionEvent e){
         String contactInfo = jTextField.getText();
-        IM.ncu.editProfile(contactInfo, "contactInfo", IM.wu);
+        InstanceMain.getNormalCUser().editProfile(contactInfo, "contactInfo");
         previous.UpdateText();
         this.getFrame().dispose();
     }

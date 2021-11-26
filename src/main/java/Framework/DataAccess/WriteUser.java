@@ -1,10 +1,6 @@
-package InterfaceAdapter.WriteFiles;
+package Framework.DataAccess;
 
-import InterfaceAdapter.Controller.AdminInputProcessor;
-import InterfaceAdapter.Controller.NormalCCoin;
-import InterfaceAdapter.Controller.NormalCMovie;
-import InterfaceAdapter.Controller.NormalCUser;
-import UseCase.UserManager;
+import InterfaceAdapter.*;
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -15,47 +11,29 @@ import java.util.Arrays;
 
 /**
  * Called for read and write user's file.
- * it should be only called by Core.User class and its subclass.
+ * it should be only called by User class and its subclass.
  */
-public class WriteUser implements WriteFile{
-
-    private final UserManager um;
+public class WriteUser extends DataAccessInterface{
 
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-    protected File AdminUserFolderPath = new File(str1 + "/src/main/res/AdminUser"); //get full path for Core.User.AdminUser folder
-    protected File NormalUserFolderPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for Core.User.NormalUser folder
-    protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for Core.User.AdminUser file
-    protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for Core.User.NormalUser file
+    protected File AdminUserFolderPath = new File(str1 + "/src/main/res/AdminUser"); //get full path for AdminUser folder
+    protected File NormalUserFolderPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for NormalUser folder
+    protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for AdminUser file
+    protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for NormalUser file
 
-    protected NormalCUser ncu;
-    protected NormalCCoin ncc;
-    protected NormalCMovie ncm;
-    protected AdminInputProcessor aip;
+    protected InstanceMain instanceMain;
+
+    protected Gateway gateway = new Gateway();
 
 
     /**
      * call getObjectFromFile method first, then store all the object into all Manager classes, finally, store those
      * Manager classes into controller.
-     * @param ncu InterfaceAdapter.Controller.NormalCUser(Controller) instance
-     * @param ncc InterfaceAdapter.Controller.NormalCCoin(Controller) instance
-     * @param ncm InterfaceAdapter.Controller.NormalCMovie(Controller) instance
-     * @param aip InterfaceAdapter.Controller.AdminInputProcessor(Controller) instance
-     * @param um UseCase.UserManager(Use Case) instance
      */
-    public WriteUser(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, UserManager um){
-        this.um = um;
+    public WriteUser(){
         getObjectFromFile();
-
-        this.ncu = ncu;
-        this.ncc = ncc;
-        this.ncm = ncm;
-        this.aip = aip;
-        this.ncu.setUserMana(this.um);
-        this.ncc.setUserMana(this.um);
-        this.ncm.setUserMana(this.um);
-        this.aip.setUser_mana(this.um);
     }
 
 
@@ -63,41 +41,29 @@ public class WriteUser implements WriteFile{
      * Constructor for test use only
      * @param normalPath Core.User.NormalUser test folder path
      * @param adminPath Core.User.AdminUser test folder path
-     * @param ncu InterfaceAdapter.Controller.NormalCUser(Controller) instance
-     * @param ncc InterfaceAdapter.Controller.NormalCCoin(Controller) instance
-     * @param ncm InterfaceAdapter.Controller.NormalCMovie(Controller) instance
-     * @param aip InterfaceAdapter.Controller.AdminInputProcessor(Controller) instance
-     * @param um UseCase.UserManager(Use Case) instance
      */
-    public WriteUser(String normalPath, String adminPath, NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, UserManager um){
+    public WriteUser(String normalPath, String adminPath, InstanceMain instanceMain){
+        this.instanceMain = instanceMain;
         this.AdminUserFolderPath = new File(adminPath);
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";
         this.halfNuPath = normalPath + "/";
 
-        this.um = um;
         getObjectFromFile();
 
-        this.ncu = ncu;
-        this.ncc = ncc;
-        this.ncm = ncm;
-        this.aip = aip;
-        this.ncu.setUserMana(this.um);
-        this.ncc.setUserMana(this.um);
-        this.ncm.setUserMana(this.um);
-        this.aip.setUser_mana(this.um);
     }
 
 
 
     /**
-     * Depending the usertype, create the admin user or normal user file, and add user object to UseCase.UserManager.
+     * Depending the usertype, create the admin user or normal user file, and add user object to UserManager.
      * @param userName the name of user
      * @param userPassword the password of user
      * @return return true if the file and object successfully created.
      */
+
     @Override
-    public boolean createFile(String userName, String userPassword, String userType) {
+    public boolean createFile(String userName, String userPassword, String userType, int d) {
         File file_if_exist;
         ArrayList<Object> infoList = new ArrayList<>();
         infoList.add(userName);
@@ -113,22 +79,20 @@ public class WriteUser implements WriteFile{
 
             writeFile(halfNuPath + userName + ".txt", infoList);
             file_if_exist = new File(halfNuPath + userName + ".txt");
-            this.um.createNormaluser(userName, userPassword, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
         }
         else{
 
             writeFile(halfAuPath + userName + ".txt", infoList);
             file_if_exist = new File(halfAuPath  + userName + ".txt");
-            this.um.createAdminuser(userName, userPassword);
         }
 
-        return file_if_exist.exists() && this.um.userIfExist(userName, userPassword, userType);
+        return file_if_exist.exists();
 
     }
 
     /**
-     * At the beginning state of program, this method will read all the file in the Core.User.AdminUser folder and create object for
-     * each user, then store all the user object into UseCase.UserManager.
+     * At the beginning state of program, this method will read all the file in the AdminUser folder and create object for
+     * each user, then store all the user object into UserManager.
      */
     @Override
     public void getObjectFromFile() {
@@ -141,7 +105,7 @@ public class WriteUser implements WriteFile{
             for(String au: lstOfAdmin) {
                 ArrayList<Object> lst = readFile(halfAuPath + au);
 
-                this.um.createAdminuser(lst.get(0).toString(), lst.get(1).toString());
+                this.gateway.createFileAdminUser(lst.get(0).toString(), lst.get(1).toString());
             }
         }
         getNormalUserFromFile();
@@ -150,10 +114,11 @@ public class WriteUser implements WriteFile{
 
 
     /**
-     * At the beginning state of program, this method will read all the file in the Core.User.NormalUser folder and create object for
-     * each user, then store all the user object into UseCase.UserManager.
+     * At the beginning state of program, this method will read all the file in the NormalUser folder and create object for
+     * each user, then store all the user object into UserManager.
      * It is automatically called by <getObjectFromFile> method
      */
+
     public void getNormalUserFromFile(){
         String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in Core.User.NormalUser folder
         if(lstOfNormal == null ){
@@ -172,7 +137,10 @@ public class WriteUser implements WriteFile{
                     String[] pl1 = lst.get(6).toString().split(","); // change playlist from string to array
                     pl2 = new ArrayList<>(Arrays.asList(pl1)); // change playlist from array to arraylist
                 }
-                this.um.createNormaluser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString(),
+
+
+
+                this.gateway.createFileNormalUser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString(),
                         lst.get(3).toString(), lst.get(4).toString(), Integer.parseInt(lst.get(5).toString()), pl2);
 
             }
@@ -185,9 +153,9 @@ public class WriteUser implements WriteFile{
      * Add movie to user playlist in the file
      * @param movieName the name of movie
      * @param username the name of user
-     * @return return a string of new playlist
      */
-    public String givelikeReadAndWrite(String movieName, String username){
+    @Override
+    public boolean givelikeReadAndWrite(String movieName, String username){
         ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
         if (lst.get(6).equals("[]")){
@@ -199,29 +167,30 @@ public class WriteUser implements WriteFile{
 
         writeFile(halfNuPath + username + ".txt", lst);
 
-        return lst.get(6).toString();
+        return lst.get(6).toString().contains(movieName);
     }
 
     /**
      * remove movie from playlist in the file
-     * @param moviename the name of movie
+     * @param movieName the name of movie
      * @param username the name of user
      * @return return a string of new playlist
      */
-    public String undoLikeReadAndWrite(String moviename, String username) {
+    @Override
+    public boolean undoLikeReadAndWrite(String movieName, String username) {
         ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
         lst.set(6, lst.get(6).toString().replace("[",""));//For playlist String. get rid of "[" and "]"
         lst.set(6, lst.get(6).toString().replace("]",""));//For playlist String. get rid of "[" and "]"
         String[] movielst1 = lst.get(6).toString().split(",");// split playlist String into Array
         ArrayList<String> movielst2 = new ArrayList<>(Arrays.asList(movielst1));// convert Array into ArrayList
-        movielst2.remove(moviename);// remove movie from playlist
+        movielst2.remove(movieName);// remove movie from playlist
         lst.set(6, movielst2.toString().replaceAll(", ", ","));// Change playlist with new playlist, make sure there is no space around "," in playlist
 
 
         writeFile(halfNuPath + username + ".txt", lst);
 
-        return lst.get(6).toString();
+        return !lst.get(6).toString().contains(movieName);
 
     }
 
@@ -232,7 +201,8 @@ public class WriteUser implements WriteFile{
      * @param writeType the type of info that user wants to update. e.g. contactInfo, description
      * @return return true if update completed. Otherwise, return false.
      */
-    public boolean editProfileReadAndWrite(String newUpdate, String username, String writeType) {
+    @Override
+    public boolean editProfileReadAndWrite(String username, String newUpdate, String writeType) {
         ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
         switch (writeType) {

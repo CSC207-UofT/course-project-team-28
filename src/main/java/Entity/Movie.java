@@ -1,4 +1,4 @@
-package Core;//import java.util.ArrayList;
+package Entity;//import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Movie {

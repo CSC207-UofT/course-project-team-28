@@ -1,4 +1,4 @@
-package Core.User;
+package Entity.User;
 
 import java.util.ArrayList;
 

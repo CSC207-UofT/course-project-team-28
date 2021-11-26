@@ -1,4 +1,4 @@
-package Core.User;
+package Entity.User;
 
 /**
  * Represent Admin Core.User.User

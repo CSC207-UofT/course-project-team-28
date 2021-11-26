@@ -1,4 +1,4 @@
-import Core.User.AdminUser;
+import Entity.User.AdminUser;
 import org.junit.Before;
 import org.junit.Test;
 

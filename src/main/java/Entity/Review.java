@@ -1,4 +1,4 @@
-package Core;
+package Entity;
 
 public class Review {
     protected String reviewer;
@@ -29,11 +29,11 @@ public class Review {
                 + " coins: " + this.review_content;
     }
 
-    public int getID(){;
+    public int getID(){
         return this.ID;
     }
 
-    public int getnumCoin(){;
+    public int getnumCoin(){
         return this.numCoin;
     }
 

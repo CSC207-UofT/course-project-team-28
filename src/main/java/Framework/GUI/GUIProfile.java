@@ -1,5 +1,7 @@
 package Framework.GUI;
 
+import InterfaceAdapter.InstanceMain;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,15 +32,15 @@ public class GUIProfile extends View {
     }
     private void PlaceThingsOnP1(JPanel p1){
         p1.setLayout(null);
-        JLabel usernameLabel = new JLabel("Username: " + IM.ncu.profilePage(userName)[0]);
+        JLabel usernameLabel = new JLabel("Username: " + InstanceMain.getNormalCUser().profilePage(userName)[0]);
         usernameLabel.setFont(font1);
         usernameLabel.setBounds(20,20,700,200);
-        coinLabel = new JLabel("number of coins: " + IM.ncu.profilePage(userName)[5]);
+        coinLabel = new JLabel("number of coins: " + InstanceMain.getNormalCUser().profilePage(userName)[5]);
         coinLabel.setBounds(20, 60, 300, 200);
         contactInfoLabel = new JLabel();
-        contactInfoLabel.setText("Contact Info: " + IM.ncu.profilePage(userName)[2]);
+        contactInfoLabel.setText("Contact Info: " + InstanceMain.getNormalCUser().profilePage(userName)[2]);
         contactInfoLabel.setBounds(20, 90, 700, 200);
-        JLabel description = new JLabel("Core.User description: " + IM.ncu.profilePage(userName)[3]);
+        JLabel description = new JLabel("Core.User description: " + InstanceMain.getNormalCUser().profilePage(userName)[3]);
         description.setBounds(20, 120, 700, 200);
         JButton EditContactInfo = new JButton("Edit");
         EditContactInfo.setBounds(280,180,60,20);
@@ -57,7 +59,7 @@ public class GUIProfile extends View {
     }
     private void PlaceThingsOnP2(JPanel p2){
         p2.setLayout(null);
-        ArrayList<String> playList = (ArrayList<String>) IM.ncu.profilePage(userName)[6];
+        ArrayList<String> playList = (ArrayList<String>) InstanceMain.getNormalCUser().profilePage(userName)[6];
         JList PlayList = new JList(playList.toArray());
         PlayList.setBounds(10,10,500,500);
         p2.add(PlayList);
@@ -70,8 +72,8 @@ public class GUIProfile extends View {
 //    private int aa = 0;
     @Override
     protected void UpdateText() {
-        System.out.println(IM.ncu.profilePage(userName)[2]);
-        contactInfoLabel.setText("Contact Info: " + IM.ncu.profilePage(userName)[2]);
+        System.out.println(InstanceMain.getNormalCUser().profilePage(userName)[2]);
+        contactInfoLabel.setText("Contact Info: " + InstanceMain.getNormalCUser().profilePage(userName)[2]);
 //        contactInfoLabel.setText(String.valueOf(aa++));
     }
 

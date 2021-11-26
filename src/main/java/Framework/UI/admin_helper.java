@@ -1,6 +1,6 @@
 package Framework.UI;
 
-import InterfaceAdapter.Controller.InstanceMain;
+import InterfaceAdapter.InstanceMain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class admin_helper {
-    public static List<String> register(Scanner scanner, InstanceMain IM){
+    public static List<String> register(Scanner scanner){
         String username;
         String password;
         String code;
@@ -18,7 +18,7 @@ public class admin_helper {
         password = scanner.nextLine();
         System.out.println("Please enter your administration code:");
         code = scanner.nextLine();
-        while (!(IM.aucontroller.register(username, password, code, IM.wu))) {
+        while (!(InstanceMain.getAdminInputProcessor().register(username, password, code))) {
             System.out.println("Wrong input of username/password/code, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
@@ -30,7 +30,7 @@ public class admin_helper {
         return Arrays.asList(username, password, code);
     }
 
-    public static List<String> login(Scanner scanner, InstanceMain IM){
+    public static List<String> login(Scanner scanner){
         String username;
         String password;
         String code;
@@ -40,7 +40,7 @@ public class admin_helper {
         password = scanner.nextLine();
         System.out.println("Please enter your administration code:");
         code = scanner.nextLine();
-        while (!(IM.aucontroller.login(username, password, code))) {
+        while (!(InstanceMain.getAdminInputProcessor().login(username, password, code))) {
             System.out.println("Wrong input of username/password/code, please try again.");
             System.out.println("Please enter your username (should only contains numbers and letter):");
             username = scanner.nextLine();
@@ -52,7 +52,7 @@ public class admin_helper {
         return Arrays.asList(username, password, code);
     }
 
-    public static void upload_movie(Scanner scanner, InstanceMain IM){
+    public static void upload_movie(Scanner scanner){
         // now admin can upload movie or delete movie
         System.out.println("Enter 'Upload movie'.");
         String choice = scanner.nextLine();
@@ -69,7 +69,7 @@ public class admin_helper {
             String movie_name = scanner.nextLine();
             System.out.println("Please enter the link of the movie");
             String movie_link = scanner.nextLine();
-            while (!(IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm))) {
+            while (!(InstanceMain.getAdminInputProcessor().uploadMovie(movie_name, movie_link))) {
                 System.out.println("invalid inputs, please try again: ");
                 System.out.println("Please enter the name of the movie");
                 movie_name = scanner.nextLine();
@@ -77,7 +77,7 @@ public class admin_helper {
                 movie_link = scanner.nextLine();
             }
 
-            IM.aucontroller.uploadMovie(movie_name, movie_link, IM.wm);
+            InstanceMain.getAdminInputProcessor().uploadMovie(movie_name, movie_link);
             System.out.println("Core.Movie added");
             System.out.println("program exits.");
 
