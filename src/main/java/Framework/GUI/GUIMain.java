@@ -18,10 +18,6 @@ public class GUIMain extends View {
 
     public GUIMain(View previous) {
         super(previous);
-        WriteUser writeUser = new WriteUser();
-        WriteReview writeReview = new WriteReview();
-        WriteMovie writeMovie = new WriteMovie();
-        InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
 
         registerButton.addActionListener(new ActionListener() {
             @Override
@@ -65,6 +61,11 @@ public class GUIMain extends View {
     }
 
     public static void main(String[] args){
+        WriteUser writeUser = new WriteUser();
+        WriteReview writeReview = new WriteReview();
+        WriteMovie writeMovie = new WriteMovie();
+        InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
+
         View gui = new GUIMain(null);
         gui.nextView(gui,false);
     }
