@@ -60,6 +60,9 @@ public class GUIUserLogin extends SharedView {
         }
     }
     //actions
+    /*
+    Check whether the user is AdminUser or NormalUser, and Login.
+     */
     public void OnLoginClick(ActionEvent e) {
         userName = usernameText.getText();
         String password = passwordText.getText();

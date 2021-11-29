@@ -11,11 +11,19 @@ public class GUIEditContactInfo extends View{
     private JLabel jLabel;
     private JTextField jTextField;
     private JButton SaveButton;
+
+    /*
+    Edit contact information.
+     */
     public GUIEditContactInfo(View previous) {
         super(previous);
         jPanel = new JPanel();
         PlaceThingsOnPanel(jPanel);
     }
+
+    /*
+    Place related buttons and texts on panels.
+     */
     private void PlaceThingsOnPanel(JPanel p){
         p.setLayout(null);
         p.setBounds(0,0,500,300);
@@ -36,6 +44,10 @@ public class GUIEditContactInfo extends View{
         p.add(jTextField);
         p.add(SaveButton);
     }
+
+    /*
+    Save the updated information and dispose the edit window.
+     */
     public void OnSaveClick(ActionEvent e){
         String contactInfo = jTextField.getText();
         InstanceMain.getNormalCUser().editProfile(contactInfo, "contactInfo");

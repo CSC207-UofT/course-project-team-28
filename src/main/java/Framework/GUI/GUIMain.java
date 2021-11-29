@@ -18,6 +18,10 @@ public class GUIMain extends View {
     private JButton adminRegisterButton;
     private JButton adminLoginButton;
 
+    /*
+    GuiMain designs the main interface of our program, with four buttons, AdminRegister, register, AdminLogin and login.
+    Users can choose one button they want.
+     */
     public GUIMain(View previous) {
         super(previous);
 
@@ -51,6 +55,10 @@ public class GUIMain extends View {
     protected void UpdateText() {
 
     }
+
+    /*
+    Add four buttons on the Panel.
+     */
     protected void addComponentToP1() {
         ImageIcon bg = new ImageIcon(PicPresenter.getPic("bg.gif"));
         bg.setImage(bg.getImage().getScaledInstance(810, 1440, Image.SCALE_DEFAULT));
