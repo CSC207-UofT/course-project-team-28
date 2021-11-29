@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainPageUserInfoPanel extends View{
+    /*
+    Construct User Information Panel on Main Page
+     */
     public JLabel contactInfoLabel;
     private JLabel coinLabel;
     private final JPanel panel1;
@@ -20,6 +23,10 @@ public class MainPageUserInfoPanel extends View{
         panel1 = new JPanel();
         PlaceThingsOnP1(panel1);
     }
+
+    /*
+    Place all components on the User Info Panel.
+     */
     private void PlaceThingsOnP1(JPanel p1){
         p1.setLayout(null);
         Border b = BorderFactory.createLineBorder(Color.BLACK, 1);

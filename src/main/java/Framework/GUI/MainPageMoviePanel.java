@@ -7,6 +7,9 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class MainPageMoviePanel extends View {
+    /*
+    Construct the Movie Panel on MainPage
+     */
     private final JPanel panel1;
 
     public MainPageMoviePanel(View v) {
@@ -15,6 +18,9 @@ public class MainPageMoviePanel extends View {
         placeComponentOnPanel(panel1);
     }
 
+    /*
+    Place all components on the Movie Panel.
+     */
     public void placeComponentOnPanel(JPanel p){
         p.setLayout(null);
         Border b = BorderFactory.createLineBorder(Color.BLACK, 1);
