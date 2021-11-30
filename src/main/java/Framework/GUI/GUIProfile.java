@@ -5,6 +5,7 @@ import Framework.Presenter.PicPresenter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,13 +19,17 @@ public class GUIProfile extends View {
     private JTextArea description;
     private JLabel coinLabel;
     private final JPanel panel1;
+    private final JPanel panel2;
+    private JPanel panel3;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
 
     public GUIProfile(View previous){
         super(previous);
         panel1 = new JPanel();
+        panel2 = new JPanel();
         PlaceThingsOnP1(panel1);
+        PlaceThingsOnP2(panel2);
     }
 
     private void PlaceThingsOnP1(JPanel p1){
@@ -36,7 +41,8 @@ public class GUIProfile extends View {
         contactInfoLabel = new JLabel();
         ImageIcon icon = new ImageIcon(PicPresenter.getPic("5.jpg"));
         JLabel i = new JLabel(icon, JLabel.CENTER);
-        Border b = BorderFactory.createLineBorder(Color.BLACK, 1);
+        Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
+        Border b = BorderFactory.createTitledBorder(bb,"Your Profile", TitledBorder.LEADING, TitledBorder.TOP, font2);
 
         usernameLabel.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[0]);
         contactInfoLabel.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[2]);
@@ -79,12 +85,38 @@ public class GUIProfile extends View {
     }
 
     private void PlaceThingsOnP2(JPanel p2){
+
+        Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
+        Border b = BorderFactory.createTitledBorder(bb,"Recommendation", TitledBorder.LEADING,TitledBorder.TOP, font2);
+        p2.setBorder(b);
+        p2.setBounds(420,290,740,550);
+
+        ImageIcon icon1 = new ImageIcon(PicPresenter.getPic("5.jpg"));
+        ImageIcon icon2 = new ImageIcon(PicPresenter.getPic("4.jpg"));
+        ImageIcon icon3 = new ImageIcon(PicPresenter.getPic("3.jpg"));
+        JLabel Jicon1 = new JLabel("Movie 1", SwingConstants.CENTER);
+        JLabel Jicon2 = new JLabel("Movie 2", SwingConstants.CENTER);
+        JLabel Jicon3 = new JLabel("Movie 3",SwingConstants.CENTER);
+
+        JLabel i1 = new JLabel(icon1);
+        JLabel i2 = new JLabel(icon2);
+        JLabel i3 = new JLabel(icon3);
+
         p2.setLayout(null);
-        ArrayList<String> playList = (ArrayList<String>) InstanceMain.getNormalCUser().profilePage(userName)[6];
-        JList PlayList = new JList(playList.toArray());
-        PlayList.setBounds(10,10,500,500);
-        p2.add(PlayList);
-        PlayList.setFont(font1);
+        i1.setBounds(5, 200, 200, 200);
+        i2.setBounds(200, 200, 300, 200);
+        i3.setBounds(450, 200, 300, 200);
+        Jicon1.setBounds(5,400,200,20);
+        Jicon2.setBounds(200,400,300,20);
+        Jicon3.setBounds(450,400,300,20);
+
+        p2.add(i1);
+        p2.add(i2);
+        p2.add(i3);
+        p2.add(Jicon1);
+        p2.add(Jicon2);
+        p2.add(Jicon3);
+
     }
 
     private void OnButtonClick(ActionEvent e) {
@@ -102,11 +134,9 @@ public class GUIProfile extends View {
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
-        frame.setTitle("Your Page");
-        /*
-        frame.add(jTabbedPane);
-        */
+        frame.setTitle("TEReview");
         frame.add(panel1);
+        frame.add(panel2);
         frame.setSize(1200,900);
         frame.setLayout(null);
         frame.setVisible(true);

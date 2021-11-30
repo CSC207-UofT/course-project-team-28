@@ -28,7 +28,7 @@ public class GUIEditContactInfo extends View{
         jTextField = new JTextField();
         description = new JTextArea();
         JLabel jLabel = new JLabel("Enter your new phone number: ");
-        JLabel e = new JLabel("Enter your new phone number: ");
+        JLabel e = new JLabel("Enter your new description: ");
         JButton saveButton = new JButton("Save");
 
         p.setBounds(0,0,500,500);
@@ -37,10 +37,8 @@ public class GUIEditContactInfo extends View{
         jTextField.setBounds(200,40,150,30);
         description.setBounds(200,100,200,120);
         saveButton.setBounds(200,230,80,30);
-
-
-
         jTextField.setText((String) InstanceMain.getNormalCUser().profilePage(userName)[2]);
+        description.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[3]);
 
 
         saveButton.addActionListener(new ActionListener() {
@@ -68,7 +66,6 @@ public class GUIEditContactInfo extends View{
         previous.UpdateText();
         this.getFrame().dispose();
     }
-
 
     @Override
     protected void UpdateText() {
