@@ -60,7 +60,7 @@ public class GUIMain extends View {
     Add four buttons on the Panel.
      */
     protected void addComponentToP1() {
-        ImageIcon bg = new ImageIcon(PicPresenter.getPic("bg.gif"));
+        ImageIcon bg = new ImageIcon(PicPresenter.getPic("Bg.gif"));
         bg.setImage(bg.getImage().getScaledInstance(810, 1440, Image.SCALE_DEFAULT));
         JLabel jbg = new JLabel(bg);
         jbg.add(registerButton);

@@ -8,9 +8,8 @@ import java.awt.event.ActionListener;
 
 public class GUIEditContactInfo extends View{
     private final JPanel jPanel;
-    private JLabel jLabel;
     private JTextField jTextField;
-    private JButton SaveButton;
+    private JTextArea description;
 
     /*
     Edit contact information.
@@ -26,23 +25,36 @@ public class GUIEditContactInfo extends View{
      */
     private void PlaceThingsOnPanel(JPanel p){
         p.setLayout(null);
-        p.setBounds(0,0,500,300);
-        jLabel = new JLabel("Enter your new phone number: ");
-        jLabel.setBounds(5,40,300,30);
         jTextField = new JTextField();
-        jTextField.setText((String) InstanceMain.getNormalCUser().profilePage(userName)[2]);
+        description = new JTextArea();
+        JLabel jLabel = new JLabel("Enter your new phone number: ");
+        JLabel e = new JLabel("Enter your new phone number: ");
+        JButton saveButton = new JButton("Save");
+
+        p.setBounds(0,0,500,500);
+        jLabel.setBounds(5,40,300,30);
+        e.setBounds(5,100,300,30);
         jTextField.setBounds(200,40,150,30);
-        SaveButton = new JButton("Save");
-        SaveButton.addActionListener(new ActionListener() {
+        description.setBounds(200,100,200,120);
+        saveButton.setBounds(200,230,80,30);
+
+
+
+        jTextField.setText((String) InstanceMain.getNormalCUser().profilePage(userName)[2]);
+
+
+        saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnSaveClick(actionEvent);
             }
         });
-        SaveButton.setBounds(200,80,80,30);
+
         p.add(jLabel);
         p.add(jTextField);
-        p.add(SaveButton);
+        p.add(saveButton);
+        p.add(e);
+        p.add(description);
     }
 
     /*
@@ -50,7 +62,9 @@ public class GUIEditContactInfo extends View{
      */
     public void OnSaveClick(ActionEvent e){
         String contactInfo = jTextField.getText();
+        String des = description.getText();
         InstanceMain.getNormalCUser().editProfile(contactInfo, "contactInfo");
+        InstanceMain.getNormalCUser().editProfile(des,"description");
         previous.UpdateText();
         this.getFrame().dispose();
     }
@@ -66,7 +80,7 @@ public class GUIEditContactInfo extends View{
         JFrame frame = super.getFrame();
         frame.setTitle("Edit Contact Info");
         frame.add(jPanel);
-        frame.setSize(500,150);
+        frame.setSize(500,320);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
