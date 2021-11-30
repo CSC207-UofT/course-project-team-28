@@ -70,15 +70,22 @@ public class GUIUserLogin extends SharedView {
         if(isAdmin){
             String code = adminCodeText.getText();
             login = (InstanceMain.getAdminInputProcessor().login(userName, password, code));
+            if (login){
+                nextView(new GUIAdminUser(this), true);
+            }
+            else {
+                loginResult.setText("Username or password incorrect, please try again.");
+            }
         } else {
             login = InstanceMain.getNormalCUser().login(userName, password);
+            if (login){
+                loginResult.setText("Login successful.");
+                nextView(new GUIProfile(this), true);
+            }
+            else {
+                loginResult.setText("Username or password incorrect, please try again.");
+            }
         }
-        if (login){
-            loginResult.setText("Login successful.");
-        }else {
-            loginResult.setText("Username or password incorrect, please try again.");
-        }
-        nextView(new GUIProfile(this), true);
     }
 
     @Override
