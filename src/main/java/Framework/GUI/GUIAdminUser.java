@@ -74,11 +74,15 @@ public class GUIAdminUser extends View{
     public void OnUploadClick(ActionEvent e) {
         String mName = mNameText.getText();
         String link = mLinkText.getText();
-        InstanceMain.getAdminInputProcessor().uploadMovie(mName, link);
-        previous.UpdateText();
+        if (InstanceMain.getAdminInputProcessor().uploadMovie(mName, link)) {
+            previous.UpdateText();
 
-        JOptionPane.showMessageDialog(null, "Successfully uploaded", ":D",
-                JOptionPane.PLAIN_MESSAGE );
+            JOptionPane.showMessageDialog(null, "Successfully uploaded", ":D",
+                    JOptionPane.PLAIN_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Your movie already exists", ":(",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
 
     }
 
