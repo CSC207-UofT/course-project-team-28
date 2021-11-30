@@ -24,24 +24,25 @@ public class MovieManager {
 
     /**
      * Add an instance of movie to the overall list of Movies
-     * @param moviename name of Core.Movie
-     * @param movielink the link of the movie
+     * @param movieName name of Core.Movie
+     * @param movieLink the link of the movie
      */
-    public void addMovie(String moviename, String movielink, HashMap<Object, Object> reviewMap, int numLikes) {
-        Movie m = new Movie(moviename, movielink, reviewMap, numLikes);
+    public boolean addMovie(String movieName, String movieLink, HashMap<Object, Object> reviewMap, int numLikes) {
+        Movie m = new Movie(movieName, movieLink, reviewMap, numLikes);
         this.Movies.add(m);
+        return true;
 
     }
 
     /**
      * Add an instance of movie to the overall list of Movies
-     * @param moviename name of Core.Movie
-     * @param movielink the link of the movie
+     * @param movieName name of Core.Movie
+     * @param movieLink the link of the movie
      */
-    public boolean addNewMovie(String moviename, String movielink) {
-        Movie m = new Movie(moviename, movielink, new HashMap<>(), 0);
+    public boolean addNewMovie(String movieName, String movieLink) {
+        Movie m = new Movie(movieName, movieLink, new HashMap<>(), 0);
         this.Movies.add(m);
-        return this.Movies.contains(m) && this.gateway.createNewMovie(moviename, movielink);
+        return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink);
 
     }
 
@@ -96,9 +97,9 @@ public class MovieManager {
         return movie.toStringnoreview();
 
 //        ArrayList<Object> profile = new ArrayList<>();
-//        profile.add(movie.getMoviename());
-//        profile.add(movie.getMovielink());
-//        profile.add(movie.getReviewsContnet());
+//        profile.add(movie.getMovieName());
+//        profile.add(movie.getMovieLink());
+//        profile.add(movie.getReviewsContent());
 //        profile.add(movie.getLikes());
 //        return profile;
     }
@@ -109,7 +110,7 @@ public class MovieManager {
 //     */
 //    public boolean delete_movie(String movie_name) {
 //        for (Core.Movie m : this.Movies){
-//            if (m.moviename.equals(movie_name)){
+//            if (m.movieName.equals(movie_name)){
 //                this.Movies.remove(m);
 //                return !this.Movies.contains(m);
 //            }
@@ -118,7 +119,7 @@ public class MovieManager {
 
 
     /**
-     * Add an like to an instance of movie from the overall list of Movies
+     * Add a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
     public boolean likeMovie(String movieName) {
@@ -131,7 +132,7 @@ public class MovieManager {
     }
 
     /**
-     * Undo an like to an instance of movie from the overall list of Movies
+     * Undo a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
     public boolean undolikeMovie(String movieName) {
