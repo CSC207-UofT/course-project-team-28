@@ -3,6 +3,7 @@ package UseCase;
 import Core.Movie;
 import Core.Review;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ import java.util.HashMap;
  */
 public class MovieManager {
 
-    private ArrayList<Movie> Movies;
+    private final ArrayList<Movie> Movies;
 
     /**
      * Creates a UseCase.MovieManager with a list of movies are empty
@@ -43,6 +44,22 @@ public class MovieManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Use movie_name and movie_link to find the whether a movie exists or not.
+     * @param name the name of the movie
+     * @param link the link of the movie
+     * @return return true if a movie's name and matching link already exists in movie list. Otherwise, return false
+     */
+    public boolean IfMovieExist(String name, String link){
+
+        for(Movie movie: Movies){
+            if(movie.getMoviename().equals(name)){
+                return movie.getLink().equals(link);
+                }
+            }
+        return false;
     }
 
     /**

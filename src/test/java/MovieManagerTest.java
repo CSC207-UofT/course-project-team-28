@@ -22,6 +22,13 @@ public class MovieManagerTest {
     }
 
     @Test
+    public void TestIfMovieExist(){
+        mm.add_movie("Killer", "www.go.com",null , 0);
+
+        Assert.assertTrue(mm.IfMovieExist("Killer", "www.go.com"));
+    }
+
+    @Test
     public void TestAdd_review_to_movie(){
         Review review = new Review("me", "Killer", "haha", 0, 1);
         HashMap<Object, Object> map = new HashMap<>();
