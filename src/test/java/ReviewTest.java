@@ -1,4 +1,4 @@
-import Core.Review;
+import Entity.Review;
 import org.junit.Before;
 import org.junit.Test;
 

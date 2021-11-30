@@ -1,10 +1,6 @@
-package InterfaceAdapter.WriteFiles;
+package Framework.DataAccess;
 
-import InterfaceAdapter.Controller.AdminInputProcessor;
-import InterfaceAdapter.Controller.NormalCCoin;
-import InterfaceAdapter.Controller.NormalCMovie;
-import InterfaceAdapter.Controller.NormalCUser;
-import UseCase.MovieManager;
+import InterfaceAdapter.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -20,16 +16,12 @@ import static java.lang.System.out;
  * Called for read and write movie's file.
  */
 
-public class WriteMovie implements WriteFile{
-    private MovieManager mm;
+public class WriteMovie extends DataAccessInterface{
+    protected Gateway gateway = new Gateway();
 
     protected FileReader moviereader;
     protected BufferedReader getmovie;
     protected FileWriter writemovie;
-    protected NormalCUser ncu;
-    protected NormalCCoin ncc;
-    protected NormalCMovie ncm;
-    protected AdminInputProcessor aip;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected File MovieFolderPath = new File(str1 + "/src/main/res/Moviedata"); //get full path for Moviedata folder
     protected File MovieReFolderPath = new File(str1 + "/src/main/res/Moviereview"); //get full path for Moviereview folder
@@ -38,7 +30,7 @@ public class WriteMovie implements WriteFile{
     protected String MovierePath = str1 + "/src/main/res/Moviereview/"; //get path to moviereview folder
 
 
-    /**
+    /*
      * Creates files for movies and saved in Moviedata,
      * also files for movie reviews separately saved in Moviereviews.
      * @return boolean
@@ -47,58 +39,28 @@ public class WriteMovie implements WriteFile{
     /**
      * call getObjectFromFile method first, then store all the object into all Manager classes, finally, store those
      * Manager classes into controller.
-     * @param ncu InterfaceAdapter.Controller.NormalCUser(Controller) instance
-     * @param ncc InterfaceAdapter.Controller.NormalCCoin(Controller) instance
-     * @param ncm InterfaceAdapter.Controller.NormalCMovie(Controller) instance
-     * @param aip InterfaceAdapter.Controller.AdminInputProcessor(Controller) instance
-     * @param mm UseCase.MovieManager(Use Case) instance
      */
-    public WriteMovie(NormalCUser ncu, NormalCCoin ncc, NormalCMovie ncm, AdminInputProcessor aip, MovieManager mm){
-        this.mm = mm;
+    public WriteMovie(){
         getObjectFromFile();
 
-        this.ncu = ncu;
-        this.ncc = ncc;
-        this.ncm = ncm;
-        this.aip = aip;
-        this.ncu.setMovMana(this.mm);
-        this.ncc.setMovMana(this.mm);
-        this.ncm.setMovMana(this.mm);
-        this.aip.setMov_mana(this.mm);
     }
 
     /**
      * Constructor for test use only
      * @param moviePath Core.Movie test folder path
-     * @param ncu InterfaceAdapter.Controller.NormalCUser(Controller) instance
-     * @param ncc InterfaceAdapter.Controller.NormalCCoin(Controller) instance
-     * @param ncm InterfaceAdapter.Controller.NormalCMovie(Controller) instance
-     * @param aip InterfaceAdapter.Controller.AdminInputProcessor(Controller) instance
-     * @param mm UseCase.MovieManager(Use Case) instance
      */
-    public WriteMovie(String moviePath, String movierePath, String readPath, NormalCUser ncu, NormalCCoin ncc,
-                      NormalCMovie ncm, AdminInputProcessor aip, MovieManager mm){
+    public WriteMovie(String moviePath, String movierePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
         this.MovieReFolderPath = new File(movierePath);
         this.MoviePath = moviePath +"/";
         this.MovierePath = movierePath + "/";
         this.ReadPath = readPath + "/";
 
-        this.mm = mm;
         getObjectFromFile();
 
-        this.ncu = ncu;
-        this.ncc = ncc;
-        this.ncm = ncm;
-        this.aip = aip;
-        this.ncu.setMovMana(this.mm);
-        this.ncc.setMovMana(this.mm);
-        this.ncm.setMovMana(this.mm);
-        this.aip.setMov_mana(this.mm);
     }
-
     @Override
-    public boolean createFile(String movieName, String movieLink, String z) {
+    public boolean createFile(String movieName, String movieLink, String z, int d) {
 
         try{
             writemovie = new FileWriter(MoviePath + movieName + ".txt");
@@ -122,9 +84,8 @@ public class WriteMovie implements WriteFile{
             File moviefile = new File(MoviePath + movieName + ".txt");
             File moviereview = new File(MovierePath + movieName + " reviews.properties");
 
-            this.mm.add_movie(movieName, movieLink, new HashMap<>(), 0);
 
-            return moviefile.exists() && moviereview.exists() && this.mm.add_movie(movieName, movieLink, new HashMap<>(), 0);
+            return moviefile.exists() && moviereview.exists();
         }
         catch (IOException e){
             System.out.println("Cannot create the file");
@@ -133,6 +94,7 @@ public class WriteMovie implements WriteFile{
     }
 
 
+    @Override
     public void addReviewToFile(String userName, String movieName, String reviewContent) {
         try {
             FileOutputStream fos;
@@ -154,7 +116,8 @@ public class WriteMovie implements WriteFile{
 
     }
 
-    public void addLikeToFile(String movieName, String state) {
+    @Override
+    public boolean addLikeToFile(String movieName, String state) {
         try {
             ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata"));
             writemovie = new FileWriter(MoviePath + movieName + ".txt");
@@ -171,9 +134,11 @@ public class WriteMovie implements WriteFile{
                 writemovie.write("\r\n");
             }
             writemovie.close();
+            return true;
         }
         catch (IOException e){
             System.out.println("Cannot add like to file");
+            return false;
         }
     }
 
@@ -205,9 +170,7 @@ public class WriteMovie implements WriteFile{
 
             String[] lstOfMovie = MoviePathFile.list();// get all the file name in Moviedata folder
 
-            if (lstOfMovie == null) {
-
-            } else {
+            if (lstOfMovie != null) {
                 for (String m : lstOfMovie) {
                     ArrayList<String> lst = readFile(m, "Moviedata");
                     HashMap<Object, Object> moviereview = new HashMap<>(); // initialise a HashMap
@@ -225,8 +188,9 @@ public class WriteMovie implements WriteFile{
                         }
                     } // Find the corresponding review file for movie and change the HashMap created to the stored one
 
-                     // create object for a single movie
-                    this.mm.add_movie(lst.get(0), lst.get(1), moviereview, Integer.parseInt(lst.get(2)));
+
+                    // create object for a single movie
+                    this.gateway.createFileMovie(lst.get(0), lst.get(1), moviereview, Integer.parseInt(lst.get(2)));
                 }
             }
         }

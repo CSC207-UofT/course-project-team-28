@@ -1,4 +1,4 @@
-import InterfaceAdapter.Controller.NormalController;
+import InterfaceAdapter.NormalController;
 import org.junit.Before;
 import org.junit.Test;
 

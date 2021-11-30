@@ -1,4 +1,4 @@
-package Core.User;
+package Entity.User;
 
 /**
  * Parent abstract class of all kind of users

@@ -1,4 +1,4 @@
-import Core.User.NormalUser;
+import Entity.User.NormalUser;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
