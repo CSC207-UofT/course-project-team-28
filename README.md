@@ -11,3 +11,5 @@ For example, you should have a directory that looks like --- [The name of Your o
 3. We have some “fake” movies that we created in the Moviedata folder. When you want to “Search” a movie, you can open the folder of Moviedata to see what kinds of movies we have. The name of txt files under the Moviedata folder is the name of the "fake" movies.
 
 4. We have a version of using package, it is on Andy_Han's branch, but it doesn't work, so the version of main branch is our final version.
+
+5. The admin code is 123456 
