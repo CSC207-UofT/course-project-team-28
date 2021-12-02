@@ -60,6 +60,10 @@ public class Movie {
         return this.moviename;
     }
 
+    public String getLink(){
+        return this.movielink;
+    }
+
 
     public int getLikes() {return this.Likes; }
 
