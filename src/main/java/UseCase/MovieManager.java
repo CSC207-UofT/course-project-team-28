@@ -69,8 +69,8 @@ public class MovieManager {
     public boolean IfMovieExist(String name, String link){
 
         for(Movie movie: Movies){
-            if(movie.getMoviename().equals(name)){
-                return movie.getLink().equals(link);
+            if(movie.getMoviename().equals(name) | movie.getLink().equals(link)){
+                return true;
                 }
             }
         return false;
