@@ -27,8 +27,8 @@ public class MovieManager {
      * @param movieName name of Core.Movie
      * @param movieLink the link of the movie
      */
-    public boolean addMovie(String movieName, String movieLink, HashMap<Object, Object> reviewMap, int numLikes) {
-        Movie m = new Movie(movieName, movieLink, reviewMap, numLikes);
+    public boolean addMovie(String movieName, String movieLink, int numLikes) {
+        Movie m = new Movie(movieName, movieLink, numLikes);
         this.Movies.add(m);
         return true;
 
@@ -40,7 +40,7 @@ public class MovieManager {
      * @param movieLink the link of the movie
      */
     public boolean addNewMovie(String movieName, String movieLink) {
-        Movie m = new Movie(movieName, movieLink, new HashMap<>(), 0);
+        Movie m = new Movie(movieName, movieLink, 0);
         this.Movies.add(m);
         return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink);
 
@@ -76,15 +76,6 @@ public class MovieManager {
         return false;
     }
 
-    /**
-     * Add a review to an instance of movie
-     * @param movieName name of an instance of Core.Movie
-     */
-    public void addReviewToMovie(String movieName, Review review) {
-        Movie movie = this.getMovie(movieName);
-
-        movie.AddReview(review);
-    }
 
     /**
      * should be called only when movie_name exists
@@ -94,7 +85,7 @@ public class MovieManager {
      */
     public String getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
-        return movie.toStringnoreview();
+        return movie.toString();
 
 //        ArrayList<Object> profile = new ArrayList<>();
 //        profile.add(movie.getMovieName());

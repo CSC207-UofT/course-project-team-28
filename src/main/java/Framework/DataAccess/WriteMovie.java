@@ -16,7 +16,7 @@ import static java.lang.System.out;
  * Called for read and write movie's file.
  */
 
-public class WriteMovie extends DataAccessInterface{
+public class WriteMovie implements WriteMovieInterface{
     protected Gateway gateway = new Gateway();
 
     protected FileReader moviereader;
@@ -24,10 +24,8 @@ public class WriteMovie extends DataAccessInterface{
     protected FileWriter writemovie;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected File MovieFolderPath = new File(str1 + "/src/main/res/Moviedata"); //get full path for Moviedata folder
-    protected File MovieReFolderPath = new File(str1 + "/src/main/res/Moviereview"); //get full path for Moviereview folder
     protected String ReadPath = str1 + "/src/main/res/"; //get path for readfile mthod
     protected String MoviePath = str1 + "/src/main/res/Moviedata/"; //get path to moviedata folder
-    protected String MovierePath = str1 + "/src/main/res/Moviereview/"; //get path to moviereview folder
 
 
     /*
@@ -49,18 +47,16 @@ public class WriteMovie extends DataAccessInterface{
      * Constructor for test use only
      * @param moviePath Core.Movie test folder path
      */
-    public WriteMovie(String moviePath, String movierePath, String readPath){
+    public WriteMovie(String moviePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
-        this.MovieReFolderPath = new File(movierePath);
         this.MoviePath = moviePath +"/";
-        this.MovierePath = movierePath + "/";
         this.ReadPath = readPath + "/";
 
         getObjectFromFile();
 
     }
     @Override
-    public boolean createFile(String movieName, String movieLink, String z, int d) {
+    public boolean createFile(String movieName, String movieLink) {
 
         try{
             writemovie = new FileWriter(MoviePath + movieName + ".txt");
@@ -70,22 +66,10 @@ public class WriteMovie extends DataAccessInterface{
             writemovie.write("\r\n");
             writemovie.write("0");
             writemovie.close();
-            Properties properties = new Properties();
-            properties.putAll(new HashMap<>());
-            FileOutputStream fos;
-            fos = new FileOutputStream(MovierePath + movieName + " reviews.properties");
-            IgnoreFirstLineBufferedWriter ilfw = new IgnoreFirstLineBufferedWriter(new OutputStreamWriter(fos), 0);
-            properties.store(ilfw, null);
-            String string = fos.toString();
-            String sep = System.getProperty("line.separator");
-            String content = string.substring(string.indexOf(sep) + sep.length());
-            out.write(content.getBytes(StandardCharsets.UTF_8));
-            fos.close();
             File moviefile = new File(MoviePath + movieName + ".txt");
-            File moviereview = new File(MovierePath + movieName + " reviews.properties");
 
 
-            return moviefile.exists() && moviereview.exists();
+            return moviefile.exists();
         }
         catch (IOException e){
             System.out.println("Cannot create the file");
@@ -93,28 +77,6 @@ public class WriteMovie extends DataAccessInterface{
         }
     }
 
-
-    @Override
-    public void addReviewToFile(String userName, String movieName, String reviewContent) {
-        try {
-            FileOutputStream fos;
-            Properties properties = new Properties();
-            properties.put(reviewContent, userName);
-            File file = new File(MovierePath + movieName + " reviews.properties");
-            fos = new FileOutputStream(file, true);
-            IgnoreFirstLineBufferedWriter ilfw = new IgnoreFirstLineBufferedWriter(new OutputStreamWriter(fos), 0);
-            properties.store(ilfw, null);
-            String string = fos.toString();
-            String sep = System.getProperty("line.separator");
-            String content = string.substring(string.indexOf(sep) + sep.length());
-            out.write(content.getBytes(StandardCharsets.UTF_8));
-            fos.close();
-        }
-        catch (IOException e){
-            System.out.println("Cannot add review to file");
-        }
-
-    }
 
     @Override
     public boolean addLikeToFile(String movieName, String state) {
@@ -173,24 +135,9 @@ public class WriteMovie extends DataAccessInterface{
             if (lstOfMovie != null) {
                 for (String m : lstOfMovie) {
                     ArrayList<String> lst = readFile(m, "Moviedata");
-                    HashMap<Object, Object> moviereview = new HashMap<>(); // initialise a HashMap
-                    String a = m.replace(".txt", "");
-                    FileInputStream movier = new FileInputStream(MovierePath + "/" + a + " reviews.properties");
-                    PushbackInputStream p = new PushbackInputStream(movier);
-                    int b;
-                    b = p.read();
-                    if (b != -1) {
-                        Properties properties = new Properties();
-                        properties.load(movier);
-                        for (String key : properties.stringPropertyNames()) {
-                            String value = properties.getProperty(key);
-                            moviereview.put(key, value);
-                        }
-                    } // Find the corresponding review file for movie and change the HashMap created to the stored one
-
 
                     // create object for a single movie
-                    this.gateway.createFileMovie(lst.get(0), lst.get(1), moviereview, Integer.parseInt(lst.get(2)));
+                    this.gateway.createFileMovie(lst.get(0), lst.get(1), Integer.parseInt(lst.get(2)));
                 }
             }
         }

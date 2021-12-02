@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Called for read and write user's file.
  * it should be only called by User class and its subclass.
  */
-public class WriteUser extends DataAccessInterface{
+public class WriteUser implements WriteUserInterface{
 
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
@@ -63,7 +63,7 @@ public class WriteUser extends DataAccessInterface{
      */
 
     @Override
-    public boolean createFile(String userName, String userPassword, String userType, int d) {
+    public boolean createFile(String userName, String userPassword, String userType) {
         File file_if_exist;
         ArrayList<Object> infoList = new ArrayList<>();
         infoList.add(userName);
@@ -99,10 +99,7 @@ public class WriteUser extends DataAccessInterface{
     public void getObjectFromFile() {
         String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in Core.User.AdminUser folder
 
-        if(lstOfAdmin == null){
-        }
-
-        else{
+        if(lstOfAdmin != null){
             for(String au: lstOfAdmin) {
                 ArrayList<Object> lst = readFile(halfAuPath + au);
 
@@ -122,9 +119,7 @@ public class WriteUser extends DataAccessInterface{
 
     public void getNormalUserFromFile(){
         String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in Core.User.NormalUser folder
-        if(lstOfNormal == null ){
-        }
-        else {
+        if(lstOfNormal != null ){
             for(String nu: lstOfNormal){
                 ArrayList<Object> lst = readFile(halfNuPath + nu);
                 ArrayList<String> pl2;
@@ -146,7 +141,6 @@ public class WriteUser extends DataAccessInterface{
 
             }
         }
-
     }
     
 
