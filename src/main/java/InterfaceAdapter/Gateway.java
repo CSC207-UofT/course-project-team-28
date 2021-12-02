@@ -31,8 +31,8 @@ public class Gateway implements GatewayInterface {
      * @param playList the movie's playlist of user
      */
     @Override
-    public void createFileNormalUser(String userName, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList){
-        InstanceMain.getUserManager().createNormaluser(userName, password, contactInfo, description, category, coin, playList);
+    public void createFileNormalUser(String userName, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList, String picPath){
+        InstanceMain.getUserManager().createNormaluser(userName, password, contactInfo, description, category, coin, playList, picPath);
 
 
     }
@@ -43,8 +43,8 @@ public class Gateway implements GatewayInterface {
      * @param password user's password
      */
     @Override
-    public void createFileAdminUser(String userName, String password){
-        InstanceMain.getUserManager().createAdminuser(userName, password);
+    public void createFileAdminUser(String userName, String password, String picPath){
+        InstanceMain.getUserManager().createAdminuser(userName, password, picPath);
 
 
     }

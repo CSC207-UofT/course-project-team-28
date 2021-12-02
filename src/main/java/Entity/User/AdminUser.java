@@ -5,13 +5,15 @@ package Entity.User;
  */
 public class AdminUser extends User{
 
+    protected String picPath;
     /**
      * create the object for user
      * @param username the user name of user
      * @param password the password of user
      */
-    public AdminUser(String username, String password) {
+    public AdminUser(String username, String password, String picPath) {
         super(username, password);
+        this.picPath = picPath;
     }
 
 
@@ -38,6 +40,10 @@ public class AdminUser extends User{
     @Override
     public String getUserPassword(){
         return this.password;
+    }
+
+    public String getPicPath(){
+        return this.picPath;
     }
 
 }

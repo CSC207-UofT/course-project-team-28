@@ -33,7 +33,7 @@ public class GUIAdminUser extends View{
         mNameText = new JTextField();
         mLinkText = new JTextField();
         selectPics = new JButton("Select Pictures for the Movie");
-        ImageIcon icon = new ImageIcon(PicPresenter.getPic("1.jpg"));
+        ImageIcon icon = new ImageIcon(PicPresenter.getPic("shake hand.jpg"));
         JLabel i = new JLabel("Movie Image", icon, JLabel.CENTER);
         uploadMovies = new JButton("Upload Movies");
 

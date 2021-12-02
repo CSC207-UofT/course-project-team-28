@@ -39,7 +39,7 @@ public class GUIProfile extends View {
         description = new JTextArea();
         coinLabel = new JLabel();
         contactInfoLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(PicPresenter.getPic("5.jpg"));
+        ImageIcon icon = new ImageIcon(PicPresenter.getPic("winnie.jpg"));
         JLabel i = new JLabel(icon, JLabel.CENTER);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
         Border b = BorderFactory.createTitledBorder(bb,"Your Profile", TitledBorder.LEADING, TitledBorder.TOP, font2);
