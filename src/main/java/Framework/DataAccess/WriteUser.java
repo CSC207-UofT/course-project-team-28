@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Called for read and write user's file.
  * it should be only called by User class and its subclass.
  */
-public class WriteUser extends DataAccessInterface{
+public class WriteUser implements WriteUserInterface{
 
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
@@ -63,7 +63,7 @@ public class WriteUser extends DataAccessInterface{
      */
 
     @Override
-    public boolean createFile(String userName, String userPassword, String userType, int d) {
+    public boolean createFile(String userName, String userPassword, String userType) {
         File file_if_exist;
         ArrayList<Object> infoList = new ArrayList<>();
         infoList.add(userName);
@@ -76,12 +76,13 @@ public class WriteUser extends DataAccessInterface{
             infoList.add("Empty category");
             infoList.add("300");
             infoList.add("[]");
+            infoList.add("/src/main/res/GUIPic/winnie.jpg");
 
             writeFile(halfNuPath + userName + ".txt", infoList);
             file_if_exist = new File(halfNuPath + userName + ".txt");
         }
         else{
-
+            infoList.add("/src/main/res/GUIPic/shake hand.jpg");
             writeFile(halfAuPath + userName + ".txt", infoList);
             file_if_exist = new File(halfAuPath  + userName + ".txt");
         }
@@ -98,14 +99,11 @@ public class WriteUser extends DataAccessInterface{
     public void getObjectFromFile() {
         String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in Core.User.AdminUser folder
 
-        if(lstOfAdmin == null){
-        }
-
-        else{
+        if(lstOfAdmin != null){
             for(String au: lstOfAdmin) {
                 ArrayList<Object> lst = readFile(halfAuPath + au);
 
-                this.gateway.createFileAdminUser(lst.get(0).toString(), lst.get(1).toString());
+                this.gateway.createFileAdminUser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString());
             }
         }
         getNormalUserFromFile();
@@ -121,9 +119,7 @@ public class WriteUser extends DataAccessInterface{
 
     public void getNormalUserFromFile(){
         String[] lstOfNormal = NormalUserFolderPath.list();// get all the file name in Core.User.NormalUser folder
-        if(lstOfNormal == null ){
-        }
-        else {
+        if(lstOfNormal != null ){
             for(String nu: lstOfNormal){
                 ArrayList<Object> lst = readFile(halfNuPath + nu);
                 ArrayList<String> pl2;
@@ -141,11 +137,10 @@ public class WriteUser extends DataAccessInterface{
 
 
                 this.gateway.createFileNormalUser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString(),
-                        lst.get(3).toString(), lst.get(4).toString(), Integer.parseInt(lst.get(5).toString()), pl2);
+                        lst.get(3).toString(), lst.get(4).toString(), Integer.parseInt(lst.get(5).toString()), pl2, lst.get(7).toString());
 
             }
         }
-
     }
     
 

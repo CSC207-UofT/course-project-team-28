@@ -1,7 +1,8 @@
 Ella
 123
 51129
-haha
+I like movie
 Empty category
-301
+302
 [Apple]
+/src/main/res/GUIPic/winnie.jpg

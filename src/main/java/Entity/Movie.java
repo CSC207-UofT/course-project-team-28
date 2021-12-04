@@ -4,7 +4,6 @@ import java.util.HashMap;
 public class Movie {
     protected String moviename;
     protected String movielink;
-    public HashMap<Object, Object> moviereviews;
     public int Likes;
 
     /**
@@ -12,52 +11,27 @@ public class Movie {
      * "Likes" stores the number of likes a movie received
      */
 
-    public Movie(String moviename, String movielink, HashMap<Object, Object> map, int i) {
+    public Movie(String moviename, String movielink, int i) {
         this.moviename = moviename;
         this.movielink = movielink;
-        this.moviereviews = map;
         this.Likes = i;
     }
 
     /**
-     * Method AddReview take only a parameter of Class review, which will store the
-     * review content as key and the corresponding user as value. Once a review is written, it
-     * should first be stored in the Core.Review Class and then Core.Movie Class will take data from Core.Review
-     * Class and store them.
-     */
-
-    public void AddReview(Review review){
-        this.moviereviews.put(review.review_content, review.reviewer);
-    }
-
-    /**
-     * Getter Methods for Core.Movie Class.
+     * Getter Methods for Movie Class.
      */
 
     public String toString() {
-        StringBuilder reviews = new StringBuilder();
-        for (var entry : this.moviereviews.entrySet()) {
-            reviews.append("[");
-            reviews.append(entry.getKey());
-            reviews.append("---");
-            reviews.append(entry.getValue());
-            reviews.append("]\n");
-        }
-
-
-            return "Core.Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" + "Reviews: " +
-                    reviews + "\n" + "# of Likes: " + this.Likes;
+        return "Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" + "# of Likes: " + this.Likes;
     }
 
-
-    public String toStringnoreview() {
-
-        return "Core.Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" +
-                "# of Likes: " + this.Likes;
-    }
 
     public String getMoviename(){
         return this.moviename;
+    }
+
+    public String getLink(){
+        return this.movielink;
     }
 
 

@@ -83,16 +83,12 @@ public class ReviewManager {
         this.reviewList.add(rev);
         this.totalNumOfReview = reviewList.get(reviewList.size()-1).getID();
 
-        if (this.movieManager.getMovie(movieName) != null){
-            this.movieManager.addReviewToMovie(movieName, rev);
-        }
-
         return addMr(movieName, rev) && addUr(userName, rev);
     }
 
 
     /**
-     * create a new review, add Review to MovietoRevs, UsertoRevs, lst, and record the Core.Review in txt file.
+     * create a new review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
     public boolean writeNewReview(String userName, String movieName, String content, int numCoin) {
@@ -106,10 +102,6 @@ public class ReviewManager {
 
         this.reviewList.add(rev);
         this.totalNumOfReview = reviewList.get(reviewList.size()-1).getID();
-
-        if (this.movieManager.getMovie(movieName) != null){
-            this.movieManager.addReviewToMovie(movieName, rev);
-        }
 
         return addMr(movieName, rev) && addUr(userName, rev) && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
     }

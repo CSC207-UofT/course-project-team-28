@@ -24,24 +24,25 @@ public class MovieManager {
 
     /**
      * Add an instance of movie to the overall list of Movies
-     * @param moviename name of Core.Movie
-     * @param movielink the link of the movie
+     * @param movieName name of Core.Movie
+     * @param movieLink the link of the movie
      */
-    public void addMovie(String moviename, String movielink, HashMap<Object, Object> reviewMap, int numLikes) {
-        Movie m = new Movie(moviename, movielink, reviewMap, numLikes);
+    public boolean addMovie(String movieName, String movieLink, int numLikes) {
+        Movie m = new Movie(movieName, movieLink, numLikes);
         this.Movies.add(m);
+        return true;
 
     }
 
     /**
      * Add an instance of movie to the overall list of Movies
-     * @param moviename name of Core.Movie
-     * @param movielink the link of the movie
+     * @param movieName name of Core.Movie
+     * @param movieLink the link of the movie
      */
-    public boolean addNewMovie(String moviename, String movielink) {
-        Movie m = new Movie(moviename, movielink, new HashMap<>(), 0);
+    public boolean addNewMovie(String movieName, String movieLink) {
+        Movie m = new Movie(movieName, movieLink, 0);
         this.Movies.add(m);
-        return this.Movies.contains(m) && this.gateway.createNewMovie(moviename, movielink);
+        return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink);
 
     }
 
@@ -60,14 +61,21 @@ public class MovieManager {
     }
 
     /**
-     * Add a review to an instance of movie
-     * @param movieName name of an instance of Core.Movie
+     * Use movie_name and movie_link to find the whether a movie exists or not.
+     * @param name the name of the movie
+     * @param link the link of the movie
+     * @return return true if a movie's name and matching link already exists in movie list. Otherwise, return false
      */
-    public void addReviewToMovie(String movieName, Review review) {
-        Movie movie = this.getMovie(movieName);
+    public boolean IfMovieExist(String name, String link){
 
-        movie.AddReview(review);
+        for(Movie movie: Movies){
+            if(movie.getMoviename().equals(name) | movie.getLink().equals(link)){
+                return true;
+                }
+            }
+        return false;
     }
+
 
     /**
      * should be called only when movie_name exists
@@ -77,12 +85,12 @@ public class MovieManager {
      */
     public String getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
-        return movie.toStringnoreview();
+        return movie.toString();
 
 //        ArrayList<Object> profile = new ArrayList<>();
-//        profile.add(movie.getMoviename());
-//        profile.add(movie.getMovielink());
-//        profile.add(movie.getReviewsContnet());
+//        profile.add(movie.getMovieName());
+//        profile.add(movie.getMovieLink());
+//        profile.add(movie.getReviewsContent());
 //        profile.add(movie.getLikes());
 //        return profile;
     }
@@ -93,7 +101,7 @@ public class MovieManager {
 //     */
 //    public boolean delete_movie(String movie_name) {
 //        for (Core.Movie m : this.Movies){
-//            if (m.moviename.equals(movie_name)){
+//            if (m.movieName.equals(movie_name)){
 //                this.Movies.remove(m);
 //                return !this.Movies.contains(m);
 //            }
@@ -102,7 +110,7 @@ public class MovieManager {
 
 
     /**
-     * Add an like to an instance of movie from the overall list of Movies
+     * Add a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
     public boolean likeMovie(String movieName) {
@@ -115,7 +123,7 @@ public class MovieManager {
     }
 
     /**
-     * Undo an like to an instance of movie from the overall list of Movies
+     * Undo a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
     public boolean undolikeMovie(String movieName) {

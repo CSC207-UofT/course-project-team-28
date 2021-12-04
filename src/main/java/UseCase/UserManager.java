@@ -30,8 +30,8 @@ public class UserManager {
      * @param username username of .AdminUser
      * @param password password of AdminUser
      */
-    public void createAdminuser(String username, String password) {
-        AdminUser adminUser = new AdminUser(username, password);
+    public void createAdminuser(String username, String password, String picPath) {
+        AdminUser adminUser = new AdminUser(username, password, picPath);
         lstOfAdminUser.add(adminUser);
     }
 
@@ -40,13 +40,10 @@ public class UserManager {
      * @param username username of NormalUser
      * @param password password of NormalUser
      */
-    public void createNormaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList) {
-        NormalUser normalUser = new NormalUser(username, password, contactInfo, description, category, coin, playList);
+    public void createNormaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList, String picPath) {
+        NormalUser normalUser = new NormalUser(username, password, contactInfo, description, category, coin, playList, picPath);
         lstOfNormalUser.add(normalUser);
     }
-
-
-
 
 
     /**
@@ -55,7 +52,7 @@ public class UserManager {
      * @param password password of Core.User.AdminUser
      */
     public boolean createNewAdminuser(String username, String password) {
-        AdminUser adminUser = new AdminUser(username, password);
+        AdminUser adminUser = new AdminUser(username, password, "/src/main/res/GUIPic/shake hand.jpg");
         lstOfAdminUser.add(adminUser);
 
         return lstOfAdminUser.contains(adminUser) &&  this.gateway.createNewUser(username, password, "AdminUser");
@@ -67,7 +64,7 @@ public class UserManager {
      * @param password password of Core.User.NormalUser
      */
     public boolean createNewNormaluser(String username, String password) {
-        NormalUser normalUser = new NormalUser(username, password, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>());
+        NormalUser normalUser = new NormalUser(username, password, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>(), "/src/main/res/GUIPic/winnie.jpg");
         lstOfNormalUser.add(normalUser);
 
         return lstOfNormalUser.contains(normalUser) && this.gateway.createNewUser(username, password, "NormalUser");
@@ -88,7 +85,7 @@ public class UserManager {
      */
 
     public boolean updateInfo(String username, String updateInfo, String writeType) {
-        NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>());
+        NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>(), "");
 
         for(NormalUser nu1: lstOfNormalUser){
             if(nu1.getUsername().equals(username)){
@@ -136,7 +133,7 @@ public class UserManager {
      *  @return return True if change is successfully made. Otherwise, return false.
      */
     public boolean updateCoin(String username, int coin){
-        NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>());
+        NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>(), "");
 
         for(NormalUser nu1: lstOfNormalUser){
             if(nu1.getUsername().equals(username)){
@@ -158,7 +155,7 @@ public class UserManager {
      *  @return return True if movie is successfully added. Otherwise, return false.
      */
     public boolean giveLike(String userName, String moviename) {
-        NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>());
+        NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>(), "");
 
         for(NormalUser nu1: lstOfNormalUser){
             if(nu1.getUsername().equals(userName)){
@@ -184,7 +181,7 @@ public class UserManager {
      *  @return return True if movie is successfully removed. Otherwise, return false.
      */
     public boolean undoLike(String userName, String moviename) {
-        NormalUser normalUser = new NormalUser("","","","", "", 0,  new ArrayList<>());
+        NormalUser normalUser = new NormalUser("","","","", "", 0,  new ArrayList<>(), "");
 
         for(NormalUser nu1: lstOfNormalUser){
             if(nu1.getUsername().equals(userName)){
