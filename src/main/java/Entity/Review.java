@@ -11,7 +11,7 @@ public class Review {
 
     /**
      * Construct a new review content for the specific movie by the reviewer.
-      */
+     */
     public Review(String reviewer, String movie, String review_content, int numCoin, int ID){
         this.reviewer = reviewer;
         this.movie = movie;
@@ -56,15 +56,14 @@ public class Review {
     }
 
 
-    public ArrayList<Object> getRevieInfo(){
-        ArrayList<Object> result = new ArrayList<>();
-        result.add(getReviewer());
-        result.add(getMovie());
-        result.add(getContent());
-        result.add(getnumCoin());
-        result.add(getID());
+    public Object[] getReviewInfo(){
+        Object[] result = new Object[5];
+        result[0] = getReviewer();
+        result[1] = getMovie();
+        result[2] = getContent();
+        result[3] = getnumCoin();
+        result[4] = getID();
         return result;
     }
 
 }
-
