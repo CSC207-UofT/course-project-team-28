@@ -1,21 +1,19 @@
 package Entity;
 
-import java.util.ArrayList;
-
 public class Review {
     protected String reviewer;
     protected String movie;
-    protected String review_content;
+    protected String reviewContent;
     protected int numCoin;
     protected int ID;
 
     /**
      * Construct a new review content for the specific movie by the reviewer.
-     */
-    public Review(String reviewer, String movie, String review_content, int numCoin, int ID){
+      */
+    public Review(String reviewer, String movie, String reviewContent, int numCoin, int ID){
         this.reviewer = reviewer;
         this.movie = movie;
-        this.review_content = review_content;
+        this.reviewContent = reviewContent;
         this.numCoin = numCoin;
         this.ID = ID;
     }
@@ -28,34 +26,60 @@ public class Review {
     public String toString() {
         String idstr = String.valueOf(this.ID);
         return "ID: " + idstr + ", for movie " + this.movie + " - " + this.reviewer + " with " + this.numCoin
-                + " coins: " + this.review_content;
+                + " coins: " + this.reviewContent;
     }
 
+    /**
+     * @return the review writer's name.
+     */
     public String getReviewer(){
         return this.reviewer;
     }
 
+    /**
+     *
+     * @return which movie the review belongs to.
+     */
     public String getMovie(){
         return this.movie;
     }
 
+    /**
+     *
+     * @return the review content.
+     */
     public String getContent(){
-        return this.review_content;
+        return this.reviewContent;
     }
 
+    /**
+     *
+     * @return the number of coins received by this review.
+     */
     public int getnumCoin(){
         return this.numCoin;
     }
 
+    /**
+     *
+     * @param i set the number of coins as a new number i.
+     */
     public void setNumCoin(int i){
         this.numCoin = i;
     }
 
+    /**
+     *
+     * @return the ID of the review.
+     */
     public int getID(){
         return this.ID;
     }
 
-
+    /**
+     *
+     * @return the array [reviewer, movie, reviewContent, numCoin, ID]
+     */
     public Object[] getReviewInfo(){
         Object[] result = new Object[5];
         result[0] = getReviewer();
@@ -66,4 +90,6 @@ public class Review {
         return result;
     }
 
+
 }
+
