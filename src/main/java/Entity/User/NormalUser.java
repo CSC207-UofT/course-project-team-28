@@ -13,6 +13,7 @@ public class NormalUser extends User{
     protected String category;
     protected int coin;
     protected ArrayList<String> playlist;
+    protected String picPath;
 
     /**
      * create the object for user
@@ -23,14 +24,16 @@ public class NormalUser extends User{
      * @param category the category pf movie that user like
      * @param coin the coin that user have
      * @param playlist the playlist of movie of movie
+     * @param picPath the relative path of user's profile photo
      */
-    public NormalUser(String username, String password, String contactinfo, String description, String category, int coin, ArrayList<String> playlist) {
+    public NormalUser(String username, String password, String contactinfo, String description, String category, int coin, ArrayList<String> playlist, String picPath) {
         super(username, password);
         this.contactinfo = contactinfo;
         this.description = description;
         this.category = category;
         this.coin = coin;
         this.playlist = playlist;
+        this.picPath = picPath;
 
     }
 
@@ -80,6 +83,10 @@ public class NormalUser extends User{
 
     public String getCategory(){ return this.category; }
 
+    public String getPicPath(){
+        return this.picPath;
+    }
+
 
     /**
      * setter of user
@@ -104,4 +111,7 @@ public class NormalUser extends User{
 
     public void setCoin(int coin){ this.coin = coin; }
 
+    public void changePic(String picPath){
+        this.picPath = picPath;
+    }
 }

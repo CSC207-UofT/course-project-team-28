@@ -5,3 +5,4 @@ Empty description
 Empty category
 300
 []
+/src/main/res/GUIPic/winnie.jpg

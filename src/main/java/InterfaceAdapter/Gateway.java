@@ -31,8 +31,8 @@ public class Gateway implements GatewayInterface {
      * @param playList the movie's playlist of user
      */
     @Override
-    public void createFileNormalUser(String userName, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList){
-        InstanceMain.getUserManager().createNormaluser(userName, password, contactInfo, description, category, coin, playList);
+    public void createFileNormalUser(String userName, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList, String picPath){
+        InstanceMain.getUserManager().createNormaluser(userName, password, contactInfo, description, category, coin, playList, picPath);
 
 
     }
@@ -43,8 +43,8 @@ public class Gateway implements GatewayInterface {
      * @param password user's password
      */
     @Override
-    public void createFileAdminUser(String userName, String password){
-        InstanceMain.getUserManager().createAdminuser(userName, password);
+    public void createFileAdminUser(String userName, String password, String picPath){
+        InstanceMain.getUserManager().createAdminuser(userName, password, picPath);
 
 
     }
@@ -53,12 +53,11 @@ public class Gateway implements GatewayInterface {
      * Call MovieManger to create entity object for movie data
      * @param moviename Movie's name
      * @param movielink The link of Movie
-     * @param reviewMap The reviews of Movie
      * @param numLike The num of Likes that this movie receives
      */
     @Override
-    public void createFileMovie(String moviename, String movielink, HashMap<Object, Object> reviewMap, int numLike){
-        InstanceMain.getMovieManager().addMovie(moviename, movielink, reviewMap, numLike);
+    public void createFileMovie(String moviename, String movielink, int numLike){
+        InstanceMain.getMovieManager().addMovie(moviename, movielink, numLike);
 
 
     }
@@ -93,7 +92,7 @@ public class Gateway implements GatewayInterface {
      */
     @Override
     public boolean createNewUser(String userName, String password, String userType){
-        return InstanceMain.getWriteUser().createFile(userName, password, userType, 0);
+        return InstanceMain.getWriteUser().createFile(userName, password, userType);
     }
 
     /**
@@ -104,7 +103,7 @@ public class Gateway implements GatewayInterface {
      */
     @Override
     public boolean createNewMovie(String movieName, String movieLink){
-        return InstanceMain.getWriteMovie().createFile(movieName, movieLink, "", 0);
+        return InstanceMain.getWriteMovie().createFile(movieName, movieLink);
     }
 
     /**
@@ -117,7 +116,6 @@ public class Gateway implements GatewayInterface {
      */
     @Override
     public boolean createNewReview(String currUserName, String movieName, String revContent, int ID){
-        InstanceMain.getWriteMovie().addReviewToFile(currUserName, movieName, revContent);
         return InstanceMain.getWriteReview().createFile(currUserName, movieName, revContent, ID);
     }
 

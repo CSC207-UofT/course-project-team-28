@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * it should be only called by Core.Review class and its subclass.
  */
 
-public class WriteReview extends DataAccessInterface{
+public class WriteReview implements WriteReviewInterface{
 
     protected FileReader reviewreader;
     protected BufferedReader getreview;
