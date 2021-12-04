@@ -1,10 +1,10 @@
 package Framework.GUI;
 
 import Framework.DataAccess.WriteMovie;
+import Framework.DataAccess.WritePic;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
-import Framework.Presenter.PicPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,7 +60,7 @@ public class GUIMain extends View {
     Add four buttons on the Panel.
      */
     protected void addComponentToP1() {
-        ImageIcon bg = new ImageIcon(PicPresenter.getPic("Bg.gif"));
+        ImageIcon bg = new ImageIcon(WritePic.getPic("Bg.gif"));
         bg.setImage(bg.getImage().getScaledInstance(810, 1440, Image.SCALE_DEFAULT));
         JLabel jbg = new JLabel(bg);
         jbg.add(registerButton);

@@ -1,8 +1,6 @@
-package InterfaceAdapter;
+package InterfaceAdapter.Controller;
 
-import Framework.DataAccess.WriteUser;
-
-import java.util.ArrayList;
+import InterfaceAdapter.InstanceMain;
 
 public class NormalCUser extends NormalController {
 

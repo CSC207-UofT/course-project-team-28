@@ -1,6 +1,6 @@
 package Framework.GUI;
 
-import Framework.Presenter.PicPresenter;
+import Framework.DataAccess.WritePic;
 import InterfaceAdapter.InstanceMain;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class MainPageUserInfoPanel extends View{
         contactInfoLabel = new JLabel();
         contactInfoLabel.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[2]);
         contactInfoLabel.setBounds(20, 90, 700, 200);
-        ImageIcon icon = new ImageIcon(PicPresenter.getPic("5.jpg"));
+        ImageIcon icon = new ImageIcon(WritePic.getPic("5.jpg"));
         JLabel i = new JLabel("Image and Text", icon, JLabel.CENTER);
         i.setBounds(20, 200, 300, 200);
         JTextArea description = new JTextArea((String)InstanceMain.getNormalCUser().profilePage(userName)[3]);

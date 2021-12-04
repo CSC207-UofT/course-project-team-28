@@ -54,10 +54,11 @@ public class Gateway implements GatewayInterface {
      * @param moviename Movie's name
      * @param movielink The link of Movie
      * @param numLike The num of Likes that this movie receives
+     * @param
      */
     @Override
-    public void createFileMovie(String moviename, String movielink, int numLike){
-        InstanceMain.getMovieManager().addMovie(moviename, movielink, numLike);
+    public void createFileMovie(String moviename, String movielink, String category, int numLike){
+        InstanceMain.getMovieManager().addMovie(moviename, movielink, category, numLike);
 
 
     }
@@ -102,8 +103,8 @@ public class Gateway implements GatewayInterface {
      * @return return true if the file is successfully created. Otherwise, return false
      */
     @Override
-    public boolean createNewMovie(String movieName, String movieLink){
-        return InstanceMain.getWriteMovie().createFile(movieName, movieLink);
+    public boolean createNewMovie(String movieName, String movieLink, String category){
+        return InstanceMain.getWriteMovie().createFile(movieName, movieLink, category);
     }
 
     /**
@@ -159,8 +160,8 @@ public class Gateway implements GatewayInterface {
      * @return return true if the num of likes in the file is successfully created. Otherwise, return false
      */
     @Override
-    public boolean editLikeToMovieFile(String movieName, String state){
-        return InstanceMain.getWriteMovie().addLikeToFile(movieName, state) ;
+    public boolean editLikeToMovieFile(String movieName, String state, String category){
+        return InstanceMain.getWriteMovie().addLikeToFile(movieName, state, category) ;
     }
 
     /**
@@ -172,6 +173,16 @@ public class Gateway implements GatewayInterface {
     @Override
     public boolean editCoin(String userName, int reviewid) {
         return InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin") && InstanceMain.getWriteReview().addCoinsToReview(reviewid, 1);
+    }
+
+    /**
+     * Call WriteMovie Class to delete the corresponding movie file.
+     * @param movieName the name of movie
+     * @param category the category of movie
+     * @return return true if the file of movie is successfully deleted. Otherwise, return false
+     */
+    public boolean deleteMovie(String movieName, String category){
+        return InstanceMain.getWriteMovie().deleteFile(movieName, category);
     }
 
 

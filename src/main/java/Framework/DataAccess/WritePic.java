@@ -1,9 +1,9 @@
-package Framework.Presenter;
+package Framework.DataAccess;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
-public class PicPresenter {
+public class WritePic {
     protected static Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
     protected static String filepath = "/src/main/res/GUIPic/";
 
