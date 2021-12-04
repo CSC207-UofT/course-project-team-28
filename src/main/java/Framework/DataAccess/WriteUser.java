@@ -194,7 +194,7 @@ public class WriteUser implements WriteUserInterface {
      * edit the user info in the file.
      * @param newUpdate the new contact info of user
      * @param username the name of user
-     * @param writeType the type of info that user wants to update. e.g. contactInfo, description
+     * @param writeType the type of info that user wants to update. e.g. contactInfo, description, category, picPath, coin
      * @return return true if update completed. Otherwise, return false.
      */
     @Override
@@ -214,8 +214,13 @@ public class WriteUser implements WriteUserInterface {
                 lst.set(4, newUpdate);
                 writeFile(halfNuPath + username + ".txt", lst);
                 return lst.get(4).toString().equals(newUpdate);
+            case "picPath":
+                lst.set(7, newUpdate);
+                writeFile(halfNuPath + username + ".txt", lst);
+                return lst.get(7).toString().equals(newUpdate);
             default:
-                // give a positive or negative
+                // it changes coin.
+                // give a positive or negative number
                 String originalCoin = (String) lst.get(5);
                 int coin = Integer.parseInt((String) lst.get(5)) + Integer.parseInt(newUpdate);
 

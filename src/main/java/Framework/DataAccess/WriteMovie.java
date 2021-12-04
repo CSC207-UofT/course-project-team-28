@@ -154,10 +154,9 @@ public class WriteMovie implements WriteMovieInterface {
      * @return Boolean
      */
 
-    public Boolean deleteFile(String movie, String category) {
+    public boolean deleteFile(String movie, String category) {
         File moviefile = new File(str1 + "/src/test/res/Moviedata/" + category + "/" + movie + ".txt");
-        Boolean a = moviefile.delete();
-        return a;
+        return moviefile.delete();
     }
 
     /**
