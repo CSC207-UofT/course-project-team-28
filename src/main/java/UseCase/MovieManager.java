@@ -1,7 +1,8 @@
 package UseCase;
 
-import Core.Movie;
-import Core.Review;
+import Entity.Movie;
+import Entity.Review;
+import InterfaceAdapter.Gateway;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +12,8 @@ import java.util.HashMap;
  */
 public class MovieManager {
 
-    private ArrayList<Movie> Movies;
+    private final ArrayList<Movie> Movies;
+    private final Gateway gateway = new Gateway();
 
     /**
      * Creates a UseCase.MovieManager with a list of movies are empty
@@ -22,23 +24,36 @@ public class MovieManager {
 
     /**
      * Add an instance of movie to the overall list of Movies
-     * @param moviename name of Core.Movie
-     * @param movielink the link of the movie
+     * @param movieName name of Core.Movie
+     * @param movieLink the link of the movie
      */
-    public boolean add_movie(String moviename, String movielink, HashMap<Object, Object> map, int i) {
-        Movie m = new Movie(moviename, movielink, map, i);
+    public boolean addMovie(String movieName, String movieLink, int numLikes) {
+        Movie m = new Movie(movieName, movieLink, numLikes);
         this.Movies.add(m);
-        return this.Movies.contains(m);
+        return true;
 
     }
 
     /**
-     * get an instance of movie from the overall list of Movies
-     * @param movie_name the name of this instance of Core.Movie
+     * Add an instance of movie to the overall list of Movies
+     * @param movieName name of Core.Movie
+     * @param movieLink the link of the movie
      */
-    public Movie get_movie(String movie_name) {
+    public boolean addNewMovie(String movieName, String movieLink) {
+        Movie m = new Movie(movieName, movieLink, 0);
+        this.Movies.add(m);
+        return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink);
+
+    }
+
+
+    /**
+     * get an instance of movie from the overall list of Movies
+     * @param movieName the name of this instance of Core.Movie
+     */
+    public Movie getMovie(String movieName) {
         for (Movie m : this.Movies) {
-            if (m.getMoviename().equals(movie_name)){
+            if (m.getMoviename().equals(movieName)){
                 return m;
             }
         }
@@ -46,29 +61,36 @@ public class MovieManager {
     }
 
     /**
-     * Add a review to an instance of movie
-     * @param movie_name name of an instance of Core.Movie
+     * Use movie_name and movie_link to find the whether a movie exists or not.
+     * @param name the name of the movie
+     * @param link the link of the movie
+     * @return return true if a movie's name and matching link already exists in movie list. Otherwise, return false
      */
-    public void add_review_to_movie( String movie_name, Review review) {
-        Movie movie = this.get_movie(movie_name);
+    public boolean IfMovieExist(String name, String link){
 
-        movie.AddReview(review);
+        for(Movie movie: Movies){
+            if(movie.getMoviename().equals(name) | movie.getLink().equals(link)){
+                return true;
+                }
+            }
+        return false;
     }
+
 
     /**
      * should be called only when movie_name exists
      * get the profile of an instance of movie from the overall list of Movies
-     * @param movie_name the name of this instance of Core.Movie
+     * @param movieName the name of this instance of Core.Movie
      * @return profile a String including the profile of the movie.
      */
-    public String get_movieprofile(String movie_name) {
-        Movie movie = this.get_movie(movie_name);
-        return movie.toStringnoreview();
+    public String getMovieProfile(String movieName) {
+        Movie movie = this.getMovie(movieName);
+        return movie.toString();
 
 //        ArrayList<Object> profile = new ArrayList<>();
-//        profile.add(movie.getMoviename());
-//        profile.add(movie.getMovielink());
-//        profile.add(movie.getReviewsContnet());
+//        profile.add(movie.getMovieName());
+//        profile.add(movie.getMovieLink());
+//        profile.add(movie.getReviewsContent());
 //        profile.add(movie.getLikes());
 //        return profile;
     }
@@ -79,7 +101,7 @@ public class MovieManager {
 //     */
 //    public boolean delete_movie(String movie_name) {
 //        for (Core.Movie m : this.Movies){
-//            if (m.moviename.equals(movie_name)){
+//            if (m.movieName.equals(movie_name)){
 //                this.Movies.remove(m);
 //                return !this.Movies.contains(m);
 //            }
@@ -88,22 +110,28 @@ public class MovieManager {
 
 
     /**
-     * Add an like to an instance of movie from the overall list of Movies
-     * @param movie_name the name of this instance of Core.Movie
+     * Add a like to an instance of movie from the overall list of Movies
+     * @param movieName the name of this instance of Core.Movie
      */
-    public void like_movie(String movie_name) {
-        Movie movie = this.get_movie(movie_name);
+    public boolean likeMovie(String movieName) {
+        Movie movie = this.getMovie(movieName);
+        int like = movie.getLikes();
         movie.AddLike();
+
+        return (movie.getLikes() - 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Increase");
 
     }
 
     /**
-     * Undo an like to an instance of movie from the overall list of Movies
-     * @param movie_name the name of this instance of Core.Movie
+     * Undo a like to an instance of movie from the overall list of Movies
+     * @param movieName the name of this instance of Core.Movie
      */
-    public void undolike_movie(String movie_name) {
-        Movie movie = this.get_movie(movie_name);
+    public boolean undolikeMovie(String movieName) {
+        Movie movie = this.getMovie(movieName);
+        int like = movie.getLikes();
         movie.UndoLike();
+
+        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease");
 
     }
 

@@ -1,5 +1,7 @@
 package Framework.GUI;
 
+import InterfaceAdapter.InstanceMain;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,22 +60,32 @@ public class GUIUserLogin extends SharedView {
         }
     }
     //actions
+    /*
+    Check whether the user is AdminUser or NormalUser, and Login.
+     */
     public void OnLoginClick(ActionEvent e) {
         userName = usernameText.getText();
         String password = passwordText.getText();
         boolean login = false;
         if(isAdmin){
             String code = adminCodeText.getText();
-            login = (IM.aucontroller.login(userName, password, code));
+            login = (InstanceMain.getAdminInputProcessor().login(userName, password, code));
+            if (login){
+                nextView(new GUIAdminUser(this), true);
+            }
+            else {
+                loginResult.setText("Username or password incorrect, please try again.");
+            }
         } else {
-            login = IM.ncu.login(userName, password);
+            login = InstanceMain.getNormalCUser().login(userName, password);
+            if (login){
+                loginResult.setText("Login successful.");
+                nextView(new GUIProfile(this), true);
+            }
+            else {
+                loginResult.setText("Username or password incorrect, please try again.");
+            }
         }
-        if (login){
-            loginResult.setText("Login successful.");
-        }else {
-            loginResult.setText("Username or password incorrect, please try again.");
-        }
-        nextView(new GUIProfile(this), true);
     }
 
     @Override

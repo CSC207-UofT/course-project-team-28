@@ -1,4 +1,4 @@
-import Core.User.AdminUser;
+import Entity.User.AdminUser;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class AdminUserTest {
 
     @Before
     public void setUpBeforeMethod(){
-        au = new AdminUser("TestAdminUser","12");
+        au = new AdminUser("TestAdminUser","12", "");
     }
 
     @Test

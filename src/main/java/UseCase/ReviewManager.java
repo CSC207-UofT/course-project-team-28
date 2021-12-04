@@ -1,25 +1,27 @@
 package UseCase;
 
-import Core.Review;
+import Entity.Review;
+import InterfaceAdapter.Gateway;
 
 import java.util.HashMap;
 import java.util.ArrayList;
 
 
 public class ReviewManager {
-    private HashMap<String, ArrayList<Review>> MovietoRevs;
-    private HashMap<String, ArrayList<Review>> UsertoRevs;
-    private ArrayList<Review> lst;
-    private static int tot_num;
-    private MovieManager mm;
+    private final HashMap<String, ArrayList<Review>> MovietoRevs;
+    private final HashMap<String, ArrayList<Review>> UsertoRevs;
+    private final ArrayList<Review> reviewList;
+    private int totalNumOfReview;
+    private final MovieManager movieManager;
+    private final Gateway gateway = new Gateway();
 
 
     public ReviewManager(MovieManager mm) {
         this.MovietoRevs = new HashMap<>();
         this.UsertoRevs = new HashMap<>();
-        this.lst = new ArrayList<>();
-        this.mm = mm;
-        tot_num = 0;
+        this.reviewList = new ArrayList<>();
+        this.movieManager = mm;
+        this.totalNumOfReview = 0;
     }
 
 
@@ -27,7 +29,7 @@ public class ReviewManager {
      * Called only after confirming the username is valid (i.e. the user exists)
      * Takes the username of Core.User.NormalUser and return a list of reviews written by the user.
      */
-    public ArrayList<Review> RevsOfUser(String username){
+    public ArrayList<Review> revsOfUser(String username){
         return this.UsertoRevs.get(username);
     }
 
@@ -35,7 +37,7 @@ public class ReviewManager {
      * Called only after confirming the moviename is valid (i.e. the movie exists)
      * Takes the name of Core.Movie and return a list of reviews for the Core.Movie.
      */
-    public ArrayList<Review> RevsOfMovie(String moviename){
+    public ArrayList<Review> revsOfMovie(String moviename){
         return this.MovietoRevs.get(moviename);
     }
 
@@ -43,7 +45,7 @@ public class ReviewManager {
      * Called only after confirming the moviename is valid (i.e. the movie exists)
      * Takes the name of Core.Movie and return a string form of reviews for the Core.Movie.
      */
-    public String RevsOfMovieString(String moviename){
+    public String revsOfMovieString(String moviename){
         ArrayList<Review> lst = this.MovietoRevs.get(moviename);
         StringBuilder temp = new StringBuilder();
 
@@ -67,40 +69,46 @@ public class ReviewManager {
 
 
     /**
-     * create a Core.Review, add Core.Review to MovietoRevs, UsertoRevs, lst, and record the Core.Review in txt file.
+     * create a Review for review file data, add Review to MovietoRevs, UsertoRevs, lst, and record the Core.Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
      */
-    public boolean writeReview(String uname, String mname, String content, int numCoin , int ID) {
-        Review rev;
-        if (ID == -1){
-            tot_num = tot_num + 1;
-            rev = new Review(uname, mname, content, numCoin, tot_num);
+    public boolean writeReview(String userName, String movieName, String content, int numCoin , int ID) {
+        Review rev = new Review(userName, movieName, content, numCoin, ID);
+
+        // add the review in file by a helper method
+        //Framework.WriteFiles.WriteReview newwr = new Framework.WriteFiles.WriteReview();
+        //boolean write = newwr.create_file(rev);
+
+
+        this.reviewList.add(rev);
+        this.totalNumOfReview = reviewList.get(reviewList.size()-1).getID();
+
+        return addMr(movieName, rev) && addUr(userName, rev);
+    }
+
+
+    /**
+     * create a new review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
+     * Return ture iff the review has been successfully created and added to the txt file.
+     */
+    public boolean writeNewReview(String userName, String movieName, String content, int numCoin) {
+        this.totalNumOfReview = this.totalNumOfReview + 1;
+        Review rev = new Review(userName, movieName, content, numCoin, totalNumOfReview);
 
             // add the review in file by a helper method
-            //InterfaceAdapter.WriteFiles.WriteReview newwr = new InterfaceAdapter.WriteFiles.WriteReview();
+            //Framework.WriteFiles.WriteReview newwr = new Framework.WriteFiles.WriteReview();
             //boolean write = newwr.create_file(rev);
 
-        }
-        else{
-            rev = new Review(uname, mname, content, numCoin, ID);
 
-            // add the review in file by a helper method
-            //InterfaceAdapter.WriteFiles.WriteReview newwr = new InterfaceAdapter.WriteFiles.WriteReview();
-            //boolean write = newwr.create_file(rev);
-        }
-        this.lst.add(rev);
-        tot_num = lst.get(lst.size()-1).getID();
+        this.reviewList.add(rev);
+        this.totalNumOfReview = reviewList.get(reviewList.size()-1).getID();
 
-        if (this.mm.get_movie(mname) != null){
-            this.mm.add_review_to_movie(mname, rev);
-        }
-
-        return addMr(mname, rev) && addUr(uname, rev);
+        return addMr(movieName, rev) && addUr(userName, rev) && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
     }
 
 
     public int getReviewID(){
-        return tot_num;
+        return totalNumOfReview;
     }
 
 
@@ -108,19 +116,24 @@ public class ReviewManager {
     /**
      * find a review with review_id, and add 1 coin
      */
-    public void addCoin(int review_id) {
-        for (Review review : this.lst){
+    public boolean addCoin(int review_id) {
+        int coin = 0;
+        Review review1 = new Review("", "", "", 0, 0);
+        for (Review review : this.reviewList){
             if (review.getID() == review_id){
+                coin = review.getnumCoin();
+                review1 = review;
                 review.setNumCoin(review.getnumCoin() + 1);
             }
         }
+        return review1.getnumCoin() - 1 == coin;
     }
 
     /**
      * find a review with review_id, and delete 1 coin
      */
     public void reduceCoin(int review_id) {
-        for (Review review : this.lst){
+        for (Review review : this.reviewList){
             if (review.getID() == review_id){
                 review.setNumCoin(review.getnumCoin() - 1);
             }

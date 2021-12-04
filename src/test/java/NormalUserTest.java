@@ -1,4 +1,4 @@
-import Core.User.NormalUser;
+import Entity.User.NormalUser;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ public class NormalUserTest {
     @Before
     public void setUpBeforeMethod() {
         playList = new ArrayList<>(Arrays.asList("Apple", "Banana", "Candy", "Happy Life","Team28", "Water"));
-        nu = new NormalUser("TestNormalUser", "123", "123456789", "I like movie","Comedy",300, playList);
+        nu = new NormalUser("TestNormalUser", "123", "123456789", "I like movie","Comedy",300, playList, "");
     }
 
 

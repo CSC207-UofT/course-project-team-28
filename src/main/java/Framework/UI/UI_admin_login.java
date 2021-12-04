@@ -1,15 +1,15 @@
 package Framework.UI;
 
-import InterfaceAdapter.Controller.InstanceMain;
+import InterfaceAdapter.InstanceMain;
 
 import java.util.Scanner;
 
 public class UI_admin_login {
 
-    public static void main(Scanner scanner, InstanceMain IM) {
-        admin_helper.login(scanner, IM);
+    public static void main(Scanner scanner) {
+        admin_helper.login(scanner);
         System.out.println("Login successful.");
 
-        admin_helper.upload_movie(scanner, IM);
+        admin_helper.upload_movie(scanner);
     }
 }
