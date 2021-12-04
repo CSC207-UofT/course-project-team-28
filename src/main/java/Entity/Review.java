@@ -56,8 +56,8 @@ public class Review {
     }
 
 
-    public ArrayList getRevieInfo(){
-        ArrayList result = new ArrayList();
+    public ArrayList<Object> getRevieInfo(){
+        ArrayList<Object> result = new ArrayList<>();
         result.add(getReviewer());
         result.add(getMovie());
         result.add(getContent());
