@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.ArrayList;
+
 public class Review {
     protected String reviewer;
     protected String movie;
@@ -9,7 +11,7 @@ public class Review {
 
     /**
      * Construct a new review content for the specific movie by the reviewer.
-      */
+     */
     public Review(String reviewer, String movie, String review_content, int numCoin, int ID){
         this.reviewer = reviewer;
         this.movie = movie;
@@ -29,8 +31,16 @@ public class Review {
                 + " coins: " + this.review_content;
     }
 
-    public int getID(){
-        return this.ID;
+    public String getReviewer(){
+        return this.reviewer;
+    }
+
+    public String getMovie(){
+        return this.movie;
+    }
+
+    public String getContent(){
+        return this.review_content;
     }
 
     public int getnumCoin(){
@@ -41,5 +51,19 @@ public class Review {
         this.numCoin = i;
     }
 
-}
+    public int getID(){
+        return this.ID;
+    }
 
+
+    public Object[] getReviewInfo(){
+        Object[] result = new Object[5];
+        result[0] = getReviewer();
+        result[1] = getMovie();
+        result[2] = getContent();
+        result[3] = getnumCoin();
+        result[4] = getID();
+        return result;
+    }
+
+}
