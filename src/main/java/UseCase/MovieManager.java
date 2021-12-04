@@ -6,6 +6,7 @@ import InterfaceAdapter.Gateway;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Represents the entire system of movies
@@ -61,6 +62,18 @@ public class MovieManager {
     }
 
     /**
+     * get a list of all movieNames from the list of Movies
+     */
+    public List<String> getMovieNames() {
+        List<String> list = new ArrayList<>();
+        for (Movie m : this.Movies) {
+            list.add(m.getMoviename());
+            }
+        return list;
+        }
+
+
+    /**
      * Use movie_name and movie_link to find the whether a movie exists or not.
      * @param name the name of the movie
      * @param link the link of the movie
@@ -69,7 +82,7 @@ public class MovieManager {
     public boolean IfMovieExist(String name, String link){
 
         for(Movie movie: Movies){
-            if(movie.getMoviename().equals(name) | movie.getLink().equals(link)){
+            if(movie.getMoviename().equals(name) || movie.getLink().equals(link)){
                 return true;
                 }
             }
@@ -95,18 +108,20 @@ public class MovieManager {
 //        return profile;
     }
 
-//    /**
-//     * delete an instance of movie from the overall list of Movies
-//     * @param movie_name the name of this instance of Core.Movie
-//     */
-//    public boolean delete_movie(String movie_name) {
-//        for (Core.Movie m : this.Movies){
-//            if (m.movieName.equals(movie_name)){
-//                this.Movies.remove(m);
-//                return !this.Movies.contains(m);
-//            }
-//        }
-//    }
+      /**
+       * delete an instance of movie from the overall list of Movies
+       * @param movieName the name of this instance of Movie
+       */
+      public boolean deleteMovie(String movieName) {
+          for (Movie m : this.Movies){
+              if (m.getMoviename().equals(movieName)){
+                  this.Movies.remove(m);
+
+                  return !this.Movies.contains(m);
+              }
+          }
+          return false;
+      }
 
 
     /**
