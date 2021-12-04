@@ -1,6 +1,7 @@
 package Framework.DataAccess;
 
 import InterfaceAdapter.*;
+import InterfaceAdapter.Interface.WriteUserInterface;
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -13,7 +14,7 @@ import java.util.Arrays;
  * Called for read and write user's file.
  * it should be only called by User class and its subclass.
  */
-public class WriteUser implements WriteUserInterface{
+public class WriteUser implements WriteUserInterface {
 
     protected BufferedReader userlogin;
     protected FileWriter writeuser;

@@ -1,9 +1,6 @@
-package InterfaceAdapter;
+package InterfaceAdapter.Controller;
 
-import Framework.DataAccess.WriteReview;
-import Framework.DataAccess.WriteUser;
-
-import java.io.IOException;
+import InterfaceAdapter.InstanceMain;
 
 public class NormalCCoin extends NormalController{
 

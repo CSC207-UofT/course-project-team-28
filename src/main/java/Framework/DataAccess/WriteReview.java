@@ -1,6 +1,7 @@
 package Framework.DataAccess;
 
 import InterfaceAdapter.*;
+import InterfaceAdapter.Interface.WriteReviewInterface;
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * it should be only called by Core.Review class and its subclass.
  */
 
-public class WriteReview implements WriteReviewInterface{
+public class WriteReview implements WriteReviewInterface {
 
     protected FileReader reviewreader;
     protected BufferedReader getreview;

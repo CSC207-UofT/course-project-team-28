@@ -1,6 +1,6 @@
 package Framework.GUI;
 
-import Framework.Presenter.PicPresenter;
+import Framework.DataAccess.WritePic;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -27,9 +27,9 @@ public class MainPageMoviePanel extends View {
         p.setBorder(b);
         p.setBounds(40,40,300,300);
 
-        ImageIcon icon1 = new ImageIcon(PicPresenter.getPic("5.jpg"));
-        ImageIcon icon2 = new ImageIcon(PicPresenter.getPic("5.jpg"));
-        ImageIcon icon3 = new ImageIcon(PicPresenter.getPic("5.jpg"));
+        ImageIcon icon1 = new ImageIcon(WritePic.getPic("5.jpg"));
+        ImageIcon icon2 = new ImageIcon(WritePic.getPic("5.jpg"));
+        ImageIcon icon3 = new ImageIcon(WritePic.getPic("5.jpg"));
 
         JLabel i1 = new JLabel("Pic1 to be added", icon1, JLabel.CENTER);
         JLabel i2 = new JLabel("Pic2 to be added", icon2, JLabel.CENTER);

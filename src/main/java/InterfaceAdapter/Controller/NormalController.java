@@ -1,4 +1,4 @@
-package InterfaceAdapter;
+package InterfaceAdapter.Controller;
 
 import UseCase.CoinManager;
 import UseCase.MovieManager;
