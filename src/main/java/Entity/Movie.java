@@ -12,10 +12,12 @@ public class Movie {
      * "Likes" stores the number of likes a movie received
      */
 
-    public Movie(String moviename, String movielink, int i) {
+    public Movie(String moviename, String movielink, int i, String category) {
         this.moviename = moviename;
         this.movielink = movielink;
         this.Likes = i;
+        this.category = category;
+
     }
 
     /**

@@ -1,11 +1,9 @@
 package UseCase;
 
 import Entity.Movie;
-import Entity.Review;
 import InterfaceAdapter.Gateway;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -28,8 +26,8 @@ public class MovieManager {
      * @param movieName name of Core.Movie
      * @param movieLink the link of the movie
      */
-    public boolean addMovie(String movieName, String movieLink, int numLikes) {
-        Movie m = new Movie(movieName, movieLink, numLikes);
+    public boolean addMovie(String movieName, String movieLink, String category, int numLikes) {
+        Movie m = new Movie(movieName, movieLink, numLikes, category);
         this.Movies.add(m);
         return true;
 
@@ -40,10 +38,10 @@ public class MovieManager {
      * @param movieName name of Core.Movie
      * @param movieLink the link of the movie
      */
-    public boolean addNewMovie(String movieName, String movieLink) {
-        Movie m = new Movie(movieName, movieLink, 0);
+    public boolean addNewMovie(String movieName, String movieLink, String category) {
+        Movie m = new Movie(movieName, movieLink, 0, category);
         this.Movies.add(m);
-        return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink);
+        return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink, category);
 
     }
 
@@ -128,12 +126,12 @@ public class MovieManager {
      * Add a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
-    public boolean likeMovie(String movieName) {
+    public boolean likeMovie(String movieName, String category) {
         Movie movie = this.getMovie(movieName);
         int like = movie.getLikes();
         movie.AddLike();
 
-        return (movie.getLikes() - 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Increase");
+        return (movie.getLikes() - 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Increase", category);
 
     }
 
@@ -141,12 +139,12 @@ public class MovieManager {
      * Undo a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
-    public boolean undolikeMovie(String movieName) {
+    public boolean undolikeMovie(String movieName, String category) {
         Movie movie = this.getMovie(movieName);
         int like = movie.getLikes();
         movie.UndoLike();
 
-        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease");
+        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease", category);
 
     }
 
