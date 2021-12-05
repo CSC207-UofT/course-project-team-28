@@ -79,15 +79,15 @@ public class AdminInputProcessor {
     }
 
 
-//    /**
-//     * Given a String called moviename,
-//     * return true if the movie exists in the platform and can be deleted.
-//     */
-//    public boolean delete_movie(String moviename) {
-//        if (mov_mana.get_movie(moviename) == null) {
-//            return false;
-//        }
-//        mov_mana.delete_movie(moviename);
-//        return true;
-//    }
+    /**
+     * Given a String called moviename,
+     * return true if the movie exists in the platform and can be deleted.
+     */
+    public boolean deleteMovie(String moviename) {
+        if (InstanceMain.getMovieManager().getMovie(moviename) == null) {
+            return false;
+        }
+        InstanceMain.getMovieManager().deleteMovie(moviename);
+        return true;
+    }
 }
