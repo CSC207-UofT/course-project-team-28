@@ -68,14 +68,14 @@ public class AdminInputProcessor {
      * return true if those strings are non-empty and the movie is not uploaded before,
      * and can be uploaded.
      */
-    public boolean uploadMovie(String movieName, String movieLink) {
+    public boolean uploadMovie(String movieName, String movieLink, String category) {
         if (movieName.length() < 1 | movieLink.length() < 3) {
             return false;
         }
         if (InstanceMain.getMovieManager().IfMovieExist(movieName, movieLink)) {
             return false;
         }
-        return InstanceMain.getMovieManager().addNewMovie(movieName, movieLink);
+        return InstanceMain.getMovieManager().addNewMovie(movieName, movieLink, category);
     }
 
 
