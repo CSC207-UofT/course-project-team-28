@@ -48,10 +48,10 @@ public class NormalCMovie extends NormalController{
      * Given a String moviename, add like.
      * return ture iff added successfully.
      */
-    public boolean likeMovie(String movieName) {
+    public boolean likeMovie(String movieName, String category) {
         if (InstanceMain.getUserManager().giveLike(this.currNormalName, movieName)){
 
-            return InstanceMain.getMovieManager().likeMovie(movieName);
+            return InstanceMain.getMovieManager().likeMovie(movieName, category);
         }
         else {
             return false;
@@ -71,12 +71,12 @@ public class NormalCMovie extends NormalController{
      * Given a String moviename, undo like.
      * return ture iff added successfully.
      */
-    public boolean undoLike(String movieName) {
+    public boolean undoLike(String movieName, String category) {
         Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
         ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
         if (userPlaylist.contains(movieName)){
 
-            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName) && InstanceMain.getMovieManager().undolikeMovie(movieName);
+            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName) && InstanceMain.getMovieManager().undolikeMovie(movieName, category);
         }
         else{
             return false;
