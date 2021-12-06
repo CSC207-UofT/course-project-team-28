@@ -59,7 +59,7 @@ public class NormalCMovie extends NormalController{
     }
 
     /**
-     * return ture iff the user's playlist is empty.
+     * @return ture iff the user's playlist is empty.
      */
     public boolean emptyPlaylist() {
         Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
@@ -85,7 +85,9 @@ public class NormalCMovie extends NormalController{
 
     /**
      * add a review when provided with moviename of the movie and review content
-     * return ture iff a review is successfully added. false otherwise
+     * @param movieName name of the movie
+     * @param revContent content of review
+     * @return ture iff a review is successfully added. false otherwise
      */
     public boolean writeReview(String movieName, String revContent) {
         return InstanceMain.getReviewManager().writeNewReview(this.currNormalName, movieName, revContent, 0);
