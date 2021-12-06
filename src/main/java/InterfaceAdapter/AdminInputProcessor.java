@@ -30,7 +30,8 @@ public class AdminInputProcessor {
      * create admin user iff the provided username and password is legal
      * username and password must be non-empty, only contain numbers or letters,
      * and username must be unique among all the normal users,
-     * also the code should be correct.
+     * also the code should be correct. In the same time, if all conditions are met,
+     * the account will be created.
      */
     public boolean register(String userName, String password, String code) {
         if (! this.isnonemptyalpnum(userName)){
@@ -67,26 +68,26 @@ public class AdminInputProcessor {
      * return true if those strings are non-empty and the movie is not uploaded before,
      * and can be uploaded.
      */
-    public boolean uploadMovie(String movieName, String movieLink) {
+    public boolean uploadMovie(String movieName, String movieLink, String category) {
         if (movieName.length() < 1 | movieLink.length() < 3) {
             return false;
         }
         if (InstanceMain.getMovieManager().IfMovieExist(movieName, movieLink)) {
             return false;
         }
-        return InstanceMain.getMovieManager().addNewMovie(movieName, movieLink);
+        return InstanceMain.getMovieManager().addNewMovie(movieName, movieLink, category);
     }
 
 
-//    /**
-//     * Given a String called moviename,
-//     * return true if the movie exists in the platform and can be deleted.
-//     */
-//    public boolean delete_movie(String moviename) {
-//        if (mov_mana.get_movie(moviename) == null) {
-//            return false;
-//        }
-//        mov_mana.delete_movie(moviename);
-//        return true;
-//    }
+    /**
+     * Given a String called moviename,
+     * return true if the movie exists in the platform and can be deleted.
+     */
+    public boolean deleteMovie(String moviename) {
+        if (InstanceMain.getMovieManager().getMovie(moviename) == null) {
+            return false;
+        }
+        InstanceMain.getMovieManager().deleteMovie(moviename);
+        return true;
+    }
 }
