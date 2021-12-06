@@ -17,7 +17,7 @@ public class SearchResult extends View{
         guiProfile = new GUIProfile(this);
         panel1 = new JPanel();
         searchList = new JList();
-        searchText = "";
+//        searchText = "";
         addComponentOnPanel(panel1);
     }
 
@@ -26,15 +26,15 @@ public class SearchResult extends View{
         p.setLayout(boxLayout);
         searchText = guiProfile.getSearchInput();
 
-        if (searchText.equals("")){
-            JOptionPane.showMessageDialog(null,"Please enter a movie name","!",JOptionPane.PLAIN_MESSAGE);
-            this.getFrame().dispose();
-        } else {
-            List<String> pl1 = Search.suggestionSearch(searchText);
-            Object[] pl2 = pl1.toArray();
-            searchList = new JList<>(pl2);
-            p.add(searchList);
-        }
+//        if (searchText.equals("")){
+//            JOptionPane.showMessageDialog(null,"Please enter a movie name","!",JOptionPane.PLAIN_MESSAGE);
+//            this.getFrame().dispose();
+//        } else {
+        List<String> pl1 = Search.suggestionSearch(searchText);
+        Object[] pl2 = pl1.toArray();
+        searchList = new JList<>(pl2);
+        p.add(searchList);
+//        }
 
     }
 
