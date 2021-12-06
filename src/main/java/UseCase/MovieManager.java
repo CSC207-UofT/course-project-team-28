@@ -78,9 +78,10 @@ public class MovieManager {
      * @return return true if a movie's name and matching link already exists in movie list. Otherwise, return false
      */
     public boolean IfMovieExist(String name, String link){
+        name = name.toLowerCase();
 
         for(Movie movie: Movies){
-            if(movie.getMoviename().equals(name) || movie.getLink().equals(link)){
+            if(movie.getMoviename().toLowerCase().equals(name) || movie.getLink().equals(link)){
                 return true;
                 }
             }
@@ -92,11 +93,16 @@ public class MovieManager {
      * should be called only when movie_name exists
      * get the profile of an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
-     * @return profile a String including the profile of the movie.
+     * @return the array [movieName, movieLink, movieCategory, numOfLikes].
      */
-    public String getMovieProfile(String movieName) {
+    public Object[] getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
-        return movie.toString();
+        Object[] result = new Object[4];
+        result[0] = movie.getMoviename();
+        result[1] = movie.getLink();
+        result[2] = movie.getCategory();
+        result[3] = movie.getLikes();
+        return result;
     }
 
       /**

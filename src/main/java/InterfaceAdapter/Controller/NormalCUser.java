@@ -15,9 +15,9 @@ public class NormalCUser extends NormalController {
 
 
     /**
-     * create normal user iff the provided username and password is legal
-     * username and password must be non-empty, only contain numbers or letters,
-     * and username must be unique among all the normal users.
+     * create normal user iff the provided username and password is legal username and password must
+     * be non-empty, only contain numbers or letters, and username must be unique among all the normal users.
+     * Stores currNormalName for changing avatar.
      * DO NOT auto-login if registered successfully
      * @param userName username
      * @param password password
@@ -36,7 +36,7 @@ public class NormalCUser extends NormalController {
             return false;
         }
         else {
-
+            this.currNormalName = userName;
             return InstanceMain.getUserManager().createNewNormaluser(userName, password);
         }
     }
@@ -50,6 +50,8 @@ public class NormalCUser extends NormalController {
     public boolean login(String userName, String password) {
         if (InstanceMain.getUserManager().userIfExist(userName, password, "NormalUser")) {
             this.currNormalName = userName;
+            InstanceMain.getNormalCMovie().currNormalName = userName;
+            InstanceMain.getNormalCCoin().currNormalName = userName;
             return true;
         }
         else {

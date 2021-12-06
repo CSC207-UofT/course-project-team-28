@@ -2,6 +2,7 @@ package Framework.GUI;
 
 import Framework.DataAccess.WritePic;
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,33 +20,33 @@ public class GUIAdminUser extends View{
     private JButton selectPics;
     private JButton uploadMovies;
     private JPanel panel1;
+    private final GUIUserLogin guiUserLogin = (GUIUserLogin) previous;
+    private final TextPresenter textPresenter = guiUserLogin.getTextPresenter();
+    private final String[] cate = {"Action", "Anime", "Comedy", "Horror", "Romantic"};
     Font font1 = new Font("SansSerif", Font.PLAIN, 20);
 
     public GUIAdminUser(View previous){
         super(previous);
         panel1 = new JPanel();
         PlaceThingsOnP1(panel1);
-
     }
 
     private void PlaceThingsOnP1(JPanel p1) {
 
-        movieName = new JLabel();
+        movieName = new JLabel(); // The first letter of the movie must be capitalized.
         movieLink = new JLabel();
         category = new JLabel();
         mNameText = new JTextField();
         mLinkText = new JTextField();
 
-        String[] cate = {"Action", "Anime", "Comedy", "Horror", "Romantic"};
-
-        selectPics = new JButton("Select Pictures for the Movie");
+        selectPics = new JButton(textPresenter.printText("Select Pictures for the Movie"));
         ImageIcon icon = new ImageIcon(WritePic.getPic("shake hand.jpg"));
-        JLabel i = new JLabel("Movie Image", icon, JLabel.CENTER);
-        uploadMovies = new JButton("Upload Movies");
+        JLabel i = new JLabel(textPresenter.printText("Movie Image"), icon, JLabel.CENTER);
+        uploadMovies = new JButton(textPresenter.printText("Upload Movies"));
 
-        movieName.setText("Movie Name");
-        movieLink.setText("Movie Link");
-        category.setText("Category");
+        movieName.setText(textPresenter.printText("Movie Name"));
+        movieLink.setText(textPresenter.printText("Movie Link"));
+        category.setText(textPresenter.printText("Category"));
         categoryChoice = new JList<>(cate);
 
         p1.setLayout(null);
@@ -91,10 +92,10 @@ public class GUIAdminUser extends View{
         if (InstanceMain.getAdminInputProcessor().uploadMovie(mName, link, category)) {
             previous.UpdateText();
 
-            JOptionPane.showMessageDialog(null, "Successfully uploaded", ":D",
+            JOptionPane.showMessageDialog(null, textPresenter.printText("Successfully uploaded"), textPresenter.printText(":D"),
                     JOptionPane.PLAIN_MESSAGE);
         }else{
-            JOptionPane.showMessageDialog(null, "Your movie already exists", ":(",
+            JOptionPane.showMessageDialog(null, textPresenter.printText("Your movie already exists"), ":(",
                     JOptionPane.PLAIN_MESSAGE);
         }
 
@@ -105,10 +106,11 @@ public class GUIAdminUser extends View{
 
     }
 
+
     @Override
     public JFrame getFrame () {
         JFrame frame = super.getFrame();
-        frame.setTitle("AdminUser Page");
+        frame.setTitle(textPresenter.printText("AdminUser Page"));
         frame.add(panel1);
         frame.setSize(800, 1500);
         frame.setLayout(null);

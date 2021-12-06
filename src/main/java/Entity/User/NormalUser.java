@@ -42,7 +42,7 @@ public class NormalUser extends User{
      */
     @Override
     public Object[] getObject() {
-        Object[] nu = new Object[7];
+        Object[] nu = new Object[8];
         nu[0] = this.username;
         nu[1] = this.password;
         nu[2] = this.contactinfo;
@@ -50,6 +50,7 @@ public class NormalUser extends User{
         nu[4] = this.category;
         nu[5] = this.coin;
         nu[6] = this.playlist;
+        nu[7] = this.picPath;
 
         return nu;
     }
