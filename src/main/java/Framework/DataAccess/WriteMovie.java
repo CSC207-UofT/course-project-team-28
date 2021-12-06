@@ -1,6 +1,6 @@
 package Framework.DataAccess;
 
-import InterfaceAdapter.*;
+import InterfaceAdapter.Gateway;
 import InterfaceAdapter.Interface.WriteMovieInterface;
 
 import java.io.*;
