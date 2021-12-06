@@ -97,13 +97,6 @@ public class MovieManager {
     public String getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
         return movie.toString();
-
-//        ArrayList<Object> profile = new ArrayList<>();
-//        profile.add(movie.getMovieName());
-//        profile.add(movie.getMovieLink());
-//        profile.add(movie.getReviewsContent());
-//        profile.add(movie.getLikes());
-//        return profile;
     }
 
       /**
@@ -111,22 +104,38 @@ public class MovieManager {
        * @param movieName the name of this instance of Movie
        */
       public boolean deleteMovie(String movieName) {
+          String category = this.getMovieCategory(movieName);
           for (Movie m : this.Movies){
               if (m.getMoviename().equals(movieName)){
                   this.Movies.remove(m);
-
+                  this.gateway.deleteMovie(movieName, category);
                   return !this.Movies.contains(m);
               }
           }
           return false;
       }
 
+    /**
+     * Use movie_name and movie_link to find the movie's category
+     * @param name the name of the movie
+     * @return return the category of the movie, null if movie not found
+     */
+    public String getMovieCategory(String name){
+        for (Movie movie: Movies){
+            if (movie.getMoviename().equals(name)){
+                return movie.category;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Add a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
-    public boolean likeMovie(String movieName, String category) {
+    public boolean likeMovie(String movieName) {
+        String category = this.getMovieCategory(movieName);
         Movie movie = this.getMovie(movieName);
         int like = movie.getLikes();
         movie.AddLike();
@@ -139,7 +148,8 @@ public class MovieManager {
      * Undo a like to an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
      */
-    public boolean undolikeMovie(String movieName, String category) {
+    public boolean undolikeMovie(String movieName) {
+        String category = this.getMovieCategory(movieName);
         Movie movie = this.getMovie(movieName);
         int like = movie.getLikes();
         movie.UndoLike();
