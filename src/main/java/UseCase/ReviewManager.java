@@ -153,6 +153,22 @@ public class ReviewManager {
         return coinAfter - 1 == coin && this.gateway.editCoin(username, reviewId);
     }
 
+
+    /**
+     * should only be called when review id is valid.
+     * when given ID of a review, return the information of the review.
+     * @param reviewId id of the review
+     * @return the review info in the array [reviewer, movie, reviewContent, numCoin, ID]
+     */
+    public Object[] getRevInfoById (int reviewId){
+        for (Review review : this.reviewList){
+            if (review.getID() == reviewId){
+                return review.getReviewInfo();
+            }
+        }
+        return null;
+    }
+
 //    /**
 //     * find a review with review_id, and delete 1 coin
 //     */
