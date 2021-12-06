@@ -84,6 +84,13 @@ public class GUIProfile extends View {
             }
         });
 
+        goToPlaylist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OnButtonClick2(e);
+            }
+        });
+
         UpdateText();
         p1.add(usernameLabel);
         p1.add(coinLabel);
@@ -158,6 +165,10 @@ public class GUIProfile extends View {
      */
     private void OnButtonClick(ActionEvent e) {
         nextView(new GUIEditContactInfo(this), false);
+    }
+
+    private void OnButtonClick2(ActionEvent e) {
+        nextView(new GUIPlaylist(this), false);
     }
 
     /*
