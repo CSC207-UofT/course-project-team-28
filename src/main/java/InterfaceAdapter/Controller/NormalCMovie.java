@@ -55,7 +55,8 @@ public class NormalCMovie extends NormalController{
      */
     public boolean likeMovie(String movieName) {
         if (InstanceMain.getUserManager().giveLike(this.currNormalName, movieName)){
-            return InstanceMain.getMovieManager().likeMovie(movieName);
+            return InstanceMain.getMovieManager().likeMovie(movieName)
+                    && InstanceMain.getUserManager().giveLike(this.currNormalName, movieName);
         }
         else {return false;}
     }
@@ -81,7 +82,8 @@ public class NormalCMovie extends NormalController{
         Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
         ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
         if (userPlaylist.contains(movieName)){
-            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName) && InstanceMain.getMovieManager().undolikeMovie(movieName);
+            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName)
+                    && InstanceMain.getMovieManager().undolikeMovie(movieName);
         }
         else {return false;}
     }
