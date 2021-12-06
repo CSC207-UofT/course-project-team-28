@@ -36,7 +36,7 @@ public class NormalCUser extends NormalController {
             return false;
         }
         else {
-
+            this.currNormalName = userName;
             return InstanceMain.getUserManager().createNewNormaluser(userName, password);
         }
     }
@@ -50,6 +50,8 @@ public class NormalCUser extends NormalController {
     public boolean login(String userName, String password) {
         if (InstanceMain.getUserManager().userIfExist(userName, password, "NormalUser")) {
             this.currNormalName = userName;
+            InstanceMain.getNormalCMovie().currNormalName = userName;
+            InstanceMain.getNormalCCoin().currNormalName = userName;
             return true;
         }
         else {
