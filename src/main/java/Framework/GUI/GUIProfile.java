@@ -190,7 +190,7 @@ public class GUIProfile extends View {
     }
 
     private void OnSearchButtonClick(ActionEvent e){
-        searchInput = searchBar.getText();
+        this.searchInput = searchBar.getText();
         if (!(searchInput.equals(""))){
             nextView(new SearchResult(this), false);
 
