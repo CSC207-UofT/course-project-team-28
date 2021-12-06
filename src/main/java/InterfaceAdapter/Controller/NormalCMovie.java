@@ -1,9 +1,6 @@
-package InterfaceAdapter;
+package InterfaceAdapter.Controller;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteReview;
-import Framework.DataAccess.WriteUser;
-import UseCase.UserManager;
+import InterfaceAdapter.InstanceMain;
 
 import java.util.ArrayList;
 

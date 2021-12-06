@@ -1,9 +1,7 @@
 package UseCase;
 
 import InterfaceAdapter.Gateway;
-import InterfaceAdapter.NormalController;
-
-import java.io.IOException;
+import InterfaceAdapter.Controller.NormalController;
 
 /**
  * Represents the entire system of coins

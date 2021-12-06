@@ -1,4 +1,4 @@
-package InterfaceAdapter;
+package InterfaceAdapter.Interface;
 
 public interface WriteUserInterface {
     boolean createFile(String userName, String userPassword, String userType);

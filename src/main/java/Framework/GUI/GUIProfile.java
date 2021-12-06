@@ -1,7 +1,7 @@
 package Framework.GUI;
 
+import Framework.DataAccess.WritePic;
 import InterfaceAdapter.InstanceMain;
-import Framework.Presenter.PicPresenter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -39,7 +39,7 @@ public class GUIProfile extends View {
         description = new JTextArea();
         coinLabel = new JLabel();
         contactInfoLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(PicPresenter.getPic("winnie.jpg"));
+        ImageIcon icon = new ImageIcon(WritePic.getPic("winnie.jpg"));
         JLabel i = new JLabel(icon, JLabel.CENTER);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
         Border b = BorderFactory.createTitledBorder(bb,"Your Profile", TitledBorder.LEADING, TitledBorder.TOP, font2);
@@ -91,9 +91,9 @@ public class GUIProfile extends View {
         p2.setBorder(b);
         p2.setBounds(420,290,740,550);
 
-        ImageIcon icon1 = new ImageIcon(PicPresenter.getPic("5.jpg"));
-        ImageIcon icon2 = new ImageIcon(PicPresenter.getPic("4.jpg"));
-        ImageIcon icon3 = new ImageIcon(PicPresenter.getPic("3.jpg"));
+        ImageIcon icon1 = new ImageIcon(WritePic.getPic("5.jpg"));
+        ImageIcon icon2 = new ImageIcon(WritePic.getPic("4.jpg"));
+        ImageIcon icon3 = new ImageIcon(WritePic.getPic("3.jpg"));
         JLabel Jicon1 = new JLabel("Movie 1", SwingConstants.CENTER);
         JLabel Jicon2 = new JLabel("Movie 2", SwingConstants.CENTER);
         JLabel Jicon3 = new JLabel("Movie 3",SwingConstants.CENTER);

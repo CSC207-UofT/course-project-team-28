@@ -1,8 +1,8 @@
 //import Entity.Movie;
 //import InterfaceAdapter.AdminInputProcessor;
-//import InterfaceAdapter.NormalCCoin;
-//import InterfaceAdapter.NormalCMovie;
-//import InterfaceAdapter.NormalCUser;
+//import InterfaceAdapter.Controller.NormalCCoin;
+//import InterfaceAdapter.Controller.NormalCMovie;
+//import InterfaceAdapter.Controller.NormalCUser;
 //import Framework.DataAccess.WriteMovie;
 //import UseCase.MovieManager;
 //import org.junit.*;
