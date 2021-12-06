@@ -3,6 +3,10 @@ package Framework.GUI;
 import InterfaceAdapter.Search.Search;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,31 +15,54 @@ public class SearchResult extends View{
     private final GUIProfile guiProfile;
     private JList searchList;
     private String searchText;
+    Font font1 = new Font("SansSerif", Font.BOLD, 50);
 
     public SearchResult(View previous) {
         super(previous);
-        guiProfile = new GUIProfile(this);
+        guiProfile = (GUIProfile) previous;
         panel1 = new JPanel();
-        searchList = new JList();
-        searchText = "";
         addComponentOnPanel(panel1);
     }
 
     private void addComponentOnPanel(JPanel p){
-        BoxLayout boxLayout = new BoxLayout(p, BoxLayout.Y_AXIS);
-        p.setLayout(boxLayout);
+        p.setLayout(null);
+        p.setBounds(0, 0, 700, 700);
         searchText = guiProfile.getSearchInput();
+        List lst = Search.suggestionSearch(searchText);
+        searchList = new JList(lst.toArray());
+        searchList.setBounds(150, 120, 400, 400);
+        searchList.setFont(font1);
+        searchList.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                OnMovieNameClick(e);
+            }
 
-        if (searchText.equals("")){
-            JOptionPane.showMessageDialog(null,"Please enter a movie name","!",JOptionPane.PLAIN_MESSAGE);
-            this.getFrame().dispose();
-        } else {
-            List<String> pl1 = Search.suggestionSearch(searchText);
-            Object[] pl2 = pl1.toArray();
-            searchList = new JList<>(pl2);
-            p.add(searchList);
-        }
+            @Override
+            public void mousePressed(MouseEvent e) {
 
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        p.add(searchList);
+    }
+
+    private void OnMovieNameClick(MouseEvent e){
+        nextView(new GUIPlaylist(this), false); //!!!!!!!
     }
 
     @Override

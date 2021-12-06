@@ -19,6 +19,7 @@ public class GUIProfile extends View {
     public String searchInput;
     private JTextArea description;
     public JTextField searchBar;
+    public JLabel testInput;
     private final JPanel panel1;
     private final JPanel panel2;
     private final JPanel panel3;
@@ -153,14 +154,14 @@ public class GUIProfile extends View {
         p3.setBounds(420,20,740,200);
 
         searchBar = new JTextField();
-        listSearch = new JList();
-        listSearch.setVisible(false);
+//        listSearch = new JList();
+//        listSearch.setVisible(false);
         JButton searchButton = new JButton();
         searchButton.setText("Search");
         searchBar.setBounds(100,80,500,40);
         searchBar.setFont(font2);
         searchButton.setBounds(300,140,80,40);
-        listSearch.setBounds(100,120,500,200);
+//        listSearch.setBounds(100,120,500,200);
 
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -168,9 +169,13 @@ public class GUIProfile extends View {
                 OnSearchButtonClick(actionEvent);
             }
         });
-        searchInput = searchBar.getText();
+
         p3.add(searchBar);
         p3.add(searchButton);
+
+//        this.searchInput = searchBar.getText();
+//        System.out.println(this.searchInput);
+
     }
 
     /**
@@ -185,7 +190,13 @@ public class GUIProfile extends View {
     }
 
     private void OnSearchButtonClick(ActionEvent e){
-        nextView(new SearchResult(this),false);
+        this.searchInput = searchBar.getText();
+        if (!(searchInput.equals(""))){
+            nextView(new SearchResult(this), false);
+
+        } else {
+            JOptionPane.showMessageDialog(null,"Please enter a movie name","!",JOptionPane.PLAIN_MESSAGE);
+        }
     }
 
     public String getSearchInput(){

@@ -11,4 +11,7 @@ public class WritePic {
     public static String getPic(String str){
         return str1 + filepath + str;
     }
+    public static String getPicUser(String str){
+        return str1 + str;
+    }
 }

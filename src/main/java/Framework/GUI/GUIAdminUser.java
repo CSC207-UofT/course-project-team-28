@@ -86,7 +86,7 @@ public class GUIAdminUser extends View{
     public void OnUploadClick(ActionEvent e) {
         String mName = mNameText.getText();
         String link = mLinkText.getText();
-        String category = "Action"; //!!!!!!
+        String category = (String) categoryChoice.getSelectedValue(); //!!!!!!
         if (InstanceMain.getAdminInputProcessor().uploadMovie(mName, link, category)) {
             previous.UpdateText();
 
