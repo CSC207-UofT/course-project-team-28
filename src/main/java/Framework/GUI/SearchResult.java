@@ -62,7 +62,6 @@ public class SearchResult extends View{
     }
 
     public String getMovieSelected(){
-        System.out.println((String) searchList.getSelectedValue());
         return (String) searchList.getSelectedValue();
     }
 

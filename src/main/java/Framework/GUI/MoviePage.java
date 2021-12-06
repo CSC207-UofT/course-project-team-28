@@ -38,7 +38,6 @@ public class MoviePage extends View {
      Panel 1 is the user profile panel, this method palaces the relevant components on panel 1.
      */
     private void PlaceThingsOnP1(JPanel p1){
-
         SearchResult searchResult = (SearchResult) previous;
         if (searchResult.equals(null)){
             searchedMovie = "Apple";
@@ -46,11 +45,11 @@ public class MoviePage extends View {
         else {
             searchedMovie = searchResult.getMovieSelected();
         }
+
         numberOfLikes = new JLabel();
         JLabel movieName = new JLabel();
         JLabel movieLink = new JLabel();
-        JButton giveLikeToMovie = new JButton("Like the Movie");
-        JButton addToPlaylist = new JButton("Add to your playlist");
+        JButton giveLikeToMovie = new JButton("Like the movie & add to your playlist");
         JLabel movieCategory = new JLabel();
         ImageIcon icon = new ImageIcon(WritePic.getPic("4.jpg"));
         JLabel i = new JLabel(icon, JLabel.CENTER);
@@ -60,6 +59,7 @@ public class MoviePage extends View {
         movieLink.setText((String) InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[1]);
         numberOfLikes.setText("number of likes: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
         movieCategory.setText("Category: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[2]);
+        JButton addReview = new JButton("Add review to this movie");
 
         p1.setLayout(null);
         p1.setBorder(b);
@@ -73,11 +73,10 @@ public class MoviePage extends View {
         numberOfLikes.setBounds(110, 410, 700, 200);
         i.setBounds(40, 70, 300, 300);
         movieCategory.setBounds(110, 550, 300, 200);
-        giveLikeToMovie.setBounds(110,560,160,40);
-        addToPlaylist.setBounds(110,710,160,40);
+        giveLikeToMovie.setBounds(40,560,300,40);
+        addReview.setBounds(60, 700, 260, 40);
 
         movieName.setFont(font1);
-        numberOfLikes.setFont(font2);
         numberOfLikes.setFont(font2);
         movieCategory.setFont(font2);
         movieLink.setFont(font2);
@@ -89,12 +88,13 @@ public class MoviePage extends View {
             }
         });
 
-//        addToPlaylist.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                OnButtonClick2(e);
-//            }
-//        });
+        addReview.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OnAddButtonClick(e);
+            }
+        });
+
 
         p1.add(movieName);
         p1.add(numberOfLikes);
@@ -102,8 +102,8 @@ public class MoviePage extends View {
         p1.add(giveLikeToMovie);
         p1.add(movieCategory);
         p1.add(i);
-        p1.add(addToPlaylist);
         p1.add(movieLink);
+        p1.add(addReview);
     }
 
     /**
@@ -112,9 +112,10 @@ public class MoviePage extends View {
     private void PlaceThingsOnP2(JPanel p2){
         p2.setLayout(null);
         List lst = new ArrayList();
-        Object[] list = InstanceMain.getNormalCMovie().movieReviews("Apple").toArray();
+        ArrayList<Object[]> list = InstanceMain.getNormalCMovie().movieReviews(searchedMovie);
         for (Object a:list){
             lst.add(((Object[])a)[2]);
+
         }
         JList reviewList = new JList(lst.toArray());
         reviewList.setFont(font3);
@@ -136,34 +137,26 @@ public class MoviePage extends View {
      This action adds to the Edit button, which directs to the edit page.
      */
     private void OnEditButtonClick(ActionEvent e) {
+        InstanceMain.getNormalCMovie().likeMovie(searchedMovie);
         UpdateText();
     }
 
-//    private void OnButtonClick2(ActionEvent e) {
-//        InstanceMain.getNormalCUser().editProfile()
-//    }
-//
-//    private void OnSearchButtonClick(ActionEvent e){
-//        this.searchInput = searchBar.getText();
-//        if (!(searchInput.equals(""))){
-//            nextView(new SearchResult(this), false);
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null,"Please enter a movie name","!",JOptionPane.PLAIN_MESSAGE);
-//        }
-//    }
-//
-//    public String getSearchInput(){
-//        return this.searchInput;
-//    }
-//
+    private void OnAddButtonClick(ActionEvent e) {
+        nextView(new AddReview(this), false);
+    }
+
+    public String getSearchedMovie(){return this.searchedMovie;}
+
     /**
      This method enables automatic updates on this page after user enters new information on the edit page.
      */
     @Override
     protected void UpdateText() {
-        numberOfLikes.setText("number of likes: " + ((Integer)InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3] + 1));
-//        description.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[3]);
+        numberOfLikes.setText("number of likes: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
+    }
+
+    public void updateReview(){
+        PlaceThingsOnP2(panel2);
     }
 
     @Override

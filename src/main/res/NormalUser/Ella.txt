@@ -4,5 +4,5 @@ Ella
 I like movie blablabla
 Empty category
 302
-[]
+[Apple,Candy,Team28]
 /src/main/res/GUIPic/moon.jpg
