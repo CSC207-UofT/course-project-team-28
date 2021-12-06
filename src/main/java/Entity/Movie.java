@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class Movie {
     protected String moviename;
     protected String movielink;
+    public String category;
     public int Likes;
 
     /**
@@ -11,10 +12,12 @@ public class Movie {
      * "Likes" stores the number of likes a movie received
      */
 
-    public Movie(String moviename, String movielink, int i) {
+    public Movie(String moviename, String movielink, int i, String category) {
         this.moviename = moviename;
         this.movielink = movielink;
         this.Likes = i;
+        this.category = category;
+
     }
 
     /**
@@ -22,7 +25,8 @@ public class Movie {
      */
 
     public String toString() {
-        return "Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" + "# of Likes: " + this.Likes;
+        return "Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" + "Category: " + this.category
+                + ", \n" + "# of Likes: " + this.Likes;
     }
 
 
@@ -34,6 +38,7 @@ public class Movie {
         return this.movielink;
     }
 
+    public String getCategory() {return this.category; }
 
     public int getLikes() {return this.Likes; }
 
