@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserManager {
     private final ArrayList<AdminUser> lstOfAdminUser;
     private final ArrayList<NormalUser> lstOfNormalUser;
-    private final Gateway gateway = new Gateway();
+    private final GatewayInterface gateway = new Gateway();
 
 
     /**
@@ -68,6 +68,8 @@ public class UserManager {
         lstOfNormalUser.add(normalUser);
 
         return lstOfNormalUser.contains(normalUser) && this.gateway.createNewUser(username, password, "NormalUser");
+
+
     }
 
 
@@ -80,10 +82,9 @@ public class UserManager {
      * Update contact info of a normal user
      * @param username the name of normal user
      * @param updateInfo the info needs to be updated
-     * @param writeType the type of info that user wants to update. e.g. contactInfo, description
+     * @param writeType the type of info that user wants to update. e.g. contactInfo, description, category, picPath, coin
      * @return True if it is successfully updated. Otherwise, return false.
      */
-
     public boolean updateInfo(String username, String updateInfo, String writeType) {
         NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>(), "");
 
@@ -114,7 +115,7 @@ public class UserManager {
                 return normalUser.getDescription().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
             }
         }
-        else{
+        else if(writeType.equals("category")){
             if(normalUser.getCategory().equals(updateInfo)){
                 return true;
             }
@@ -123,6 +124,17 @@ public class UserManager {
 
 
                 return normalUser.getCategory().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
+            }
+        }
+        else{
+            if(normalUser.getPicPath().equals(updateInfo)){
+                return true;
+            }
+            else{
+                normalUser.changePic(updateInfo);
+
+
+                return normalUser.getPicPath().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
             }
         }
     }
@@ -226,6 +238,20 @@ public class UserManager {
 
 
     /**
+     * Use username to find the path of profile photo.
+     * @param username the username of Core.User
+     * @return return the string of user profile photo path.
+     */
+    public String getPicPath(String username){
+        for(NormalUser nu: lstOfNormalUser){
+            if(nu.getUsername().equals(username)){
+                return nu.getPicPath();
+            }
+        }
+        return "";
+    }
+
+    /**
      * Use username and password to find the whether user exists or not.
      * @param username the username of Core.User
      * @param password the password of Core.User
@@ -293,7 +319,6 @@ public class UserManager {
     public ArrayList<AdminUser> getAdminUserList(){
         return lstOfAdminUser;
     }
-
 
 
 }

@@ -1,22 +1,19 @@
 package Framework.DataAccess;
 
-import InterfaceAdapter.*;
+import InterfaceAdapter.Gateway;
+import InterfaceAdapter.Interface.WriteMovieInterface;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Properties;
-
-import static java.lang.System.out;
+import java.util.Arrays;
 
 /**
  * Called for read and write movie's file.
  */
 
-public class WriteMovie implements WriteMovieInterface{
+public class WriteMovie implements WriteMovieInterface {
     protected Gateway gateway = new Gateway();
 
     protected FileReader moviereader;
@@ -29,8 +26,7 @@ public class WriteMovie implements WriteMovieInterface{
 
 
     /*
-     * Creates files for movies and saved in Moviedata,
-     * also files for movie reviews separately saved in Moviereviews.
+     * Creates files for movies and saved in Moviedata + corresponding category
      * @return boolean
      */
 
@@ -49,14 +45,14 @@ public class WriteMovie implements WriteMovieInterface{
      */
     public WriteMovie(String moviePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
-        this.MoviePath = moviePath +"/";
-        this.ReadPath = readPath + "/";
+        this.MoviePath = moviePath;
+        this.ReadPath = readPath;
 
         getObjectFromFile();
 
     }
     @Override
-    public boolean createFile(String movieName, String movieLink) {
+    public boolean createFile(String movieName, String movieLink, String category) {
 
         try{
             writemovie = new FileWriter(MoviePath + movieName + ".txt");
@@ -65,8 +61,10 @@ public class WriteMovie implements WriteMovieInterface{
             writemovie.write(movieLink);
             writemovie.write("\r\n");
             writemovie.write("0");
+            writemovie.write("\r\n");
+            writemovie.write(category);
             writemovie.close();
-            File moviefile = new File(MoviePath + movieName + ".txt");
+            File moviefile = new File(MoviePath + category + "/" + movieName + ".txt");
 
 
             return moviefile.exists();
@@ -79,10 +77,10 @@ public class WriteMovie implements WriteMovieInterface{
 
 
     @Override
-    public boolean addLikeToFile(String movieName, String state) {
+    public boolean addLikeToFile(String movieName, String state, String category) {
         try {
-            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata"));
-            writemovie = new FileWriter(MoviePath + movieName + ".txt");
+            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata/" + category));
+            writemovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             if (state.equals("Increase")){
 
                 lst.set(2,Integer.toString(Integer.parseInt(lst.get(2)) + 1));
@@ -128,16 +126,21 @@ public class WriteMovie implements WriteMovieInterface{
     @Override
     public void getObjectFromFile() {
         try {
-            File MoviePathFile = new File(MoviePath); //get full path for Moviedata folder
+            File MoviecPathFile = new File(MoviePath); //get full path for Moviedata folder
 
-            String[] lstOfMovie = MoviePathFile.list();// get all the file name in Moviedata folder
-
+            String[] lstOfMoviec = MoviecPathFile.list();// get all the file name in Moviedata folder
+            ArrayList<String> lstOfMovie = new ArrayList<>();
+            for (String str: lstOfMoviec){
+                File MoviePathFile = new File(MoviePath + str);
+                String[] lstOfMovies = MoviePathFile.list();
+                lstOfMovie.addAll(Arrays.asList(lstOfMovies));
+            }
             if (lstOfMovie != null) {
                 for (String m : lstOfMovie) {
                     ArrayList<String> lst = readFile(m, "Moviedata");
 
                     // create object for a single movie
-                    this.gateway.createFileMovie(lst.get(0), lst.get(1), Integer.parseInt(lst.get(2)));
+                    this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
                 }
             }
         }
@@ -151,12 +154,9 @@ public class WriteMovie implements WriteMovieInterface{
      * @return Boolean
      */
 
-    public Boolean deleteFile(String movie) {
-        File moviefile = new File(str1 + "/src/test/res/Moviedata/" + movie + ".txt");
-        File moviereviewfile = new File(str1 + "/src/test/res/Moviereview/" + movie + " reviews.properties");
-        Boolean a = moviefile.delete();
-        Boolean b = moviereviewfile.delete();
-        return a & b;
+    public boolean deleteFile(String movie, String category) {
+        File moviefile = new File(str1 + "/src/test/res/Moviedata/" + category + "/" + movie + ".txt");
+        return moviefile.delete();
     }
 
     /**
