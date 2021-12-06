@@ -1,6 +1,6 @@
 package Framework.DataAccess;
 
-import InterfaceAdapter.*;
+import InterfaceAdapter.Gateway;
 import InterfaceAdapter.Interface.WriteUserInterface;
 
 import java.io.*;
@@ -23,9 +23,6 @@ public class WriteUser implements WriteUserInterface {
     protected File NormalUserFolderPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for NormalUser folder
     protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for AdminUser file
     protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for NormalUser file
-
-    protected InstanceMain instanceMain;
-
     protected Gateway gateway = new Gateway();
 
 
@@ -43,8 +40,7 @@ public class WriteUser implements WriteUserInterface {
      * @param normalPath Core.User.NormalUser test folder path
      * @param adminPath Core.User.AdminUser test folder path
      */
-    public WriteUser(String normalPath, String adminPath, InstanceMain instanceMain){
-        this.instanceMain = instanceMain;
+    public WriteUser(String normalPath, String adminPath){
         this.AdminUserFolderPath = new File(adminPath);
         this.NormalUserFolderPath = new File(normalPath);
         this.halfAuPath = adminPath +"/";

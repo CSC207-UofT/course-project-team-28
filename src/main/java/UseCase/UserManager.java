@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserManager {
     private final ArrayList<AdminUser> lstOfAdminUser;
     private final ArrayList<NormalUser> lstOfNormalUser;
-    private final Gateway gateway = new Gateway();
+    private final GatewayInterface gateway = new Gateway();
 
 
     /**
@@ -82,10 +82,9 @@ public class UserManager {
      * Update contact info of a normal user
      * @param username the name of normal user
      * @param updateInfo the info needs to be updated
-     * @param writeType the type of info that user wants to update. e.g. contactInfo, description
+     * @param writeType the type of info that user wants to update. e.g. contactInfo, description, category, picPath, coin
      * @return True if it is successfully updated. Otherwise, return false.
      */
-
     public boolean updateInfo(String username, String updateInfo, String writeType) {
         NormalUser normalUser = new NormalUser("","","","", "", 0, new ArrayList<>(), "");
 
