@@ -54,6 +54,7 @@ public class ChooseAvatar extends View{
     private void OnSaveAvatarClicked(MouseEvent e){
       String selectedAvatar = "/src/main/res/GUIPic/" + jList.getSelectedValue() + ".jpg";
       InstanceMain.getNormalCUser().editProfile(selectedAvatar, "picPath");
+      JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );
       this.getFrame().dispose();
     }
 
