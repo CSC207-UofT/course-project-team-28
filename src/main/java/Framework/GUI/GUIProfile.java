@@ -2,6 +2,7 @@ package Framework.GUI;
 
 import Framework.DataAccess.WritePic;
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -22,6 +23,8 @@ public class GUIProfile extends View {
     private final JPanel panel1;
     private final JPanel panel2;
     private final JPanel panel3;
+    private final GUIUserLogin guiUserLogin = (GUIUserLogin) previous;
+    private final TextPresenter textPresenter = guiUserLogin.getTextPresenter();
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
     Font font3 = new Font("SansSerif", Font.PLAIN, 15);
@@ -45,15 +48,15 @@ public class GUIProfile extends View {
     private void PlaceThingsOnP1(JPanel p1){
 
         JLabel usernameLabel = new JLabel();
-        JButton EditContactInfo = new JButton("Edit your profile");
-        JButton goToPlaylist = new JButton("Go to your playlist");
+        JButton EditContactInfo = new JButton(textPresenter.printText("Edit your profile"));
+        JButton goToPlaylist = new JButton(textPresenter.printText("Go to your playlist"));
         description = new JTextArea();
         JLabel coinLabel = new JLabel();
         contactInfoLabel = new JLabel();
         ImageIcon icon = new ImageIcon(WritePic.getPicUser((String)InstanceMain.getNormalCUser().profilePage(userName)[7]));
         JLabel i = new JLabel(icon, JLabel.CENTER);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
-        Border b = BorderFactory.createTitledBorder(bb,"Your Profile", TitledBorder.LEADING, TitledBorder.TOP, font2);
+        Border b = BorderFactory.createTitledBorder(bb,textPresenter.printText("Your Profile"), TitledBorder.LEADING, TitledBorder.TOP, font2);
 
         usernameLabel.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[0]);
         contactInfoLabel.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[2]);
@@ -68,7 +71,7 @@ public class GUIProfile extends View {
         p1.setBounds(20,20, 380,820);
         coinLabel.setBounds(140, 250, 300, 200);
         usernameLabel.setBounds(150,200,700,200);
-        contactInfoLabel.setBounds(100, 300, 700, 200);
+        contactInfoLabel.setBounds(60, 300, 700, 200);
         i.setBounds(20, 70, 300, 200);
         description.setBounds(40, 440, 300, 200);
         EditContactInfo.setBounds(110,680,160,40);
@@ -94,7 +97,6 @@ public class GUIProfile extends View {
             }
         });
 
-        UpdateText();
         p1.add(usernameLabel);
         p1.add(coinLabel);
         p1.add(contactInfoLabel);
@@ -110,7 +112,7 @@ public class GUIProfile extends View {
     private void PlaceThingsOnP2(JPanel p2){
 
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
-        Border b = BorderFactory.createTitledBorder(bb,"Recommendation", TitledBorder.LEADING,TitledBorder.TOP, font2);
+        Border b = BorderFactory.createTitledBorder(bb,textPresenter.printText("Recommendation"), TitledBorder.LEADING,TitledBorder.TOP, font2);
         p2.setBorder(b);
         p2.setBounds(420,230,740,610);
 
@@ -118,10 +120,10 @@ public class GUIProfile extends View {
         ImageIcon icon2 = new ImageIcon(WritePic.getPic("2.jpg"));
         ImageIcon icon3 = new ImageIcon(WritePic.getPic("3.jpg"));
         ImageIcon icon4 = new ImageIcon(WritePic.getPic("4.jpg"));
-        JLabel Jicon1 = new JLabel("Happy Life", SwingConstants.CENTER);
-        JLabel Jicon2 = new JLabel("Team 28", SwingConstants.CENTER);
-        JLabel Jicon3 = new JLabel("Candy",SwingConstants.CENTER);
-        JLabel Jicon4 = new JLabel("Apple",SwingConstants.CENTER);
+        JLabel Jicon1 = new JLabel(textPresenter.printText("Happy Life"), SwingConstants.CENTER);
+        JLabel Jicon2 = new JLabel(textPresenter.printText("Team 28"), SwingConstants.CENTER);
+        JLabel Jicon3 = new JLabel(textPresenter.printText("Candy"),SwingConstants.CENTER);
+        JLabel Jicon4 = new JLabel(textPresenter.printText("Apple"),SwingConstants.CENTER);
         Jicon1.setFont(font3);
         Jicon2.setFont(font3);
         Jicon3.setFont(font3);
@@ -160,7 +162,7 @@ public class GUIProfile extends View {
     private void PlaceThingsOnP3(JPanel p3){
         p3.setLayout(null);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
-        Border b = BorderFactory.createTitledBorder(bb,"Search movie by name", TitledBorder.LEADING,TitledBorder.TOP, font2);
+        Border b = BorderFactory.createTitledBorder(bb,textPresenter.printText("Search movie by name"), TitledBorder.LEADING,TitledBorder.TOP, font2);
         p3.setBorder(b);
         p3.setBounds(420,20,740,200);
 
@@ -168,10 +170,10 @@ public class GUIProfile extends View {
 //        listSearch = new JList();
 //        listSearch.setVisible(false);
         JButton searchButton = new JButton();
-        searchButton.setText("Search");
+        searchButton.setText(textPresenter.printText("Search"));
         searchBar.setBounds(100,80,500,40);
         searchBar.setFont(font2);
-        searchButton.setBounds(300,140,80,40);
+        searchButton.setBounds(300,140,100,40);
 //        listSearch.setBounds(100,120,500,200);
 
         searchButton.addActionListener(new ActionListener() {
@@ -194,6 +196,7 @@ public class GUIProfile extends View {
      */
     private void OnEditButtonClick(ActionEvent e) {
         nextView(new GUIEditContactInfo(this), false);
+        UpdateText();
     }
 
     private void OnButtonClick2(ActionEvent e) {
@@ -206,7 +209,7 @@ public class GUIProfile extends View {
             nextView(new SearchResult(this), false);
 
         } else {
-            JOptionPane.showMessageDialog(null,"Please enter a movie name","!",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null,textPresenter.printText("Please enter a movie name"),"!",JOptionPane.PLAIN_MESSAGE);
         }
     }
 
@@ -223,10 +226,14 @@ public class GUIProfile extends View {
         description.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[3]);
     }
 
+    public TextPresenter getTextPresenter(){
+        return this.textPresenter;
+    }
+
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
-        frame.setTitle("TEReview");
+        frame.setTitle(textPresenter.printText("TEReview"));
         frame.add(panel1);
         frame.add(panel2);
         frame.add(panel3);

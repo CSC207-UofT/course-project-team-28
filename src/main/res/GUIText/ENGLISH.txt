@@ -25,10 +25,10 @@ Edit your profile
 Go to your playlist
 Your Profile
 Recommendation
-Movie 1
-Movie 2
-Movie 3
-Movie 4
+Happy Life
+Team 28
+Candy
+Apple
 Search movie by name
 Search
 Contact Info:
@@ -45,3 +45,28 @@ Register
 Successfully registered, you can login now.
 :D
 Something is wrong with your username or password.
+Add Review
+Enter your review here...
+Done with my review!
+Nah, maybe next time!
+water
+flower
+galaxy
+color
+moon
+paint
+Please enter a movie name
+Like the movie & add to your playlist
+Movie Info
+number of likes:
+Category:
+Add review to this movie
+Review Ranking
+Search Result
+Choose your Avatar
+language
+English
+Mandarin
+coins:
+Admin Register
+Admin Login
