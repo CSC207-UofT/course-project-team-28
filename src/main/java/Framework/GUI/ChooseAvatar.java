@@ -52,10 +52,9 @@ public class ChooseAvatar extends View{
     }
 
     private void OnSaveAvatarClicked(MouseEvent e){
-//        String selectedAvatar = "/src/main/res/GUIPic/" + jList.getSelectedValue() + ".jpg";
-//        InstanceMain.getNormalCUser().editProfile(selectedAvatar, "picPath");
-//        this.getFrame().dispose();
-        nextView(new GUIPlaylist(this),false);
+      String selectedAvatar = "/src/main/res/GUIPic/" + jList.getSelectedValue() + ".jpg";
+      InstanceMain.getNormalCUser().editProfile(selectedAvatar, "picPath");
+      this.getFrame().dispose();
     }
 
     @Override
