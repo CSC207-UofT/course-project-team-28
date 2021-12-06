@@ -3,21 +3,33 @@ package UseCase;
 import Entity.Review;
 import InterfaceAdapter.Gateway;
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * ReviewManager (UserCase)
  * Stores and manages reviews
  */
 public class ReviewManager {
-    // map that stores reviews according to the movie that they were wrote for,
+    // map that stores reviews according to the movie that they were written for, the key is movieName,
+    // and the value is an arraylist of all Review for that movie
     private final HashMap<String, ArrayList<Review>> MovietoRevs;
+
+    // map that stores reviews according to the user who wrote the review, the key is username,
+    // and the value is an arraylist of all Review wrote by the user
     private final HashMap<String, ArrayList<Review>> UsertoRevs;
+
+    // an arraylist that stores all the Reviews
     private final ArrayList<Review> reviewList;
+
+    // record the total number of review stored in ReviewManager
     private int totalNumOfReview;
+
+    // TODO: to be deleted
     private final MovieManager movieManager;
-    private final Gateway gateway = new Gateway();
+
+    // stores the gateway
+    private final GatewayInterface gateway = new Gateway();
 
 
     public ReviewManager(MovieManager mm) {
@@ -27,8 +39,6 @@ public class ReviewManager {
         this.movieManager = mm;
         this.totalNumOfReview = 0;
     }
-
-
 
     /**
      * Called only after confirming the moviename is valid (i.e. the movie exists)

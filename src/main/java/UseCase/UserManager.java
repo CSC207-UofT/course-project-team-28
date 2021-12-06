@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserManager {
     private final ArrayList<AdminUser> lstOfAdminUser;
     private final ArrayList<NormalUser> lstOfNormalUser;
-    private final Gateway gateway = new Gateway();
+    private final GatewayInterface gateway = new Gateway();
 
 
     /**

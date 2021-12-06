@@ -1,6 +1,5 @@
 package UseCase;
 
-import InterfaceAdapter.Gateway;
 import InterfaceAdapter.Controller.NormalController;
 
 /**
@@ -9,7 +8,6 @@ import InterfaceAdapter.Controller.NormalController;
 public class CoinManager extends NormalController {
     private final UserManager userManager;
     private final ReviewManager reviewManager;
-    private final Gateway gateway = new Gateway();
 
     /**
      * Creates a UseCase.CoinManager.

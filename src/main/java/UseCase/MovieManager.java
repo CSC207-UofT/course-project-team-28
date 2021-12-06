@@ -12,7 +12,7 @@ import java.util.List;
 public class MovieManager {
 
     private final ArrayList<Movie> Movies;
-    private final Gateway gateway = new Gateway();
+    private final GatewayInterface gateway = new Gateway();
 
     /**
      * Creates a UseCase.MovieManager with a list of movies are empty
