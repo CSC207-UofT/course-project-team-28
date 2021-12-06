@@ -24,6 +24,7 @@ public class GUIProfile extends View {
     private final JPanel panel3;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
+    Font font3 = new Font("SansSerif", Font.PLAIN, 15);
 
     /**
     constructor of this class
@@ -113,31 +114,43 @@ public class GUIProfile extends View {
         p2.setBorder(b);
         p2.setBounds(420,230,740,610);
 
-        ImageIcon icon1 = new ImageIcon(WritePic.getPic("5.jpg"));
-        ImageIcon icon2 = new ImageIcon(WritePic.getPic("4.jpg"));
+        ImageIcon icon1 = new ImageIcon(WritePic.getPic("1.jpg"));
+        ImageIcon icon2 = new ImageIcon(WritePic.getPic("2.jpg"));
         ImageIcon icon3 = new ImageIcon(WritePic.getPic("3.jpg"));
-        JLabel Jicon1 = new JLabel("Movie 1", SwingConstants.CENTER);
-        JLabel Jicon2 = new JLabel("Movie 2", SwingConstants.CENTER);
-        JLabel Jicon3 = new JLabel("Movie 3",SwingConstants.CENTER);
+        ImageIcon icon4 = new ImageIcon(WritePic.getPic("4.jpg"));
+        JLabel Jicon1 = new JLabel("Happy Life", SwingConstants.CENTER);
+        JLabel Jicon2 = new JLabel("Team 28", SwingConstants.CENTER);
+        JLabel Jicon3 = new JLabel("Candy",SwingConstants.CENTER);
+        JLabel Jicon4 = new JLabel("Apple",SwingConstants.CENTER);
+        Jicon1.setFont(font3);
+        Jicon2.setFont(font3);
+        Jicon3.setFont(font3);
+        Jicon4.setFont(font3);
 
         JLabel i1 = new JLabel(icon1);
         JLabel i2 = new JLabel(icon2);
         JLabel i3 = new JLabel(icon3);
+        JLabel i4 = new JLabel(icon4);
 
         p2.setLayout(null);
-        i1.setBounds(5, 200, 200, 200);
-        i2.setBounds(200, 200, 300, 200);
-        i3.setBounds(450, 200, 300, 200);
-        Jicon1.setBounds(5,400,200,20);
-        Jicon2.setBounds(200,400,300,20);
-        Jicon3.setBounds(450,400,300,20);
+        i1.setBounds(10, 25, 350, 225);
+        i2.setBounds(380, 25, 350, 225);
+        i3.setBounds(10, 320, 350, 225);
+        i4.setBounds(380, 320, 350, 225);
+        Jicon1.setBounds(80,270,200,20);
+        Jicon2.setBounds(400,270,300,20);
+        Jicon3.setBounds(35,570,300,20);
+        Jicon4.setBounds(405,570,300,20);
 
         p2.add(i1);
         p2.add(i2);
         p2.add(i3);
+        p2.add(i4);
         p2.add(Jicon1);
         p2.add(Jicon2);
         p2.add(Jicon3);
+        p2.add(Jicon4);
+
 
     }
 

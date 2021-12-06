@@ -61,6 +61,11 @@ public class SearchResult extends View{
         p.add(searchList);
     }
 
+    public String getMovieSelected(){
+        System.out.println((String) searchList.getSelectedValue());
+        return (String) searchList.getSelectedValue();
+    }
+
     private void OnMovieNameClick(MouseEvent e){
         nextView(new MoviePage(this), true);
     }
