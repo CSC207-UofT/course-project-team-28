@@ -38,13 +38,16 @@ public class MoviePage extends View {
      Panel 1 is the user profile panel, this method palaces the relevant components on panel 1.
      */
     private void PlaceThingsOnP1(JPanel p1){
-        SearchResult searchResult = (SearchResult) previous;
-        if (searchResult.equals(null)){
-            searchedMovie = "Apple";
-        }
-        else {
+        try {
+            SearchResult searchResult = (SearchResult) previous;
             searchedMovie = searchResult.getMovieSelected();
         }
+        catch (ClassCastException e){
+            AddReview searchResult = (AddReview) previous;
+            searchedMovie = searchResult.getMovieSelected();
+        }
+
+
 
         numberOfLikes = new JLabel();
         JLabel movieName = new JLabel();
@@ -112,10 +115,11 @@ public class MoviePage extends View {
     private void PlaceThingsOnP2(JPanel p2){
         p2.setLayout(null);
         List lst = new ArrayList();
-        ArrayList<Object[]> list = InstanceMain.getNormalCMovie().movieReviews(searchedMovie);
-        for (Object a:list){
-            lst.add(((Object[])a)[2]);
-
+        if (!InstanceMain.getNormalCMovie().movieReviews(searchedMovie).isEmpty()) {
+            ArrayList<Object[]> list = InstanceMain.getNormalCMovie().movieReviews(searchedMovie);
+            for (Object a : list) {
+                lst.add(((Object[]) a)[2]);
+            }
         }
         JList reviewList = new JList(lst.toArray());
         reviewList.setFont(font3);
@@ -142,7 +146,7 @@ public class MoviePage extends View {
     }
 
     private void OnAddButtonClick(ActionEvent e) {
-        nextView(new AddReview(this), false);
+        nextView(new AddReview(this), true);
     }
 
     public String getSearchedMovie(){return this.searchedMovie;}
@@ -155,9 +159,6 @@ public class MoviePage extends View {
         numberOfLikes.setText("number of likes: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
     }
 
-    public void updateReview(){
-        PlaceThingsOnP2(panel2);
-    }
 
     @Override
     public JFrame getFrame() {

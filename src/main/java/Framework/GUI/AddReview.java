@@ -61,12 +61,15 @@ public class AddReview extends View{
 
     private void OnFinishButtonClick(ActionEvent e){
         InstanceMain.getNormalCMovie().writeReview(thisMovie, writeReview.getText());
-        moviePage.updateReview();
-        this.getFrame().dispose();
+        nextView(new MoviePage(this), true);
+    }
+
+    public String getMovieSelected(){
+        return moviePage.getSearchedMovie();
     }
 
     private void OnGiveUpButtonClick(ActionEvent e){
-        this.getFrame().dispose();
+        nextView(new MoviePage(this), true);
     }
 
     @Override
