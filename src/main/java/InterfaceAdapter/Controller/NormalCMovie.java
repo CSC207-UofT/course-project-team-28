@@ -26,9 +26,10 @@ public class NormalCMovie extends NormalController{
     /**
      * Should be only called when the movie name <movieName> exists in the database
      * @param movieName the name of the movie.
-     * @return a String with movie name, movie link, number of likes
+     * @return an array of the information of the movie in the form of
+     *         [movieName, movieLink, movieCategory, numOfLikes]
      */
-    public String movieProfile(String movieName) {
+    public Object[] movieProfile(String movieName) {
         return InstanceMain.getMovieManager().getMovieProfile(movieName);
     }
 
