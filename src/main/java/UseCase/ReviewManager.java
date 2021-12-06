@@ -33,10 +33,10 @@ public class ReviewManager {
     /**
      * Called only after confirming the moviename is valid (i.e. the movie exists)
      * Takes the name of Core.Movie and return an arraylist of arrays, where each array stores information
-     * of a single review in the form of [TODO].
-     * @param moviename the name of the movie.     *
+     * of a single review.
+     * @param moviename the name of the movie.
      * @return an arraylist of arrays, where each array stores information of a single review in the form of
-     *         [TODO].
+     *         [username of reviewer, moviename, reviewContent, numCoin, ID].
      */
     public ArrayList<Object[]> listRevsOfMovie(String moviename){
         ArrayList<Review> lst = this.MovietoRevs.get(moviename);

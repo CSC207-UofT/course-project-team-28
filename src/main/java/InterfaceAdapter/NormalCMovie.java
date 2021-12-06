@@ -26,14 +26,24 @@ public class NormalCMovie extends NormalController{
 
 
     /**
-     * Should be only called when the movie name <mn> exists in the d ata base
-     * @return an String with movie name, movie link, number of likes, reviews
+     * Should be only called when the movie name <mn> exists in the data base
+     * @param movieName the name of the movie.
+     * @return a String with movie name, movie link, number of likes
      */
     public String movieProfile(String movieName) {
-        return InstanceMain.getMovieManager().getMovieProfile(movieName) +
-                "\n" + InstanceMain.getReviewManager().revsOfMovieString(movieName);
+        return InstanceMain.getMovieManager().getMovieProfile(movieName);
     }
 
+    /**
+     * Should be only called when the movie name <mn> exists in the data base
+     * When given a moviename, return the review of the movie.
+     * @param movieName the name of the movie.
+     * @return an arraylist of arrays, where each array stores information of a single review in the form of
+     *         [username of reviewer, moviename, reviewContent, numCoin, ID].
+     */
+    public ArrayList<Object[]> movieReviews(String movieName) {
+        return InstanceMain.getReviewManager().listRevsOfMovie(movieName);
+    }
 
 
     /**
