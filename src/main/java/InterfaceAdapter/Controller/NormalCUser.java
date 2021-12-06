@@ -41,7 +41,6 @@ public class NormalCUser extends NormalController {
         }
     }
 
-
     /**
      * If un exists and (un, pass) match, record the un and return true.
      * @param userName username
@@ -57,7 +56,6 @@ public class NormalCUser extends NormalController {
             return false;
         }
     }
-
 
     /**
      * when given a String of the normal user's username, return information of the user.
@@ -84,8 +82,5 @@ public class NormalCUser extends NormalController {
         }
 
     }
-
-
-
 
 }
