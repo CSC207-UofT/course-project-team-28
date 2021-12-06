@@ -82,25 +82,19 @@ public class Trie {
      * @param prefix the String that client enter
      * @return return a list of suggested movieNames
      */
-    public List<String> suggest(String prefix){
+    public List<String> suggest(String prefix) {
         List<String> list = new ArrayList<>();
         TrieNode lastNode = root;
         StringBuffer curr = new StringBuffer();
-        try {
-            for (char c : prefix.toCharArray()) {
-                if (lastNode.children.containsKey(Character.toLowerCase(c))) {
-                    lastNode = lastNode.children.get(Character.toLowerCase(c));
-                }
-                if (lastNode.children.containsKey(Character.toUpperCase(c))) {
-                    lastNode = lastNode.children.get(Character.toUpperCase(c));
-                } else lastNode = lastNode.children.get(c);
-                if (lastNode == null)
-                    return list;
-                curr.append(c);
-            }
-        }
-        catch (NullPointerException e){
-            System.out.println("aaaaa");
+        for (char c : prefix.toCharArray()) {
+            if (lastNode.children.containsKey(Character.toLowerCase(c))) {
+                lastNode = lastNode.children.get(Character.toLowerCase(c));
+            }else if (lastNode.children.containsKey(Character.toUpperCase(c))) {
+                lastNode = lastNode.children.get(Character.toUpperCase(c));
+            } else lastNode = lastNode.children.get(c);
+            if (lastNode == null)
+                return list;
+            curr.append(lastNode.c);
         }
         suggestHelper(lastNode, list, curr);
         return list;

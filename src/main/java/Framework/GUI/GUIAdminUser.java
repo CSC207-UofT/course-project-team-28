@@ -29,7 +29,7 @@ public class GUIAdminUser extends View{
 
     private void PlaceThingsOnP1(JPanel p1) {
 
-        movieName = new JLabel();
+        movieName = new JLabel(); // The first letter of the movie must be capitalized.
         movieLink = new JLabel();
         category = new JLabel();
         mNameText = new JTextField();

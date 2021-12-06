@@ -62,7 +62,7 @@ public class SearchResult extends View{
     }
 
     private void OnMovieNameClick(MouseEvent e){
-        nextView(new GUIPlaylist(this), false); //!!!!!!!
+        nextView(new MoviePage(this), true);
     }
 
     @Override
