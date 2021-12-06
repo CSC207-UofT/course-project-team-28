@@ -15,9 +15,9 @@ public class NormalCUser extends NormalController {
 
 
     /**
-     * create normal user iff the provided username and password is legal
-     * username and password must be non-empty, only contain numbers or letters,
-     * and username must be unique among all the normal users.
+     * create normal user iff the provided username and password is legal username and password must
+     * be non-empty, only contain numbers or letters, and username must be unique among all the normal users.
+     * Stores currNormalName for changing avatar.
      * DO NOT auto-login if registered successfully
      * @param userName username
      * @param password password
