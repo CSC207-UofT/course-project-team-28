@@ -12,7 +12,7 @@ public class TextPresenter {
 
     public TextPresenter(String language) throws IOException {
         this.lstText = readGUI.getAllText(language);
-        this.lstIni = readGUI.getAllText("English");
+        this.lstIni = readGUI.getAllText("ENGLISH");
     }
 
     public String printText(String text){
