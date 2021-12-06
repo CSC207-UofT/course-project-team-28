@@ -23,7 +23,6 @@ public class NormalCMovie extends NormalController{
         return InstanceMain.getMovieManager().getMovie(movieName) != null;
     }
 
-
     /**
      * Should be only called when the movie name <movieName> exists in the database
      * @param movieName the name of the movie.
@@ -48,7 +47,7 @@ public class NormalCMovie extends NormalController{
      * Should be only called when the movie name <movieName> exists in the database
      * Given a String movieName, add like.
      * @param movieName name of the movie.
-     * @return ture iff added successfully.
+     * @return ture iff like is added successfully.
      */
     public boolean likeMovie(String movieName) {
         if (InstanceMain.getUserManager().giveLike(this.currNormalName, movieName)){
@@ -71,7 +70,7 @@ public class NormalCMovie extends NormalController{
      * Should be only called when the movie name <movieName> exists in the database
      * Given a String movieName, undo like.
      * @param movieName name of the movie.
-     * @return ture iff added successfully.
+     * @return ture iff undolike successfully.
      */
     @SuppressWarnings("unchecked")
     public boolean undoLike(String movieName) {
