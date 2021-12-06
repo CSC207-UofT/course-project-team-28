@@ -3,17 +3,33 @@ package UseCase;
 import Entity.Review;
 import InterfaceAdapter.Gateway;
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-
+/**
+ * ReviewManager (UserCase)
+ * Stores and manages reviews
+ */
 public class ReviewManager {
+    // map that stores reviews according to the movie that they were written for, the key is movieName,
+    // and the value is an arraylist of all Review for that movie
     private final HashMap<String, ArrayList<Review>> MovietoRevs;
+
+    // map that stores reviews according to the user who wrote the review, the key is username,
+    // and the value is an arraylist of all Review wrote by the user
     private final HashMap<String, ArrayList<Review>> UsertoRevs;
+
+    // an arraylist that stores all the Reviews
     private final ArrayList<Review> reviewList;
+
+    // record the total number of review stored in ReviewManager
     private int totalNumOfReview;
+
+    // TODO: to be deleted
     private final MovieManager movieManager;
-    private final Gateway gateway = new Gateway();
+
+    // stores the gateway
+    private final GatewayInterface gateway = new Gateway();
 
 
     public ReviewManager(MovieManager mm) {
@@ -24,21 +40,24 @@ public class ReviewManager {
         this.totalNumOfReview = 0;
     }
 
-
-    /**
-     * Called only after confirming the username is valid (i.e. the user exists)
-     * Takes the username of Core.User.NormalUser and return a list of reviews written by the user.
-     */
-    public ArrayList<Review> revsOfUser(String username){
-        return this.UsertoRevs.get(username);
-    }
-
     /**
      * Called only after confirming the moviename is valid (i.e. the movie exists)
-     * Takes the name of Core.Movie and return a list of reviews for the Core.Movie.
+     * Takes the name of Core.Movie and return an arraylist of arrays, where each array stores information
+     * of a single review.
+     * @param moviename the name of the movie.
+     * @return an arraylist of arrays, where each array stores information of a single review in the form of
+     *         [username of reviewer, moviename, reviewContent, numCoin, ID].
      */
-    public ArrayList<Review> revsOfMovie(String moviename){
-        return this.MovietoRevs.get(moviename);
+    public ArrayList<Object[]> listRevsOfMovie(String moviename){
+        ArrayList<Review> lst = this.MovietoRevs.get(moviename);
+        ArrayList<Object[]> result = new ArrayList<>();
+        // add content of reviews to temp
+        if (lst != null){
+            for (Review rev : lst){
+                result.add(rev.getReviewInfo());
+            }
+        }
+        return result;
     }
 
     /**
@@ -48,7 +67,7 @@ public class ReviewManager {
     public String revsOfMovieString(String moviename){
         ArrayList<Review> lst = this.MovietoRevs.get(moviename);
         StringBuilder temp = new StringBuilder();
-
+        // add content of reviews to temp
         if(lst != null){
             for (Review rev : lst){
                 temp.append("\n[");
@@ -66,44 +85,44 @@ public class ReviewManager {
     }
 
 
-
-
     /**
-     * create a Review for review file data, add Review to MovietoRevs, UsertoRevs, lst, and record the Core.Review in txt file.
-     * Return ture iff the review has been successfully created and added to the txt file.
+     * Called when initiate the system from database.
+     * create a Review for review file data, add Review to MovietoRevs, UsertoRevs, reviewList.
+     * Return ture iff the review has been successfully created and added to MovietoRevs, UsertoRevs, reviewList.
+     * @param userName the username of the user who wrote the review
+     * @param movieName the name of movie for which the review is wrote for
+     * @param content the content of the review
+     * @param numCoin the number of coins that the review received
+     * @param ID the ID of the review
+     * @return a boolean, return ture iff the review has been successfully created and added to MovietoRevs,
+     *         UsertoRevs, reviewList.
      */
     public boolean writeReview(String userName, String movieName, String content, int numCoin , int ID) {
         Review rev = new Review(userName, movieName, content, numCoin, ID);
-
-        // add the review in file by a helper method
-        //Framework.WriteFiles.WriteReview newwr = new Framework.WriteFiles.WriteReview();
-        //boolean write = newwr.create_file(rev);
-
-
         this.reviewList.add(rev);
-        this.totalNumOfReview = reviewList.get(reviewList.size()-1).getID();
-
+        this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
         return addMr(movieName, rev) && addUr(userName, rev);
     }
 
 
     /**
-     * create a new review, add Review to MovietoRevs, UsertoRevs, lst, and record the Review in txt file.
+     * Called when user wirtes a new review
+     * create a new review, add Review to MovietoRevs, UsertoRevs, reviewList, and record the Review in txt file.
      * Return ture iff the review has been successfully created and added to the txt file.
+     * @param userName the username of the user who wrote the review
+     * @param movieName the name of movie for which the review is wrote for
+     * @param content the content of the review
+     * @param numCoin the number of coins that the review received
+     * @return a boolean, return ture iff the review has been successfully created and added to MovietoRevs,
+     *         UsertoRevs, reviewList, and database.
      */
     public boolean writeNewReview(String userName, String movieName, String content, int numCoin) {
         this.totalNumOfReview = this.totalNumOfReview + 1;
         Review rev = new Review(userName, movieName, content, numCoin, totalNumOfReview);
-
-            // add the review in file by a helper method
-            //Framework.WriteFiles.WriteReview newwr = new Framework.WriteFiles.WriteReview();
-            //boolean write = newwr.create_file(rev);
-
-
         this.reviewList.add(rev);
-        this.totalNumOfReview = reviewList.get(reviewList.size()-1).getID();
-
-        return addMr(movieName, rev) && addUr(userName, rev) && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
+        this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
+        return addMr(movieName, rev) && addUr(userName, rev)
+                && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
     }
 
 
@@ -115,33 +134,53 @@ public class ReviewManager {
 
     /**
      * find a review with review_id, and add 1 coin
+     * @param username the name of the user who gives coin to review
+     * TODO
      */
-    public boolean addCoin(int review_id) {
+    public boolean addCoin(int reviewId, String username) {
         int coin = 0;
-        Review review1 = new Review("", "", "", 0, 0);
+        int coinAfter = 0;
         for (Review review : this.reviewList){
-            if (review.getID() == review_id){
+            if (review.getID() == reviewId){
                 coin = review.getnumCoin();
-                review1 = review;
                 review.setNumCoin(review.getnumCoin() + 1);
+                coinAfter = review.getnumCoin();
             }
         }
-        return review1.getnumCoin() - 1 == coin;
+        return coinAfter - 1 == coin && this.gateway.editCoin(username, reviewId);
     }
 
-    /**
-     * find a review with review_id, and delete 1 coin
-     */
-    public void reduceCoin(int review_id) {
-        for (Review review : this.reviewList){
-            if (review.getID() == review_id){
-                review.setNumCoin(review.getnumCoin() - 1);
-            }
-        }
-    }
+//    /**
+//     * find a review with review_id, and delete 1 coin
+//     */
+//    public void reduceCoin(int review_id) {
+//        for (Review review : this.reviewList){
+//            if (review.getID() == review_id){
+//                review.setNumCoin(review.getnumCoin() - 1);
+//            }
+//        }
+//    }
+//    /**
+//     * Called only after confirming the username is valid (i.e. the user exists)
+//     * Takes the username of Core.User.NormalUser and return a list of reviews written by the user.
+//     */
+//    public ArrayList<Review> getRevsOfUser(String username){
+//        return this.UsertoRevs.get(username);
+//    }
+//
+//    /**
+//     * Called only after confirming the moviename is valid (i.e. the movie exists)
+//     * Takes the name of Core.Movie and return a list of reviews for the Core.Movie.
+//     */
+//    public ArrayList<Review> getRevsOfMovie(String moviename){
+//        return this.MovietoRevs.get(moviename);
+//    }
 
     /**
-     * update MovietoRevs by write_review, return ture iff successfully updated.
+     * update MovietoRevs by write_review
+     * @param mname name of the movie
+     * @param rev the review
+     * @return ture iff successfully updated.
      */
     private boolean addMr(String mname, Review rev){
         if (this.MovietoRevs.containsKey(mname)) {
@@ -158,7 +197,10 @@ public class ReviewManager {
     }
 
     /**
-     * update MovietoRevs by write_review, return ture iff successfully updated.
+     * update UsertoRevs by write_review,
+     * @param uname the username of the user
+     * @param rev the review
+     * @return ture iff successfully updated.
      */
     private boolean addUr(String uname, Review rev){
         if (this.UsertoRevs.containsKey(uname)) {
@@ -174,11 +216,5 @@ public class ReviewManager {
         return true;
     }
 
-
-    /*
-     * delete a Core.Review from MovietoRevs, UsertoRevs, lst, and delete the Core.Review in txt file.
-     * Return ture iff the review has been successfully deleted from the lst/maps and the txt file.
-     */
-    // public boolean deleteReview() {}
 
 }

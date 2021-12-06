@@ -1,6 +1,6 @@
 package Framework.DataAccess;
 
-import InterfaceAdapter.*;
+import InterfaceAdapter.Gateway;
 import InterfaceAdapter.Interface.WriteMovieInterface;
 
 import java.io.*;
@@ -43,10 +43,10 @@ public class WriteMovie implements WriteMovieInterface {
      * Constructor for test use only
      * @param moviePath Core.Movie test folder path
      */
-    public WriteMovie(String moviePath, String readPath, String category){
+    public WriteMovie(String moviePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
-        this.MoviePath = moviePath +"/" + category + "/";
-        this.ReadPath = readPath + "/" + category + "/";
+        this.MoviePath = moviePath;
+        this.ReadPath = readPath;
 
         getObjectFromFile();
 
