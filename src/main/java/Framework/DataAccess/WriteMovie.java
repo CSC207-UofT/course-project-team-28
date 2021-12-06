@@ -56,7 +56,7 @@ public class WriteMovie implements WriteMovieInterface {
     public boolean createFile(String movieName, String movieLink, String category) {
 
         try{
-            writemovie = new FileWriter(MoviePath + movieName + ".txt");
+            writemovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             writemovie.write(movieName);
             writemovie.write("\r\n");
             writemovie.write(movieLink);
