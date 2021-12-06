@@ -31,7 +31,7 @@ public class GUIPlaylist extends View{
 
         p.setBounds(0,0,500,500);
         jList.setBounds(10,10,400,400);
-        returnButton.setBounds(10,450,100,50);
+        returnButton.setBounds(180,450,100,50);
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -58,7 +58,7 @@ public class GUIPlaylist extends View{
         JFrame frame = super.getFrame();
         frame.setTitle("Playlist");
         frame.add(jPanel);
-        frame.setSize(700,700);
+        frame.setSize(440,600);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
