@@ -78,9 +78,10 @@ public class MovieManager {
      * @return return true if a movie's name and matching link already exists in movie list. Otherwise, return false
      */
     public boolean IfMovieExist(String name, String link){
+        name = name.toLowerCase();
 
         for(Movie movie: Movies){
-            if(movie.getMoviename().equals(name) || movie.getLink().equals(link)){
+            if(movie.getMoviename().toLowerCase().equals(name) || movie.getLink().equals(link)){
                 return true;
                 }
             }

@@ -14,7 +14,6 @@ public abstract class View {
     protected final View previous;
     private final JFrame frame = new JFrame();
 
-
     protected static String userName = "";
 
     public View(View previous) {

@@ -40,7 +40,7 @@ public class ReviewSort {
      */
     private HashMap<Integer, ArrayList<Review>> putRevsToMap(List<Review> reviews){
         HashMap<Integer, ArrayList<Review>> result = new HashMap<>();
-        if (reviews.isEmpty()){
+        if (reviews == null){
             return result;
         }
         for (Review rev: reviews) {
