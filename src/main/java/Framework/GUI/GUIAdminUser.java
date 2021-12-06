@@ -12,8 +12,10 @@ public class GUIAdminUser extends View{
 
     private JLabel movieName;
     private JLabel movieLink;
+    private JLabel category;
     private JTextField mNameText;
     private JTextField mLinkText;
+    private JList categoryChoice;
     private JButton selectPics;
     private JButton uploadMovies;
     private JPanel panel1;
@@ -30,8 +32,12 @@ public class GUIAdminUser extends View{
 
         movieName = new JLabel();
         movieLink = new JLabel();
+        category = new JLabel();
         mNameText = new JTextField();
         mLinkText = new JTextField();
+
+        String[] cate = {"Action", "Anime", "Comedy", "Horror", "Romantic"};
+
         selectPics = new JButton("Select Pictures for the Movie");
         ImageIcon icon = new ImageIcon(WritePic.getPic("shake hand.jpg"));
         JLabel i = new JLabel("Movie Image", icon, JLabel.CENTER);
@@ -39,20 +45,25 @@ public class GUIAdminUser extends View{
 
         movieName.setText("Movie Name");
         movieLink.setText("Movie Link");
+        category.setText("Category");
+        categoryChoice = new JList<>(cate);
 
         p1.setLayout(null);
 
         p1.setBounds(0, 0, 600, 1000);
-        movieName.setBounds(30, 20, 150, 20);
-        movieLink.setBounds(30, 70, 150, 20);
+        movieName.setBounds(30, 20, 150, 30);
+        movieLink.setBounds(30, 70, 150, 30);
+        category.setBounds(30,120,150,30);
         mNameText.setBounds(200, 10, 300, 40);
         mLinkText.setBounds(200, 60, 300, 40);
-        selectPics.setBounds(200, 130, 200, 50);
+        categoryChoice.setBounds(200,110,300,100);
+        selectPics.setBounds(200, 230, 200, 50);
         uploadMovies.setBounds(200, 800, 200, 50);
-        i.setBounds(30,200,400,180);
+        i.setBounds(30,280,400,180);
 
         movieName.setFont(font1);
         movieLink.setFont(font1);
+        category.setFont(font1);
 
         uploadMovies.addActionListener(new ActionListener() {
             @Override
@@ -64,8 +75,10 @@ public class GUIAdminUser extends View{
 
         p1.add(movieName);
         p1.add(movieLink);
+        p1.add(category);
         p1.add(mNameText);
         p1.add(mLinkText);
+        p1.add(categoryChoice);
         p1.add(selectPics);
         p1.add(i);
         p1.add(uploadMovies);
@@ -74,7 +87,8 @@ public class GUIAdminUser extends View{
     public void OnUploadClick(ActionEvent e) {
         String mName = mNameText.getText();
         String link = mLinkText.getText();
-        if (InstanceMain.getAdminInputProcessor().uploadMovie(mName, link)) {
+        String category = (String) categoryChoice.getSelectedValue(); //!!!!!!
+        if (InstanceMain.getAdminInputProcessor().uploadMovie(mName, link, category)) {
             previous.UpdateText();
 
             JOptionPane.showMessageDialog(null, "Successfully uploaded", ":D",

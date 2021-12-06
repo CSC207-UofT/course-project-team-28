@@ -16,14 +16,19 @@ public class GUIUserLogin extends SharedView {
     private final JLabel adminCodeLabel = new JLabel("Administrator Code");
     private final JTextField adminCodeText = new JTextField(20);
 
-    //gui
+    /*
+    Constructor of this class.
+     */
     public GUIUserLogin(View view, Boolean isAdmin){
         super(view, isAdmin);
         panel = new JPanel();
         placeComponents(panel);
 
     }
-    // place components on GUI
+
+    /*
+    place components on GUI
+     */
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
         usernameLabel = new JLabel("Username");
@@ -44,8 +49,6 @@ public class GUIUserLogin extends SharedView {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnLoginClick(actionEvent);
-
-
             }
         });
         panel.add(loginButton);
@@ -59,7 +62,7 @@ public class GUIUserLogin extends SharedView {
             panel.add(adminCodeText);
         }
     }
-    //actions
+
     /*
     Check whether the user is AdminUser or NormalUser, and Login.
      */

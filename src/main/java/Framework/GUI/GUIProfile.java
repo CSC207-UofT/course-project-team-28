@@ -17,27 +17,35 @@ public class GUIProfile extends View {
 
     public JLabel contactInfoLabel;
     private JTextArea description;
-    private JLabel coinLabel;
     private final JPanel panel1;
     private final JPanel panel2;
-    private JPanel panel3;
+    private final JPanel panel3;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
 
+    /*
+    constructor of this class
+     */
     public GUIProfile(View previous){
         super(previous);
         panel1 = new JPanel();
         panel2 = new JPanel();
+        panel3 = new JPanel();
         PlaceThingsOnP1(panel1);
         PlaceThingsOnP2(panel2);
+        PlaceThingsOnP3(panel3);
     }
 
+    /*
+    Panel 1 is the user profile panel, this method palaces the relevant components on panel 1.
+     */
     private void PlaceThingsOnP1(JPanel p1){
 
         JLabel usernameLabel = new JLabel();
         JButton EditContactInfo = new JButton("Edit your profile");
+        JButton goToPlaylist = new JButton("Go to your playlist");
         description = new JTextArea();
-        coinLabel = new JLabel();
+        JLabel coinLabel = new JLabel();
         contactInfoLabel = new JLabel();
         ImageIcon icon = new ImageIcon(WritePic.getPic("winnie.jpg"));
         JLabel i = new JLabel(icon, JLabel.CENTER);
@@ -59,8 +67,9 @@ public class GUIProfile extends View {
         usernameLabel.setBounds(150,200,700,200);
         contactInfoLabel.setBounds(100, 300, 700, 200);
         i.setBounds(20, 70, 300, 200);
-        description.setBounds(40, 480, 300, 200);
-        EditContactInfo.setBounds(110,700,160,40);
+        description.setBounds(40, 440, 300, 200);
+        EditContactInfo.setBounds(110,680,160,40);
+        goToPlaylist.setBounds(110,740,160,40);
 
         usernameLabel.setFont(font1);
         coinLabel.setFont(font2);
@@ -75,6 +84,13 @@ public class GUIProfile extends View {
             }
         });
 
+        goToPlaylist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OnButtonClick2(e);
+            }
+        });
+
         UpdateText();
         p1.add(usernameLabel);
         p1.add(coinLabel);
@@ -82,14 +98,18 @@ public class GUIProfile extends View {
         p1.add(EditContactInfo);
         p1.add(description);
         p1.add(i);
+        p1.add(goToPlaylist);
     }
 
+    /*
+    Panel 2 is the movie recommendation panel, this method palaces the relevant components on panel 2.
+     */
     private void PlaceThingsOnP2(JPanel p2){
 
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
         Border b = BorderFactory.createTitledBorder(bb,"Recommendation", TitledBorder.LEADING,TitledBorder.TOP, font2);
         p2.setBorder(b);
-        p2.setBounds(420,290,740,550);
+        p2.setBounds(420,230,740,610);
 
         ImageIcon icon1 = new ImageIcon(WritePic.getPic("5.jpg"));
         ImageIcon icon2 = new ImageIcon(WritePic.getPic("4.jpg"));
@@ -119,10 +139,41 @@ public class GUIProfile extends View {
 
     }
 
+    /*
+    Panel 3 is the search panel, this method palaces the relevant components on panel 3.
+     */
+    private void PlaceThingsOnP3(JPanel p3){
+        p3.setLayout(null);
+        Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
+        Border b = BorderFactory.createTitledBorder(bb,"Search movie by name", TitledBorder.LEADING,TitledBorder.TOP, font2);
+        p3.setBorder(b);
+        p3.setBounds(420,20,740,200);
+
+        JTextField searchBar = new JTextField();
+        JButton searchButton = new JButton();
+        searchButton.setText("Search");
+        searchBar.setBounds(100,80,500,40);
+        searchBar.setFont(font2);
+        searchButton.setBounds(300,140,80,40);
+
+        p3.add(searchBar);
+        p3.add(searchButton);
+    }
+
+    /*
+    This action adds to the Edit button, which directs to the edit page.
+     */
     private void OnButtonClick(ActionEvent e) {
         nextView(new GUIEditContactInfo(this), false);
     }
 
+    private void OnButtonClick2(ActionEvent e) {
+        nextView(new GUIPlaylist(this), false);
+    }
+
+    /*
+    This method enables automatic updates on this page after user enters new information on the edit page.
+     */
     @Override
     protected void UpdateText() {
 //        System.out.println(InstanceMain.getNormalCUser().profilePage(userName)[2]);
@@ -137,6 +188,7 @@ public class GUIProfile extends View {
         frame.setTitle("TEReview");
         frame.add(panel1);
         frame.add(panel2);
+        frame.add(panel3);
         frame.setSize(1200,900);
         frame.setLayout(null);
         frame.setVisible(true);
