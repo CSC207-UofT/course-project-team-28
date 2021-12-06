@@ -40,6 +40,9 @@ public class ReviewSort {
      */
     private HashMap<Integer, ArrayList<Review>> putRevsToMap(List<Review> reviews){
         HashMap<Integer, ArrayList<Review>> result = new HashMap<>();
+        if (result.isEmpty()){
+            return result;
+        }
         for (Review rev: reviews) {
             Integer numCoin = rev.getnumCoin();
             if (result.containsKey(numCoin)) {
