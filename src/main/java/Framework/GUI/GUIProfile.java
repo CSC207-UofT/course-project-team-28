@@ -104,6 +104,7 @@ public class GUIProfile extends View {
         p1.add(description);
         p1.add(i);
         p1.add(goToPlaylist);
+        UpdateText();
     }
 
     /**

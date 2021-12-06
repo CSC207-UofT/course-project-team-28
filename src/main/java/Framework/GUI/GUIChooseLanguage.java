@@ -28,8 +28,8 @@ public class GUIChooseLanguage extends View{
     private void PlaceThingsOnP1(JPanel p1){
         p1.setLayout(null);
         p1.setBounds(20, 20, 160, 360);
-        english.setBounds(30, 70, 120, 60);
-        mandarin.setBounds(30, 200, 120, 60);
+        english.setBounds(130, 50, 120, 60);
+        mandarin.setBounds(130, 120, 120, 60);
         english.setText("English");
         mandarin.setText("中文");
         english.addActionListener(new ActionListener() {
@@ -90,7 +90,7 @@ public class GUIChooseLanguage extends View{
     protected JFrame getFrame() {
         JFrame jFrame = super.getFrame();
         jFrame.setTitle("Our App");
-        jFrame.setSize(200, 400);
+        jFrame.setSize(400, 300);
         jFrame.setVisible(true);
         jFrame.add(p1);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
