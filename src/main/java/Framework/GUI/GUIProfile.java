@@ -51,7 +51,7 @@ public class GUIProfile extends View {
         description = new JTextArea();
         JLabel coinLabel = new JLabel();
         contactInfoLabel = new JLabel();
-        ImageIcon icon = new ImageIcon(WritePic.getPic("winnie.jpg"));
+        ImageIcon icon = new ImageIcon(WritePic.getPicUser((String)InstanceMain.getNormalCUser().profilePage(userName)[7]));
         JLabel i = new JLabel(icon, JLabel.CENTER);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
         Border b = BorderFactory.createTitledBorder(bb,"Your Profile", TitledBorder.LEADING, TitledBorder.TOP, font2);

@@ -14,4 +14,5 @@ public class WritePic {
     public static String getPicUser(String str){
         return str1 + str;
     }
+
 }

@@ -5,4 +5,4 @@ I like movie
 Empty category
 302
 [Apple]
-/src/main/res/GUIPic/winnie.jpg
+/src/main/res/GUIPic/moon.jpg
