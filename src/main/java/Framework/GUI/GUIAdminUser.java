@@ -25,7 +25,6 @@ public class GUIAdminUser extends View{
         super(previous);
         panel1 = new JPanel();
         PlaceThingsOnP1(panel1);
-
     }
 
     private void PlaceThingsOnP1(JPanel p1) {

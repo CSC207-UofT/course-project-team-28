@@ -6,24 +6,27 @@ import InterfaceAdapter.InstanceMain;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class GUIProfile extends View {
 
     public JLabel contactInfoLabel;
+    public String searchInput;
     private JTextArea description;
+    public JTextField searchBar;
     private final JPanel panel1;
     private final JPanel panel2;
     private final JPanel panel3;
+    private JList listSearch;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
 
-    /*
+    /**
     constructor of this class
      */
     public GUIProfile(View previous){
@@ -36,7 +39,7 @@ public class GUIProfile extends View {
         PlaceThingsOnP3(panel3);
     }
 
-    /*
+    /**
     Panel 1 is the user profile panel, this method palaces the relevant components on panel 1.
      */
     private void PlaceThingsOnP1(JPanel p1){
@@ -80,7 +83,7 @@ public class GUIProfile extends View {
         EditContactInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                OnButtonClick(actionEvent);
+                OnEditButtonClick(actionEvent);
             }
         });
 
@@ -101,7 +104,7 @@ public class GUIProfile extends View {
         p1.add(goToPlaylist);
     }
 
-    /*
+    /**
     Panel 2 is the movie recommendation panel, this method palaces the relevant components on panel 2.
      */
     private void PlaceThingsOnP2(JPanel p2){
@@ -139,7 +142,7 @@ public class GUIProfile extends View {
 
     }
 
-    /*
+    /**
     Panel 3 is the search panel, this method palaces the relevant components on panel 3.
      */
     private void PlaceThingsOnP3(JPanel p3){
@@ -149,21 +152,31 @@ public class GUIProfile extends View {
         p3.setBorder(b);
         p3.setBounds(420,20,740,200);
 
-        JTextField searchBar = new JTextField();
+        searchBar = new JTextField();
+        listSearch = new JList();
+        listSearch.setVisible(false);
         JButton searchButton = new JButton();
         searchButton.setText("Search");
         searchBar.setBounds(100,80,500,40);
         searchBar.setFont(font2);
         searchButton.setBounds(300,140,80,40);
+        listSearch.setBounds(100,120,500,200);
 
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                OnSearchButtonClick(actionEvent);
+            }
+        });
+        searchInput = searchBar.getText();
         p3.add(searchBar);
         p3.add(searchButton);
     }
 
-    /*
+    /**
     This action adds to the Edit button, which directs to the edit page.
      */
-    private void OnButtonClick(ActionEvent e) {
+    private void OnEditButtonClick(ActionEvent e) {
         nextView(new GUIEditContactInfo(this), false);
     }
 
@@ -171,13 +184,19 @@ public class GUIProfile extends View {
         nextView(new GUIPlaylist(this), false);
     }
 
-    /*
+    private void OnSearchButtonClick(ActionEvent e){
+        nextView(new SearchResult(this),false);
+    }
+
+    public String getSearchInput(){
+        return this.searchInput;
+    }
+
+    /**
     This method enables automatic updates on this page after user enters new information on the edit page.
      */
     @Override
     protected void UpdateText() {
-//        System.out.println(InstanceMain.getNormalCUser().profilePage(userName)[2]);
-//        System.out.println(InstanceMain.getNormalCUser().profilePage(userName)[3]);
         contactInfoLabel.setText("Contact Info: " + InstanceMain.getNormalCUser().profilePage(userName)[2]);
         description.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[3]);
     }
