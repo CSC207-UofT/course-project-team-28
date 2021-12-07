@@ -20,7 +20,7 @@ public class NormalUserTest {
 
     @Test
     public void getObjectLength() {
-        assertEquals(7, nu.getObject().length);
+        assertEquals(8, nu.getObject().length);
     }
 
     @Test
@@ -112,5 +112,11 @@ public class NormalUserTest {
     public void setCoin() {
         nu.setCoin(250);
         assertEquals(250, nu.getCoin());
+    }
+
+    @Test
+    public void changePic() {
+        nu.changePic("123456789");
+        assertEquals("123456789", nu.getPicPath());
     }
 }

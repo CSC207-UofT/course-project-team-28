@@ -12,16 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class WriteUserTest {
 
-    //use case
-
-
-    //gateway
     private static Object[] infoList;
     private static Object[] auInfoList;
     private static ArrayList<Object> fileData;
@@ -29,7 +24,6 @@ public class WriteUserTest {
     Object[] playList2;
 
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-
 
     @BeforeClass
     public static void setUpBeforeClass() {
@@ -52,7 +46,7 @@ public class WriteUserTest {
         //InstanceMain setUp
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
-        WriteMovie wm = new WriteMovie(str1 + "/src/main/res/Moviedata/", str1 + "/src/main/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
         //save original file data
@@ -212,7 +206,7 @@ public class WriteUserTest {
 
 
 
-    public boolean fileContentTest(Object[] ul, ArrayList<Object> infoList) {
+    private boolean fileContentTest(Object[] ul, ArrayList<Object> infoList) {
         for (int i = 0; i < ul.length; i++){
             if (!infoList.get(i).equals(ul[i].toString()))
                 return false;

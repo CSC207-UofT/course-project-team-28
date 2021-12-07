@@ -40,7 +40,7 @@ public class UserManagerTest {
         //InstanceMain setUp
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
-        WriteMovie wm = new WriteMovie(str1 + "/src/main/res/Moviedata/", str1 + "/src/main/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
         //save original file data
@@ -194,7 +194,7 @@ public class UserManagerTest {
     }
 
 
-    public boolean fileContentTest(Object[] ul, Object[] infoList) {
+    private boolean fileContentTest(Object[] ul, Object[] infoList) {
         for (int i = 0; i < ul.length; i++){
             if (!infoList[i].toString().equals(ul[i].toString()))
                 return false;

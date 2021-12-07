@@ -5,4 +5,4 @@ Empty description - um
 Empty category - um
 300
 [Apple,Candy,Team28,Happy Life]
-/src/main/res/GUIPic/winnie.jpg
+/src/main/res/GUIPic/paint.jpg
