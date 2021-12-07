@@ -7,6 +7,7 @@ import java.io.*;
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -120,22 +121,11 @@ public class WriteReview implements WriteReviewInterface {
     @Override
     public void getObjectFromFile(){
         try {
-            // get the path of src
-            Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            // get the path of Core.Review folder
-            File ReviewPath = new File(path2 + "/src/main/res/Review/");
+            String[] lstOfReview = ReviewFolderPath.list();
 
-            // get the file name in the Review folder
-            String[] lstOfReview = ReviewPath.list();
-
-            // when there is no file in the Review folder
             if (lstOfReview != null) {
-                for (String r : lstOfReview) {
-                    ArrayList<String> lst = readFile(path2, r);
-
-                    // create object for this single review
-                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2),
-                            Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
+                for (String rv : lstOfReview) {
+                    ArrayList<String> lst = readFile(Paths.get(halfRvPath), rv);
 
                 }
             }
@@ -143,6 +133,30 @@ public class WriteReview implements WriteReviewInterface {
         catch (IOException e){
             System.out.println("Unable to get the file from the Movie Folder");
         }
+//        try {
+//            // get the path of src
+//            Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
+//            // get the path of Core.Review folder
+//            File ReviewPath = new File(path2 + "/src/main/res/Review/");
+//
+//            // get the file name in the Review folder
+//            String[] lstOfReview = ReviewPath.list();
+//
+//            // when there is no file in the Review folder
+//            if (lstOfReview != null) {
+//                for (String r : lstOfReview) {
+//                    ArrayList<String> lst = readFile(path2, r);
+//
+//                    // create object for this single review
+//                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2),
+//                            Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
+//
+//                }
+//            }
+//        }
+//        catch (IOException e){
+//            System.out.println("Unable to get the file from the Movie Folder");
+//        }
     }
 
 
