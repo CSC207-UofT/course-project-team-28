@@ -2,6 +2,7 @@ package Framework.GUI;
 
 import Framework.DataAccess.WritePic;
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -22,6 +23,7 @@ public class MoviePage extends View {
     private String searchedMovie;
     private JLabel numberOfLikes;
     private JList reviewList;
+    private TextPresenter textPresenter;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
     Font font3 = new Font("SansSerif", Font.PLAIN, 17);
@@ -35,6 +37,7 @@ public class MoviePage extends View {
         panel2 = new JPanel();
         PlaceThingsOnP1(panel1);
         PlaceThingsOnP2(panel2);
+
     }
 
     /**
@@ -44,10 +47,12 @@ public class MoviePage extends View {
         try {
             SearchResult searchResult = (SearchResult) previous;
             searchedMovie = searchResult.getMovieSelected();
+            textPresenter = searchResult.getTextPresenter();
         }
         catch (ClassCastException e){
             AddReview searchResult = (AddReview) previous;
             searchedMovie = searchResult.getMovieSelected();
+            textPresenter = searchResult.getTextPresenter();
         }
 
 
@@ -55,17 +60,17 @@ public class MoviePage extends View {
         numberOfLikes = new JLabel();
         JLabel movieName = new JLabel();
         JLabel movieLink = new JLabel();
-        JButton giveLikeToMovie = new JButton("Like the movie & add to your playlist");
+        JButton giveLikeToMovie = new JButton(textPresenter.printText("Like the movie & add to your playlist"));
         JLabel movieCategory = new JLabel();
         ImageIcon icon = new ImageIcon(WritePic.getPic("4.jpg"));
         JLabel i = new JLabel(icon, JLabel.CENTER);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
-        Border b = BorderFactory.createTitledBorder(bb,"Movie Info", TitledBorder.LEADING, TitledBorder.TOP, font2);
+        Border b = BorderFactory.createTitledBorder(bb,textPresenter.printText("Movie Info"), TitledBorder.LEADING, TitledBorder.TOP, font2);
         movieName.setText((String) InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[0]);
         movieLink.setText((String) InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[1]);
-        numberOfLikes.setText("number of likes: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
-        movieCategory.setText("Category: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[2]);
-        JButton addReview = new JButton("Add review to this movie");
+        numberOfLikes.setText(textPresenter.printText("number of likes: ") + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
+        movieCategory.setText(textPresenter.printText("Category: ") + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[2]);
+        JButton addReview = new JButton(textPresenter.printText("Add review to this movie"));
 
         p1.setLayout(null);
         p1.setBorder(b);
@@ -132,7 +137,7 @@ public class MoviePage extends View {
         JScrollPane jScrollPane = new JScrollPane(reviewList);
         p2.setBounds(420,20,760,820);
         Border bb = BorderFactory.createLineBorder(Color.BLACK,1);
-        Border b = BorderFactory.createTitledBorder(bb,"Review Ranking", TitledBorder.LEADING, TitledBorder.TOP, font2);
+        Border b = BorderFactory.createTitledBorder(bb,textPresenter.printText("Review Ranking"), TitledBorder.LEADING, TitledBorder.TOP, font2);
         p2.setBorder(b);
         jScrollPane.setBounds(20,40,720,760);
 
@@ -183,7 +188,6 @@ public class MoviePage extends View {
      */
     private void OnEditButtonClick(ActionEvent e) {
         InstanceMain.getNormalCMovie().likeMovie(searchedMovie);
-        UpdateText();
     }
 
     private void OnAddButtonClick(ActionEvent e) {
@@ -191,20 +195,21 @@ public class MoviePage extends View {
     }
 
     public String getSearchedMovie(){return this.searchedMovie;}
+    public TextPresenter getTextPresenter() { return this.textPresenter;}
 
     /**
      This method enables automatic updates on this page after user enters new information on the edit page.
      */
     @Override
     protected void UpdateText() {
-        numberOfLikes.setText("number of likes: " + InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
+        numberOfLikes.setText(textPresenter.printText("number of likes: ")+ InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
     }
 
 
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
-        frame.setTitle("TEReview");
+        frame.setTitle(textPresenter.printText("Movie Info"));
         frame.add(panel1);
         frame.add(panel2);
         frame.setSize(1200,900);
