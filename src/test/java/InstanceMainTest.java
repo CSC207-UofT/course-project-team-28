@@ -24,10 +24,6 @@ public class InstanceMainTest {
         InstanceMain.setWriteFileClass(wu, wm, wr);
     }
 
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void getAdminInputProcessor() {
         assertNotNull(InstanceMain.getAdminInputProcessor());

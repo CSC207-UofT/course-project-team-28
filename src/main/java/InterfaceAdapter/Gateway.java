@@ -51,8 +51,8 @@ public class Gateway implements GatewayInterface {
      * Call MovieManger to create entity object for movie data
      * @param moviename Movie's name
      * @param movielink The link of Movie
+     * @param category the category of the movie
      * @param numLike The num of Likes that this movie receives
-     * @param
      */
     @Override
     public void createFileMovie(String moviename, String movielink, String category, int numLike){
