@@ -234,7 +234,7 @@ public class WriteUser implements WriteUserInterface {
     /**
      * Helper method, read file
      */
-    public ArrayList<Object> readFile(String path) {
+    private ArrayList<Object> readFile(String path) {
         ArrayList<Object> lst = new ArrayList<>();
         try{
             userlogin = new BufferedReader(new FileReader(path));
@@ -257,7 +257,7 @@ public class WriteUser implements WriteUserInterface {
     /**
      * Helper method, write file
      */
-    public void writeFile(String path, ArrayList<Object> lst) {
+    private void writeFile(String path, ArrayList<Object> lst) {
         try{
             writeuser = new FileWriter(path);
             for(Object str: lst){

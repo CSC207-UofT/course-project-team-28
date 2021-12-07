@@ -10,6 +10,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class MoviePage extends View {
     private final JPanel panel2;
     private String searchedMovie;
     private JLabel numberOfLikes;
+    private JList reviewList;
     private TextPresenter textPresenter;
     Font font1 = new Font("SansSerif", Font.BOLD, 30);
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
@@ -123,10 +126,10 @@ public class MoviePage extends View {
         if (!InstanceMain.getNormalCMovie().movieReviews(searchedMovie).isEmpty()) {
             ArrayList<Object[]> list = InstanceMain.getNormalCMovie().movieReviews(searchedMovie);
             for (Object a : list) {
-                lst.add(((Object[]) a)[2]);
+                lst.add(((Object[]) a)[4].toString() + ": "+ ((Object[]) a)[2]);
             }
         }
-        JList reviewList = new JList(lst.toArray());
+        reviewList = new JList(lst.toArray());
         reviewList.setFont(font3);
         RendererHelper cellRenderer = new RendererHelper(500);
         reviewList.setCellRenderer(cellRenderer);
@@ -137,9 +140,47 @@ public class MoviePage extends View {
         Border b = BorderFactory.createTitledBorder(bb,textPresenter.printText("Review Ranking"), TitledBorder.LEADING, TitledBorder.TOP, font2);
         p2.setBorder(b);
         jScrollPane.setBounds(20,40,720,760);
+
+        reviewList.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                OnReviewClick(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         p2.add(jScrollPane);
 
 
+    }
+
+    private void OnReviewClick(MouseEvent e){
+        nextView(new ReviewPage(this),true);
+    }
+
+    public int getSelectedReivew(){
+        String result = (String) reviewList.getSelectedValue();
+        String[] lst = result.split(": ");
+        return Integer.parseInt(lst[0]);
     }
 
     /**

@@ -48,6 +48,16 @@ public class NormalCMovie extends NormalController{
     }
 
     /**
+     * should only be called when review id is valid.
+     * when given ID of a review, return the information of the review.
+     * @param reviewId id of the review
+     * @return the review info in the array [reviewer, movie, reviewContent, numCoin, ID]
+     */
+    public Object[] getReviewInfo(int reviewId){
+        return InstanceMain.getReviewManager().getRevInfoById(reviewId);
+    }
+
+    /**
      * Should be only called when the movie name <movieName> exists in the database
      * Given a String movieName, add like.
      * @param movieName name of the movie.

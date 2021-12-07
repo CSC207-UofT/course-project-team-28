@@ -3,6 +3,6 @@ Ella
 511291
 I like movie blablabla  1
 Empty category
-10226124
+298
 [Apple,Candy,Team28,Happy Life]
 /src/main/res/GUIPic/moon.jpg
