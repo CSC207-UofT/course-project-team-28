@@ -1,0 +1,8 @@
+MovieManager
+12
+Empty contact info - mm
+Empty description - mm
+Empty category - mm
+300
+[Apple,Candy,Team28,Happy Life]
+/src/main/res/GUIPic/winnie.jpg
