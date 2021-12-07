@@ -127,6 +127,9 @@ public class WriteReview implements WriteReviewInterface {
                 for (String rv : lstOfReview) {
                     ArrayList<String> lst = readFile(Paths.get(halfRvPath), rv);
 
+                    this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
+                            Integer.parseInt(lst.get(4)));
+
                 }
             }
         }
