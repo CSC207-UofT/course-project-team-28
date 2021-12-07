@@ -172,7 +172,9 @@ public class Gateway implements GatewayInterface {
      */
     @Override
     public boolean editCoin(String userName, int reviewid) {
-        return InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin") && InstanceMain.getWriteReview().addCoinsToReview(reviewid, 1);
+        return InstanceMain.getWriteReview().addCoinsToReview(reviewid, 1);
+//                InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin") &&
+
     }
 
     /**
