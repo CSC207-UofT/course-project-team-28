@@ -129,5 +129,6 @@ public class GUIMain extends View {
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return jFrame;
     }
+
 }
 

@@ -82,7 +82,7 @@ public class UserManager {
      * Update contact info of a normal user
      * @param username the name of normal user
      * @param updateInfo the info needs to be updated
-     * @param writeType the type of info that user wants to update. e.g. contactInfo, description, category, picPath, coin
+     * @param writeType the type of info that user wants to update. e.g. contactInfo, description, category, picPath
      * @return True if it is successfully updated. Otherwise, return false.
      */
     public boolean updateInfo(String username, String updateInfo, String writeType) {
@@ -140,6 +140,7 @@ public class UserManager {
     }
 
     /**
+     * increase or decrease the user coin number
      *  @param username the name of normal user
      *  @param coin the amount of the coin that need to be changed
      *  @return return True if change is successfully made. Otherwise, return false.
@@ -162,6 +163,7 @@ public class UserManager {
 
 
     /**
+     * Add the movie to user's playlist
      *  @param userName the name of normal user
      *  @param moviename the name of movie
      *  @return return True if movie is successfully added. Otherwise, return false.
@@ -188,6 +190,7 @@ public class UserManager {
     }
 
     /**
+     * remove movie from user's playlist
      *  @param userName the name of normal user
      *  @param moviename the name of movie
      *  @return return True if movie is successfully removed. Otherwise, return false.
@@ -236,20 +239,6 @@ public class UserManager {
         return null;
     }
 
-
-    /**
-     * Use username to find the path of profile photo.
-     * @param username the username of Core.User
-     * @return return the string of user profile photo path.
-     */
-    public String getPicPath(String username){
-        for(NormalUser nu: lstOfNormalUser){
-            if(nu.getUsername().equals(username)){
-                return nu.getPicPath();
-            }
-        }
-        return "";
-    }
 
     /**
      * Use username and password to find the whether user exists or not.
