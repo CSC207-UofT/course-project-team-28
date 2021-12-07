@@ -16,9 +16,12 @@ import java.util.ArrayList;
 
 public class WriteReview implements WriteReviewInterface {
 
-    protected FileReader reviewreader;
-    protected BufferedReader getreview;
-    protected FileWriter writereview;
+    protected FileReader reviewReader;
+    protected BufferedReader getReview;
+    protected FileWriter writeReview;
+    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected File ReviewFolderPath = new File(str1 + "/src/main/res/Review"); //get full path for Review folder
+    protected String halfRvPath = str1 + "/src/main/res/Review/"; //get half path for Review file
     protected Gateway gateway = new Gateway();
 
 
@@ -35,20 +38,17 @@ public class WriteReview implements WriteReviewInterface {
         getObjectFromFile();
     }
 
-//    /**
-//     * Constructor for test use only
-//     * @param normalPath Core.User.NormalUser test folder path
-//     * @param adminPath Core.User.AdminUser test folder path
-//     */
-//    public WriteReview(String normalPath, String adminPath){
-//        this.AdminUserFolderPath = new File(adminPath);
-//        this.NormalUserFolderPath = new File(normalPath);
-//        this.halfAuPath = adminPath +"/";
-//        this.halfNuPath = normalPath + "/";
-//
-//        getObjectFromFile();
-//
-//    }
+    /**
+     * Constructor for test use only
+     * @param reviewPath Core.User.NormalUser test folder path
+     */
+    public WriteReview(String reviewPath){
+        this.ReviewFolderPath = new File(reviewPath);
+        this.halfRvPath = reviewPath +"/";
+
+        getObjectFromFile();
+
+    }
 
     @Override
     public boolean createFile(String currUserName, String movieName, String revContent, int ID){
@@ -56,17 +56,17 @@ public class WriteReview implements WriteReviewInterface {
 
             File file_if_exist;
             Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            writereview = new FileWriter(path1 + "/src/main/res/Review/" + ID + ".txt");
-            writereview.write(currUserName);
-            writereview.write("\r\n");
-            writereview.write(movieName);
-            writereview.write("\r\n");
-            writereview.write(revContent);
-            writereview.write("\r\n");
-            writereview.write("0");
-            writereview.write("\r\n");
-            writereview.write(Integer.toString(ID));
-            writereview.close();
+            writeReview = new FileWriter(path1 + "/src/main/res/Review/" + ID + ".txt");
+            writeReview.write(currUserName);
+            writeReview.write("\r\n");
+            writeReview.write(movieName);
+            writeReview.write("\r\n");
+            writeReview.write(revContent);
+            writeReview.write("\r\n");
+            writeReview.write("0");
+            writeReview.write("\r\n");
+            writeReview.write(Integer.toString(ID));
+            writeReview.close();
 
             file_if_exist = new File(path1 + "/src/main/res/Review/" + ID + ".txt");
 
@@ -138,16 +138,16 @@ public class WriteReview implements WriteReviewInterface {
      * read the Core.Review file
      */
     private ArrayList<String> readFile(Path path2, String fileOfReview, String folder) throws IOException{
-        reviewreader = new FileReader(path2.toString() + "/src/main/res/" + folder + "/" + fileOfReview);
-        getreview = new BufferedReader(reviewreader);
+        reviewReader = new FileReader(path2.toString() + "/src/main/res/" + folder + "/" + fileOfReview);
+        getReview = new BufferedReader(reviewReader);
 
         ArrayList<String> result = new ArrayList<>();
-        String line = getreview.readLine();
+        String line = getReview.readLine();
         while(line != null){
             result.add(line);
-            line = getreview.readLine();
+            line = getReview.readLine();
         }
-        getreview.close();
+        getReview.close();
 
         return result;
     }
@@ -157,12 +157,12 @@ public class WriteReview implements WriteReviewInterface {
      */
     private void writeFile(String path, ArrayList<Object> lst) {
         try{
-            writereview = new FileWriter(path);
+            writeReview = new FileWriter(path);
             for(Object str: lst){
-                writereview.write(str.toString());
-                writereview.write("\r\n");
+                writeReview.write(str.toString());
+                writeReview.write("\r\n");
             }
-            writereview.close();
+            writeReview.close();
         }
         catch (IOException e){
             System.out.println("Unable to write file");
