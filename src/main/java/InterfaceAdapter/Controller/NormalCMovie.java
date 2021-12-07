@@ -1,6 +1,8 @@
 package InterfaceAdapter.Controller;
 
+import Entity.Movie;
 import InterfaceAdapter.InstanceMain;
+import UseCase.MovieRanking;
 
 import java.util.ArrayList;
 
@@ -26,21 +28,33 @@ public class NormalCMovie extends NormalController{
     /**
      * Should be only called when the movie name <movieName> exists in the database
      * @param movieName the name of the movie.
-     * @return a String with movie name, movie link, number of likes
+     * @return an array of the information of the movie in the form of
+     *         [movieName, movieLink, movieCategory, numOfLikes]
      */
-    public String movieProfile(String movieName) {
+    public Object[] movieProfile(String movieName) {
         return InstanceMain.getMovieManager().getMovieProfile(movieName);
     }
 
     /**
      * Should be only called when the movie name <movieName> exists in the database
-     * When given a movieName, return the review of the movie.
+     * When given a movieName, return the sorted review of the movie, and the review with more coins
+     * is at the front of the list.
      * @param movieName the name of the movie.
      * @return an arraylist of arrays, where each array stores information of a single review in the form of
      *         [username of reviewer, movieName, reviewContent, numCoin, ID].
      */
     public ArrayList<Object[]> movieReviews(String movieName) {
         return InstanceMain.getReviewManager().listRevsOfMovie(movieName);
+    }
+
+    /**
+     * should only be called when review id is valid.
+     * when given ID of a review, return the information of the review.
+     * @param reviewId id of the review
+     * @return the review info in the array [reviewer, movie, reviewContent, numCoin, ID]
+     */
+    public Object[] getReviewInfo(int reviewId){
+        return  InstanceMain.getReviewManager().getRevInfoById(reviewId);
     }
 
     /**
@@ -51,7 +65,8 @@ public class NormalCMovie extends NormalController{
      */
     public boolean likeMovie(String movieName) {
         if (InstanceMain.getUserManager().giveLike(this.currNormalName, movieName)){
-            return InstanceMain.getMovieManager().likeMovie(movieName);
+            return InstanceMain.getMovieManager().likeMovie(movieName)
+                    && InstanceMain.getUserManager().giveLike(this.currNormalName, movieName);
         }
         else {return false;}
     }
@@ -77,9 +92,19 @@ public class NormalCMovie extends NormalController{
         Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
         ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
         if (userPlaylist.contains(movieName)){
-            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName) && InstanceMain.getMovieManager().undolikeMovie(movieName);
+            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName)
+                    && InstanceMain.getMovieManager().undolikeMovie(movieName);
         }
         else {return false;}
+    }
+
+    /**
+     *
+     * @return sorted ArrayList of Movie, the first one is the most popular movie (with most likes).
+     */
+    public ArrayList<Movie> rankMovie(){
+        MovieRanking mr = new MovieRanking();
+        return mr.getMovieRank();
     }
 
     /**

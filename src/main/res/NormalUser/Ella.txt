@@ -1,8 +1,8 @@
 Ella
 123
 51129
-I like movie
+I like movie blablabla
 Empty category
 302
-[Apple]
-/src/main/res/GUIPic/winnie.jpg
+[Apple,Candy,Team28]
+/src/main/res/GUIPic/moon.jpg

@@ -42,18 +42,21 @@ public class ReviewManager {
 
     /**
      * Called only after confirming the movieName is valid (i.e. the movie exists)
-     * Takes the name of Core.Movie and return an arraylist of arrays, where each array stores information
+     * Takes the name of Core.Movie and return a sorted arraylist of arrays, where each array stores information
      * of a single review.
+     * The review with more coins is at the front of the list.
      * @param movieName the name of the movie.
      * @return an arraylist of arrays, where each array stores information of a single review in the form of
      *         [username of reviewer, movieName, reviewContent, numCoin, ID].
      */
     public ArrayList<Object[]> listRevsOfMovie(String movieName){
+        ReviewSort rs = new ReviewSort();
         ArrayList<Review> lst = this.MovieToRevs.get(movieName);
+        ArrayList<Review> sortedLst = rs.sortReviews(lst);
         ArrayList<Object[]> result = new ArrayList<>();
         // add content of reviews to temp
-        if (lst != null){
-            for (Review rev : lst){
+        if (sortedLst != null){
+            for (Review rev : sortedLst){
                 result.add(rev.getReviewInfo());
             }
         }
@@ -148,6 +151,22 @@ public class ReviewManager {
             }
         }
         return coinAfter - 1 == coin && this.gateway.editCoin(username, reviewId);
+    }
+
+
+    /**
+     * should only be called when review id is valid.
+     * when given ID of a review, return the information of the review.
+     * @param reviewId id of the review
+     * @return the review info in the array [reviewer, movie, reviewContent, numCoin, ID]
+     */
+    public Object[] getRevInfoById (int reviewId){
+        for (Review review : this.reviewList){
+            if (review.getID() == reviewId){
+                return review.getReviewInfo();
+            }
+        }
+        return null;
     }
 
 //    /**

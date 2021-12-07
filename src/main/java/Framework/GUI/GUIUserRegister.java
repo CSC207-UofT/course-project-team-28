@@ -71,8 +71,9 @@ public class GUIUserRegister extends SharedView {
             register = (InstanceMain.getNormalCUser().register(userName, password));
         }
         if(register){
-            JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );
-            this.getFrame().dispose();
+            nextView(new ChooseAvatar(this),true);
+//            JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );
+//            this.getFrame().dispose();
         } else {
             RegResult.setText("Something is wrong with your username or password.");
         }
