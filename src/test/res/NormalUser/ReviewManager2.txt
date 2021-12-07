@@ -1,4 +1,4 @@
-ReviewManager
+ReviewManager2
 12
 Empty contact info - rm
 Empty description - rm

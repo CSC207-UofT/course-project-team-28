@@ -2,9 +2,12 @@ import Entity.User.AdminUser;
 import Entity.User.NormalUser;
 import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
-import InterfaceAdapter.*;
 import Framework.DataAccess.WriteUser;
-import org.junit.*;
+import InterfaceAdapter.InstanceMain;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -13,7 +16,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class WriteUserTest {
 
@@ -114,11 +118,11 @@ public class WriteUserTest {
     public void getNormalUserFromFile() {
 
         ArrayList<NormalUser> nuList = InstanceMain.getUserManager().getNormalUserList();
-        assertEquals(6, nuList.size());
+        assertEquals(8, nuList.size());
 
-        Object[] userFile = {"CoinManager", "MovieManager", "NormalController", "ReviewManager", "UserManager", "WriteUser"};
+        Object[] userFile = {"CoinManager", "MovieManager", "NormalController", "ReviewManager1", "ReviewManager2", "ReviewManager3", "UserManager", "WriteUser"};
 
-        for (int i = 0; i < 6; i++){
+        for (int i = 0; i < 8; i++){
             assertEquals(nuList.get(i).getUsername(), userFile[i]);
         }
 

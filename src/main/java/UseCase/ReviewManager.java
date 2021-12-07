@@ -13,11 +13,11 @@ import java.util.HashMap;
 public class ReviewManager {
     // map that stores reviews according to the movie that they were written for, the key is movieName,
     // and the value is an arraylist of all Review for that movie
-    private final HashMap<String, ArrayList<Review>> MovieToRevs;
+    private final HashMap<String, ArrayList<Review>> movieToRevs;
 
     // map that stores reviews according to the user who wrote the review, the key is username,
     // and the value is an arraylist of all Review wrote by the user
-    private final HashMap<String, ArrayList<Review>> UserToRevs;
+    //private final HashMap<String, ArrayList<Review>> UserToRevs;
 
     // an arraylist that stores all the Reviews
     private final ArrayList<Review> reviewList;
@@ -32,8 +32,8 @@ public class ReviewManager {
 
 
     public ReviewManager() {
-        this.MovieToRevs = new HashMap<>();
-        this.UserToRevs = new HashMap<>();
+        this.movieToRevs = new HashMap<>();
+//        this.UserToRevs = new HashMap<>();
         this.reviewList = new ArrayList<>();
 //        this.movieManager = mm;
         this.totalNumOfReview = 0;
@@ -53,7 +53,7 @@ public class ReviewManager {
         // set lst to empty array list, such that if the MovieToRevs map does not contain the key (when there does not
         // exist any review for that movie)
         ArrayList<Review> lst = new ArrayList<>();
-        lst = this.MovieToRevs.get(movieName);
+        lst = this.movieToRevs.get(movieName);
         ArrayList<Review> sortedLst = rs.sortReviews(lst);
         ArrayList<Object[]> result = new ArrayList<>();
         // add content of reviews to temp
@@ -106,7 +106,7 @@ public class ReviewManager {
         Review rev = new Review(userName, movieName, content, numCoin, ID);
         this.reviewList.add(rev);
         this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
-        return addMr(movieName, rev) && addUr(userName, rev);
+        return addMr(movieName, rev); // && addUr(userName, rev);
     }
 
 
@@ -126,15 +126,14 @@ public class ReviewManager {
         Review rev = new Review(userName, movieName, content, numCoin, totalNumOfReview);
         this.reviewList.add(rev);
         this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
-        return addMr(movieName, rev) && addUr(userName, rev)
+        return addMr(movieName, rev) // && addUr(userName, rev)
                 && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
     }
 
 
-    public int getReviewID(){
-        return totalNumOfReview;
-    }
+    public int getReviewID(){return totalNumOfReview;    }
 
+    public ArrayList<Review> getReviewList() {return reviewList;}
 
     /**
      * find a review with review_id, and add 1 coin
@@ -203,13 +202,13 @@ public class ReviewManager {
      * @return ture iff successfully updated.
      */
     private boolean addMr(String mName, Review rev){
-        if (this.MovieToRevs.containsKey(mName)) {
-            this.MovieToRevs.get(mName).add(rev);
+        if (this.movieToRevs.containsKey(mName)) {
+            this.movieToRevs.get(mName).add(rev);
         }
-        else if (! this.MovieToRevs.containsKey(mName)) {
+        else if (! this.movieToRevs.containsKey(mName)) {
             ArrayList<Review> lst = new ArrayList<>();
             lst.add(rev);
-            this.MovieToRevs.put(mName, lst);
+            this.movieToRevs.put(mName, lst);
         }
         else {return false;}
 
@@ -217,35 +216,35 @@ public class ReviewManager {
     }
 
     /**
-     * Update the MovieToRevs, with the new moviename as key and empty arraylist as value.
+     * Update the MovieToRevs, with the new movieName as key and empty arraylist as value.
      * @param mName movie name of the newly added movie
      */
     public void updateMovieToRevsKey(String mName){
-        if (! this.MovieToRevs.containsKey(mName)) {
+        if (! this.movieToRevs.containsKey(mName)) {
             ArrayList<Review> lst = new ArrayList<>();
-            this.MovieToRevs.put(mName, lst);
+            this.movieToRevs.put(mName, lst);
         }
     }
 
-    /**
-     * update UserToRevs by write_review,
-     * @param uname the username of the user
-     * @param rev the review
-     * @return ture iff successfully updated.
-     */
-    private boolean addUr(String uname, Review rev){
-        if (this.UserToRevs.containsKey(uname)) {
-            this.UserToRevs.get(uname).add(rev);
-        }
-        else if (! this.UserToRevs.containsKey(uname)) {
-            ArrayList<Review> lst = new ArrayList<>();
-            lst.add(rev);
-            this.UserToRevs.put(uname, lst);
-        }
-        else {return false;}
-
-        return true;
-    }
+//    /**
+//     * update UserToRevs by write_review,
+//     * @param uname the username of the user
+//     * @param rev the review
+//     * @return ture iff successfully updated.
+//     */
+//    private boolean addUr(String uname, Review rev){
+//        if (this.UserToRevs.containsKey(uname)) {
+//            this.UserToRevs.get(uname).add(rev);
+//        }
+//        else if (! this.UserToRevs.containsKey(uname)) {
+//            ArrayList<Review> lst = new ArrayList<>();
+//            lst.add(rev);
+//            this.UserToRevs.put(uname, lst);
+//        }
+//        else {return false;}
+//
+//        return true;
+//    }
 
 
 }
