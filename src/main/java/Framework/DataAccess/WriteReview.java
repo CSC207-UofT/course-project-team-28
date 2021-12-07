@@ -21,8 +21,8 @@ public class WriteReview implements WriteReviewInterface {
     protected BufferedReader getReview;
     protected FileWriter writeReview;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-    protected File ReviewFolderPath = new File(str1 + "/src/main/res/Review"); //get full path for Review folder
-    protected String halfRvPath = str1 + "/src/main/res/Review/"; //get half path for Review file
+    protected File ReviewFolderPath = new File(str1 + "/src/test/res/Review"); //get full path for Review folder
+    protected String halfRvPath = str1 + "/src/test/res/Review/"; //get half path for Review file
     protected Gateway gateway = new Gateway();
 
 
@@ -176,7 +176,7 @@ public class WriteReview implements WriteReviewInterface {
      */
     public boolean deleteReviewFile(int reviewID){
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        File obj = new File(path1 +  "/src/main/res/Review/" + reviewID + ".txt");
+        File obj = new File(path1 +  "/src/test/res/Review/" + reviewID + ".txt");
         return obj.delete();
     }
 }
