@@ -4,6 +4,7 @@ import InterfaceAdapter.*;
 import InterfaceAdapter.Interface.WriteReviewInterface;
 
 import java.io.*;
+import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -168,5 +169,14 @@ public class WriteReview implements WriteReviewInterface {
             System.out.println("Unable to write file");
         }
 
+    }
+
+    /**
+     * Only for test, to delete the file.
+     */
+    public boolean deleteReviewFile(int reviewID){
+        Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+        File obj = new File(path1 +  "/src/main/res/Review/" + reviewID + ".txt");
+        return obj.delete();
     }
 }
