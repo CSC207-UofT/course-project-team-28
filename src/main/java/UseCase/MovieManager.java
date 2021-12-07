@@ -12,13 +12,15 @@ import java.util.List;
 public class MovieManager {
 
     private final ArrayList<Movie> Movies;
+    private final ReviewManager reviewManager;
     private final GatewayInterface gateway = new Gateway();
 
     /**
      * Creates a UseCase.MovieManager with a list of movies are empty
      */
-    public MovieManager(){
+    public MovieManager(ReviewManager rm){
         this.Movies = new ArrayList<>();
+        this.reviewManager = rm;
     }
 
     /**
@@ -29,8 +31,8 @@ public class MovieManager {
     public boolean addMovie(String movieName, String movieLink, String category, int numLikes) {
         Movie m = new Movie(movieName, movieLink, numLikes, category);
         this.Movies.add(m);
+        this.reviewManager.updateMovieToRevsKey(movieName);
         return true;
-
     }
 
     /**
@@ -41,6 +43,7 @@ public class MovieManager {
     public boolean addNewMovie(String movieName, String movieLink, String category) {
         Movie m = new Movie(movieName, movieLink, 0, category);
         this.Movies.add(m);
+        this.reviewManager.updateMovieToRevsKey(movieName);
         return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink, category);
 
     }

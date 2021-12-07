@@ -54,7 +54,7 @@ public class NormalCMovie extends NormalController{
      * @return the review info in the array [reviewer, movie, reviewContent, numCoin, ID]
      */
     public Object[] getReviewInfo(int reviewId){
-        return  InstanceMain.getReviewManager().getRevInfoById(reviewId);
+        return InstanceMain.getReviewManager().getRevInfoById(reviewId);
     }
 
     /**

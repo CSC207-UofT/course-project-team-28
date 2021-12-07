@@ -25,18 +25,17 @@ public class ReviewManager {
     // record the total number of review stored in ReviewManager
     private int totalNumOfReview;
 
-    // TODO: to be deleted
-    private final MovieManager movieManager;
+//    private final MovieManager movieManager;
 
     // stores the gateway
     private final GatewayInterface gateway = new Gateway();
 
 
-    public ReviewManager(MovieManager mm) {
+    public ReviewManager() {
         this.MovieToRevs = new HashMap<>();
         this.UserToRevs = new HashMap<>();
         this.reviewList = new ArrayList<>();
-        this.movieManager = mm;
+//        this.movieManager = mm;
         this.totalNumOfReview = 0;
     }
 
@@ -51,7 +50,10 @@ public class ReviewManager {
      */
     public ArrayList<Object[]> listRevsOfMovie(String movieName){
         ReviewSort rs = new ReviewSort();
-        ArrayList<Review> lst = this.MovieToRevs.get(movieName);
+        // set lst to empty array list, such that if the MovieToRevs map does not contain the key (when there does not
+        // exist any review for that movie)
+        ArrayList<Review> lst = new ArrayList<>();
+        lst = this.MovieToRevs.get(movieName);
         ArrayList<Review> sortedLst = rs.sortReviews(lst);
         ArrayList<Object[]> result = new ArrayList<>();
         // add content of reviews to temp
@@ -134,7 +136,6 @@ public class ReviewManager {
     }
 
 
-
     /**
      * find a review with review_id, and add 1 coin
      * @param username the name of the user who gives coin to review
@@ -213,6 +214,17 @@ public class ReviewManager {
         else {return false;}
 
         return true;
+    }
+
+    /**
+     * Update the MovieToRevs, with the new moviename as key and empty arraylist as value.
+     * @param mName movie name of the newly added movie
+     */
+    public void updateMovieToRevsKey(String mName){
+        if (! this.MovieToRevs.containsKey(mName)) {
+            ArrayList<Review> lst = new ArrayList<>();
+            this.MovieToRevs.put(mName, lst);
+        }
     }
 
     /**

@@ -1,9 +1,8 @@
 package InterfaceAdapter;
 
 import UseCase.GatewayInterface;
-import java.util.ArrayList;
-import java.util.HashMap;
 
+import java.util.ArrayList;
 
 /**
  * Gateway (InterfaceAdapter)
@@ -14,7 +13,6 @@ public class Gateway implements GatewayInterface {
      * get request from WriteFile class to create entity object for file data
      * get request from Use case to create new file or edit existed file
      */
-
 
 
 
@@ -76,9 +74,6 @@ public class Gateway implements GatewayInterface {
         InstanceMain.getReviewManager().writeReview(userName, movieName, content, numCoin , ID);
 
     }
-
-
-
 
 
 
@@ -172,7 +167,8 @@ public class Gateway implements GatewayInterface {
      */
     @Override
     public boolean editCoin(String userName, int reviewid) {
-        return InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin") && InstanceMain.getWriteReview().addCoinsToReview(reviewid, 1);
+        return InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin")
+                && InstanceMain.getWriteReview().addCoinsToReview(reviewid, 1);
     }
 
     /**
@@ -181,6 +177,7 @@ public class Gateway implements GatewayInterface {
      * @param category the category of movie
      * @return return true if the file of movie is successfully deleted. Otherwise, return false
      */
+    @Override
     public boolean deleteMovie(String movieName, String category){
         return InstanceMain.getWriteMovie().deleteFile(movieName, category);
     }

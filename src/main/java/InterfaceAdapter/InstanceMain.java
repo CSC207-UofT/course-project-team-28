@@ -29,8 +29,8 @@ public class InstanceMain {
 
         //use case
         private static final UserManager USERMANAGER = new UserManager();
-        private static final MovieManager MOVIEMANAGER = new MovieManager();
-        private static final ReviewManager REVIEWMANAGER = new ReviewManager(MOVIEMANAGER);
+        private static final ReviewManager REVIEWMANAGER = new ReviewManager();
+        private static final MovieManager MOVIEMANAGER = new MovieManager(REVIEWMANAGER);
         private static final CoinManager COINMANAGER = new CoinManager(USERMANAGER, REVIEWMANAGER);
 
     }
