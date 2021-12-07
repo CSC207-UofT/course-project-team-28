@@ -35,6 +35,21 @@ public class WriteReview implements WriteReviewInterface {
         getObjectFromFile();
     }
 
+//    /**
+//     * Constructor for test use only
+//     * @param normalPath Core.User.NormalUser test folder path
+//     * @param adminPath Core.User.AdminUser test folder path
+//     */
+//    public WriteReview(String normalPath, String adminPath){
+//        this.AdminUserFolderPath = new File(adminPath);
+//        this.NormalUserFolderPath = new File(normalPath);
+//        this.halfAuPath = adminPath +"/";
+//        this.halfNuPath = normalPath + "/";
+//
+//        getObjectFromFile();
+//
+//    }
+
     @Override
     public boolean createFile(String currUserName, String movieName, String revContent, int ID){
         try {
@@ -72,9 +87,10 @@ public class WriteReview implements WriteReviewInterface {
     public boolean addCoinsToReview(int id, int numCoin) {
         try {
             Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-            ArrayList<String> revLst = new ArrayList<>(readFile(p1, id+".txt", "Review"));
-            writereview = new FileWriter(p1 + "/src/main/res/Review/" + id + ".txt");
-            revLst.set(3, Integer.toString(Integer.parseInt(revLst.get(3))) + numCoin);
+            ArrayList<Object> revLst = new ArrayList<>(readFile(p1, id+".txt", "Review"));
+            revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
+            String path1 = p1 + "/src/main/res/Review/" + id + ".txt";
+            writeFile(path1, revLst);
             return true;
         }
         catch (Exception e){
@@ -105,7 +121,8 @@ public class WriteReview implements WriteReviewInterface {
                     ArrayList<String> lst = readFile(path2, r, "Review");
 
                     // create object for this single review
-                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
+                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2),
+                            Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
 
                 }
             }
@@ -120,7 +137,7 @@ public class WriteReview implements WriteReviewInterface {
     /**
      * read the Core.Review file
      */
-    public ArrayList<String> readFile(Path path2, String fileOfReview, String folder) throws IOException{
+    private ArrayList<String> readFile(Path path2, String fileOfReview, String folder) throws IOException{
         reviewreader = new FileReader(path2.toString() + "/src/main/res/" + folder + "/" + fileOfReview);
         getreview = new BufferedReader(reviewreader);
 
@@ -133,5 +150,23 @@ public class WriteReview implements WriteReviewInterface {
         getreview.close();
 
         return result;
+    }
+
+    /**
+     * Helper method, write file
+     */
+    private void writeFile(String path, ArrayList<Object> lst) {
+        try{
+            writereview = new FileWriter(path);
+            for(Object str: lst){
+                writereview.write(str.toString());
+                writereview.write("\r\n");
+            }
+            writereview.close();
+        }
+        catch (IOException e){
+            System.out.println("Unable to write file");
+        }
+
     }
 }

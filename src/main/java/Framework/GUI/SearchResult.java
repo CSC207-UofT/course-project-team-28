@@ -1,5 +1,6 @@
 package Framework.GUI;
 
+import InterfaceAdapter.Presenter.TextPresenter;
 import InterfaceAdapter.Search.Search;
 
 import javax.swing.*;
@@ -12,14 +13,14 @@ import java.util.List;
 
 public class SearchResult extends View{
     private final JPanel panel1;
-    private final GUIProfile guiProfile;
+    private final GUIProfile guiProfile = (GUIProfile) previous;
     private JList searchList;
     private String searchText;
+    private final TextPresenter textPresenter = guiProfile.getTextPresenter();
     Font font1 = new Font("SansSerif", Font.BOLD, 50);
 
     public SearchResult(View previous) {
         super(previous);
-        guiProfile = (GUIProfile) previous;
         panel1 = new JPanel();
         addComponentOnPanel(panel1);
     }
@@ -64,6 +65,7 @@ public class SearchResult extends View{
     public String getMovieSelected(){
         return (String) searchList.getSelectedValue();
     }
+    public TextPresenter getTextPresenter() { return this.textPresenter;}
 
     private void OnMovieNameClick(MouseEvent e){
         nextView(new MoviePage(this), true);
@@ -76,7 +78,7 @@ public class SearchResult extends View{
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
-        frame.setTitle("Search Result");
+        frame.setTitle(textPresenter.printText("Search Result"));
         frame.setSize(700,700);
         frame.add(panel1);
         frame.setLayout(null);
