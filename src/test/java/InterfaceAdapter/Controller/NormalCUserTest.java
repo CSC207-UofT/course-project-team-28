@@ -1,38 +1,46 @@
+package InterfaceAdapter.Controller;
+
 import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
-import InterfaceAdapter.Controller.NormalCUser;
 import InterfaceAdapter.InstanceMain;
-import junit.framework.TestCase;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
-public class NormalCUserTest extends TestCase {
+public class NormalCUserTest {
     private NormalCUser ncu;
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
 
-
     @Before
-    public void setUp() {
+    public void setUp(){
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
-        //TODO
-        WriteReview writeReview = new WriteReview();
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/main/res/Moviedata/", str1 + "/src/main/res/");
+        WriteReview writeReview = new WriteReview(str1 + "/src/test/res/Review");
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         ncu = InstanceMain.getNormalCUser();
     }
 
-    public void testRegister() {
+    @After
+    public void tearDown() throws Exception {
     }
 
-    public void testLogin() {
+    @Test
+    public void register() {
     }
 
-    public void testProfilePage() {
+    @Test
+    public void login() {
     }
 
-    public void testEditProfile() {
+    @Test
+    public void profilePage() {
+    }
+
+    @Test
+    public void editProfile() {
     }
 }
