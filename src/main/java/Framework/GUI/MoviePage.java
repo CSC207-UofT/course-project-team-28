@@ -174,7 +174,7 @@ public class MoviePage extends View {
     }
 
     private void OnReviewClick(MouseEvent e){
-        nextView(new ReviewPage(this),true);
+        nextView(new ReviewPage(this),false);
     }
 
     public int getSelectedReivew(){
