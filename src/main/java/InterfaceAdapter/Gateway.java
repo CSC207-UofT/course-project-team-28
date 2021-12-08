@@ -41,8 +41,8 @@ public class Gateway implements GatewayInterface {
      * @param password user's password
      */
     @Override
-    public void createFileAdminUser(String userName, String password, String picPath){
-        InstanceMain.getUserManager().createAdminuser(userName, password, picPath);
+    public void createFileAdminUser(String userName, String password){
+        InstanceMain.getUserManager().createAdminuser(userName, password);
 
 
     }

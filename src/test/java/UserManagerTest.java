@@ -38,7 +38,8 @@ public class UserManagerTest {
         infoList[7] ="/src/main/res/GUIPic/winnie.jpg";
 
         //InstanceMain setUp
-        WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
+        WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
+                "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
         WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
@@ -58,7 +59,7 @@ public class UserManagerTest {
     public void createAdminuser() {
         ArrayList<AdminUser> adminUser = InstanceMain.getUserManager().getAdminUserList();
         int originalSize = adminUser.size();
-        InstanceMain.getUserManager().createAdminuser("Nico", "123", "/src/main/res/GUIPic/shake hand.jpg");
+        InstanceMain.getUserManager().createAdminuser("Nico", "123");
         adminUser = InstanceMain.getUserManager().getAdminUserList();
         assertEquals(originalSize + 1,  adminUser.size());
 
@@ -72,12 +73,15 @@ public class UserManagerTest {
     public void createNormaluser() {
         ArrayList<NormalUser> normalUser = InstanceMain.getUserManager().getNormalUserList();
         int originalSize = normalUser.size();
-        InstanceMain.getUserManager().createNormaluser("Jac", "123", "511", "Anime is the best", "Romantic", 300, playList1, "/src/main/res/GUIPic/winnie.jpg");
+        InstanceMain.getUserManager().createNormaluser("Jac", "123", "511",
+                "Anime is the best", "Romantic", 300, playList1,
+                "/src/main/res/GUIPic/winnie.jpg");
         normalUser = InstanceMain.getUserManager().getNormalUserList();
         assertEquals(originalSize + 1,  normalUser.size());
 
         Object[] getUserInfo = InstanceMain.getUserManager().getUserInfoList("Jac", "NormalUser");
-        Object[] userInfo = new Object[]{"Jac", "123", "511", "Anime is the best", "Romantic", 300, playList1, "/src/main/res/GUIPic/winnie.jpg"};
+        Object[] userInfo = new Object[]{"Jac", "123", "511", "Anime is the best", "Romantic", 300, playList1,
+                "/src/main/res/GUIPic/winnie.jpg"};
         assertTrue(fileContentTest(userInfo, getUserInfo));
 
     }
@@ -106,7 +110,8 @@ public class UserManagerTest {
         assertEquals(originalSize + 1,  normalUser.size());
 
         Object[] getUserInfo1 = InstanceMain.getUserManager().getUserInfoList("Nico", "NormalUser");
-        Object[] userInfo1 = new Object[]{"Nico", "123", "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>(), "/src/main/res/GUIPic/winnie.jpg"};
+        Object[] userInfo1 = new Object[]{"Nico", "123", "Empty contact info", "Empty description" ,"Empty category",
+                300, new ArrayList<>(), "/src/main/res/GUIPic/winnie.jpg"};
         assertTrue(fileContentTest(userInfo1, getUserInfo1));
 
         assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/NormalUser/" + "Nico" + ".txt")));
@@ -115,30 +120,40 @@ public class UserManagerTest {
     @Test
     public void updateInfo() {
         InstanceMain.getUserManager().updateInfo("UserManager", "511","contactInfo");
-        InstanceMain.getUserManager().updateInfo("UserManager", "I like anime","description");
+        InstanceMain.getUserManager().updateInfo("UserManager", "I like anime",
+                "description");
         InstanceMain.getUserManager().updateInfo("UserManager", "Action","category");
-        InstanceMain.getUserManager().updateInfo("UserManager", "/src/main/res/GUIPic/paint.jpg","picPath");
+        InstanceMain.getUserManager().updateInfo("UserManager", "/src/main/res/GUIPic/paint.jpg",
+                "picPath");
 
-        Object[] getUserInfo = InstanceMain.getUserManager().getUserInfoList("UserManager", "NormalUser");
+        Object[] getUserInfo = InstanceMain.getUserManager().getUserInfoList("UserManager",
+                "NormalUser");
         ArrayList<String> lst = new ArrayList<>(List.of(new String[]{"Apple", "Candy", "Team28", "Happy Life"}));
 
-        Object[] userInfo = new Object[]{"UserManager", "12", "511", "I like anime" ,"Action", 300, lst, "/src/main/res/GUIPic/paint.jpg"};
+        Object[] userInfo = new Object[]{"UserManager", "12", "511", "I like anime" ,"Action", 300, lst,
+                "/src/main/res/GUIPic/paint.jpg"};
         assertTrue(fileContentTest(userInfo, getUserInfo));
 
-        InstanceMain.getUserManager().updateInfo("UserManager", "Empty contact info - um","contactInfo");
-        InstanceMain.getUserManager().updateInfo("UserManager", "Empty description - um","description");
-        InstanceMain.getUserManager().updateInfo("UserManager", "Empty category - um","category");
-        InstanceMain.getUserManager().updateInfo("UserManager", "/src/main/res/GUIPic/winnie.jpg","picPath");
+        InstanceMain.getUserManager().updateInfo("UserManager", "Empty contact info - um",
+                "contactInfo");
+        InstanceMain.getUserManager().updateInfo("UserManager", "Empty description - um",
+                "description");
+        InstanceMain.getUserManager().updateInfo("UserManager", "Empty category - um",
+                "category");
+        InstanceMain.getUserManager().updateInfo("UserManager", "/src/main/res/GUIPic/winnie.jpg",
+                "picPath");
     }
 
     @Test
     public void updateCoin() {
         InstanceMain.getUserManager().updateCoin("UserManager", 2);
-        Object[] getUserInfo1 = InstanceMain.getUserManager().getUserInfoList("UserManager", "NormalUser");
+        Object[] getUserInfo1 = InstanceMain.getUserManager().getUserInfoList("UserManager",
+                "NormalUser");
         assertEquals(302, getUserInfo1[5]);
 
         InstanceMain.getUserManager().updateCoin("UserManager", -2);
-        Object[] getUserInfo2 = InstanceMain.getUserManager().getUserInfoList("UserManager", "NormalUser");
+        Object[] getUserInfo2 = InstanceMain.getUserManager().getUserInfoList("UserManager",
+                "NormalUser");
         assertEquals(300, getUserInfo2[5]);
 
 
@@ -174,9 +189,12 @@ public class UserManagerTest {
 
     @Test
     public void userIfExist() {
-        assertTrue(InstanceMain.getUserManager().userIfExist("UserManager", "12","NormalUser"));
-        assertTrue(InstanceMain.getUserManager().userIfExist("WriteUser", "12","AdminUser"));
-        assertFalse(InstanceMain.getUserManager().userIfExist("NormalUser","123","NormalUser"));
+        assertTrue(InstanceMain.getUserManager().userIfExist("UserManager", "12",
+                "NormalUser"));
+        assertTrue(InstanceMain.getUserManager().userIfExist("WriteUser", "12",
+                "AdminUser"));
+        assertFalse(InstanceMain.getUserManager().userIfExist("NormalUser","123",
+                "NormalUser"));
         assertFalse(InstanceMain.getUserManager().userIfExist("Ella", "12","AdminUser"));
     }
 
