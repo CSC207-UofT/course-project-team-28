@@ -197,6 +197,7 @@ public class WriteUser implements WriteUserInterface {
     public boolean editProfileReadAndWrite(String username, String newUpdate, String writeType) {
         ArrayList<Object> lst = readFile(halfNuPath + username + ".txt");
 
+        //noinspection EnhancedSwitchMigration
         switch (writeType) {
             case "contactInfo":
                 lst.set(2, newUpdate);

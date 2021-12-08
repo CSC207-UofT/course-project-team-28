@@ -1,7 +1,7 @@
 NormalController
 123yu
-Empty contact info - nc
-Empty description - nc
+12345678ContactInfo
+test description
 Empty category - nc
 200
 [Apple,Candy,Team28,Happy Life]

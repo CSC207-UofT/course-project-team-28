@@ -1,8 +1,6 @@
 package InterfaceAdapter.Controller;
 
-import Entity.Movie;
 import InterfaceAdapter.InstanceMain;
-import UseCase.MovieRanking;
 
 import java.util.ArrayList;
 
@@ -99,12 +97,11 @@ public class NormalCMovie extends NormalController{
     }
 
     /**
-     *
+     * return ranked movies
      * @return sorted ArrayList of Movie, the first one is the most popular movie (with most likes).
      */
-    public ArrayList<Movie> rankMovie(){
-        MovieRanking mr = new MovieRanking();
-        return mr.getMovieRank();
+    public ArrayList<Object[]> rankMovie(){
+        return InstanceMain.getMovieManager().rankedMoviesProfile();
     }
 
     /**
