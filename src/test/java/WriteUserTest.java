@@ -48,6 +48,7 @@ public class WriteUserTest {
 
 
         //InstanceMain setUp
+        InstanceMain.setClearInstance();
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
                 "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
