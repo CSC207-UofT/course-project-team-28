@@ -105,7 +105,7 @@ public class ReviewManager {
     public boolean writeReview(String userName, String movieName, String content, int numCoin , int ID) {
         Review rev = new Review(userName, movieName, content, numCoin, ID);
         this.reviewList.add(rev);
-        this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
+        this.totalNumOfReview = this.getMaxRevId();
         return addMr(movieName, rev); // && addUr(userName, rev);
     }
 
@@ -125,7 +125,7 @@ public class ReviewManager {
         this.totalNumOfReview = this.totalNumOfReview + 1;
         Review rev = new Review(userName, movieName, content, numCoin, totalNumOfReview);
         this.reviewList.add(rev);
-        this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
+        // this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
         return addMr(movieName, rev) // && addUr(userName, rev)
                 && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
     }
@@ -153,6 +153,21 @@ public class ReviewManager {
         return coinAfter - 1 == coin && this.gateway.editCoin(username, reviewId);
     }
 
+
+    /**
+     * find the max review Id in reviewList
+     * @return the max review Id in reviewList
+     */
+    private int getMaxRevId() {
+        int maxId = 0;
+        for (Review rev: this.reviewList){
+            int currId = rev.getID();
+            if (currId > maxId){
+                maxId = currId;
+            }
+        }
+        return maxId;
+    }
 
     /**
      * should only be called when review id is valid.
