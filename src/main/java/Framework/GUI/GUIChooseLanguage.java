@@ -98,6 +98,7 @@ public class GUIChooseLanguage extends View{
     }
 
     public static void main(String[] args) throws IOException {
+        InstanceMain.setClearInstance();
         WriteUser writeUser = new WriteUser();
         WriteReview writeReview = new WriteReview();
         WriteMovie writeMovie = new WriteMovie();
