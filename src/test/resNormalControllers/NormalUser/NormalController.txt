@@ -1,0 +1,8 @@
+NormalController
+12
+Empty contact info - nc
+Empty description - nc
+Empty category - nc
+300
+[Apple,Candy,Team28,Happy Life]
+/src/main/res/GUIPic/winnie.jpg
