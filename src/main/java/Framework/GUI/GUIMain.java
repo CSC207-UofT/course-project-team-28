@@ -22,6 +22,7 @@ public class GUIMain extends View {
     public TextPresenter textPresenter;
     private GUIChooseLanguage chooseLanguage;
 
+
     /*
     GuiMain designs the main interface of our program, with four buttons, AdminRegister, register, AdminLogin and login.
     Users can choose one button they want.
@@ -122,10 +123,6 @@ public class GUIMain extends View {
         jFrame.setVisible(true);
         addComponentToP1();
         jFrame.add(panel1);
-        WriteUser writeUser = new WriteUser();
-        WriteReview writeReview = new WriteReview();
-        WriteMovie writeMovie = new WriteMovie();
-        InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return jFrame;
     }

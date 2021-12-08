@@ -17,9 +17,9 @@ public class NormalCUserTest {
 
     @Before
     public void setUp(){
-        WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
-        WriteReview writeReview = new WriteReview(str1 + "/src/test/res/Review");
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
+        WriteUser writeUser = new WriteUser(str1 + "/src/test/resNormalControllers/NormalUser", str1 + "/src/test/resNormalControllers/AdminUser");
+        WriteReview writeReview = new WriteReview(str1 + "/src/test/resNormalControllers/Review");
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/resNormalControllers/Moviedata/", str1 + "/src/test/resNormalControllers/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         ncu = InstanceMain.getNormalCUser();
     }
