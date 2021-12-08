@@ -108,7 +108,8 @@ public class GatewayTest {
 
             infoList[6] = new ArrayList<>();
 
-            assertTrue(fileContentTest(infoList, InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "Ella" + ".txt").toArray()));
+            assertTrue(fileContentTest(infoList, InstanceMain.getWriteUser().readFile(str1 +
+                    "/src/test/res/NormalUser/" + "Ella" + ".txt").toArray()));
 
             assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/NormalUser/" + "Ella" + ".txt")));
             infoList[6] = list;

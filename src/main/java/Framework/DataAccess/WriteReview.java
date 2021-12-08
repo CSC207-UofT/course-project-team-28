@@ -98,9 +98,9 @@ public class WriteReview implements WriteReviewInterface {
     @Override
     public boolean addCoinsToReview(int id, int numCoin) {
         try {
-            ArrayList<Object> revLst = new ArrayList<>(readFile(str1 + Integer.toString(id) + ".txt"));
+            ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));
             revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
-            String path1 = str1 + "/src/main/res/Review/" + id + ".txt";
+            String path1 = halfRvPath + id + ".txt";
             writeFile(path1, revLst);
             return true;
         }

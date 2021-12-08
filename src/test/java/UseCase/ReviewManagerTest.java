@@ -102,14 +102,14 @@ public class ReviewManagerTest {
 
     }
 
-//    @Test
+    @Test
 //    TODO
-//    public void addCoin() {
-//        int numCoinExp = (int) rm.getRevInfoById(3)[3] + 1;
-//        assertTrue(rm.addCoin(3, "ReviewManager3"));
-//        int act = (int) rm.getRevInfoById(3)[3];
-//        assertEquals(numCoinExp, act);
-//    }
+    public void addCoin() {
+        int numCoinExp = (int) rm.getRevInfoById(3)[3] + 1;
+        assertTrue(rm.addCoin(3, "ReviewManager3"));
+        int act = (int) rm.getRevInfoById(3)[3];
+        assertEquals(numCoinExp, act);
+    }
 
     @Test
     public void getRevInfoById() {
