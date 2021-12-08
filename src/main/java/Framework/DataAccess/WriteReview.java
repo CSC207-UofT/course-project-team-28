@@ -116,7 +116,21 @@ public class WriteReview implements WriteReviewInterface {
      * Read the Core.Review folder, create object for each review and return an ArrayList, which consists of Core.Review Objects.
      */
     @Override
-    public void getObjectFromFile(){
+    public void getObjectFromFile() {
+//        String[] lstOfReview = ReviewFolderPath.list();
+//
+//        if (lstOfReview != null) {
+//            for (String rv : lstOfReview) {
+//                ArrayList<String> lst = readFile(halfRvPath, rv);
+//
+//                this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
+//                        Integer.parseInt(lst.get(4)));
+//
+//                }
+//            }
+//        }
+
+
         try {
             String[] lstOfReview = ReviewFolderPath.list();
 
@@ -124,15 +138,20 @@ public class WriteReview implements WriteReviewInterface {
                 for (String rv : lstOfReview) {
                     ArrayList<String> lst = readFile(halfRvPath, rv);
 
-                    this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
+                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)),
                             Integer.parseInt(lst.get(4)));
 
                 }
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Unable to get the file from the Movie Folder");
         }
+    }
+
+
+
+
+
 //        try {
 //            // get the path of src
 //            Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -157,7 +176,7 @@ public class WriteReview implements WriteReviewInterface {
 //        catch (IOException e){
 //            System.out.println("Unable to get the file from the Movie Folder");
 //        }
-    }
+//    }
 
 
 
@@ -165,7 +184,7 @@ public class WriteReview implements WriteReviewInterface {
      * read the Core.Review file
      */
     private ArrayList<String> readFile(String path2, String fileOfReview) throws IOException{
-        reviewReader = new FileReader(path2.toString() + "/src/main/res/" + "Review" + "/" + fileOfReview);
+        reviewReader = new FileReader(path2 + "/src/main/res/" + "Review/" + fileOfReview);
         getReview = new BufferedReader(reviewReader);
 
         ArrayList<String> result = new ArrayList<>();

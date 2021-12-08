@@ -85,7 +85,7 @@ public class GatewayTest {
 
     @Test
     public void createFileAdminUser() {
-        gateway.createFileAdminUser("Nico","123","/src/main/res/GUIPic/shake hand.jpg");
+        gateway.createFileAdminUser("Nico","123");
         fileContentTest(InstanceMain.getUserManager().getUserInfoList("Nico","AdminUser"), auInfoList);
     }
 

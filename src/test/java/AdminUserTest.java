@@ -10,7 +10,7 @@ public class AdminUserTest {
 
     @Before
     public void setUpBeforeMethod(){
-        au = new AdminUser("TestAdminUser","12", "");
+        au = new AdminUser("TestAdminUser","12");
     }
 
     @Test

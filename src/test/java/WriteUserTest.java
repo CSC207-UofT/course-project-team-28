@@ -48,7 +48,8 @@ public class WriteUserTest {
 
 
         //InstanceMain setUp
-        WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
+        WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
+                "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
         WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
@@ -72,9 +73,11 @@ public class WriteUserTest {
     @Test
     public void createFileNu() {
         try{
-            assertTrue(InstanceMain.getWriteUser().createFile("Nico", "123", "NormalUser"));
+            assertTrue(InstanceMain.getWriteUser().createFile("Nico", "123",
+                    "NormalUser"));
 
-            assertTrue(fileContentTest(infoList, InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "Nico" + ".txt")));
+            assertTrue(fileContentTest(infoList, InstanceMain.getWriteUser().readFile(str1 +
+                    "/src/test/res/NormalUser/" + "Nico" + ".txt")));
 
             assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/NormalUser/" + "Nico" + ".txt")));
 
@@ -88,10 +91,12 @@ public class WriteUserTest {
     @Test
     public void createFileAu() {
         try{
-            assertTrue(InstanceMain.getWriteUser().createFile("Ella", "12", "AdminUser"));
+            assertTrue(InstanceMain.getWriteUser().createFile("Ella", "12",
+                    "AdminUser"));
 
 
-            assertTrue(fileContentTest(auInfoList, InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/AdminUser/" + "Ella" + ".txt")));
+            assertTrue(fileContentTest(auInfoList, InstanceMain.getWriteUser().readFile(str1 +
+                    "/src/test/res/AdminUser/" + "Ella" + ".txt")));
 
             assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/AdminUser/" + "Ella" + ".txt")));
         }
@@ -120,7 +125,8 @@ public class WriteUserTest {
         ArrayList<NormalUser> nuList = InstanceMain.getUserManager().getNormalUserList();
         assertEquals(8, nuList.size());
 
-        Object[] userFile = {"CoinManager", "MovieManager", "NormalController", "ReviewManager1", "ReviewManager2", "ReviewManager3", "UserManager", "WriteUser"};
+        Object[] userFile = {"CoinManager", "MovieManager", "NormalController", "ReviewManager1", "ReviewManager2",
+                "ReviewManager3", "UserManager", "WriteUser"};
 
         for (int i = 0; i < 8; i++){
             assertEquals(nuList.get(i).getUsername(), userFile[i]);
@@ -133,7 +139,8 @@ public class WriteUserTest {
         assertTrue(InstanceMain.getWriteUser().givelikeReadAndWrite("Water", "WriteUser"));
         assertTrue(InstanceMain.getWriteUser().givelikeReadAndWrite("Banana", "WriteUser"));
 
-        ArrayList<Object> lst1  = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
+        ArrayList<Object> lst1  = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" +
+                "WriteUser.txt");
         ArrayList<Object> pl2;
 
         lst1.set(6, lst1.get(6).toString().replace("[", "")); //get rid of "[" in playlist
@@ -154,7 +161,8 @@ public class WriteUserTest {
         InstanceMain.getWriteUser().undoLikeReadAndWrite("Water", "WriteUser");
         InstanceMain.getWriteUser().undoLikeReadAndWrite("Banana", "WriteUser");
 
-        ArrayList<Object> lst2  = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
+        ArrayList<Object> lst2  = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" +
+                "WriteUser.txt");
         ArrayList<Object> pl3;
 
         lst2.set(6, lst2.get(6).toString().replace("[", "")); //get rid of "[" in playlist
@@ -173,35 +181,44 @@ public class WriteUserTest {
 
     @Test
     public void editProfile() {
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "647", "contactInfo"));
-        ArrayList<Object> data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "647",
+                "contactInfo"));
+        ArrayList<Object> data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" +
+                "WriteUser.txt");
         assertEquals(data.get(2), "647");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "51129", "contactInfo"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "51129",
+                "contactInfo"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(2), "51129");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "I like Anime", "description"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "I like Anime",
+                "description"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(3), "I like Anime");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "I like Movie", "description"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "I like Movie",
+                "description"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(3), "I like Movie");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "Action", "category"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "Action",
+                "category"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(4), "Action");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "Romantic", "category"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "Romantic",
+                "category"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(4), "Romantic");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "2", "coin"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "2",
+                "coin"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(5), "302");
 
-        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "-2", "coin"));
+        assertTrue(InstanceMain.getWriteUser().editProfileReadAndWrite("WriteUser", "-2",
+                "coin"));
         data = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "WriteUser.txt");
         assertEquals(data.get(5), "300");
 

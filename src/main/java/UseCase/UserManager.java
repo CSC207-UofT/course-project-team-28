@@ -30,8 +30,8 @@ public class UserManager {
      * @param username username of .AdminUser
      * @param password password of AdminUser
      */
-    public void createAdminuser(String username, String password, String picPath) {
-        AdminUser adminUser = new AdminUser(username, password, picPath);
+    public void createAdminuser(String username, String password) {
+        AdminUser adminUser = new AdminUser(username, password);
         lstOfAdminUser.add(adminUser);
     }
 
@@ -52,10 +52,11 @@ public class UserManager {
      * @param password password of Core.User.AdminUser
      */
     public boolean createNewAdminuser(String username, String password) {
-        AdminUser adminUser = new AdminUser(username, password, "/src/main/res/GUIPic/shake hand.jpg");
+        AdminUser adminUser = new AdminUser(username, password);
         lstOfAdminUser.add(adminUser);
 
-        return lstOfAdminUser.contains(adminUser) &&  this.gateway.createNewUser(username, password, "AdminUser");
+        return lstOfAdminUser.contains(adminUser) &&  this.gateway.createNewUser(username, password,
+                "AdminUser");
     }
 
     /**
@@ -64,7 +65,9 @@ public class UserManager {
      * @param password password of Core.User.NormalUser
      */
     public boolean createNewNormaluser(String username, String password) {
-        NormalUser normalUser = new NormalUser(username, password, "Empty contact info", "Empty description" ,"Empty category", 300, new ArrayList<>(), "/src/main/res/GUIPic/winnie.jpg");
+        NormalUser normalUser = new NormalUser(username, password, "Empty contact info",
+                "Empty description" ,"Empty category", 300, new ArrayList<>(),
+                "/src/main/res/GUIPic/shake hand.jpg");
         lstOfNormalUser.add(normalUser);
 
         return lstOfNormalUser.contains(normalUser) && this.gateway.createNewUser(username, password, "NormalUser");

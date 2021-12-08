@@ -56,6 +56,7 @@ public class WriteUser implements WriteUserInterface {
      * Depending the usertype, create the admin user or normal user file, and add user object to UserManager.
      * @param userName the name of user
      * @param userPassword the password of user
+     * @param userType the type of user
      * @return return true if the file and object successfully created.
      */
 
@@ -73,13 +74,12 @@ public class WriteUser implements WriteUserInterface {
             infoList.add("Empty category");
             infoList.add("300");
             infoList.add("[]");
-            infoList.add("/src/main/res/GUIPic/winnie.jpg");
+            infoList.add("/src/main/res/GUIPic/shake hand.jpg");
 
             writeFile(halfNuPath + userName + ".txt", infoList);
             file_if_exist = new File(halfNuPath + userName + ".txt");
         }
         else{
-            infoList.add("/src/main/res/GUIPic/shake hand.jpg");
             writeFile(halfAuPath + userName + ".txt", infoList);
             file_if_exist = new File(halfAuPath  + userName + ".txt");
         }
@@ -100,7 +100,7 @@ public class WriteUser implements WriteUserInterface {
             for(String au: lstOfAdmin) {
                 ArrayList<Object> lst = readFile(halfAuPath + au);
 
-                this.gateway.createFileAdminUser(lst.get(0).toString(), lst.get(1).toString(), lst.get(2).toString());
+                this.gateway.createFileAdminUser(lst.get(0).toString(), lst.get(1).toString());
             }
         }
         getNormalUserFromFile();
