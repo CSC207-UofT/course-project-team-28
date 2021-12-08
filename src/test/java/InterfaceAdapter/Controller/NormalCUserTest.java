@@ -21,6 +21,7 @@ public class NormalCUserTest {
 
     @BeforeClass
     public static void setUp(){
+        InstanceMain.setClearInstance();
         WriteUser writeUser = new WriteUser(str1 + "/src/test/resNormalControllers/NormalUser", str1 + "/src/test/resNormalControllers/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/resNormalControllers/Review");
         WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/resNormalControllers/Moviedata/", str1 + "/src/test/resNormalControllers/");
@@ -82,13 +83,13 @@ public class NormalCUserTest {
         expectPlaylist.add("Happy Life");
         Object[] expect = {"ReviewManager1", "12ab", "Empty contact info - rm1", "Empty description - rm1",
                 "Empty category - rm1", 288, expectPlaylist, "/src/main/res/GUIPic/winnie.jpg"};
-        for (int i = 0; i <= 7; i++){
-            if (i != 6){ //skip playlist
+        for (int i = 0; i <= 7; i++) {
+            if (i != 6) { //skip playlist
                 assertEquals(expect[i], actual[i]);
             }
+        }
         for (int j = 0; j <= 2; j++) {
             assertEquals(((ArrayList<String>) expect[6]).get(j), ((ArrayList<String>) actual[6]).get(j));
-            }
         }
     }
 

@@ -1,8 +1,7 @@
+package Framework.DataAccess;
+
 import Entity.User.AdminUser;
 import Entity.User.NormalUser;
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteReview;
-import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,7 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

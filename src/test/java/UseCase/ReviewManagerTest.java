@@ -21,6 +21,7 @@ public class ReviewManagerTest {
 
     @BeforeClass
     public static void setUp() {
+        InstanceMain.setClearInstance();
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser",
                 str1 + "/src/test/res/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/res/Review");
