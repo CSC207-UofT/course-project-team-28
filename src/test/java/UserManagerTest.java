@@ -35,7 +35,7 @@ public class UserManagerTest {
         infoList[4] ="Empty category - um";
         infoList[5] = "300";
         infoList[6] = list;
-        infoList[7] ="/src/main/res/GUIPic/winnie.jpg";
+        infoList[7] ="/src/main/res/GUIPic/paint.jpg";
 
         //InstanceMain setUp
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
@@ -75,13 +75,13 @@ public class UserManagerTest {
         int originalSize = normalUser.size();
         InstanceMain.getUserManager().createNormaluser("Jac", "123", "511",
                 "Anime is the best", "Romantic", 300, playList1,
-                "/src/main/res/GUIPic/winnie.jpg");
+                "/src/main/res/GUIPic/paint.jpg");
         normalUser = InstanceMain.getUserManager().getNormalUserList();
         assertEquals(originalSize + 1,  normalUser.size());
 
         Object[] getUserInfo = InstanceMain.getUserManager().getUserInfoList("Jac", "NormalUser");
         Object[] userInfo = new Object[]{"Jac", "123", "511", "Anime is the best", "Romantic", 300, playList1,
-                "/src/main/res/GUIPic/winnie.jpg"};
+                "/src/main/res/GUIPic/paint.jpg"};
         assertTrue(fileContentTest(userInfo, getUserInfo));
 
     }
@@ -111,8 +111,10 @@ public class UserManagerTest {
 
         Object[] getUserInfo1 = InstanceMain.getUserManager().getUserInfoList("Nico", "NormalUser");
         Object[] userInfo1 = new Object[]{"Nico", "123", "Empty contact info", "Empty description" ,"Empty category",
-                300, new ArrayList<>(), "/src/main/res/GUIPic/winnie.jpg"};
+                300, new ArrayList<>(), "/src/main/res/GUIPic/paint.jpg"};
+        getUserInfo1[7] = "/src/main/res/GUIPic/paint.jpg";
         assertTrue(fileContentTest(userInfo1, getUserInfo1));
+        getUserInfo1[7] = "/src/main/res/GUIPic/shake hand.jpg";
 
         assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/NormalUser/" + "Nico" + ".txt")));
     }
@@ -183,7 +185,9 @@ public class UserManagerTest {
     public void getUserInfoList() {
         Object[] lst = InstanceMain.getUserManager().getUserInfoList("UserManager", "NormalUser");
         lst[5] = lst[5].toString();
+        infoList[7] = "/src/main/res/GUIPic/winnie.jpg";
         assertTrue(fileContentTest(lst, infoList));
+        infoList[7] = "/src/main/res/GUIPic/paint.jpg";
     }
 
 

@@ -24,7 +24,6 @@ public class GatewayTest {
     private static Object[] infoList;
     private static Object[] auInfoList;
     private static Object[] movieList;
-    private static Object[] reviewList;
     private static List<String> list = Arrays.asList("Apple", "Candy", "Team28", "Happy Life");
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
     private static final GatewayInterface gateway = new Gateway();
@@ -53,12 +52,6 @@ public class GatewayTest {
         movieList[2] = "Action";
         movieList[3] = 3;
 
-        reviewList = new Object[5];
-        reviewList[0] = "Ella";
-        reviewList[1] = "Sugar";
-        reviewList[2] = "I like this movie";
-        reviewList[3] = 6;
-        reviewList[4] = 3;
 
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
@@ -108,8 +101,11 @@ public class GatewayTest {
 
             infoList[6] = new ArrayList<>();
 
-            assertTrue(fileContentTest(infoList, InstanceMain.getWriteUser().readFile(str1 +
-                    "/src/test/res/NormalUser/" + "Ella" + ".txt").toArray()));
+            Object[] ls = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "Ella" + ".txt").toArray();
+            ls[6] = new ArrayList<>();
+            ls[7] = "/src/main/res/GUIPic/winnie.jpg";
+
+            assertTrue(fileContentTest(infoList, ls));
 
             assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/NormalUser/" + "Ella" + ".txt")));
             infoList[6] = list;
@@ -133,7 +129,13 @@ public class GatewayTest {
 
     @Test
     public void createNewReview() {
-        //TODO
+        try {
+            gateway.createNewReview("UserManager", "Apple","I like this movie",10);
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Review" + "10" + ".txt")));
+        }
+        catch (Exception e){
+            System.out.println("Unable to create new review");
+        }
     }
 
     @Test
