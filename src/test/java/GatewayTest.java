@@ -53,6 +53,7 @@ public class GatewayTest {
         movieList[3] = 3;
 
 
+        InstanceMain.setClearInstance();
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
         WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");

@@ -38,6 +38,7 @@ public class UserManagerTest {
         infoList[7] ="/src/main/res/GUIPic/paint.jpg";
 
         //InstanceMain setUp
+        InstanceMain.setClearInstance();
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
                 "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
