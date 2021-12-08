@@ -185,4 +185,17 @@ public class MovieManager {
         return Movies;
     }
 
+    public ArrayList<Object[]> rankedMoviesProfile() {
+        MovieRanking mr = new MovieRanking();
+        ArrayList<Movie> rankedMovies = mr.getMovieRank();
+        ArrayList<Object[]> result = new ArrayList<>();
+        if (! rankedMovies.isEmpty()){
+            for (Movie mov: rankedMovies){
+                String movieName = mov.getMoviename();
+                result.add(this.getMovieProfile(movieName));
+            }
+        }
+        return result;
+    }
+
 }
