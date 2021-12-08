@@ -1,107 +1,119 @@
 package InterfaceAdapter.Controller;
 
-import InterfaceAdapter.WriteFiles.WriteMovie;
-import InterfaceAdapter.WriteFiles.WriteReview;
-import InterfaceAdapter.WriteFiles.WriteUser;
+import Entity.Movie;
+import InterfaceAdapter.InstanceMain;
+import UseCase.MovieRanking;
 
 import java.util.ArrayList;
 
+/**
+ * NormalCMovie (InterfaceAdapter)
+ * Controller responsible for movie-related operations.
+ */
 public class NormalCMovie extends NormalController{
 
     public NormalCMovie() {
         super();
     }
 
-
-    //movie
-
     /**
-     * check if the moviename exists
+     * check if the movieName exists
+     * @param movieName the name of the movie.
      * @return ture iff the movie exists
      */
-    public boolean ifMovieExist(String moviename){
-        if (movMana.get_movie(moviename) == null) {
-            return false;
-        }
-        return true;
-    }
-
-//    /**
-//     * Should be only called when the movie name <mn> exists in the data base
-//     * @return an arraylist [movie name, movie link, reviews, number of likes], where movie name
-//     *         and movie link are strings, reviews is [String of review 1 of the moive,
-//     *         String of review 2 of the movie, ...]
-//     */
-//    public String search(String mn){
-//        return movMana.get_movieprofile(mn);
-//    }
-
-
-    /**
-     * Should be only called when the movie name <mn> exists in the data base
-     * @return an String with movie name, movie link, number of likes, reviews
-     */
-    public String movieProfile(String moviename) {
-        return movMana.get_movieprofile(moviename) + "\n" + revMana.RevsOfMovieString(moviename);
-    }
-
-
-
-
-    /**
-     * Should be only called when the movie name <moviename> exists in the data base
-     * Given a String moviename, add like.
-     * return ture iff added successfully.
-     */
-    public boolean likeMovie(String moviename, WriteMovie wm, WriteUser wu) {
-        if (userMana.giveLike(this.currNuname, moviename)){
-            wm.addLikeToFile( moviename, "Increase");
-            movMana.like_movie(moviename);
-            wu.givelikeReadAndWrite(moviename, this.currNuname);
-            return true;
-        }
-        else {
-            //user_mana.undo_like(this.curr_nuname, moviename);
-            return false;
-        }
+    public boolean ifMovieExist(String movieName){
+        return InstanceMain.getMovieManager().getMovie(movieName) != null;
     }
 
     /**
-     * return ture iff the user's playlist is empty.
+     * Should be only called when the movie name <movieName> exists in the database
+     * @param movieName the name of the movie.
+     * @return an array of the information of the movie in the form of
+     *         [movieName, movieLink, movieCategory, numOfLikes]
      */
+    public Object[] movieProfile(String movieName) {
+        return InstanceMain.getMovieManager().getMovieProfile(movieName);
+    }
+
+    /**
+     * Should be only called when the movie name <movieName> exists in the database
+     * When given a movieName, return the sorted review of the movie, and the review with more coins
+     * is at the front of the list.
+     * @param movieName the name of the movie.
+     * @return an arraylist of arrays, where each array stores information of a single review in the form of
+     *         [username of reviewer, movieName, reviewContent, numCoin, ID].
+     */
+    public ArrayList<Object[]> movieReviews(String movieName) {
+        return InstanceMain.getReviewManager().listRevsOfMovie(movieName);
+    }
+
+    /**
+     * should only be called when review id is valid.
+     * when given ID of a review, return the information of the review.
+     * @param reviewId id of the review
+     * @return the review info in the array [reviewer, movie, reviewContent, numCoin, ID]
+     */
+    public Object[] getReviewInfo(int reviewId){
+        return InstanceMain.getReviewManager().getRevInfoById(reviewId);
+    }
+
+    /**
+     * Should be only called when the movie name <movieName> exists in the database
+     * Given a String movieName, add like.
+     * @param movieName name of the movie.
+     * @return ture iff like is added successfully.
+     */
+    public boolean likeMovie(String movieName) {
+        if (InstanceMain.getUserManager().giveLike(this.currNormalName, movieName)){
+            return InstanceMain.getMovieManager().likeMovie(movieName)
+                    && InstanceMain.getUserManager().giveLike(this.currNormalName, movieName);
+        }
+        else {return false;}
+    }
+
+    /**
+     * @return ture iff the user's playlist is empty.
+     */
+    @SuppressWarnings("unchecked")
     public boolean emptyPlaylist() {
-        Object[] user_info = userMana.getUserInfoList(currNuname, "NormalUser");
-        ArrayList<String> user_playlist = (ArrayList<String>) user_info[6];
-        return user_playlist.isEmpty();
+        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
+        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
+        return userPlaylist.isEmpty();
     }
 
     /**
-     * Given a String moviename, undo like.
-     * return ture iff added successfully.
+     * Should be only called when the movie name <movieName> exists in the database
+     * Given a String movieName, undo like.
+     * @param movieName name of the movie.
+     * @return ture iff undolike successfully.
      */
-    public boolean undoLike(String moviename, WriteMovie wm, WriteUser wu) {
-        Object[] user_info = userMana.getUserInfoList(currNuname, "NormalUser");
-        ArrayList<String> user_playlist = (ArrayList<String>) user_info[6];
-        if (user_playlist.contains(moviename)){
-            userMana.undoLike(this.currNuname, moviename);
-            movMana.undolike_movie(moviename);
-            wm.addLikeToFile(moviename, "Decrease");
-            wu.undoLikeReadAndWrite(moviename, this.currNuname);
-            return true;
+    @SuppressWarnings("unchecked")
+    public boolean undoLike(String movieName) {
+        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
+        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
+        if (userPlaylist.contains(movieName)){
+            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName)
+                    && InstanceMain.getMovieManager().undolikeMovie(movieName);
         }
-        else{
-            return false;
-        }
+        else {return false;}
     }
 
     /**
-     * add a review when provided with moviename of the movie and review content
-     * return ture iff a review is successfully added. false otherwise
+     *
+     * @return sorted ArrayList of Movie, the first one is the most popular movie (with most likes).
      */
-    public boolean writeReview(String movieName, String revContent, WriteReview wr, WriteMovie wm) {
-        wm.addReviewToFile(this.currNuname, movieName, revContent);
-        return wr.createFile(currNuname, movieName, revContent);
+    public ArrayList<Movie> rankMovie(){
+        MovieRanking mr = new MovieRanking();
+        return mr.getMovieRank();
     }
 
+    /**
+     * add a review when provided with movieName of the movie and review content
+     * @param movieName name of the movie
+     * @param revContent content of review
+     * @return ture iff a review is successfully added. false otherwise
+     */
+    public boolean writeReview(String movieName, String revContent) {
+        return InstanceMain.getReviewManager().writeNewReview(this.currNormalName, movieName, revContent, 0);}
 
 }

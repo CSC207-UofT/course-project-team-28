@@ -1,4 +1,4 @@
-import Core.User.NormalUser;
+import Entity.User.NormalUser;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,13 +14,13 @@ public class NormalUserTest {
     @Before
     public void setUpBeforeMethod() {
         playList = new ArrayList<>(Arrays.asList("Apple", "Banana", "Candy", "Happy Life","Team28", "Water"));
-        nu = new NormalUser("TestNormalUser", "123", "123456789", "I like movie","Comedy",300, playList);
+        nu = new NormalUser("TestNormalUser", "123", "123456789", "I like movie","Comedy",300, playList, "");
     }
 
 
     @Test
     public void getObjectLength() {
-        assertEquals(7, nu.getObject().length);
+        assertEquals(8, nu.getObject().length);
     }
 
     @Test
@@ -112,5 +112,11 @@ public class NormalUserTest {
     public void setCoin() {
         nu.setCoin(250);
         assertEquals(250, nu.getCoin());
+    }
+
+    @Test
+    public void changePic() {
+        nu.changePic("123456789");
+        assertEquals("123456789", nu.getPicPath());
     }
 }
