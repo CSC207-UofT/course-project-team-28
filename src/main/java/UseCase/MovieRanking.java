@@ -8,14 +8,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 //import java.util.Map;
 
+/**
+ * Sorts movies with the number of likes they receive.
+ */
 public class MovieRanking {
     private final ArrayList<Movie> MovieRank;
     private final ArrayList<Movie> Movies;
-//    private MovieManager movieManager;
 
     public MovieRanking() {
         this.MovieRank = new ArrayList<>();
         this.Movies = InstanceMain.getMovieManager().getMovies();
+    }
+
+    /**
+     * only used in test
+     */
+    public MovieRanking(ArrayList<Movie> movies){
+        this.Movies = movies;
+        this.MovieRank = new ArrayList<>();
     }
 
     /**

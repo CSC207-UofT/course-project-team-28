@@ -1,4 +1,4 @@
-CoinManager
+CoinManager2
 12
 Empty contact info - cm
 Empty description - cm
