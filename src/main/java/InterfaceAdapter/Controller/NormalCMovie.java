@@ -69,32 +69,16 @@ public class NormalCMovie extends NormalController{
         else {return false;}
     }
 
-    /**
-     * @return ture iff the user's playlist is empty.
-     */
-    @SuppressWarnings("unchecked")
-    public boolean emptyPlaylist() {
-        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
-        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
-        return userPlaylist.isEmpty();
-    }
+//    /**
+//     * @return ture iff the user's playlist is empty.
+//     */
+//    @SuppressWarnings("unchecked")
+//    public boolean emptyPlaylist() {
+//        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
+//        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
+//        return userPlaylist.isEmpty();
+//    }
 
-    /**
-     * Should be only called when the movie name <movieName> exists in the database
-     * Given a String movieName, undo like.
-     * @param movieName name of the movie.
-     * @return ture iff undolike successfully.
-     */
-    @SuppressWarnings("unchecked")
-    public boolean undoLike(String movieName) {
-        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
-        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
-        if (userPlaylist.contains(movieName)){
-            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName)
-                    && InstanceMain.getMovieManager().undolikeMovie(movieName);
-        }
-        else {return false;}
-    }
 
     /**
      * return ranked movies
