@@ -39,12 +39,11 @@ public class WriteUserTest {
         infoList[4] ="Empty category";
         infoList[5] ="300";
         infoList[6] ="[]";
-        infoList[7] ="/src/main/res/GUIPic/winnie.jpg";
+        infoList[7] ="/src/main/res/GUIPic/shake hand.jpg";
 
-        auInfoList = new Object[3];
+        auInfoList = new Object[2];
         auInfoList[0] = "Ella";
         auInfoList[1] = "12";
-        auInfoList[2] = "/src/main/res/GUIPic/shake hand.jpg";
 
 
         //InstanceMain setUp

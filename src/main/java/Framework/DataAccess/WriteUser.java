@@ -37,8 +37,8 @@ public class WriteUser implements WriteUserInterface {
 
     /**
      * Constructor for test use only
-     * @param normalPath Core.User.NormalUser test folder path
-     * @param adminPath Core.User.AdminUser test folder path
+     * @param normalPath NormalUser test folder path
+     * @param adminPath AdminUser test folder path
      */
     public WriteUser(String normalPath, String adminPath){
         this.AdminUserFolderPath = new File(adminPath);
@@ -94,7 +94,7 @@ public class WriteUser implements WriteUserInterface {
      */
     @Override
     public void getObjectFromFile() {
-        String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in Core.User.AdminUser folder
+        String[] lstOfAdmin = AdminUserFolderPath.list();// get all the file name in AdminUser folder
 
         if(lstOfAdmin != null){
             for(String au: lstOfAdmin) {
