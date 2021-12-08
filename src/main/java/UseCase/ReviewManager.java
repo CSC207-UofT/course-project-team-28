@@ -23,7 +23,7 @@ public class ReviewManager {
     private final ArrayList<Review> reviewList;
 
     // record the total number of review stored in ReviewManager
-    private int totalNumOfReview;
+    private int currMaxRevId;
 
 //    private final MovieManager movieManager;
 
@@ -36,7 +36,7 @@ public class ReviewManager {
 //        this.UserToRevs = new HashMap<>();
         this.reviewList = new ArrayList<>();
 //        this.movieManager = mm;
-        this.totalNumOfReview = 0;
+        this.currMaxRevId = 0;
     }
 
     /**
@@ -52,8 +52,7 @@ public class ReviewManager {
         ReviewSort rs = new ReviewSort();
         // set lst to empty array list, such that if the MovieToRevs map does not contain the key (when there does not
         // exist any review for that movie)
-        ArrayList<Review> lst = new ArrayList<>();
-        lst = this.movieToRevs.get(movieName);
+        ArrayList<Review> lst = this.movieToRevs.get(movieName);
         ArrayList<Review> sortedLst = rs.sortReviews(lst);
         ArrayList<Object[]> result = new ArrayList<>();
         // add content of reviews to temp
@@ -105,7 +104,7 @@ public class ReviewManager {
     public boolean writeReview(String userName, String movieName, String content, int numCoin , int ID) {
         Review rev = new Review(userName, movieName, content, numCoin, ID);
         this.reviewList.add(rev);
-        this.totalNumOfReview = this.getMaxRevId();
+        this.currMaxRevId = this.getMaxRevId();
         return addMr(movieName, rev); // && addUr(userName, rev);
     }
 
@@ -122,23 +121,30 @@ public class ReviewManager {
      *         UserToRevs, reviewList, and database.
      */
     public boolean writeNewReview(String userName, String movieName, String content, int numCoin) {
-        this.totalNumOfReview = this.totalNumOfReview + 1;
-        Review rev = new Review(userName, movieName, content, numCoin, totalNumOfReview);
+        this.currMaxRevId = this.currMaxRevId + 1;
+        Review rev = new Review(userName, movieName, content, numCoin, currMaxRevId);
         this.reviewList.add(rev);
-        // this.totalNumOfReview = reviewList.get(reviewList.size() - 1).getID();
         return addMr(movieName, rev) // && addUr(userName, rev)
-                && this.gateway.createNewReview(userName, movieName, content, totalNumOfReview);
+                && this.gateway.createNewReview(userName, movieName, content, currMaxRevId);
     }
 
+    /**
+     * ONLY call in test
+     * @return currMaxRevId
+     */
+    public int getCurrMaxRevId(){return currMaxRevId;}
 
-    public int getReviewID(){return totalNumOfReview;    }
-
+    /**
+     * ONLY call in test
+     * @return reviewList
+     */
     public ArrayList<Review> getReviewList() {return reviewList;}
 
     /**
      * find a review with review_id, and add 1 coin
      * @param username the name of the user who gives coin to review
-     * TODO
+     * @param reviewId ID of the review
+     * @return ture iff the coin is added to the review
      */
     public boolean addCoin(int reviewId, String username) {
         int coin = 0;
@@ -202,13 +208,6 @@ public class ReviewManager {
 //        return this.UserToRevs.get(username);
 //    }
 
-//    /**
-//     * Called only after confirming the movieName is valid (i.e. the movie exists)
-//     * Takes the name of Core.Movie and return a list of reviews for the Core.Movie.
-//     */
-//    public ArrayList<Review> getRevsOfMovie(String movieName){
-//        return this.MovieToRevs.get(movieName);
-//    }
 
     /**
      * update MovieToRevs by write_review
