@@ -98,7 +98,7 @@ public class WriteReview implements WriteReviewInterface {
     @Override
     public boolean addCoinsToReview(int id, int numCoin) {
         try {
-            ArrayList<Object> revLst = new ArrayList<>(readFile(str1.toString(), id+".txt"));
+            ArrayList<Object> revLst = new ArrayList<>(readFile(str1 + Integer.toString(id) + ".txt"));
             revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
             String path1 = str1 + "/src/main/res/Review/" + id + ".txt";
             writeFile(path1, revLst);
@@ -136,7 +136,7 @@ public class WriteReview implements WriteReviewInterface {
 
             if (lstOfReview != null) {
                 for (String rv : lstOfReview) {
-                    ArrayList<String> lst = readFile(halfRvPath, rv);
+                    ArrayList<String> lst = readFile(halfRvPath + rv);
 
                     this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)),
                             Integer.parseInt(lst.get(4)));
@@ -183,20 +183,37 @@ public class WriteReview implements WriteReviewInterface {
     /**
      * read the Core.Review file
      */
-    private ArrayList<String> readFile(String path2, String fileOfReview) throws IOException{
-        reviewReader = new FileReader(path2 + "/src/main/res/" + "Review/" + fileOfReview);
-        getReview = new BufferedReader(reviewReader);
+    private ArrayList<String> readFile(String path) throws FileNotFoundException {
+        ArrayList<String> lst = new ArrayList<>();
+        try {
+            getReview = new BufferedReader(new FileReader(path));
 
-        ArrayList<String> result = new ArrayList<>();
-        String line = getReview.readLine();
-        while(line != null){
-            result.add(line);
-            line = getReview.readLine();
+            String line = getReview.readLine();
+            while (line != null) {
+                lst.add(line);
+                line = getReview.readLine();
+            }
+            getReview.close();
+
+            return lst;
         }
-        getReview.close();
-
-        return result;
+        catch (IOException e) {
+            System.out.println("Unable to read Review file");
+        }
+        return lst;
     }
+//        reviewReader = new FileReader(path2 + "/src/main/res/" + "Review/" + fileOfReview);
+//        getReview = new BufferedReader(reviewReader);
+//
+//        ArrayList<String> result = new ArrayList<>();
+//        String line = getReview.readLine();
+//        while(line != null){
+//            result.add(line);
+//            line = getReview.readLine();
+//        }
+//        getReview.close();
+//
+//        return result;
 
     /**
      * Helper method, write file

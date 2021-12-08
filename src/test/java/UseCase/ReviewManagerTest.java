@@ -37,18 +37,20 @@ public class ReviewManagerTest {
 
     @Test
     public void writeReview() {
-        Review rev1 = rm.getReviewList().get(0);
+        Review rev1 = rm.getReviewList().get(1);
         assertEquals(1, rev1.getID());
-        assert rev1.getnumCoin() == 10;
-        assert rev1.getMovie() == "Apple";
-        assert rev1.getReviewer() == "ReviewManager2";
-        assert rev1.getContent() == "hahahahha";
-        Review rev1temp = new Review("ReviewManager2", "Apple", "hahahahha", 10, 1);
+        assertEquals(0, rev1.getnumCoin());
+        assertEquals("Apple", rev1.getMovie());
+        assertEquals("ReviewManager2", rev1.getReviewer());
+        assertEquals("hahahahha", rev1.getContent());
+        Review rev1temp = new Review("ReviewManager2", "Apple", "hahahahha", 10,
+                1);
     }
 
     @Test
     public void test(){
-        rm.writeReview("ReviewManager2", "Apple", "test", 10, 5);
+        rm.writeReview("ReviewManager2", "Apple", "test", 10,
+                5);
     }
 
     @Test
