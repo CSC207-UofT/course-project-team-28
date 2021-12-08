@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -123,13 +124,6 @@ public class WriteUserTest {
 
         ArrayList<NormalUser> nuList = InstanceMain.getUserManager().getNormalUserList();
         assertEquals(8, nuList.size());
-
-        Object[] userFile = {"CoinManager", "MovieManager", "NormalController", "ReviewManager1", "ReviewManager2",
-                "ReviewManager3", "UserManager", "WriteUser"};
-
-        for (int i = 0; i < 8; i++){
-            assertEquals(nuList.get(i).getUsername(), userFile[i]);
-        }
 
     }
 
