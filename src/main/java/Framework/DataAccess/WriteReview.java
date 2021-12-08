@@ -117,36 +117,36 @@ public class WriteReview implements WriteReviewInterface {
      */
     @Override
     public void getObjectFromFile() {
-//        String[] lstOfReview = ReviewFolderPath.list();
-//
-//        if (lstOfReview != null) {
-//            for (String rv : lstOfReview) {
-//                ArrayList<String> lst = readFile(halfRvPath, rv);
-//
-//                this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
-//                        Integer.parseInt(lst.get(4)));
-//
-//                }
-//            }
-//        }
+        String[] lstOfReview = ReviewFolderPath.list();
 
+        if (lstOfReview != null) {
+            for (String rv : lstOfReview) {
+                ArrayList<String> lst = readFile(halfRvPath + rv);
 
-        try {
-            String[] lstOfReview = ReviewFolderPath.list();
-
-            if (lstOfReview != null) {
-                for (String rv : lstOfReview) {
-                    ArrayList<String> lst = readFile(halfRvPath + rv);
-
-                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)),
-                            Integer.parseInt(lst.get(4)));
+                this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
+                        Integer.parseInt(lst.get(4)));
 
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Unable to get the file from the Movie Folder");
         }
-    }
+
+
+//        try {
+//            String[] lstOfReview = ReviewFolderPath.list();
+//
+//            if (lstOfReview != null) {
+//                for (String rv : lstOfReview) {
+//                    ArrayList<String> lst = readFile(halfRvPath + rv);
+//
+//                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)),
+//                            Integer.parseInt(lst.get(4)));
+//
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Unable to get the file from the Movie Folder");
+//        }
+//    }
 
 
 
@@ -183,7 +183,7 @@ public class WriteReview implements WriteReviewInterface {
     /**
      * read the Core.Review file
      */
-    private ArrayList<String> readFile(String path) throws FileNotFoundException {
+    private ArrayList<String> readFile(String path){
         ArrayList<String> lst = new ArrayList<>();
         try {
             getReview = new BufferedReader(new FileReader(path));
