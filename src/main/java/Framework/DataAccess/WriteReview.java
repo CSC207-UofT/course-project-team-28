@@ -183,7 +183,7 @@ public class WriteReview implements WriteReviewInterface {
     /**
      * read the Core.Review file
      */
-    private ArrayList<String> readFile(String path){
+    public ArrayList<String> readFile(String path){
         ArrayList<String> lst = new ArrayList<>();
         try {
             getReview = new BufferedReader(new FileReader(path));
@@ -238,7 +238,7 @@ public class WriteReview implements WriteReviewInterface {
      */
     public boolean deleteReviewFile(int reviewID){
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        File obj = new File(path1 +  "/src/test/res/Review/" + reviewID + ".txt");
+        File obj = new File(halfRvPath + reviewID + ".txt");
         return obj.delete();
     }
 }
