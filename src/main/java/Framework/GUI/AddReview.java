@@ -8,6 +8,9 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
+/**
+ * This class functions as a page for user to write a review after searching.
+ */
 public class AddReview extends View{
     private final JPanel p1;
     private String thisMovie;
@@ -16,12 +19,20 @@ public class AddReview extends View{
     private final TextPresenter textPresenter = moviePage.getTextPresenter();
     Font font2 = new Font("SansSerif", Font.PLAIN, 20);
 
+    /**
+     * The constructor for this class.
+     * @param previous The View parameter from the super class.
+     */
     public AddReview(View previous) {
         super(previous);
         p1 = new JPanel();
         PlaceThingsOnP1(p1);
     }
 
+    /**
+     * Add components to panel.
+     * @param p1 The Panel to be modified.
+     */
     private void PlaceThingsOnP1(JPanel p1){
         p1.setLayout(null);
         thisMovie = moviePage.getSearchedMovie();
@@ -47,11 +58,17 @@ public class AddReview extends View{
         p1.add(writeReview);
     }
 
+    /**
+     * This is the action when the user press the Finish button.
+     */
     private void OnFinishButtonClick(){
         InstanceMain.getNormalCMovie().writeReview(thisMovie, writeReview.getText());
         nextView(new MoviePage(this), true);
     }
 
+    /**
+     *The getter function for getting the selected movie name.
+     */
     public String getMovieSelected(){
         return moviePage.getSearchedMovie();
     }
@@ -66,6 +83,9 @@ public class AddReview extends View{
 
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();

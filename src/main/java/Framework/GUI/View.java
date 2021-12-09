@@ -1,10 +1,5 @@
 package Framework.GUI;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteReview;
-import Framework.DataAccess.WriteUser;
-import InterfaceAdapter.InstanceMain;
-
 import javax.swing.*;
 
 public abstract class View {

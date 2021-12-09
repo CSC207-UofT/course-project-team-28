@@ -9,6 +9,9 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
+/**
+ * This is the class responsible for generating the main page.
+ */
 public class GUIProfile extends View {
 
     public JLabel contactInfoLabel;
@@ -205,6 +208,9 @@ public class GUIProfile extends View {
         return this.textPresenter;
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
