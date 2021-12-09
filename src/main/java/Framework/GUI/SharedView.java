@@ -1,9 +1,9 @@
 package Framework.GUI;
 
+/**
+ SharedView is the child class of View.
+ */
 public abstract class SharedView extends View {
-    /*
-    SharedView is the child class of View.
-     */
     protected boolean isAdmin;
 
     /**
