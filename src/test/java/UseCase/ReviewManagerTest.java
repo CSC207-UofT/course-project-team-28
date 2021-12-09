@@ -83,7 +83,7 @@ public class ReviewManagerTest {
     public void writeReview() {
         Review rev1 = rm.getReviewList().get(0);
         assertEquals(1, rev1.getID());
-        assertEquals(7, rev1.getnumCoin());
+        assertEquals(7, rev1.getNumCoin());
         assertEquals("Apple", rev1.getMovie());
         assertEquals("ReviewManager2", rev1.getReviewer());
         assertEquals("hahahahha", rev1.getContent());

@@ -44,7 +44,7 @@ public class ReviewSort {
             return result;
         }
         for (Review rev: reviews) {
-            Integer numCoin = rev.getnumCoin();
+            Integer numCoin = rev.getNumCoin();
             if (result.containsKey(numCoin)) {
                 result.get(numCoin).add(rev);
             }
