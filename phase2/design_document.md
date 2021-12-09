@@ -163,10 +163,10 @@ Phase2:
 The four layers from phase 1 remained the same while some sub-packages became more reasonable. First, Entity layers had no change from the last design. Use cases now have all the managers in it and also the Gateway Interface, which calls WiteFile classes to create or edit files. Interface Adapter now has all the Controllers, Interface-Adapter layer Interfaces and also the Presenters. The most significant change to Interface Adapter is the addition of a new Gateway class, which links Framework and Use Case. Framework now has three different sub-packages: GUI, UI and DataAccess, where DataAccess contains the WriteFile classes. 
 
 ### Design Pattern
-####State machine design pattern:
+#### State machine design pattern:
 GUI using state machine design pattern. It is a behavioral design pattern that allows an object to change the behavior when its internal state changes. When the user selects if the user wants to login as normal user or admin user, an object isAdmin is changed and will affect how the next page is shown. One problem during phase 0 and phase 1 was that UI had too many if-else statements, and the state machine design pattern allows the GUI to remain clear without them.
 
-####Singleton design pattern:
+#### Singleton design pattern:
 Our Program will read data from files and store their entities in the corresponding Manager classes (use case) when the program is about to run, and the entities stored in the Manager may be changed during the process of Program. These all kinds of changes will apply to the only one instance of Manager classes, if somewhere in the program creates the new instance of Manager class, this new Manager class will not have any entities stored inside, which will have bugs. In other words, the change applied on one of the instances is not a real-time change.
 In order to solve this program, I use the Singleton design pattern, which allows the program to have only one instance of my Manager classes, and provides a global point of access to it.
 This pattern will need to create a new class (which is the InstanceMain class in our program), and store the instance of classes I need inside as static variables, so that if some classes want to interact with other classes, they only need to use the getter method and get the instance I store in the InstanceMain class without creating new instance
