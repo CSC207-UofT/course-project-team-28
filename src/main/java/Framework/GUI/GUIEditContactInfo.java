@@ -68,6 +68,9 @@ public class GUIEditContactInfo extends View{
 
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
