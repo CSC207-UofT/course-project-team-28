@@ -122,7 +122,7 @@ public class WriteUserTest {
     public void getNormalUserFromFile() {
 
         ArrayList<NormalUser> nuList = InstanceMain.getUserManager().getNormalUserList();
-        assertEquals(8, nuList.size());
+        assertEquals(10, nuList.size());
 
     }
 

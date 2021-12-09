@@ -1,11 +1,9 @@
+package UseCase;
 
-import UseCase.CoinManager;
 import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
-import UseCase.ReviewManager;
-import UseCase.UserManager;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

@@ -1,35 +1,21 @@
+package UseCase;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteReview;
-import Framework.DataAccess.WriteUser;
-
-import InterfaceAdapter.InstanceMain;
-import UseCase.MovieRanking;
-import UseCase.MovieManager;
-import UseCase.ReviewManager;
 import Entity.Movie;
-
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
-
 
 import static org.junit.Assert.assertEquals;
 
 public class MovieRankingTest {
     private static MovieRanking mr;
-    private static ReviewManager rm;
-    private static MovieManager mm;
 
 
     @BeforeClass
     public static void setUp() {
-        rm = new ReviewManager();
-        mm = new MovieManager(rm);
+        ReviewManager rm = new ReviewManager();
+        MovieManager mm = new MovieManager(rm);
         mm.addMovie("Apple", "shdjhadshjasfhkasf", "Anime", 1);
         mm.addMovie("Water", "hshauihasjhjk", "Action", 0);
         mm.addMovie("Bananaa", "hshauihasjhjkww", "Action", 2);
@@ -40,7 +26,7 @@ public class MovieRankingTest {
     @Test
     public void getMovieRankTest() {
         ArrayList<Movie> listMov = mr.getMovieRank();
-        ArrayList<Movie> newlistMov = new ArrayList<Movie>();
+        ArrayList<Movie> newlistMov = new ArrayList<>();
         newlistMov.add(new Movie("Bananab", "hshauihasjhjkw", 3, "Action"));
         newlistMov.add(new Movie("Bananaa", "hshauihasjhjkww", 2, "Action"));
         newlistMov.add(new Movie("Apple", "shdjhadshjasfhkasf", 1, "Anime"));

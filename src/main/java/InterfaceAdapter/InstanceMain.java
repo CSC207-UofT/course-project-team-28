@@ -28,16 +28,16 @@ public class InstanceMain {
         private static WriteReview WRITEREVIEW;
 
         //Controller instance
-        private static NormalCUser NORMALCUSER = new NormalCUser();
-        private static NormalCCoin NORMALCCOIN = new NormalCCoin();
-        private static NormalCMovie NORMALCMOVIE = new NormalCMovie();
-        private static AdminInputProcessor ADMININPUTPROCESSOR = new AdminInputProcessor();
+        private static NormalCUser NORMALCUSER;
+        private static NormalCCoin NORMALCCOIN;
+        private static NormalCMovie NORMALCMOVIE;
+        private static AdminInputProcessor ADMININPUTPROCESSOR;
 
         //use case instance
-        private static UserManager USERMANAGER = new UserManager();
-        private static ReviewManager REVIEWMANAGER = new ReviewManager();
-        private static MovieManager MOVIEMANAGER = new MovieManager(REVIEWMANAGER);
-        private static CoinManager COINMANAGER = new CoinManager(USERMANAGER, REVIEWMANAGER);
+        private static UserManager USERMANAGER;
+        private static ReviewManager REVIEWMANAGER;
+        private static MovieManager MOVIEMANAGER;
+        private static CoinManager COINMANAGER;
 
     }
 
