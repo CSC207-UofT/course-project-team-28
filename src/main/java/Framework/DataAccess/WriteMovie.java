@@ -23,9 +23,9 @@ public class WriteMovie implements WriteMovieInterface {
     protected BufferedReader getMovie;
     protected FileWriter writeMovie;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-    protected File MovieFolderPath = new File(str1 + "/src/main/res/MovieData"); //get full path for MovieData folder
+    protected File MovieFolderPath = new File(str1 + "/src/main/res/Moviedata"); //get full path for MovieData folder
     protected String ReadPath = str1 + "/src/main/res/"; //get path for readFile method
-    protected String MoviePath = str1 + "/src/main/res/MovieData/"; //get path to movieData folder
+    protected String MoviePath = str1 + "/src/main/res/Moviedata/"; //get path to moviedata folder
 
 
     /**
@@ -93,7 +93,7 @@ public class WriteMovie implements WriteMovieInterface {
     @Override
     public boolean addLikeToFile(String movieName, String state, String category) {
         try {
-            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "MovieData/"));
+            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata/"));
             writeMovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             if (state.equals("Increase")){
 
@@ -135,7 +135,7 @@ public class WriteMovie implements WriteMovieInterface {
                 lstOfMovie.addAll(Arrays.asList(lstOfMovies));
             }
             for (String m : lstOfMovie) {
-                ArrayList<String> lst = readFile(m, "MovieData");
+                ArrayList<String> lst = readFile(m, "Moviedata");
 
                 // create object for a single movie
                 this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
