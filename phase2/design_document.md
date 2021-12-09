@@ -21,6 +21,8 @@ We have completed the complete GUI interface in phase 2, all features for GUI ar
 
 ![Class Diagram](https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/class%20diagram.png)
 
+(You can download it into your computer and zoom in, or you can see the UML diagram that We have in our github)
+
 ### Major design decisions
 
 phase 1:
