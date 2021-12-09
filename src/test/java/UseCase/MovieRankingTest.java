@@ -1,13 +1,10 @@
-import UseCase.MovieRanking;
-import UseCase.MovieManager;
-import UseCase.ReviewManager;
-import Entity.Movie;
+package UseCase;
 
+import Entity.Movie;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
-
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,7 +26,7 @@ public class MovieRankingTest {
     @Test
     public void getMovieRankTest() {
         ArrayList<Movie> listMov = mr.getMovieRank();
-        ArrayList<Movie> newlistMov = new ArrayList<Movie>();
+        ArrayList<Movie> newlistMov = new ArrayList<>();
         newlistMov.add(new Movie("Bananab", "hshauihasjhjkw", 3, "Action"));
         newlistMov.add(new Movie("Bananaa", "hshauihasjhjkww", 2, "Action"));
         newlistMov.add(new Movie("Apple", "shdjhadshjasfhkasf", 1, "Anime"));

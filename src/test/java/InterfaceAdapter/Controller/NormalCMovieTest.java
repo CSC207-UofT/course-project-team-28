@@ -94,14 +94,14 @@ public class NormalCMovieTest {
 //    }
 
 
-//    @Test
-//    public void rankMovie() {
-//        ArrayList<Object[]> actual = ncm.rankMovie();
-//        String[] expect = {"Candy", "Apple", "Team28", "Happy Life", "Water", "Banana"};
-//        for (int i = 0; i <= 5; i++){
-//            assertEquals(expect[i], actual.get(i)[0]);
-//        }
-//    }
+    @Test
+    public void rankMovie() {
+        ArrayList<Object[]> actual = ncm.rankMovie();
+        String[] expect = {"Candy", "Apple", "Team28", "Happy Life", "Water", "Banana"};
+        for (int i = 0; i <= 5; i++){
+            assertEquals(expect[i], actual.get(i)[0]);
+        }
+    }
 
     @Test
     public void writeReview() {
