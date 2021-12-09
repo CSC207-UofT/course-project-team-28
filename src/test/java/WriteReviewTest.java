@@ -4,21 +4,15 @@ import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
 import UseCase.ReviewManager;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import UseCase.ReviewSort;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -98,7 +92,7 @@ public class WriteReviewTest {
 //        ReviewSort rsort = new ReviewSort();
 //        rsort.sortReviews(rm.getReviewList());
 //        assertEquals(7, rm.getReviewList().size());
-        InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId());
+        assertTrue(InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId()));
 
     }
 
