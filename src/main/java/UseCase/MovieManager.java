@@ -55,7 +55,7 @@ public class MovieManager {
      */
     public Movie getMovie(String movieName) {
         for (Movie m : this.Movies) {
-            if (m.getMoviename().equals(movieName)){
+            if (m.getMovieName().equals(movieName)){
                 return m;
             }
         }
@@ -68,10 +68,10 @@ public class MovieManager {
     public List<String> getMovieNames() {
         List<String> list = new ArrayList<>();
         for (Movie m : this.Movies) {
-            list.add(m.getMoviename());
-            }
-        return list;
+            list.add(m.getMovieName());
         }
+        return list;
+    }
 
 
     /**
@@ -84,10 +84,10 @@ public class MovieManager {
         name = name.toLowerCase();
 
         for(Movie movie: Movies){
-            if(movie.getMoviename().toLowerCase().equals(name) || movie.getLink().equals(link)){
+            if(movie.getMovieName().toLowerCase().equals(name) || movie.getLink().equals(link)){
                 return true;
-                }
             }
+        }
         return false;
     }
 
@@ -101,7 +101,7 @@ public class MovieManager {
     public Object[] getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
         Object[] result = new Object[4];
-        result[0] = movie.getMoviename();
+        result[0] = movie.getMovieName();
         result[1] = movie.getLink();
         result[2] = movie.getCategory();
         result[3] = movie.getLikes();
@@ -109,13 +109,29 @@ public class MovieManager {
     }
 
     /**
+     * delete an instance of movie from the overall list of Movies
+     * @param movieName the name of this instance of Movie
+     */
+    public boolean deleteMovie(String movieName) {
+        String category = this.getMovieCategory(movieName);
+        for (Movie m : this.Movies){
+            if (m.getMovieName().equals(movieName)){
+                this.Movies.remove(m);
+                this.gateway.deleteMovie(movieName, category);
+                return !this.Movies.contains(m);
+            }
+        }
+        return false;
+    }
+
+    /**
      * Use movie_name and movie_link to find the movie's category
      * @param name the name of the movie
      * @return return the category of the movie, null if movie not found
      */
-    private String getMovieCategory(String name){
+    public String getMovieCategory(String name){
         for (Movie movie: Movies){
-            if (movie.getMoviename().equals(name)){
+            if (movie.getMovieName().equals(name)){
                 return movie.category;
             }
         }
@@ -137,6 +153,19 @@ public class MovieManager {
 
     }
 
+    /**
+     * Undo a like to an instance of movie from the overall list of Movies
+     * @param movieName the name of this instance of Core.Movie
+     */
+    public boolean undolikeMovie(String movieName) {
+        String category = this.getMovieCategory(movieName);
+        Movie movie = this.getMovie(movieName);
+        int like = movie.getLikes();
+        movie.UndoLike();
+
+        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease", category);
+
+    }
 
     /**
      * Represents a UseCase.MovieManager as a String containing all Core.Movie names in the system.
@@ -146,7 +175,7 @@ public class MovieManager {
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (Movie m : this.Movies) {
-            res.append(m.getMoviename());
+            res.append(m.getMovieName());
             res.append(", ");
         }
         return res.toString(); //includes a trailing ", "
@@ -154,19 +183,6 @@ public class MovieManager {
 
     public ArrayList<Movie> getMovies(){
         return Movies;
-    }
-
-    public ArrayList<Object[]> rankedMoviesProfile() {
-        MovieRanking mr = new MovieRanking();
-        ArrayList<Movie> rankedMovies = mr.getMovieRank();
-        ArrayList<Object[]> result = new ArrayList<>();
-        if (! rankedMovies.isEmpty()){
-            for (Movie mov: rankedMovies){
-                String movieName = mov.getMoviename();
-                result.add(this.getMovieProfile(movieName));
-            }
-        }
-        return result;
     }
 
 }
