@@ -3,19 +3,15 @@ package Framework.GUI;
 import InterfaceAdapter.InstanceMain;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+/**
+ * Construct the Review Page.
+ */
 public class ReviewPage extends View{
 
     private final JPanel panel1;
-    private JLabel reviewer;
-    private Object[] selectedReview;
     private JLabel numCoin;
-    private JButton addCoins;
-    private MoviePage moviePage = (MoviePage) previous;
-    Font font1 = new Font("SansSerif", Font.PLAIN, 20);
+    private final MoviePage moviePage = (MoviePage) previous;
 
     /**
      * Constructor of this class
@@ -26,11 +22,15 @@ public class ReviewPage extends View{
         PlaceThingsOnP1(panel1);
     }
 
+    /**
+     * Place everything needed on p1
+     * @param p1 the panel to be put on the page
+     */
     private void PlaceThingsOnP1(JPanel p1){
-        selectedReview = InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReview());
-        reviewer = new JLabel();
+        Object[] selectedReview = InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReview());
+        JLabel reviewer = new JLabel();
         numCoin = new JLabel();
-        addCoins = new JButton();
+        JButton addCoins = new JButton();
 
         reviewer.setText("Reviewer: " + selectedReview[0]);
         numCoin.setText("Number of Coins: " + selectedReview[3]);
@@ -42,30 +42,34 @@ public class ReviewPage extends View{
         numCoin.setBounds(10,50,200,30);
         addCoins.setBounds(10,100,200,50);
 
-        addCoins.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnAddButtonClick(actionEvent);
-            }
-        });
+        addCoins.addActionListener(actionEvent -> OnAddButtonClick());
 
         p1.add(reviewer);
         p1.add(numCoin);
         p1.add(addCoins);
     }
 
-    private void OnAddButtonClick(ActionEvent e) {
+    /**
+     * the button to give coin to review
+     */
+    private void OnAddButtonClick() {
         InstanceMain.getNormalCCoin().giveCoinToRev(moviePage.getSelectedReview());
         UpdateText();
     }
 
+    /**
+     * Inherited method, to update the number of coins dynamically.
+     */
     @Override
     protected void UpdateText() {
         int result = (Integer) InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReview())[3];
         numCoin.setText("Number of Coins: " + result);
     }
 
-
+    /**
+     * Inherited class.
+     * @return the frame of review page.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();

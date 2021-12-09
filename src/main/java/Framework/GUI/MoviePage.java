@@ -14,7 +14,10 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@SuppressWarnings({"rawtypes", "unchecked"})
+/**
+ * Construct the Movie Page.
+ */
 public class MoviePage extends View {
 
     private final JPanel panel1;
@@ -198,7 +201,10 @@ public class MoviePage extends View {
         numberOfLikes.setText(textPresenter.printText("number of likes: ")+ InstanceMain.getNormalCMovie().movieProfile(searchedMovie)[3]);
     }
 
-
+    /**
+     * Inherited class
+     * @return the frame of the Movie Page.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
