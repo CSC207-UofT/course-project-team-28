@@ -31,7 +31,7 @@ public class NormalCCoin extends NormalController{
      * Note: number of coins of that the user +1.
      * @return ture iff thr change has been successfully made.
      */
-    public boolean EarnCoinAfterWriteRev(){
+    public boolean earnCoinAfterWriteRev(){
         return InstanceMain.getCoinManager().EarnCoinAfterReview(this.currNormalName);
     }
 

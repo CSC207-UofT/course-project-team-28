@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class NormalUser extends User{
 
-    protected String contactinfo;
+    protected String contactInfo;
     protected String description;
     protected String category;
     protected int coin;
@@ -17,18 +17,18 @@ public class NormalUser extends User{
 
     /**
      * create the object for user
-     * @param username the user name of user
+     * @param username the username of user
      * @param password the password of user
-     * @param contactinfo the contact information of user
+     * @param contactInfo the contact information of user
      * @param description the description of user itself
      * @param category the category pf movie that user like
-     * @param coin the coin that user have
-     * @param playlist the playlist of movie of movie
+     * @param coin the coin that user has
+     * @param playlist the playlist of movies
      * @param picPath the relative path of user's profile photo
      */
-    public NormalUser(String username, String password, String contactinfo, String description, String category, int coin, ArrayList<String> playlist, String picPath) {
+    public NormalUser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playlist, String picPath) {
         super(username, password);
-        this.contactinfo = contactinfo;
+        this.contactInfo = contactInfo;
         this.description = description;
         this.category = category;
         this.coin = coin;
@@ -45,7 +45,7 @@ public class NormalUser extends User{
         Object[] nu = new Object[8];
         nu[0] = this.username;
         nu[1] = this.password;
-        nu[2] = this.contactinfo;
+        nu[2] = this.contactInfo;
         nu[3] = this.description;
         nu[4] = this.category;
         nu[5] = this.coin;
@@ -68,8 +68,8 @@ public class NormalUser extends User{
         return this.password;
     }
 
-    public String getContactinfo(){
-        return this.contactinfo;
+    public String getContactInfo(){
+        return this.contactInfo;
     }
 
     public ArrayList<String> getPlaylist(){
@@ -92,16 +92,16 @@ public class NormalUser extends User{
     /**
      * setter of user
      */
-    public void updateContactinfo(String contactinfo){
-        this.contactinfo = contactinfo;
+    public void updateContactInfo(String contactInfo){
+        this.contactInfo = contactInfo;
     }
 
-    public void addMovieToPlaylist(String moviename){
-        this.playlist.add(moviename);
+    public void addMovieToPlaylist(String movieName){
+        this.playlist.add(movieName);
     }
 
-    public void removeMovieFromPlaylist(String moviename){
-        this.playlist.remove(moviename);
+    public void removeMovieFromPlaylist(String movieName){
+        this.playlist.remove(movieName);
     }
 
     public void updateDescription(String description){

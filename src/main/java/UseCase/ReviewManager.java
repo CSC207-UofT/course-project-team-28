@@ -151,9 +151,9 @@ public class ReviewManager {
         int coinAfter = 0;
         for (Review review : this.reviewList){
             if (review.getID() == reviewId){
-                coin = review.getnumCoin();
-                review.setNumCoin(review.getnumCoin() + 1);
-                coinAfter = review.getnumCoin();
+                coin = review.getNumCoin();
+                review.setNumCoin(review.getNumCoin() + 1);
+                coinAfter = review.getNumCoin();
             }
         }
         return coinAfter - 1 == coin && this.gateway.editCoin(username, reviewId);

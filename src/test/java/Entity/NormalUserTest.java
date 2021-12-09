@@ -1,10 +1,13 @@
+package Entity;
+
 import Entity.User.NormalUser;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static org.junit.Assert.*;
 
 public class NormalUserTest {
 
@@ -48,7 +51,7 @@ public class NormalUserTest {
 
     @Test
     public void getContactinfo() {
-        assertEquals("123456789", nu.getContactinfo());
+        assertEquals("123456789", nu.getContactInfo());
     }
 
     @Test
@@ -73,8 +76,8 @@ public class NormalUserTest {
 
     @Test
     public void updateContactinfo() {
-        nu.updateContactinfo("123456");
-        assertEquals("123456", nu.getContactinfo());
+        nu.updateContactInfo("123456");
+        assertEquals("123456", nu.getContactInfo());
     }
 
     @Test

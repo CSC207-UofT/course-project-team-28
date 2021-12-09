@@ -1,10 +1,14 @@
+package UseCase;
+
 import Entity.User.AdminUser;
 import Entity.User.NormalUser;
 import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
-import org.junit.*;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;

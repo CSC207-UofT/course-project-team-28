@@ -97,18 +97,11 @@ public class WriteReview implements WriteReviewInterface {
      */
     @Override
     public boolean addCoinsToReview(int id, int numCoin) {
-        try {
-            ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));
-            revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
-            String path1 = halfRvPath + id + ".txt";
-            writeFile(path1, revLst);
-            return true;
-        }
-        catch (Exception e){
-            System.out.println("Cannot Add coin");
-            return false;
-        }
-
+        ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));
+        revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
+        String path1 = halfRvPath + id + ".txt";
+        writeFile(path1, revLst);
+        return true;
     }
 
 
@@ -121,14 +114,14 @@ public class WriteReview implements WriteReviewInterface {
 
         if (lstOfReview != null) {
             for (String rv : lstOfReview) {
-                ArrayList<String> lst = readFile(halfRvPath + rv);
+                ArrayList<Object> lst = readFile(halfRvPath + rv);
 
-                this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
-                        Integer.parseInt(lst.get(4)));
+                this.gateway.createFileReview((String) lst.get(0),(String) lst.get(1),(String)lst.get(2),
+                        Integer.parseInt((String) lst.get(3)), Integer.parseInt((String) lst.get(4)));
 
-                }
             }
         }
+    }
 
 
 //        try {
@@ -183,8 +176,8 @@ public class WriteReview implements WriteReviewInterface {
     /**
      * read the Core.Review file
      */
-    private ArrayList<String> readFile(String path){
-        ArrayList<String> lst = new ArrayList<>();
+    public ArrayList<Object> readFile(String path){
+        ArrayList<Object> lst = new ArrayList<>();
         try {
             getReview = new BufferedReader(new FileReader(path));
 
@@ -238,7 +231,7 @@ public class WriteReview implements WriteReviewInterface {
      */
     public boolean deleteReviewFile(int reviewID){
         Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        File obj = new File(path1 +  "/src/test/res/Review/" + reviewID + ".txt");
+        File obj = new File(halfRvPath + reviewID + ".txt");
         return obj.delete();
     }
 }

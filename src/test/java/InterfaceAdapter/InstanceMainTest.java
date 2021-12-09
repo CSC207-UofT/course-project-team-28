@@ -1,17 +1,15 @@
+package InterfaceAdapter;
+
 import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
-import InterfaceAdapter.AdminInputProcessor;
-import InterfaceAdapter.InstanceMain;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 public class InstanceMainTest {
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();

@@ -1,5 +1,4 @@
-package Entity;//import java.util.ArrayList;
-import java.util.HashMap;
+package Entity;
 
 public class Movie {
     protected String moviename;

@@ -1,8 +1,6 @@
 package InterfaceAdapter.Controller;
 
-import Entity.Movie;
 import InterfaceAdapter.InstanceMain;
-import UseCase.MovieRanking;
 
 import java.util.ArrayList;
 
@@ -71,40 +69,23 @@ public class NormalCMovie extends NormalController{
         else {return false;}
     }
 
-    /**
-     * @return ture iff the user's playlist is empty.
-     */
-    @SuppressWarnings("unchecked")
-    public boolean emptyPlaylist() {
-        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
-        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
-        return userPlaylist.isEmpty();
-    }
+//    /**
+//     * @return ture iff the user's playlist is empty.
+//     */
+//    @SuppressWarnings("unchecked")
+//    public boolean emptyPlaylist() {
+//        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
+//        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
+//        return userPlaylist.isEmpty();
+//    }
+
 
     /**
-     * Should be only called when the movie name <movieName> exists in the database
-     * Given a String movieName, undo like.
-     * @param movieName name of the movie.
-     * @return ture iff undolike successfully.
-     */
-    @SuppressWarnings("unchecked")
-    public boolean undoLike(String movieName) {
-        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
-        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
-        if (userPlaylist.contains(movieName)){
-            return InstanceMain.getUserManager().undoLike(this.currNormalName, movieName)
-                    && InstanceMain.getMovieManager().undolikeMovie(movieName);
-        }
-        else {return false;}
-    }
-
-    /**
-     *
+     * return ranked movies
      * @return sorted ArrayList of Movie, the first one is the most popular movie (with most likes).
      */
-    public ArrayList<Movie> rankMovie(){
-        MovieRanking mr = new MovieRanking();
-        return mr.getMovieRank();
+    public ArrayList<Object[]> rankMovie(){
+        return InstanceMain.getMovieManager().rankedMoviesProfile();
     }
 
     /**
@@ -114,6 +95,7 @@ public class NormalCMovie extends NormalController{
      * @return ture iff a review is successfully added. false otherwise
      */
     public boolean writeReview(String movieName, String revContent) {
-        return InstanceMain.getReviewManager().writeNewReview(this.currNormalName, movieName, revContent, 0);}
+        return InstanceMain.getReviewManager().writeNewReview(this.currNormalName, movieName, revContent, 0)
+                && InstanceMain.getNormalCCoin().earnCoinAfterWriteRev();}
 
 }

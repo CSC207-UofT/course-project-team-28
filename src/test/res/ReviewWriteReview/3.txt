@@ -1,5 +1,5 @@
 ReviewManager1
 Banana
 content3
-18
+10
 3
