@@ -29,8 +29,8 @@ public class MovieRanking {
     }
 
     /**
-     * Return an ArrayList of map consisting movies
-     * and the number of likes they receive.
+     * Return an ArrayList of map consisting movies and the number of likes they receive
+     * according to all the movies that the moviemanager contains.
      * (Helper method)
      */
     private ArrayList<HashMap<Movie, Integer>> LMovieLikes() {
@@ -50,24 +50,24 @@ public class MovieRanking {
      * and number of likes they receive.
      * (Helper method)
      */
-    private ArrayList<HashMap<Movie, Integer>> updateLMovLikOnce(ArrayList<HashMap<Movie, Integer>> LMovLik) {
+    private Movie MostPopMovie(ArrayList<HashMap<Movie, Integer>> previousMovLik) {
         ArrayList<HashMap<Movie, Integer>> newLMovLik = new ArrayList<>();
         int currMaxLike = 0;
-        for (HashMap<Movie, Integer> each: LMovLik) {
+        for (HashMap<Movie, Integer> each: previousMovLik) {
             for (Movie m: each.keySet()) {
-                if (each.get(m) > currMaxLike){
+                if (each.get(m) >= currMaxLike){
                     currMaxLike = each.get(m);
                 }
             }
         }
-        for (HashMap<Movie, Integer> object: LMovLik) {
+        for (HashMap<Movie, Integer> object: previousMovLik) {
             for (Movie movie: object.keySet()) {
                 if (object.get(movie) == currMaxLike) {
-                    newLMovLik.add(object);
+                    return movie;
                 }
             }
         }
-        return newLMovLik;
+        return null;
     }
 
     /**
@@ -76,19 +76,13 @@ public class MovieRanking {
      */
     private void orderMovieWLikes() {
         ArrayList<HashMap<Movie, Integer>> listMovLik = LMovieLikes();
-        ArrayList<HashMap<Movie, Integer>> listMovLikCopy = (ArrayList<HashMap<Movie, Integer>>) listMovLik.clone();
-        while (! listMovLik.equals(new ArrayList<>())) {
-            ArrayList<HashMap<Movie, Integer>> newLMovLik = updateLMovLikOnce(listMovLik);
-            if (newLMovLik.size() >= 1 & listMovLik.size() >= 1) {
-                HashMap<Movie, Integer> item = newLMovLik.get(newLMovLik.size()-1);
-                listMovLik.remove(item);
+        while (listMovLik.size() > 0) {
+            Movie newMov = MostPopMovie(listMovLik);
+            if (newMov == null) {
+                return;
             }
-            else {
-                break;
-            }
-        }
-        for (HashMap<Movie, Integer> each: listMovLikCopy) {
-            MovieRank.addAll(each.keySet());
+            MovieRank.add(newMov);
+            listMovLik.removeIf(eachMap -> eachMap.containsKey(newMov));
         }
     }
 
