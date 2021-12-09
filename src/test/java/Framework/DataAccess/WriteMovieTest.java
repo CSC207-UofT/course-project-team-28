@@ -37,26 +37,18 @@ public class WriteMovieTest {
     }
 
     @Test
-    public void testCreateFile() {
-        try {
-            assertTrue(InstanceMain.getWriteMovie().createFile("Peach", "asduip", "Romantic"));
-            assertTrue(fileContentTest(infoList, InstanceMain.getWriteMovie().readFile("Peach.txt", "Moviedata")));
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Moviedata/Romantic/" + "Peach" + ".txt")));
-        } catch (IOException e) {
-            System.out.println("testCreateFile for write movie class failed");
-        }
+    public void testCreateFile() throws IOException {
+        assertTrue(InstanceMain.getWriteMovie().createFile("Peach", "asduip", "Romantic"));
+        assertTrue(fileContentTest(infoList, InstanceMain.getWriteMovie().readFile("Peach.txt", "Moviedata")));
+        assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Moviedata/Romantic/" + "Peach" + ".txt")));
     }
 
     @Test
     public void testAddLikeToFile(){
-        try {
-            assertTrue(InstanceMain.getWriteMovie().addLikeToFile("Apple", "Increase", "Anime"));
-            assertEquals("2", InstanceMain.getWriteMovie().readFile("Apple.txt", "Moviedata").get(2));
-            assertTrue(InstanceMain.getWriteMovie().addLikeToFile("Apple", "Decrease", "Anime"));
-            assertEquals("1", InstanceMain.getWriteMovie().readFile("Apple.txt", "Moviedata").get(2));
-        } catch (IOException e) {
-            System.out.println("testAddLikeToFile for write movie class failed");
-        }
+        assertTrue(InstanceMain.getWriteMovie().addLikeToFile("Apple", "Increase", "Anime"));
+        assertEquals("2", InstanceMain.getWriteMovie().readFile("Apple.txt", "Moviedata").get(2));
+        assertTrue(InstanceMain.getWriteMovie().addLikeToFile("Apple", "Decrease", "Anime"));
+        assertEquals("1", InstanceMain.getWriteMovie().readFile("Apple.txt", "Moviedata").get(2));
     }
 
     @Test

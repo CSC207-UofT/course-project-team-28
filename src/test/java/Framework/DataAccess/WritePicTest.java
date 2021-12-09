@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class WritePicTest {
     protected static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
 
+    @SuppressWarnings("InstantiationOfUtilityClass")
     final WritePic writePic = new WritePic("/src/test/res/GUIPic/");
 
     @SuppressWarnings("AccessStaticViaInstance")

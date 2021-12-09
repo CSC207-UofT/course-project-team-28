@@ -14,8 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 
-
-
 public class MovieManagerTest {
 
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -60,11 +58,6 @@ public class MovieManagerTest {
         Assert.assertTrue(mm.IfMovieExist("Akira", "www.Akira.com"));
     }
 
-    @Test
-    public void TestGetMovieProfile() {
-
-        Assert.assertTrue(mm.getMovieProfile("Akira").toString().startsWith("[Ljava.lang.Object;"));
-    }
 
     @Test
     public void TestGetMovieCategory() {

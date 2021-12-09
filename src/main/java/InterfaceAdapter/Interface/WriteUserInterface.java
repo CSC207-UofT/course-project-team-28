@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public interface WriteUserInterface {
     boolean createFile(String userName, String userPassword, String userType);
+    @SuppressWarnings("unused")
     void getObjectFromFile();
 
     boolean givelikeReadAndWrite(String movieName, String username);

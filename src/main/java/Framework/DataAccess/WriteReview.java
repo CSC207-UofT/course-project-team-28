@@ -57,6 +57,7 @@ public class WriteReview implements WriteReviewInterface {
      * @param ID the ID of review
      * @return true if create review file successfully
      */
+    @SuppressWarnings("unused")
     @Override
     public boolean createFile(String currUserName, String movieName, String revContent, int ID){
         File file_if_exist;
@@ -76,6 +77,7 @@ public class WriteReview implements WriteReviewInterface {
 
     /** add coins to the review.
      */
+    @SuppressWarnings("unused")
     @Override
     public boolean addCoinsToReview(int id, int numCoin) {
         ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));

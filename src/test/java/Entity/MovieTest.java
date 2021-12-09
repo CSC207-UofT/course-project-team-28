@@ -12,6 +12,7 @@ public class MovieTest {
         movie = new Movie("Peach", "asduip", 0, "Romantic");
     }
 
+    @SuppressWarnings("TextBlockMigration")
     @Test
     public void testToString() {
         assertEquals("Movie name: Peach" + ", \n" + "Link: asduip" + ", \n" + "Category: Romantic" + ", \n"

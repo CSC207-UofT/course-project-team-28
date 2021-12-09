@@ -122,7 +122,7 @@ public class GUIChooseLanguage extends View{
     /**
      *This is the main method.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         InstanceMain.setClearInstance();
         WriteUserInterface writeUser = new WriteUser();
         WriteReviewInterface writeReview = new WriteReview();

@@ -28,6 +28,7 @@ public class MovieManager {
      * @param movieName name of Core.Movie
      * @param movieLink the link of the movie
      */
+    @SuppressWarnings("SameReturnValue")
     public boolean addMovie(String movieName, String movieLink, String category, int numLikes) {
         Movie m = new Movie(movieName, movieLink, numLikes, category);
         this.Movies.add(m);

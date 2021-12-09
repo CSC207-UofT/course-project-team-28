@@ -120,27 +120,22 @@ public class WriteMovie implements WriteMovieInterface {
      */
     @Override
     public void getObjectFromFile() {
-        try {
-            File MovieCPathFile = new File(MoviePath); //get full path for MovieData folder
+        File MovieCPathFile = new File(MoviePath); //get full path for MovieData folder
 
-            String[] lstOfMovieC = MovieCPathFile.list();// get all the file name in MovieData folder
-            ArrayList<String> lstOfMovie = new ArrayList<>();
-            assert lstOfMovieC != null;
-            for (String str: lstOfMovieC){
-                File MoviePathFile = new File(MoviePath + str);
-                String[] lstOfMovies = MoviePathFile.list();
-                assert lstOfMovies != null;
-                lstOfMovie.addAll(Arrays.asList(lstOfMovies));
-            }
-            for (String m : lstOfMovie) {
-                ArrayList<String> lst = readFile(m, "Moviedata");
-
-                // create object for a single movie
-                this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
-            }
+        String[] lstOfMovieC = MovieCPathFile.list();// get all the file name in MovieData folder
+        ArrayList<String> lstOfMovie = new ArrayList<>();
+        assert lstOfMovieC != null;
+        for (String str: lstOfMovieC){
+            File MoviePathFile = new File(MoviePath + str);
+            String[] lstOfMovies = MoviePathFile.list();
+            assert lstOfMovies != null;
+            lstOfMovie.addAll(Arrays.asList(lstOfMovies));
         }
-        catch (IOException e){
-            System.out.println("Unable to get the file from the Core.Movie Folder");
+        for (String m : lstOfMovie) {
+            ArrayList<String> lst = readFile(m, "Moviedata");
+
+            // create object for a single movie
+            this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
         }
     }
 
@@ -165,7 +160,7 @@ public class WriteMovie implements WriteMovieInterface {
      */
     @Override
     @SuppressWarnings({"Duplicates", "rawtypes", "unchecked"})
-    public ArrayList<String> readFile(String fn, String folder) throws IOException {
+    public ArrayList<String> readFile(String fn, String folder) {
         try{
             File f = new File(ReadPath + folder + "/") ;
             String[] lst1 =  f.list();

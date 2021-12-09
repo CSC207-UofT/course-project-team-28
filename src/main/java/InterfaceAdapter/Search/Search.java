@@ -13,6 +13,7 @@ public class Search {
      * @param word the String that client enter
      * @return return a list of suggested movieNames
      */
+    @SuppressWarnings("InstantiationOfUtilityClass")
     public static List<String> suggestionSearch(String word) {
         List<String> words = InstanceMain.getMovieManager().getMovieNames();
         Trie trie = new Trie(words);

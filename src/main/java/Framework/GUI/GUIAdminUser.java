@@ -62,6 +62,7 @@ public class GUIAdminUser extends View{
         mNameText.setBounds(200, 10, 300, 40);
         mLinkText.setBounds(200, 60, 300, 40);
         categoryChoice.setBounds(200,110,300,100);
+        categoryChoice.setSelectedIndex(0);
         selectPics.setBounds(200, 230, 200, 50);
         uploadMovies.setBounds(230, 250, 200, 50);
         i.setBounds(30,280,400,180);
