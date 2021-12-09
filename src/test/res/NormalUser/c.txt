@@ -1,7 +1,0 @@
-c
-12
-Empty ContactInfo
-Empty description
-Empty category
-300
-[]

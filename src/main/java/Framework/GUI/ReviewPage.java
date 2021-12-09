@@ -19,7 +19,6 @@ public class ReviewPage extends View{
     private JLabel reviewer;
     private Object[] selectedReview;
     private JLabel numCoin;
-    private JTextArea reviewContent;
     private JButton addCoins;
     private MoviePage moviePage = (MoviePage) previous;
     Font font1 = new Font("SansSerif", Font.PLAIN, 20);
