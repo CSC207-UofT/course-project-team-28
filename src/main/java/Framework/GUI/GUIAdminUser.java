@@ -63,7 +63,7 @@ public class GUIAdminUser extends View{
         mLinkText.setBounds(200, 60, 300, 40);
         categoryChoice.setBounds(200,110,300,100);
         selectPics.setBounds(200, 230, 200, 50);
-        uploadMovies.setBounds(200, 800, 200, 50);
+        uploadMovies.setBounds(230, 250, 200, 50);
         i.setBounds(30,280,400,180);
 
         movieName.setFont(font1);
@@ -78,8 +78,6 @@ public class GUIAdminUser extends View{
         p1.add(mNameText);
         p1.add(mLinkText);
         p1.add(categoryChoice);
-        p1.add(selectPics);
-        p1.add(i);
         p1.add(uploadMovies);
     }
 
@@ -115,7 +113,7 @@ public class GUIAdminUser extends View{
         JFrame frame = super.getFrame();
         frame.setTitle(textPresenter.printText("AdminUser Page"));
         frame.add(panel1);
-        frame.setSize(800, 1500);
+        frame.setSize(800, 400);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
