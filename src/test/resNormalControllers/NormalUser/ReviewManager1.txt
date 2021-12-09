@@ -1,0 +1,8 @@
+ReviewManager1
+12ab
+Empty contact info - rm1
+Empty description - rm1
+Empty category - rm1
+288
+[Apple,Team28,Happy Life]
+/src/main/res/GUIPic/winnie.jpg

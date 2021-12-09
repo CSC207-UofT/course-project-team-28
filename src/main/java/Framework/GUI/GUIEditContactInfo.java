@@ -1,6 +1,7 @@
 package Framework.GUI;
 
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,8 @@ public class GUIEditContactInfo extends View{
     private final JPanel jPanel;
     private JTextField jTextField;
     private JTextArea description;
+    private final GUIProfile guiProfile = (GUIProfile) previous;
+    private final TextPresenter textPresenter = guiProfile.getTextPresenter();
 
     /**
     Edit contact information.
@@ -27,9 +30,9 @@ public class GUIEditContactInfo extends View{
         p.setLayout(null);
         jTextField = new JTextField();
         description = new JTextArea();
-        JLabel jLabel = new JLabel("Enter your new phone number: ");
-        JLabel e = new JLabel("Enter your new description: ");
-        JButton saveButton = new JButton("Save");
+        JLabel jLabel = new JLabel(textPresenter.printText("Enter your new phone number: "));
+        JLabel e = new JLabel(textPresenter.printText("Enter your new description: "));
+        JButton saveButton = new JButton(textPresenter.printText("Save"));
 
         p.setBounds(0,0,500,500);
         jLabel.setBounds(5,40,300,30);
@@ -63,7 +66,7 @@ public class GUIEditContactInfo extends View{
         String des = description.getText();
         InstanceMain.getNormalCUser().editProfile(contactInfo, "contactInfo");
         InstanceMain.getNormalCUser().editProfile(des,"description");
-        previous.UpdateText();
+        guiProfile.UpdateText();
         this.getFrame().dispose();
     }
 
@@ -75,7 +78,7 @@ public class GUIEditContactInfo extends View{
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
-        frame.setTitle("Edit Contact Info");
+        frame.setTitle(textPresenter.printText("Edit Contact Info"));
         frame.add(jPanel);
         frame.setSize(500,320);
         frame.setLayout(null);

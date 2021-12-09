@@ -1,11 +1,6 @@
 package InterfaceAdapter;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteUser;
-import UseCase.MovieManager;
-import UseCase.UserManager;
-
-import java.util.*;
+import java.util.Objects;
 
 public class AdminInputProcessor {
     final private String ADMINCODE = "123456";
@@ -14,7 +9,7 @@ public class AdminInputProcessor {
      * Return true if the given string (username or password) is alphanumeric,
      * also it is nonempty.
      */
-    private boolean isnonemptyalpnum(String s) {
+    private boolean isNonEmptyAlpNum(String s) {
         if (s.length() < 1) {
             return false;
         }
@@ -34,10 +29,10 @@ public class AdminInputProcessor {
      * the account will be created.
      */
     public boolean register(String userName, String password, String code) {
-        if (! this.isnonemptyalpnum(userName)){
+        if (! this.isNonEmptyAlpNum(userName)){
             return false;
         }
-        else if (! this.isnonemptyalpnum(password)){
+        else if (! this.isNonEmptyAlpNum(password)){
             return false;
         }
         // check if the admincode is correct
@@ -76,18 +71,5 @@ public class AdminInputProcessor {
             return false;
         }
         return InstanceMain.getMovieManager().addNewMovie(movieName, movieLink, category);
-    }
-
-
-    /**
-     * Given a String called moviename,
-     * return true if the movie exists in the platform and can be deleted.
-     */
-    public boolean deleteMovie(String moviename) {
-        if (InstanceMain.getMovieManager().getMovie(moviename) == null) {
-            return false;
-        }
-        InstanceMain.getMovieManager().deleteMovie(moviename);
-        return true;
     }
 }

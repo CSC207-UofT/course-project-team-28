@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.Objects;
+
 public class Review {
     protected String reviewer;
     protected String movie;
@@ -56,7 +58,7 @@ public class Review {
      *
      * @return the number of coins received by this review.
      */
-    public int getnumCoin(){
+    public int getNumCoin(){
         return this.numCoin;
     }
 
@@ -85,11 +87,40 @@ public class Review {
         result[0] = getReviewer();
         result[1] = getMovie();
         result[2] = getContent();
-        result[3] = getnumCoin();
+        result[3] = getNumCoin();
         result[4] = getID();
         return result;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()){
+            return false;
+        }
+        Review other = (Review) obj;
+        if (this.ID != other.ID){
+            return false;
+        }
+        else if (this.numCoin != other.numCoin){
+            return false;
+        }
+        else if (!Objects.equals(this.reviewer, other.reviewer)){
+            return false;
+        }
+        else if (!Objects.equals(this.movie, other.movie)){
+            return false;
+        }
+        else if (!Objects.equals(this.reviewContent, other.reviewContent)){
+            return false;
+        }
+        return true;
+    }
 
 }
 

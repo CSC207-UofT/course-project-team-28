@@ -11,7 +11,7 @@ public interface GatewayInterface {
 
     //Call Manger class to create entity Object for file data
     void createFileNormalUser(String userName, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList, String picPath);
-    void createFileAdminUser(String userName, String password, String picPath);
+    void createFileAdminUser(String userName, String password);
     void createFileMovie(String moviename, String movielink, String category, int numLike);
     void createFileReview(String userName, String movieName, String content, int numCoin , int ID);
 

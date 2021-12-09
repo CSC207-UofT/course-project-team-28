@@ -42,7 +42,7 @@ public class WriteMovie implements WriteMovieInterface {
 
     /**
      * Constructor for test use only
-     * @param moviePath Core.Movie test folder path
+     * @param moviePath Movie test folder path
      */
     public WriteMovie(String moviePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
@@ -120,8 +120,7 @@ public class WriteMovie implements WriteMovieInterface {
     */
 
     /**
-     * Read Moviedata and Moviereviews two folders, create obejct for each movie and return a two-dimensional array.
-     * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata
+     * Read Moviedata folders, create obejct for each movie.
      */
 
     @Override
@@ -163,31 +162,37 @@ public class WriteMovie implements WriteMovieInterface {
     /**
      * Helper method
      */
-    private ArrayList<String> readFile(String fn, String folder) throws IOException {
-        File f = new File(ReadPath + folder + "/") ;
-        String[] lst1 =  f.list();
-        HashMap<String[], String> map = new HashMap();
-        for (String s: lst1){
-            File f1 = new File(ReadPath + folder + "/" + s + "/");
-            String[] lst2 = f1.list();
-            map.put(lst2, s);
-        }
-        for (String[] s1: map.keySet()){
-            if (Arrays.stream(s1).anyMatch(fn::equals)){
-                moviereader = new FileReader(ReadPath + folder + "/" + map.get(s1) + "/" +fn);
+    public ArrayList<String> readFile(String fn, String folder) throws IOException {
+        try{
+            File f = new File(ReadPath + folder + "/") ;
+            String[] lst1 =  f.list();
+            HashMap<String[], String> map = new HashMap();
+            for (String s: lst1){
+                File f1 = new File(ReadPath + folder + "/" + s + "/");
+                String[] lst2 = f1.list();
+                map.put(lst2, s);
             }
-        }
-        getmovie = new BufferedReader(moviereader);
+            for (String[] s1: map.keySet()){
+                if (Arrays.stream(s1).anyMatch(fn::equals)){
+                    moviereader = new FileReader(ReadPath + folder + "/" + map.get(s1) + "/" +fn);
+                }
+            }
+            getmovie = new BufferedReader(moviereader);
 
-        ArrayList<String> lst = new ArrayList<>();
-        String line = getmovie.readLine();
-        while (line != null) {
-            lst.add(line);
-            line = getmovie.readLine();
-        }
-        getmovie.close();
+            ArrayList<String> lst = new ArrayList<>();
+            String line = getmovie.readLine();
+            while (line != null) {
+                lst.add(line);
+                line = getmovie.readLine();
+            }
+            getmovie.close();
 
-        return lst;
+            return lst;
+        }
+        catch (Exception e){
+            System.out.println("Unable to read movie file");
+            return null;
+        }
     }
 }
 

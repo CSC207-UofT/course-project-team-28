@@ -60,10 +60,10 @@ public class NormalCUser extends NormalController {
     }
 
     /**
-     * when given a String of the normal user's username, return information of the user.
+     * when given a String of VALID normal user's username, return information of the user.
      * @param userName username
      * @return information of the user in the forms of an arraylist
-     *         [username, password, contact info, description, category, coin, playlist]
+     *         [username, password, contact info, description, category, coin, playlist, picPath]
      */
     public Object[] profilePage(String userName){
         return InstanceMain.getUserManager().getUserInfoList(userName, "NormalUser");
