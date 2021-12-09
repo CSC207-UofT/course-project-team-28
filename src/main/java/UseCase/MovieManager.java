@@ -108,28 +108,12 @@ public class MovieManager {
         return result;
     }
 
-      /**
-       * delete an instance of movie from the overall list of Movies
-       * @param movieName the name of this instance of Movie
-       */
-      public boolean deleteMovie(String movieName) {
-          String category = this.getMovieCategory(movieName);
-          for (Movie m : this.Movies){
-              if (m.getMoviename().equals(movieName)){
-                  this.Movies.remove(m);
-                  this.gateway.deleteMovie(movieName, category);
-                  return !this.Movies.contains(m);
-              }
-          }
-          return false;
-      }
-
     /**
      * Use movie_name and movie_link to find the movie's category
      * @param name the name of the movie
      * @return return the category of the movie, null if movie not found
      */
-    public String getMovieCategory(String name){
+    private String getMovieCategory(String name){
         for (Movie movie: Movies){
             if (movie.getMoviename().equals(name)){
                 return movie.category;
@@ -153,19 +137,6 @@ public class MovieManager {
 
     }
 
-    /**
-     * Undo a like to an instance of movie from the overall list of Movies
-     * @param movieName the name of this instance of Core.Movie
-     */
-    public boolean undolikeMovie(String movieName) {
-        String category = this.getMovieCategory(movieName);
-        Movie movie = this.getMovie(movieName);
-        int like = movie.getLikes();
-        movie.UndoLike();
-
-        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease", category);
-
-    }
 
     /**
      * Represents a UseCase.MovieManager as a String containing all Core.Movie names in the system.
