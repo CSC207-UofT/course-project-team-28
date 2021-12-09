@@ -5,18 +5,12 @@ package Entity.User;
  */
 abstract class User {
 
-    protected String username;
-    protected String password;
+    protected final String username;
+    protected final String password;
 
     public User(String username, String password){
         this.username = username;
         this.password = password;
     }
 
-    /**
-     * getter
-     */
-    abstract Object[] getObject();
-    abstract String getUsername();
-    abstract String getUserPassword();
 }

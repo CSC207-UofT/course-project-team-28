@@ -26,9 +26,9 @@ public class MoviePage extends View {
     private JLabel numberOfLikes;
     private JList reviewList;
     private TextPresenter textPresenter;
-    Font font1 = new Font("SansSerif", Font.BOLD, 30);
-    Font font2 = new Font("SansSerif", Font.PLAIN, 20);
-    Font font3 = new Font("SansSerif", Font.PLAIN, 17);
+    final Font font1 = new Font("SansSerif", Font.BOLD, 30);
+    final Font font2 = new Font("SansSerif", Font.PLAIN, 20);
+    final Font font3 = new Font("SansSerif", Font.PLAIN, 17);
 
     /**
      constructor of this class

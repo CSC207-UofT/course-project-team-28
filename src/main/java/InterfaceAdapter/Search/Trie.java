@@ -10,8 +10,8 @@ public class Trie {
     /**
      * a node of Trie
      */
-    public class TrieNode {
-        Map<Character, TrieNode> children;
+    public static class TrieNode {
+        final Map<Character, TrieNode> children;
         char c;
         boolean isEndWord;
 
@@ -51,7 +51,7 @@ public class Trie {
 
     }
 
-    TrieNode root;
+    static TrieNode root;
 
     public Trie(List<String> words) {
         root = new TrieNode();
@@ -63,7 +63,7 @@ public class Trie {
     /**
      * helper method of suggest
      */
-    public void suggestHelper(TrieNode root, List<String> list, StringBuffer curr) {
+    public static void suggestHelper(TrieNode root, List<String> list, StringBuffer curr) {
         if (root.isEndWord) {
             list.add(curr.toString());
         }
@@ -82,7 +82,7 @@ public class Trie {
      * @param prefix the String that client enter
      * @return return a list of suggested movieNames
      */
-    public List<String> suggest(String prefix) {
+    public static List<String> suggest(String prefix) {
         List<String> list = new ArrayList<>();
         TrieNode lastNode = root;
         StringBuffer curr = new StringBuffer();

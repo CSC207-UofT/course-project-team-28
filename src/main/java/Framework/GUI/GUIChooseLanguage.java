@@ -4,6 +4,9 @@ import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Interface.WriteMovieInterface;
+import InterfaceAdapter.Interface.WriteReviewInterface;
+import InterfaceAdapter.Interface.WriteUserInterface;
 import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
@@ -12,7 +15,7 @@ import java.io.IOException;
 /**
  * This is the first page of our program, which allows the user to select language (English or Chinese).
  */
-public class GUIChooseLanguage extends View{
+public class GUIChooseLanguage extends View {
     private String Language;
     private final JButton english;
     private final JButton mandarin;
@@ -20,10 +23,11 @@ public class GUIChooseLanguage extends View{
 
     /**
      * The constructor of this class.
+     *
      * @param previous The parameter from the super class View. It is used to switch pages.
      */
 
-    public GUIChooseLanguage(View previous){
+    public GUIChooseLanguage(View previous) {
         super(previous);
         p1 = new JPanel();
         english = new JButton();
@@ -33,9 +37,10 @@ public class GUIChooseLanguage extends View{
 
     /**
      * Add components to panel.
+     *
      * @param p1 The Jpanel to be modified.
      */
-    private void PlaceThingsOnP1(JPanel p1){
+    private void PlaceThingsOnP1(JPanel p1) {
         p1.setLayout(null);
         p1.setBounds(20, 20, 160, 360);
         english.setBounds(130, 50, 120, 60);
@@ -70,6 +75,7 @@ public class GUIChooseLanguage extends View{
         nextView(g, false);
         this.getFrame().dispose();
     }
+
     /**
      * This is the action when the user press the '中文' button.
      */
@@ -83,7 +89,7 @@ public class GUIChooseLanguage extends View{
     /**
      * The getter method for getting the selected language.
      */
-    public String getLanguage(){
+    public String getLanguage() {
         return this.Language;
     }
 
@@ -103,7 +109,7 @@ public class GUIChooseLanguage extends View{
     }
 
     /**
-     *The method in super class for generating a new frame.
+     * The method in super class for generating a new frame.
      */
     @Override
     protected JFrame getFrame() {
@@ -117,16 +123,16 @@ public class GUIChooseLanguage extends View{
     }
 
     /**
-     *This is the main method.
+     * This is the main method.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         InstanceMain.setClearInstance();
-        WriteUser writeUser = new WriteUser();
-        WriteReview writeReview = new WriteReview();
-        WriteMovie writeMovie = new WriteMovie();
+        WriteUserInterface writeUser = new WriteUser();
+        WriteReviewInterface writeReview = new WriteReview();
+        WriteMovieInterface writeMovie = new WriteMovie();
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
 
         View gui = new GUIChooseLanguage(null);
-        gui.nextView(gui,false);
+        gui.nextView(gui, false);
     }
 }

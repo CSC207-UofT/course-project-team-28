@@ -29,7 +29,7 @@ public class CoinManager extends NormalController {
     public boolean GiveCoinToReview(String userName, int reviewid) {
         if (this.userManager.checkCoinBiggerThanOne(userName)) {
             return this.userManager.updateCoin(userName, -1)
-                    && this.reviewManager.addCoin(reviewid, userName);
+                    && this.reviewManager.addCoin(reviewid);
         }
         return false;
     }

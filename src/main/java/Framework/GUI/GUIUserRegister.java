@@ -55,11 +55,7 @@ public class GUIUserRegister extends SharedView {
         RegButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                try {
-                    OnRegClick();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                OnRegClick();
             }
         });
         panel.add(RegButton);
@@ -77,9 +73,8 @@ public class GUIUserRegister extends SharedView {
 
     /**
      * Click the button to register
-     * @throws IOException if the user exists, it fails to register
      */
-    public void OnRegClick() throws IOException {
+    public void OnRegClick() {
         userName = usernameText.getText();
         String password = passwordText.getText();
         boolean register;

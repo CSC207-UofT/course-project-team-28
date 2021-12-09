@@ -1,8 +1,8 @@
 Ella
 123
-511291
-I like movie blablabla  1
+51129
+I like Anime
 Empty category
-298
-[Apple,Candy,Team28,Happy Life]
+295
+[Apple,Candy,Team28,Happy Life,Cindey,Dinner,You and me]
 /src/main/res/GUIPic/moon.jpg

@@ -7,7 +7,9 @@ import InterfaceAdapter.InstanceMain;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
@@ -30,10 +32,6 @@ public class NormalCMovieTest {
         assertTrue(ncu.login("NormalController", "123yu"));
         assertEquals("NormalController", ncu.currNormalName);
     }
-
-//    @Test
-//    public void ifMovieExist() {
-//    }
 
     @Test
     public void movieProfile() {
@@ -89,10 +87,6 @@ public class NormalCMovieTest {
         assertEquals(1, ((Object[]) InstanceMain.getMovieManager().getMovieProfile("Water"))[3]);
     }
 
-//    @Test
-//    public void emptyPlaylist() {
-//    }
-
 
     @Test
     public void rankMovie() {
@@ -104,7 +98,7 @@ public class NormalCMovieTest {
     }
 
     @Test
-    public void writeReview() {
+    public void writeReview() throws IOException {
         int preUser = (int) InstanceMain.getNormalCUser().profilePage("NormalController")[5];
         assertTrue(ncm.writeReview("Team28", "delete content after"));
         int aftUser = (int) InstanceMain.getNormalCUser().profilePage("NormalController")[5];
@@ -115,7 +109,7 @@ public class NormalCMovieTest {
         for (int i = 0; i <= 4; i++){
             assertEquals(expect[i], actual[i]);
         }
-        assertTrue(InstanceMain.getWriteReview().deleteReviewFile(revId));
+        assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/resNormalControllers/Review/" + revId + ".txt")));
         assertEquals(1, aftUser-preUser);
     }
 }

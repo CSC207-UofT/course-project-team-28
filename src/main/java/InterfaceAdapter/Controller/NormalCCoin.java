@@ -6,7 +6,6 @@ import InterfaceAdapter.InstanceMain;
  * NormalCCoin (InterfaceAdapter)
  * Controller responsible for coin-related operations.
  */
-
 public class NormalCCoin extends NormalController{
 
     public NormalCCoin() {
