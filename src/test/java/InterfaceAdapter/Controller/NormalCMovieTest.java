@@ -115,7 +115,7 @@ public class NormalCMovieTest {
         for (int i = 0; i <= 4; i++){
             assertEquals(expect[i], actual[i]);
         }
-        InstanceMain.getWriteReview().deleteReviewFile(revId);
+        assertTrue(InstanceMain.getWriteReview().deleteReviewFile(revId));
         assertEquals(1, aftUser-preUser);
     }
 }

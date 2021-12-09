@@ -30,12 +30,13 @@ public class CoinManagerTest {
         rm = InstanceMain.getReviewManager();
     }
 
+
     @Test
     public void EarnCoinAfterReviewTest() {
         Object[] CMinfoList1 = um.getUserInfoList("CoinManager3", "NormalUser");
         cm.EarnCoinAfterReview("CoinManager3");
         Object[] CMinfoList2 = um.getUserInfoList("CoinManager3", "NormalUser");
-        int diff = (int)CMinfoList2[5] - (int)CMinfoList1[5];
+        int diff = (int) CMinfoList2[5] - (int) CMinfoList1[5];
         assertEquals(diff, 1);
     }
 
@@ -45,8 +46,8 @@ public class CoinManagerTest {
         Object[] CMtestrevInfo1 = rm.getRevInfoById(1);
         cm.GiveCoinToReview("CoinManager2", 1);
         Object[] CMinfoList2 = um.getUserInfoList("CoinManager2", "NormalUser");
-        assertEquals((int)CMinfoList2[5] - (int)CMinfoList1[5], -1);
+        assertEquals((int) CMinfoList2[5] - (int) CMinfoList1[5], -1);
         Object[] CMtestrevInfo2 = rm.getRevInfoById(1);
-        assertEquals((int)CMtestrevInfo2[3] - (int)CMtestrevInfo1[3], 1);
+        assertEquals((int) CMtestrevInfo2[3] - (int) CMtestrevInfo1[3], 1);
     }
 }
