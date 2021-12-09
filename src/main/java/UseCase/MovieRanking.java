@@ -28,10 +28,12 @@ public class MovieRanking {
         this.MovieRank = new ArrayList<>();
     }
 
+
     /**
-     * Return an ArrayList of map consisting movies and the number of likes they receive
-     * according to all the movies that the moviemanager contains.
-     * (Helper method)
+     *
+     * @return an ArrayList of map consisting movies and the number of likes they receive
+     *      * according to all the movies that the moviemanager contains.
+     *      * (Helper method)
      */
     private ArrayList<HashMap<Movie, Integer>> LMovieLikes() {
         ArrayList<HashMap<Movie, Integer>> listMovieLikes = new ArrayList<>();
@@ -43,12 +45,15 @@ public class MovieRanking {
         return listMovieLikes;
     }
 
+
     /**
-     * Return an ArrayList of map consisting movies and likes
-     * with the most popular movie updated
-     * when given an ArrayList of map consisting movies
-     * and number of likes they receive.
-     * (Helper method)
+     *
+     * @param previousMovLik: ArrayList<HashMap<Movie, Integer>>
+     * @return Return an ArrayList of map consisting movies and likes
+     *      * with the most popular movie updated
+     *      * when given an ArrayList of map consisting movies
+     *      * and number of likes they receive.
+     *      * (Helper method)
      */
     private Movie MostPopMovie(ArrayList<HashMap<Movie, Integer>> previousMovLik) {
         ArrayList<HashMap<Movie, Integer>> newLMovLik = new ArrayList<>();

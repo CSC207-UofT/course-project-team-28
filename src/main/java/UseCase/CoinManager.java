@@ -18,11 +18,14 @@ public class CoinManager extends NormalController {
         this.reviewManager = rm;
     }
 
+
     /**
-     * Return true if the number of coins that the user has is greater or equal to 1.
-     * Given the username and reviewid, update the number of coins that the user has,
-     * and update the number of coins that the review earns.
-     * Do NOT call gateway again, as they are already called in userManager and reviewManager
+     * @param userName: String
+     * @param reviewid: int
+     * @return true if the number of coins that the user has is greater or equal to 1.
+     *      * Given the username and reviewid, update the number of coins that the user has,
+     *      * and update the number of coins that the review earns.
+     *      * Do NOT call gateway again, as they are already called in userManager and reviewManager
      */
     public boolean GiveCoinToReview(String userName, int reviewid) {
         if (this.userManager.checkCoinBiggerThanOne(userName)) {
@@ -32,7 +35,11 @@ public class CoinManager extends NormalController {
         return false;
     }
 
+
     /**
+     *
+     * @param username: String
+     * @return true if the user is valid and the user writes a review.
      * Update the number of coins that the user has after a review.
      * Note: each new-made review increases the number of coins that the user has by 1.
      */
