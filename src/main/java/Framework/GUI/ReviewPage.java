@@ -1,17 +1,11 @@
 package Framework.GUI;
 
-import Entity.Review;
-import Framework.DataAccess.WritePic;
 import InterfaceAdapter.InstanceMain;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReviewPage extends View{
 
@@ -33,7 +27,7 @@ public class ReviewPage extends View{
     }
 
     private void PlaceThingsOnP1(JPanel p1){
-        selectedReview = InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReivew());
+        selectedReview = InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReview());
         reviewer = new JLabel();
         numCoin = new JLabel();
         addCoins = new JButton();
@@ -61,13 +55,13 @@ public class ReviewPage extends View{
     }
 
     private void OnAddButtonClick(ActionEvent e) {
-        InstanceMain.getNormalCCoin().giveCoinToRev(moviePage.getSelectedReivew());
+        InstanceMain.getNormalCCoin().giveCoinToRev(moviePage.getSelectedReview());
         UpdateText();
     }
 
     @Override
     protected void UpdateText() {
-        int result = (Integer) InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReivew())[3];
+        int result = (Integer) InstanceMain.getNormalCMovie().getReviewInfo(moviePage.getSelectedReview())[3];
         numCoin.setText("Number of Coins: " + result);
     }
 
