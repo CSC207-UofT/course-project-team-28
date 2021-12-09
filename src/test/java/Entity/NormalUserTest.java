@@ -50,7 +50,7 @@ public class NormalUserTest {
     }
 
     @Test
-    public void getContactinfo() {
+    public void getContactInfo() {
         assertEquals("123456789", nu.getContactInfo());
     }
 
@@ -75,7 +75,7 @@ public class NormalUserTest {
     }
 
     @Test
-    public void updateContactinfo() {
+    public void updateContactInfo() {
         nu.updateContactInfo("123456");
         assertEquals("123456", nu.getContactInfo());
     }
