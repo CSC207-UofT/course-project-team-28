@@ -9,6 +9,7 @@
 **(b) Explain why the principle does not apply to a program like yours.**
 
 1 Equitable Use
+
 Our program intends to treat every user equally, but may sometimes violate the Equitable Use Principle due to technical limitations. For example, the program does not have text-to-speech and alternative-input-source features for the users with visual impairments. We will implement these features in the future to better serve the users of our program.
 
 2 Flexibility in Use
@@ -45,18 +46,22 @@ Our program intends to treat every user equally, but may sometimes violate the E
 
 
 4 Perceptible Information
+
 We use GUI to communicate necessary information effectively to users. In the main page, we use different colors for the button and background, to provide adequate contrast between our essential “buttons” and its surroundings. Moreover, we also add pictures for our users and movies, which are exactly different modes for redundant presentation for our important information. In order to maximize “legibility” of essential information, we also adjust the font of our text and bold some important texts. To make it easy to give instructions, we also number the different reviews.
 
 
 5 Tolerance for Error
-Our design minimizes hazards and the adverse consequences of accidental or unintended actions. Usually, the users follow the instructions that we developers give, but even if when they do not, the code already has a proper way to handled the possible hazards and errors, for example, when they search something that is not in the database or they type some strings that the code can not identify, GUI will tell them this object does not exist and ask them to try again instead of just breaking down and running into some errors which follows the fail safe feature. Also, we print a prompt that is easy to follow with each step, so it does not require much vigilance.
+
+Our design minimizes hazards and the adverse consequences of accidental or unintended actions. Usually, the users follow the instructions that we developers give, but even if when they do not, the code already has a proper way to handled the possible hazards and errors. For example, when they search something that is not in the database or they type some strings that the code can not identify, GUI will tell them this object does not exist and ask them to try again instead of just breaking down and running into some errors which follows the fail safe feature. Also, we print a prompt that is easy to follow with each step, so it does not require much vigilance.
 
 
 6 Low Physical Effort
-We designed a GUI that is easy to use. We have large buttons with clear texts on them, also contrasting color with background,  to make sure they are easy to see and recognize by users. Our GUI is also well-organized with fonts large enough for users to see from a neutral body position. Furthermore, we have picked the best positions on screen for our texts and buttons so that the users can access them while remaining in a neutral body position. For the background image. We used pictures with light and comfortable colors to make sure they won’t hurt the user's eyes. Our program is really simple to use and no duplicated steps needed, which minimize the effort an user needs to use the program. Whichever functionaries that our program acquires, no matter it is register, login, update profile, giving coins or watching movies, they all can be done by one or two simple clicks. The only effort that users need to pay is thinking while writing a review! A thoroughly thought, well-organized review is always appreciated. in our  program.
+
+We designed a GUI that is easy to use. We have large buttons with clear texts on them, also contrasting color with background,  to make sure they are easy to see and recognize by users. Our GUI is also well-organized with fonts large enough for users to see from a neutral body position. Furthermore, we have picked the best positions on screen for our texts and buttons so that the users can access them while remaining in a neutral body position. For the background image. We used pictures with light and comfortable colors to make sure they won’t hurt the user's eyes. Our program is really simple to use and no duplicated steps needed, which minimize the effort an user needs to use the program. Whichever functionaries that our program acquires, no matter it is register, login, update profile, giving coins or watching movies, they all can be done by one or two simple clicks. The only effort that users need to pay is thinking while writing a review! A thoroughly thought, well-organized review is always appreciated in our program.
 
 
 7 Size and Space for Approach and Use
+
 The GUI platform is suitable to be used by users with different body sizes, and it also provides a clear line of sight for any seated or standing user. In addition, the design of the GUI platform uses high contrast colours, thus it makes users comfortable receiving information from different viewing angles. Thus, it meets the Principle of Size and Space for Approach and Use.
 
 
