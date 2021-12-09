@@ -12,13 +12,15 @@ import java.util.List;
 public class MovieManager {
 
     private final ArrayList<Movie> Movies;
+    private final ReviewManager reviewManager;
     private final GatewayInterface gateway = new Gateway();
 
     /**
      * Creates a UseCase.MovieManager with a list of movies are empty
      */
-    public MovieManager(){
+    public MovieManager(ReviewManager rm){
         this.Movies = new ArrayList<>();
+        this.reviewManager = rm;
     }
 
     /**
@@ -29,8 +31,8 @@ public class MovieManager {
     public boolean addMovie(String movieName, String movieLink, String category, int numLikes) {
         Movie m = new Movie(movieName, movieLink, numLikes, category);
         this.Movies.add(m);
+        this.reviewManager.updateMovieToRevsKey(movieName);
         return true;
-
     }
 
     /**
@@ -41,6 +43,7 @@ public class MovieManager {
     public boolean addNewMovie(String movieName, String movieLink, String category) {
         Movie m = new Movie(movieName, movieLink, 0, category);
         this.Movies.add(m);
+        this.reviewManager.updateMovieToRevsKey(movieName);
         return this.Movies.contains(m) && this.gateway.createNewMovie(movieName, movieLink, category);
 
     }
@@ -93,35 +96,24 @@ public class MovieManager {
      * should be called only when movie_name exists
      * get the profile of an instance of movie from the overall list of Movies
      * @param movieName the name of this instance of Core.Movie
-     * @return profile a String including the profile of the movie.
+     * @return the array [movieName, movieLink, movieCategory, numOfLikes].
      */
-    public String getMovieProfile(String movieName) {
+    public Object[] getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
-        return movie.toString();
+        Object[] result = new Object[4];
+        result[0] = movie.getMoviename();
+        result[1] = movie.getLink();
+        result[2] = movie.getCategory();
+        result[3] = movie.getLikes();
+        return result;
     }
-
-      /**
-       * delete an instance of movie from the overall list of Movies
-       * @param movieName the name of this instance of Movie
-       */
-      public boolean deleteMovie(String movieName) {
-          String category = this.getMovieCategory(movieName);
-          for (Movie m : this.Movies){
-              if (m.getMoviename().equals(movieName)){
-                  this.Movies.remove(m);
-                  this.gateway.deleteMovie(movieName, category);
-                  return !this.Movies.contains(m);
-              }
-          }
-          return false;
-      }
 
     /**
      * Use movie_name and movie_link to find the movie's category
      * @param name the name of the movie
      * @return return the category of the movie, null if movie not found
      */
-    public String getMovieCategory(String name){
+    private String getMovieCategory(String name){
         for (Movie movie: Movies){
             if (movie.getMoviename().equals(name)){
                 return movie.category;
@@ -145,19 +137,6 @@ public class MovieManager {
 
     }
 
-    /**
-     * Undo a like to an instance of movie from the overall list of Movies
-     * @param movieName the name of this instance of Core.Movie
-     */
-    public boolean undolikeMovie(String movieName) {
-        String category = this.getMovieCategory(movieName);
-        Movie movie = this.getMovie(movieName);
-        int like = movie.getLikes();
-        movie.UndoLike();
-
-        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease", category);
-
-    }
 
     /**
      * Represents a UseCase.MovieManager as a String containing all Core.Movie names in the system.
@@ -175,6 +154,19 @@ public class MovieManager {
 
     public ArrayList<Movie> getMovies(){
         return Movies;
+    }
+
+    public ArrayList<Object[]> rankedMoviesProfile() {
+        MovieRanking mr = new MovieRanking();
+        ArrayList<Movie> rankedMovies = mr.getMovieRank();
+        ArrayList<Object[]> result = new ArrayList<>();
+        if (! rankedMovies.isEmpty()){
+            for (Movie mov: rankedMovies){
+                String movieName = mov.getMoviename();
+                result.add(this.getMovieProfile(movieName));
+            }
+        }
+        return result;
     }
 
 }

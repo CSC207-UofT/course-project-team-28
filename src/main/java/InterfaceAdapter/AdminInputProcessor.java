@@ -1,11 +1,6 @@
 package InterfaceAdapter;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteUser;
-import UseCase.MovieManager;
-import UseCase.UserManager;
-
-import java.util.*;
+import java.util.Objects;
 
 public class AdminInputProcessor {
     final private String ADMINCODE = "123456";
@@ -78,16 +73,4 @@ public class AdminInputProcessor {
         return InstanceMain.getMovieManager().addNewMovie(movieName, movieLink, category);
     }
 
-
-    /**
-     * Given a String called moviename,
-     * return true if the movie exists in the platform and can be deleted.
-     */
-    public boolean deleteMovie(String moviename) {
-        if (InstanceMain.getMovieManager().getMovie(moviename) == null) {
-            return false;
-        }
-        InstanceMain.getMovieManager().deleteMovie(moviename);
-        return true;
-    }
 }

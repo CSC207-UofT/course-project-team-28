@@ -8,6 +8,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Called for read and write movie's file.
@@ -41,7 +42,7 @@ public class WriteMovie implements WriteMovieInterface {
 
     /**
      * Constructor for test use only
-     * @param moviePath Core.Movie test folder path
+     * @param moviePath Movie test folder path
      */
     public WriteMovie(String moviePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
@@ -55,7 +56,7 @@ public class WriteMovie implements WriteMovieInterface {
     public boolean createFile(String movieName, String movieLink, String category) {
 
         try{
-            writemovie = new FileWriter(MoviePath + movieName + ".txt");
+            writemovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             writemovie.write(movieName);
             writemovie.write("\r\n");
             writemovie.write(movieLink);
@@ -79,7 +80,7 @@ public class WriteMovie implements WriteMovieInterface {
     @Override
     public boolean addLikeToFile(String movieName, String state, String category) {
         try {
-            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata/" + category));
+            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata/"));
             writemovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             if (state.equals("Increase")){
 
@@ -119,8 +120,7 @@ public class WriteMovie implements WriteMovieInterface {
     */
 
     /**
-     * Read Moviedata and Moviereviews two folders, create obejct for each movie and return a two-dimensional array.
-     * the movie reviews are taken from the Moviereviews file while other parameters taken from Moviedata
+     * Read Moviedata folders, create obejct for each movie.
      */
 
     @Override
@@ -163,18 +163,36 @@ public class WriteMovie implements WriteMovieInterface {
      * Helper method
      */
     public ArrayList<String> readFile(String fn, String folder) throws IOException {
-        moviereader = new FileReader(ReadPath + folder + "/" + fn);
-        getmovie = new BufferedReader(moviereader);
+        try{
+            File f = new File(ReadPath + folder + "/") ;
+            String[] lst1 =  f.list();
+            HashMap<String[], String> map = new HashMap();
+            for (String s: lst1){
+                File f1 = new File(ReadPath + folder + "/" + s + "/");
+                String[] lst2 = f1.list();
+                map.put(lst2, s);
+            }
+            for (String[] s1: map.keySet()){
+                if (Arrays.stream(s1).anyMatch(fn::equals)){
+                    moviereader = new FileReader(ReadPath + folder + "/" + map.get(s1) + "/" +fn);
+                }
+            }
+            getmovie = new BufferedReader(moviereader);
 
-        ArrayList<String> lst = new ArrayList<>();
-        String line = getmovie.readLine();
-        while (line != null) {
-            lst.add(line);
-            line = getmovie.readLine();
+            ArrayList<String> lst = new ArrayList<>();
+            String line = getmovie.readLine();
+            while (line != null) {
+                lst.add(line);
+                line = getmovie.readLine();
+            }
+            getmovie.close();
+
+            return lst;
         }
-        getmovie.close();
-
-        return lst;
+        catch (Exception e){
+            System.out.println("Unable to read movie file");
+            return null;
+        }
     }
 }
 

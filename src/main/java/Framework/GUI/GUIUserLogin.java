@@ -1,10 +1,12 @@
 package Framework.GUI;
 
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class GUIUserLogin extends SharedView {
     private static JPanel panel;
@@ -13,39 +15,43 @@ public class GUIUserLogin extends SharedView {
     private static JLabel loginResult;
     private static JTextField usernameText;
     private static JTextField passwordText;
-    private final JLabel adminCodeLabel = new JLabel("Administrator Code");
     private final JTextField adminCodeText = new JTextField(20);
+    private final GUIChooseLanguage guiMain = (GUIChooseLanguage) previous;
+    private final TextPresenter textPresenter = guiMain.getTextPresenter();
+    private final JLabel adminCodeLabel = new JLabel(textPresenter.printText("Administrator Code"));
 
-    //gui
-    public GUIUserLogin(View view, Boolean isAdmin){
+    /*
+    Constructor of this class.
+     */
+    public GUIUserLogin(View view, Boolean isAdmin) throws IOException {
         super(view, isAdmin);
         panel = new JPanel();
         placeComponents(panel);
-
     }
-    // place components on GUI
+
+    /*
+    place components on GUI
+     */
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
-        usernameLabel = new JLabel("Username");
+        usernameLabel = new JLabel(textPresenter.printText("Username"));
         usernameLabel.setBounds(10,20,80,25);
         panel.add(usernameLabel);
         usernameText = new JTextField(20);
         usernameText.setBounds(130,20,165,25);
         panel.add(usernameText);
-        pswLabel = new JLabel("Password");
+        pswLabel = new JLabel(textPresenter.printText("Password"));
         pswLabel.setBounds(10,50,80,25);
         panel.add(pswLabel);
         passwordText = new JPasswordField(20);
         passwordText.setBounds(130,50,165,25);
         panel.add(passwordText);
-        JButton loginButton = new JButton("login");
+        JButton loginButton = new JButton(textPresenter.printText("login"));
         loginButton.setBounds(10, 110, 80, 25);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnLoginClick(actionEvent);
-
-
             }
         });
         panel.add(loginButton);
@@ -59,7 +65,7 @@ public class GUIUserLogin extends SharedView {
             panel.add(adminCodeText);
         }
     }
-    //actions
+
     /*
     Check whether the user is AdminUser or NormalUser, and Login.
      */
@@ -74,16 +80,16 @@ public class GUIUserLogin extends SharedView {
                 nextView(new GUIAdminUser(this), true);
             }
             else {
-                loginResult.setText("Username or password incorrect, please try again.");
+                loginResult.setText(textPresenter.printText("Username or password incorrect, please try again."));
             }
         } else {
             login = InstanceMain.getNormalCUser().login(userName, password);
             if (login){
-                loginResult.setText("Login successful.");
+                loginResult.setText(textPresenter.printText("Login successful."));
                 nextView(new GUIProfile(this), true);
             }
             else {
-                loginResult.setText("Username or password incorrect, please try again.");
+                loginResult.setText(textPresenter.printText("Username or password incorrect, please try again."));
             }
         }
     }
@@ -93,9 +99,13 @@ public class GUIUserLogin extends SharedView {
 
     }
 
+    public TextPresenter getTextPresenter(){
+        return this.textPresenter;
+    }
+
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
-        frame.setTitle("Login");
+        frame.setTitle(textPresenter.printText("Login"));
         frame.setSize(350,200);
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
