@@ -19,7 +19,7 @@ public class InstanceMainTest {
         InstanceMain.setClearInstance();
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
-        WriteMovie wm = new WriteMovie(str1 + "/src/main/res/Moviedata/", str1 + "/src/main/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/main/res/MovieData/", str1 + "/src/main/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
     }
 

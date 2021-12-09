@@ -23,7 +23,7 @@ public class CoinManagerTest {
         InstanceMain.setClearInstance();
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/res/ReviewCoinManager");
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/MovieData/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         cm = InstanceMain.getCoinManager();
         um = InstanceMain.getUserManager();

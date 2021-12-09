@@ -37,7 +37,7 @@ public class WriteReviewTest {
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser",
                 str1 + "/src/test/res/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/res/ReviewWriteReview");
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/",
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/MovieData/",
                 str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         rm = InstanceMain.getReviewManager();
