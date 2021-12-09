@@ -109,22 +109,6 @@ public class MovieManager {
     }
 
     /**
-     * delete an instance of movie from the overall list of Movies
-     * @param movieName the name of this instance of Movie
-     */
-    public boolean deleteMovie(String movieName) {
-        String category = this.getMovieCategory(movieName);
-        for (Movie m : this.Movies){
-            if (m.getMovieName().equals(movieName)){
-                this.Movies.remove(m);
-                this.gateway.deleteMovie(movieName, category);
-                return !this.Movies.contains(m);
-            }
-        }
-        return false;
-    }
-
-    /**
      * Use movie_name and movie_link to find the movie's category
      * @param name the name of the movie
      * @return return the category of the movie, null if movie not found
@@ -154,20 +138,6 @@ public class MovieManager {
     }
 
     /**
-     * Undo a like to an instance of movie from the overall list of Movies
-     * @param movieName the name of this instance of Core.Movie
-     */
-    public boolean undolikeMovie(String movieName) {
-        String category = this.getMovieCategory(movieName);
-        Movie movie = this.getMovie(movieName);
-        int like = movie.getLikes();
-        movie.UndoLike();
-
-        return (movie.getLikes() + 1 == like) && this.gateway.editLikeToMovieFile(movieName, "Decrease", category);
-
-    }
-
-    /**
      * Represents a UseCase.MovieManager as a String containing all Core.Movie names in the system.
      * @return a list of movie names separated by commas.
      */
@@ -183,6 +153,19 @@ public class MovieManager {
 
     public ArrayList<Movie> getMovies(){
         return Movies;
+    }
+
+    public ArrayList<Object[]> rankedMoviesProfile() {
+        MovieRanking mr = new MovieRanking();
+        ArrayList<Movie> rankedMovies = mr.getMovieRank();
+        ArrayList<Object[]> result = new ArrayList<>();
+        if (! rankedMovies.isEmpty()){
+            for (Movie mov: rankedMovies){
+                String movieName = mov.getMovieName();
+                result.add(this.getMovieProfile(movieName));
+            }
+        }
+        return result;
     }
 
 }

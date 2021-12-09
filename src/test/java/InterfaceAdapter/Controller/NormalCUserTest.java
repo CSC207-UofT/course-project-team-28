@@ -118,7 +118,7 @@ public class NormalCUserTest {
     @Test
     public void editProfile() {
         assertTrue(ncu.login("NormalController", "123yu"));
-        ncu.editProfile("12345678ContactInfo", "contactInfo");
+        assertTrue(ncu.editProfile("12345678ContactInfo", "contactInfo"));
         assertEquals("12345678ContactInfo", ncu.profilePage("NormalController")[2]);
         ncu.editProfile("test description", "description");
         assertEquals("test description", ncu.profilePage("NormalController")[3]);
