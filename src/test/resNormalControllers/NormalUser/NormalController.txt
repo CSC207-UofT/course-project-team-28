@@ -3,6 +3,6 @@ NormalController
 12345678ContactInfo
 test description
 Empty category - nc
-229
+230
 [Apple,Candy,Team28,Happy Life,Water]
 /src/main/res/GUIPic/winnie.jpg
