@@ -36,7 +36,7 @@ public class UserManager {
     }
 
     /**
-     * create and add an normal user for file normal user data to the normal user list.
+     * create and add a normal user for file normal user data to the normal user list.
      * @param username username of NormalUser
      * @param password password of NormalUser
      */
