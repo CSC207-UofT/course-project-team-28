@@ -39,11 +39,11 @@ public class NormalCCoinTest {
     public void giveCoinToRev() {
         int preUser = (int) ncu.profilePage("CoinManager")[5];
         int preRev = (int) ncm.getReviewInfo(2)[3];
-        ncc.giveCoinToRev(2);
+        assertTrue(ncc.giveCoinToRev(2));
         int aftUser = (int) ncu.profilePage("CoinManager")[5];
         int aftRev = (int) ncm.getReviewInfo(2)[3];
-        assertEquals(1, aftRev-preRev);
-        assertEquals(-1, aftUser-preUser);
+        assertEquals(1, aftRev - preRev);
+        assertEquals(-1, aftUser - preUser);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class NormalCCoinTest {
         int preUser = (int) ncu.profilePage("CoinManager")[5];
         ncc.earnCoinAfterWriteRev();
         int aftUser = (int) ncu.profilePage("CoinManager")[5];
-        assertEquals(1, aftUser-preUser);
+        assertEquals(1, aftUser - preUser);
     }
 }

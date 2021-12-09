@@ -1,13 +1,15 @@
 package InterfaceAdapter;
 
-import java.util.Objects;
+import java.util.*;
 
 public class AdminInputProcessor {
     final private String ADMINCODE = "123456";
 
     /**
-     * Return true if the given string (username or password) is alphanumeric,
-     * also it is nonempty.
+     *
+     * @param s: String
+     * @return true if the given string (username or password) is alphanumeric,
+     *      * also it is nonempty.
      */
     private boolean isNonEmptyAlpNum(String s) {
         if (s.length() < 1) {
@@ -22,11 +24,14 @@ public class AdminInputProcessor {
     }
 
     /**
-     * create admin user iff the provided username and password is legal
-     * username and password must be non-empty, only contain numbers or letters,
-     * and username must be unique among all the normal users,
-     * also the code should be correct. In the same time, if all conditions are met,
-     * the account will be created.
+     *
+     * @param userName: String
+     * @param password: String
+     * @param code: String
+     * @return true if all conditions are met: the provided username and password is legal
+     *      * username and password must be non-empty, only contain numbers or letters,
+     *      * and username must be unique among all the normal users,
+     *      * also the code should be correct
      */
     public boolean register(String userName, String password, String code) {
         if (! this.isNonEmptyAlpNum(userName)){
@@ -46,9 +51,13 @@ public class AdminInputProcessor {
         return InstanceMain.getUserManager().createNewAdminuser(userName, password);
     }
 
+
     /**
-     * If un exists, (un, pass) match and admincode is correct,
-     * record the un and return true.
+     *
+     * @param userName: String
+     * @param password: String
+     * @param code: String
+     * @return true if the user exists, (userName, password) matches, and code is correct
      */
     public boolean login(String userName, String password, String code) {
         if (!Objects.equals(code, ADMINCODE)) {
@@ -59,9 +68,12 @@ public class AdminInputProcessor {
 
 
     /**
-     * Given a String of movieName and a String of movielink,
-     * return true if those strings are non-empty and the movie is not uploaded before,
-     * and can be uploaded.
+     *
+     * @param movieName: String
+     * @param movieLink: String
+     * @param category: String
+     * @return true if those strings are non-empty and the movie is not uploaded before,
+     *      * and can be uploaded.
      */
     public boolean uploadMovie(String movieName, String movieLink, String category) {
         if (movieName.length() < 1 | movieLink.length() < 3) {

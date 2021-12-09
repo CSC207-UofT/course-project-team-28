@@ -46,7 +46,7 @@ public class UserManagerTest {
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
                 "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
-        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/MovieData/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
         //save original file data
@@ -179,7 +179,7 @@ public class UserManagerTest {
     @Test
     @SuppressWarnings("unchecked")
     public void undoLike() {
-        InstanceMain.getUserManager().undoLike("UserManager", "Happy Life");
+        assertTrue(InstanceMain.getUserManager().undoLike("UserManager", "Happy Life"));
         Object[] lst = InstanceMain.getUserManager().getUserInfoList("UserManager", "NormalUser");
         ArrayList<String> lst2 = (ArrayList<String>) lst[6];
         assertFalse(lst2.contains("Happy Life"));

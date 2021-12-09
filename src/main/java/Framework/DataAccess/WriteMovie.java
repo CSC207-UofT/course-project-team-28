@@ -12,24 +12,21 @@ import java.util.HashMap;
 
 /**
  * Called for read and write movie's file.
+ * Should be called by Movie related class.
  */
 
+@SuppressWarnings("SingleStatementInBlock")
 public class WriteMovie implements WriteMovieInterface {
     protected Gateway gateway = new Gateway();
 
-    protected FileReader moviereader;
-    protected BufferedReader getmovie;
-    protected FileWriter writemovie;
+    protected FileReader movieReader;
+    protected BufferedReader getMovie;
+    protected FileWriter writeMovie;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-    protected File MovieFolderPath = new File(str1 + "/src/main/res/Moviedata"); //get full path for Moviedata folder
-    protected String ReadPath = str1 + "/src/main/res/"; //get path for readfile mthod
-    protected String MoviePath = str1 + "/src/main/res/Moviedata/"; //get path to moviedata folder
+    protected File MovieFolderPath = new File(str1 + "/src/main/res/MovieData"); //get full path for MovieData folder
+    protected String ReadPath = str1 + "/src/main/res/"; //get path for readFile method
+    protected String MoviePath = str1 + "/src/main/res/MovieData/"; //get path to movieData folder
 
-
-    /*
-     * Creates files for movies and saved in Moviedata + corresponding category
-     * @return boolean
-     */
 
     /**
      * call getObjectFromFile method first, then store all the object into all Manager classes, finally, store those
@@ -43,6 +40,7 @@ public class WriteMovie implements WriteMovieInterface {
     /**
      * Constructor for test use only
      * @param moviePath Movie test folder path
+     * @param readPath test res folder Path
      */
     public WriteMovie(String moviePath, String readPath){
         this.MovieFolderPath = new File(moviePath);
@@ -52,23 +50,31 @@ public class WriteMovie implements WriteMovieInterface {
         getObjectFromFile();
 
     }
+
+    /**
+     * Create a file for a single movie in corresponding category folder
+     * @param movieName name of the movie
+     * @param movieLink link of the movie
+     * @param category category of the movie
+     * @return true if the file successfully created, false if not.
+     */
     @Override
     public boolean createFile(String movieName, String movieLink, String category) {
 
         try{
-            writemovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
-            writemovie.write(movieName);
-            writemovie.write("\r\n");
-            writemovie.write(movieLink);
-            writemovie.write("\r\n");
-            writemovie.write("0");
-            writemovie.write("\r\n");
-            writemovie.write(category);
-            writemovie.close();
-            File moviefile = new File(MoviePath + category + "/" + movieName + ".txt");
+            writeMovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
+            writeMovie.write(movieName);
+            writeMovie.write("\r\n");
+            writeMovie.write(movieLink);
+            writeMovie.write("\r\n");
+            writeMovie.write("0");
+            writeMovie.write("\r\n");
+            writeMovie.write(category);
+            writeMovie.close();
+            File movieFile = new File(MoviePath + category + "/" + movieName + ".txt");
 
 
-            return moviefile.exists();
+            return movieFile.exists();
         }
         catch (IOException e){
             System.out.println("Cannot create the file");
@@ -77,11 +83,18 @@ public class WriteMovie implements WriteMovieInterface {
     }
 
 
+    /**
+     * Add or remove one like of a movie updated into movie file
+     * @param movieName the name of the movie
+     * @param state if "Increase", add one like to file, others, decrease one like from file.
+     * @param category category of the movie
+     * @return true if the change of like in movie file succeeded, false if not
+     */
     @Override
     public boolean addLikeToFile(String movieName, String state, String category) {
         try {
-            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata/"));
-            writemovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
+            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "MovieData/"));
+            writeMovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             if (state.equals("Increase")){
 
                 lst.set(2,Integer.toString(Integer.parseInt(lst.get(2)) + 1));
@@ -91,10 +104,10 @@ public class WriteMovie implements WriteMovieInterface {
             }
 
             for (String str : lst) {
-                writemovie.write(str);
-                writemovie.write("\r\n");
+                writeMovie.write(str);
+                writeMovie.write("\r\n");
             }
-            writemovie.close();
+            writeMovie.close();
             return true;
         }
         catch (IOException e){
@@ -103,45 +116,29 @@ public class WriteMovie implements WriteMovieInterface {
         }
     }
 
-    /* Replace method for add_review
-    public void add_review(Core.Review review) throws IOException {
-        Path p1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-        File file = new File(p1.toString() + "\\main\\Moviereview\\" + review.movie + " reviews.properties");
-        FileOutputStream fos;
-        FileInputStream fls;
-        fls = new FileInputStream(file);
-        Properties properties = new Properties();
-        properties.load(fls);
-        properties.setProperty(review.review_content, review.reviewer);
-        fos = new FileOutputStream(file);
-        properties.store(fos, null);
-        fos.close();
-    }
-    */
-
     /**
-     * Read Moviedata folders, create obejct for each movie.
+     * At the beginning state of program, this method will read all the file in the MovieData folder and create object for
+     * each movie, then store all the movie object into MovieManager.
      */
-
     @Override
     public void getObjectFromFile() {
         try {
-            File MoviecPathFile = new File(MoviePath); //get full path for Moviedata folder
+            File MovieCPathFile = new File(MoviePath); //get full path for MovieData folder
 
-            String[] lstOfMoviec = MoviecPathFile.list();// get all the file name in Moviedata folder
+            String[] lstOfMovieC = MovieCPathFile.list();// get all the file name in MovieData folder
             ArrayList<String> lstOfMovie = new ArrayList<>();
-            for (String str: lstOfMoviec){
+            assert lstOfMovieC != null;
+            for (String str: lstOfMovieC){
                 File MoviePathFile = new File(MoviePath + str);
                 String[] lstOfMovies = MoviePathFile.list();
+                assert lstOfMovies != null;
                 lstOfMovie.addAll(Arrays.asList(lstOfMovies));
             }
-            if (lstOfMovie != null) {
-                for (String m : lstOfMovie) {
-                    ArrayList<String> lst = readFile(m, "Moviedata");
+            for (String m : lstOfMovie) {
+                ArrayList<String> lst = readFile(m, "MovieData");
 
-                    // create object for a single movie
-                    this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
-                }
+                // create object for a single movie
+                this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
             }
         }
         catch (IOException e){
@@ -149,43 +146,50 @@ public class WriteMovie implements WriteMovieInterface {
         }
     }
 
-    /**
-     * Delete a movie file with corresponding movie review file.
-     * @return Boolean
-     */
 
+    /**
+     * Delete a movie with corresponding name and category.
+     * @param movie the name of the movie
+     * @param category the category of the movie
+     * @return true if the movie file had been successfully deleted, false if not
+     */
     public boolean deleteFile(String movie, String category) {
-        File moviefile = new File(str1 + "/src/test/res/Moviedata/" + category + "/" + movie + ".txt");
-        return moviefile.delete();
+        File movieFile = new File(MoviePath + category + "/" + movie + ".txt");
+        return movieFile.delete();
     }
 
     /**
-     * Helper method
+     * Helper method for WriteMovie class, returns a list of data read from a movie data file.
+     * @param fn the name of the movie
+     * @param folder the name of the folder containing the movie data, mostly MovieData
+     * @return An arraylist contains all the data of a single movie
      */
+    @SuppressWarnings({"Duplicates", "rawtypes", "unchecked"})
     public ArrayList<String> readFile(String fn, String folder) throws IOException {
         try{
             File f = new File(ReadPath + folder + "/") ;
             String[] lst1 =  f.list();
             HashMap<String[], String> map = new HashMap();
+            assert lst1 != null;
             for (String s: lst1){
                 File f1 = new File(ReadPath + folder + "/" + s + "/");
                 String[] lst2 = f1.list();
                 map.put(lst2, s);
             }
             for (String[] s1: map.keySet()){
-                if (Arrays.stream(s1).anyMatch(fn::equals)){
-                    moviereader = new FileReader(ReadPath + folder + "/" + map.get(s1) + "/" +fn);
+                if (Arrays.asList(s1).contains(fn)){
+                    movieReader = new FileReader(ReadPath + folder + "/" + map.get(s1) + "/" +fn);
                 }
             }
-            getmovie = new BufferedReader(moviereader);
+            getMovie = new BufferedReader(movieReader);
 
             ArrayList<String> lst = new ArrayList<>();
-            String line = getmovie.readLine();
+            String line = getMovie.readLine();
             while (line != null) {
                 lst.add(line);
-                line = getmovie.readLine();
+                line = getMovie.readLine();
             }
-            getmovie.close();
+            getMovie.close();
 
             return lst;
         }

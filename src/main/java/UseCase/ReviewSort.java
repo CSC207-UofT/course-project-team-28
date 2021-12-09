@@ -19,13 +19,13 @@ public class ReviewSort {
      */
     public ArrayList<Review> sortReviews(List<Review> reviews){
         ArrayList<Review> result = new ArrayList<>();
-        HashMap<Integer, ArrayList<Review>> hmap = this.putRevsToMap(reviews);
-        Set<Integer> temp = hmap.keySet();
+        HashMap<Integer, ArrayList<Review>> hMap = this.putRevsToMap(reviews);
+        Set<Integer> temp = hMap.keySet();
         // This is correct
         Integer[] keys = temp.toArray(new Integer[0]);
         Arrays.sort(keys);
         for (int i = keys.length - 1; i >= 0; i--){
-            ArrayList<Review> revs = hmap.get(keys[i]);
+            ArrayList<Review> revs = hMap.get(keys[i]);
             result.addAll(revs);
         }
         return result;

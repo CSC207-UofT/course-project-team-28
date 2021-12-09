@@ -55,7 +55,7 @@ public class MovieManager {
      */
     public Movie getMovie(String movieName) {
         for (Movie m : this.Movies) {
-            if (m.getMoviename().equals(movieName)){
+            if (m.getMovieName().equals(movieName)){
                 return m;
             }
         }
@@ -68,10 +68,10 @@ public class MovieManager {
     public List<String> getMovieNames() {
         List<String> list = new ArrayList<>();
         for (Movie m : this.Movies) {
-            list.add(m.getMoviename());
-            }
-        return list;
+            list.add(m.getMovieName());
         }
+        return list;
+    }
 
 
     /**
@@ -84,10 +84,10 @@ public class MovieManager {
         name = name.toLowerCase();
 
         for(Movie movie: Movies){
-            if(movie.getMoviename().toLowerCase().equals(name) || movie.getLink().equals(link)){
+            if(movie.getMovieName().toLowerCase().equals(name) || movie.getLink().equals(link)){
                 return true;
-                }
             }
+        }
         return false;
     }
 
@@ -101,7 +101,7 @@ public class MovieManager {
     public Object[] getMovieProfile(String movieName) {
         Movie movie = this.getMovie(movieName);
         Object[] result = new Object[4];
-        result[0] = movie.getMoviename();
+        result[0] = movie.getMovieName();
         result[1] = movie.getLink();
         result[2] = movie.getCategory();
         result[3] = movie.getLikes();
@@ -113,9 +113,9 @@ public class MovieManager {
      * @param name the name of the movie
      * @return return the category of the movie, null if movie not found
      */
-    private String getMovieCategory(String name){
+    public String getMovieCategory(String name){
         for (Movie movie: Movies){
-            if (movie.getMoviename().equals(name)){
+            if (movie.getMovieName().equals(name)){
                 return movie.category;
             }
         }
@@ -137,7 +137,6 @@ public class MovieManager {
 
     }
 
-
     /**
      * Represents a UseCase.MovieManager as a String containing all Core.Movie names in the system.
      * @return a list of movie names separated by commas.
@@ -146,7 +145,7 @@ public class MovieManager {
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (Movie m : this.Movies) {
-            res.append(m.getMoviename());
+            res.append(m.getMovieName());
             res.append(", ");
         }
         return res.toString(); //includes a trailing ", "
@@ -162,7 +161,7 @@ public class MovieManager {
         ArrayList<Object[]> result = new ArrayList<>();
         if (! rankedMovies.isEmpty()){
             for (Movie mov: rankedMovies){
-                String movieName = mov.getMoviename();
+                String movieName = mov.getMovieName();
                 result.add(this.getMovieProfile(movieName));
             }
         }

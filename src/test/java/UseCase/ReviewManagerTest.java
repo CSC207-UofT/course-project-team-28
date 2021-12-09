@@ -25,18 +25,10 @@ public class ReviewManagerTest {
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser",
                 str1 + "/src/test/res/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/res/Review");
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/",
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/MovieData/",
                 str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         rm = InstanceMain.getReviewManager();
-    }
-
-    private boolean twoReviewGetInfoArrayEqual(Object[] rev1, Object[] rev2){
-        boolean result = true;
-        for (int i = 0; i <= 4; i++){
-            result = result && rev1[i].equals(rev2[i]);
-        }
-        return result;
     }
 
     @Test
@@ -79,7 +71,6 @@ public class ReviewManagerTest {
     }
 
     @Test
-    // TODO
     public void writeReview() {
         Review rev1 = rm.getReviewList().get(0);
         for (Review rev: rm.getReviewList()){
@@ -94,23 +85,6 @@ public class ReviewManagerTest {
         assertEquals("hahahahha", rev1.getContent());
         assertEquals(7, rm.getCurrMaxRevId());
     }
-
-//    @Test
-//    public void writeNewReview() {
-//        assertTrue(rm.writeNewReview("ReviewManager2", "lslfj", "content to be deleted", 0));
-//        assertEquals(8, rm.getCurrMaxRevId());
-//        Object[] expect = {"ReviewManager2", "lslfj", "content to be deleted", 0, 8};
-//        Object[] actual = rm.getRevInfoById(8);
-//        for (int i = 0; i <= 4; i++){
-//            assertEquals(expect[i], actual[i]);
-//        }
-//        assertEquals(7, rm.getReviewList().size());
-//        ReviewSort rsort = new ReviewSort();
-//        rsort.sortReviews(rm.getReviewList());
-//        assertEquals(7, rm.getReviewList().size());
-//        InstanceMain.getWriteReview().deleteReviewFile(8);
-//
-//    }
 
     @Test
     public void addCoin() {

@@ -36,7 +36,7 @@ public class UserManager {
     }
 
     /**
-     * create and add an normal user for file normal user data to the normal user list.
+     * create and add a normal user for file normal user data to the normal user list.
      * @param username username of NormalUser
      * @param password password of NormalUser
      */
@@ -47,7 +47,7 @@ public class UserManager {
 
 
     /**
-     * create and add an new admin user to the normal user list.
+     * create and add a new admin user to the normal user list.
      * @param username username of Core.User.AdminUser
      * @param password password of Core.User.AdminUser
      */
@@ -60,7 +60,7 @@ public class UserManager {
     }
 
     /**
-     * create and add an new normal user to the normal user list.
+     * create and add a new normal user to the normal user list.
      * @param username username of Core.User.NormalUser
      * @param password password of Core.User.NormalUser
      */
@@ -74,12 +74,6 @@ public class UserManager {
 
 
     }
-
-
-//    public void createNormaluser(String username, String password, String contactInfo, String description, String category, int coin, ArrayList<String> playList)  {
-//        nu = new Core.User.NormalUser(username, password, contactInfo, description, category, coin, playList);
-//        lstOfNormalUser.add(nu);
-//    }
 
     /**
      * Update contact info of a normal user
@@ -97,15 +91,16 @@ public class UserManager {
             }
         }
 
+        //noinspection IfCanBeSwitch
         if(writeType.equals("contactInfo")){
-            if(normalUser.getContactinfo().equals(updateInfo)){
+            if(normalUser.getContactInfo().equals(updateInfo)){
                 return true;
             }
             else{
-                normalUser.updateContactinfo(updateInfo);
+                normalUser.updateContactInfo(updateInfo);
 
 
-                return normalUser.getContactinfo().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
+                return normalUser.getContactInfo().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
             }
         }
         else if(writeType.equals("description")){

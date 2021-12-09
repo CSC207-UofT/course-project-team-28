@@ -8,12 +8,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-
+/**
+ * This is the class responsible for generating the main page.
+ */
 public class GUIProfile extends View {
 
     public JLabel contactInfoLabel;
@@ -83,19 +81,9 @@ public class GUIProfile extends View {
         description.setFont(font2);
         description.setEditable(false);
 
-        EditContactInfo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnEditButtonClick(actionEvent);
-            }
-        });
+        EditContactInfo.addActionListener(actionEvent -> OnEditButtonClick());
 
-        goToPlaylist.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OnButtonClick2(e);
-            }
-        });
+        goToPlaylist.addActionListener(e -> OnButtonClick2());
 
         p1.add(usernameLabel);
         p1.add(coinLabel);
@@ -104,6 +92,7 @@ public class GUIProfile extends View {
         p1.add(description);
         p1.add(i);
         p1.add(goToPlaylist);
+        UpdateText();
     }
 
     /**
@@ -167,8 +156,6 @@ public class GUIProfile extends View {
         p3.setBounds(420,20,740,200);
 
         searchBar = new JTextField();
-//        listSearch = new JList();
-//        listSearch.setVisible(false);
         JButton searchButton = new JButton();
         searchButton.setText(textPresenter.printText("Search"));
         searchBar.setBounds(100,80,500,40);
@@ -176,34 +163,25 @@ public class GUIProfile extends View {
         searchButton.setBounds(300,140,100,40);
 //        listSearch.setBounds(100,120,500,200);
 
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnSearchButtonClick(actionEvent);
-            }
-        });
+        searchButton.addActionListener(actionEvent -> OnSearchButtonClick());
 
         p3.add(searchBar);
         p3.add(searchButton);
-
-//        this.searchInput = searchBar.getText();
-//        System.out.println(this.searchInput);
-
     }
 
     /**
     This action adds to the Edit button, which directs to the edit page.
      */
-    private void OnEditButtonClick(ActionEvent e) {
+    private void OnEditButtonClick() {
         nextView(new GUIEditContactInfo(this), false);
         UpdateText();
     }
 
-    private void OnButtonClick2(ActionEvent e) {
+    private void OnButtonClick2() {
         nextView(new GUIPlaylist(this), false);
     }
 
-    private void OnSearchButtonClick(ActionEvent e){
+    private void OnSearchButtonClick(){
         this.searchInput = searchBar.getText();
         if (!(searchInput.equals(""))){
             nextView(new SearchResult(this), false);
@@ -230,6 +208,9 @@ public class GUIProfile extends View {
         return this.textPresenter;
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();

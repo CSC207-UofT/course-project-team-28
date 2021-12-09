@@ -4,24 +4,31 @@ import InterfaceAdapter.InstanceMain;
 import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.List;
+
 import java.util.ArrayList;
 
+/**
+ * This class functions as a page for demonstrating user's playlist.
+ */
 public class GUIPlaylist extends View{
     private final JPanel jPanel;
-    private JList jList;
     private final GUIProfile guiProfile = (GUIProfile) previous;
     private final TextPresenter textPresenter = guiProfile.getTextPresenter();
 
+    /**
+     * The constructor for this class.
+     * @param previous The View parameter from the super class.
+     */
     public GUIPlaylist(View previous) {
         super(previous);
         jPanel = new JPanel();
         PlaceThingsOnPanel(jPanel);
     }
 
+    /**
+     * Add components to panel.
+     * @param p The Jpanel to be modified.
+     */
     @SuppressWarnings("unchecked")
     private void PlaceThingsOnPanel(JPanel p){
         p.setLayout(null);
@@ -29,33 +36,33 @@ public class GUIPlaylist extends View{
         ArrayList<String> pl1 = (ArrayList<String>) InstanceMain.getNormalCUser().profilePage(userName)[6];
         Object[] pl2 = pl1.toArray();
 
-        jList = new JList<>(pl2);
+        JList<Object> jList = new JList<>(pl2);
         JButton returnButton = new JButton(textPresenter.printText("Back"));
 
         p.setBounds(0,0,500,500);
         jList.setBounds(10,10,400,400);
         returnButton.setBounds(180,450,100,50);
 
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnReturnClick(actionEvent);
-            }
-        });
+        returnButton.addActionListener(actionEvent -> OnReturnClick());
 
         p.add(jList);
         p.add(returnButton);
     }
 
-    public void OnReturnClick(ActionEvent e){
+    /**
+     * This is the action when the user press the Return button.
+     */
+    public void OnReturnClick(){
         this.getFrame().dispose();
     }
 
     @Override
     protected void UpdateText() {
-
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();

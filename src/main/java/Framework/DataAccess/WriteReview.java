@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class WriteReview implements WriteReviewInterface {
 
-    protected FileReader reviewReader;
     protected BufferedReader getReview;
     protected FileWriter writeReview;
     protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
@@ -50,6 +49,14 @@ public class WriteReview implements WriteReviewInterface {
 
     }
 
+    /**
+     *
+     * @param currUserName the name of review writer
+     * @param movieName the name of movie
+     * @param revContent the content of review
+     * @param ID the ID of review
+     * @return true if create review file successfully
+     */
     @Override
     public boolean createFile(String currUserName, String movieName, String revContent, int ID){
         File file_if_exist;
@@ -64,32 +71,6 @@ public class WriteReview implements WriteReviewInterface {
         file_if_exist = new File(halfRvPath + ID + ".txt");
 
         return file_if_exist.exists();
-//        try {
-//
-//            File file_if_exist;
-//            Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
-//            writeReview = new FileWriter(path1 + "/src/main/res/Review/" + ID + ".txt");
-//            writeReview.write(currUserName);
-//            writeReview.write("\r\n");
-//            writeReview.write(movieName);
-//            writeReview.write("\r\n");
-//            writeReview.write(revContent);
-//            writeReview.write("\r\n");
-//            writeReview.write("0");
-//            writeReview.write("\r\n");
-//            writeReview.write(Integer.toString(ID));
-//            writeReview.close();
-//
-//            file_if_exist = new File(path1 + "/src/main/res/Review/" + ID + ".txt");
-//
-//
-//
-//            return file_if_exist.exists();
-//        }
-//        catch (IOException e){
-//            System.out.println("Cannot create the file");
-//            return false;
-//        }
     }
 
 
@@ -97,18 +78,11 @@ public class WriteReview implements WriteReviewInterface {
      */
     @Override
     public boolean addCoinsToReview(int id, int numCoin) {
-        try {
-            ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));
-            revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
-            String path1 = halfRvPath + id + ".txt";
-            writeFile(path1, revLst);
-            return true;
-        }
-        catch (Exception e){
-            System.out.println("Cannot Add coin");
-            return false;
-        }
-
+        ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));
+        revLst.set(3, Integer.parseInt((String) revLst.get(3)) + numCoin);
+        String path1 = halfRvPath + id + ".txt";
+        writeFile(path1, revLst);
+        return true;
     }
 
 
@@ -129,55 +103,6 @@ public class WriteReview implements WriteReviewInterface {
             }
         }
     }
-
-
-//        try {
-//            String[] lstOfReview = ReviewFolderPath.list();
-//
-//            if (lstOfReview != null) {
-//                for (String rv : lstOfReview) {
-//                    ArrayList<String> lst = readFile(halfRvPath + rv);
-//
-//                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2), Integer.parseInt(lst.get(3)),
-//                            Integer.parseInt(lst.get(4)));
-//
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Unable to get the file from the Movie Folder");
-//        }
-//    }
-
-
-
-
-
-//        try {
-//            // get the path of src
-//            Path path2 = FileSystems.getDefault().getPath("").toAbsolutePath();
-//            // get the path of Core.Review folder
-//            File ReviewPath = new File(path2 + "/src/main/res/Review/");
-//
-//            // get the file name in the Review folder
-//            String[] lstOfReview = ReviewPath.list();
-//
-//            // when there is no file in the Review folder
-//            if (lstOfReview != null) {
-//                for (String r : lstOfReview) {
-//                    ArrayList<String> lst = readFile(path2, r);
-//
-//                    // create object for this single review
-//                    this.gateway.createFileReview(lst.get(0), lst.get(1), lst.get(2),
-//                            Integer.parseInt(lst.get(3)), Integer.parseInt(lst.get(4)));
-//
-//                }
-//            }
-//        }
-//        catch (IOException e){
-//            System.out.println("Unable to get the file from the Movie Folder");
-//        }
-//    }
-
 
 
     /**
@@ -202,18 +127,7 @@ public class WriteReview implements WriteReviewInterface {
         }
         return lst;
     }
-//        reviewReader = new FileReader(path2 + "/src/main/res/" + "Review/" + fileOfReview);
-//        getReview = new BufferedReader(reviewReader);
-//
-//        ArrayList<String> result = new ArrayList<>();
-//        String line = getReview.readLine();
-//        while(line != null){
-//            result.add(line);
-//            line = getReview.readLine();
-//        }
-//        getReview.close();
-//
-//        return result;
+
 
     /**
      * Helper method, write file
@@ -233,11 +147,11 @@ public class WriteReview implements WriteReviewInterface {
 
     }
 
+
     /**
      * Only for test, to delete the file.
      */
     public boolean deleteReviewFile(int reviewID){
-        Path path1 = FileSystems.getDefault().getPath("").toAbsolutePath();
         File obj = new File(halfRvPath + reviewID + ".txt");
         return obj.delete();
     }

@@ -5,30 +5,39 @@ import InterfaceAdapter.Search.Search;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+  Construct the page for search result.
+ */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class SearchResult extends View{
     private final JPanel panel1;
     private final GUIProfile guiProfile = (GUIProfile) previous;
     private JList searchList;
-    private String searchText;
     private final TextPresenter textPresenter = guiProfile.getTextPresenter();
     Font font1 = new Font("SansSerif", Font.BOLD, 50);
 
+    /**
+     * the constructor
+     * @param previous the previous page.
+     */
     public SearchResult(View previous) {
         super(previous);
         panel1 = new JPanel();
         addComponentOnPanel(panel1);
     }
 
+    /**
+     * add everything to panel
+     * @param p the panel
+     */
     private void addComponentOnPanel(JPanel p){
         p.setLayout(null);
         p.setBounds(0, 0, 700, 700);
-        searchText = guiProfile.getSearchInput();
+        String searchText = guiProfile.getSearchInput();
         List lst = Search.suggestionSearch(searchText);
         searchList = new JList(lst.toArray());
         searchList.setBounds(150, 120, 400, 400);
@@ -36,7 +45,7 @@ public class SearchResult extends View{
         searchList.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                OnMovieNameClick(e);
+                OnMovieNameClick();
             }
 
             @Override
@@ -62,19 +71,37 @@ public class SearchResult extends View{
         p.add(searchList);
     }
 
+    /**
+     * @return the selected movie.
+     */
     public String getMovieSelected(){
         return (String) searchList.getSelectedValue();
     }
+
+    /**
+     * The inherited method
+     * @return the text, depend on the language chosen by user.
+     */
     public TextPresenter getTextPresenter() { return this.textPresenter;}
 
-    private void OnMovieNameClick(MouseEvent e){
+    /**
+     * click the movie name to switch to the movie page.
+     */
+    private void OnMovieNameClick(){
         nextView(new MoviePage(this), true);
     }
 
+    /**
+     * Inherited method, to update text.
+     */
     @Override
     protected void UpdateText() {
-
     }
+
+    /**
+     * Inherited method, to get the frame
+     * @return the frame of Search Results.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
