@@ -113,7 +113,7 @@ public class MovieManager {
      * @param name the name of the movie
      * @return return the category of the movie, null if movie not found
      */
-    private String getMovieCategory(String name){
+    public String getMovieCategory(String name){
         for (Movie movie: Movies){
             if (movie.getMoviename().equals(name)){
                 return movie.category;
@@ -152,9 +152,14 @@ public class MovieManager {
         return res.toString(); //includes a trailing ", "
     }
 
+    /**
+     * Return the movies in MovieManager
+     * @return a list of movies in MovieManager
+     */
     public ArrayList<Movie> getMovies(){
         return Movies;
     }
+
 
     public ArrayList<Object[]> rankedMoviesProfile() {
         MovieRanking mr = new MovieRanking();
