@@ -17,6 +17,9 @@ The user can search for a movie. If they type in the wrong movie name, the platf
 
 We have completed the complete GUI interface in phase 2, all features for GUI are added.
 
+### Class Diagram
+
+![Class Diagram](https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/class%20diagram.png)
 
 ### Major design decisions
 
@@ -249,3 +252,7 @@ In this pull request, I added the first version of search feature, a more advanc
 ###Refactoring
 
 We mainly used refactors for renaming variables and methods for classes or simply renaming classes. If we just change it by hand, it could be really complex since some variables or methods are called by other classes. Except for the unnecessary complexity, if we missed out one or more spots left unchanged, some error could occur which affects the whole program. But with refactoring, we won’t need to worry about those side effects of changing names, as a refactor would automatically find all usages and change them for us. Furthermore, moving classes from folder to folder is also a good time to use a refactor, especially when we have changes with our package design. When moving a class, the package of the class would also change, then the original imports of other classes would have to change as well. With refactor, the changes can be done really simple and the overall running of the program would not be affected.
+
+![Test Coverage](https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/Test.png)
+https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/class%20diagram.png
+![Class Diagram](https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/class%20diagram.png)
