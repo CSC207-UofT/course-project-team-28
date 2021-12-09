@@ -82,13 +82,16 @@ public class ReviewManagerTest {
     // TODO
     public void writeReview() {
         Review rev1 = rm.getReviewList().get(0);
+        for (Review rev: rm.getReviewList()){
+            if (rev.getID() == 1){
+                rev1 = rev;
+            }
+        }
         assertEquals(1, rev1.getID());
         assertEquals(7, rev1.getnumCoin());
         assertEquals("Apple", rev1.getMovie());
         assertEquals("ReviewManager2", rev1.getReviewer());
         assertEquals("hahahahha", rev1.getContent());
-        Review rev6 = rm.getReviewList().get(4);
-        assertEquals(6, rev6.getID());
         assertEquals(7, rm.getCurrMaxRevId());
     }
 
