@@ -179,7 +179,7 @@ public class UserManagerTest {
     @Test
     @SuppressWarnings("unchecked")
     public void undoLike() {
-        InstanceMain.getUserManager().undoLike("UserManager", "Happy Life");
+        assertTrue(InstanceMain.getUserManager().undoLike("UserManager", "Happy Life"));
         Object[] lst = InstanceMain.getUserManager().getUserInfoList("UserManager", "NormalUser");
         ArrayList<String> lst2 = (ArrayList<String>) lst[6];
         assertFalse(lst2.contains("Happy Life"));

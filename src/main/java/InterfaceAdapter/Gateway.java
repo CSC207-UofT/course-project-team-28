@@ -49,14 +49,14 @@ public class Gateway implements GatewayInterface {
 
     /**
      * Call MovieManger to create entity object for movie data
-     * @param moviename Movie's name
-     * @param movielink The link of Movie
+     * @param movieName Movie's name
+     * @param movieLink The link of Movie
      * @param category the category of the movie
      * @param numLike The num of Likes that this movie receives
      */
     @Override
-    public void createFileMovie(String moviename, String movielink, String category, int numLike){
-        InstanceMain.getMovieManager().addMovie(moviename, movielink, category, numLike);
+    public void createFileMovie(String movieName, String movieLink, String category, int numLike){
+        InstanceMain.getMovieManager().addMovie(movieName, movieLink, category, numLike);
 
 
     }
@@ -162,12 +162,12 @@ public class Gateway implements GatewayInterface {
     /**
      * Call WriteUser Class to decrease user's coin by 1 and WriteReview to increase num of coin of specific review by 1
      * @param userName the name of user
-     * @param reviewid the review id of review
+     * @param reviewId the review id of review
      * @return return true if the num of coin in the file is successfully created. Otherwise, return false
      */
     @Override
-    public boolean editCoin(String userName, int reviewid) {
-        return InstanceMain.getWriteReview().addCoinsToReview(reviewid, 1);
+    public boolean editCoin(String userName, int reviewId) {
+        return InstanceMain.getWriteReview().addCoinsToReview(reviewId, 1);
 //                InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin") &&
 
     }

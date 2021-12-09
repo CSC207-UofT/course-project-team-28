@@ -53,7 +53,7 @@ public class WriteUser implements WriteUserInterface {
 
 
     /**
-     * Depending the usertype, create the admin user or normal user file, and add user object to UserManager.
+     * Depending on the usertype, create the admin user or normal user file, and add user object to UserManager.
      * @param userName the name of user
      * @param userPassword the password of user
      * @param userType the type of user
