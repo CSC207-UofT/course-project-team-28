@@ -88,7 +88,7 @@ public class ReviewManagerTest {
             }
         }
         assertEquals(1, rev1.getID());
-        assertEquals(7, rev1.getnumCoin());
+        assertEquals(7, rev1.getNumCoin());
         assertEquals("Apple", rev1.getMovie());
         assertEquals("ReviewManager2", rev1.getReviewer());
         assertEquals("hahahahha", rev1.getContent());

@@ -58,7 +58,7 @@ public class Review {
      *
      * @return the number of coins received by this review.
      */
-    public int getnumCoin(){
+    public int getNumCoin(){
         return this.numCoin;
     }
 
@@ -87,7 +87,7 @@ public class Review {
         result[0] = getReviewer();
         result[1] = getMovie();
         result[2] = getContent();
-        result[3] = getnumCoin();
+        result[3] = getNumCoin();
         result[4] = getID();
         return result;
     }

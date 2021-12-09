@@ -121,14 +121,14 @@ public class WriteReview implements WriteReviewInterface {
 
         if (lstOfReview != null) {
             for (String rv : lstOfReview) {
-                ArrayList<String> lst = readFile(halfRvPath + rv);
+                ArrayList<Object> lst = readFile(halfRvPath + rv);
 
-                this.gateway.createFileReview(lst.get(0),lst.get(1),lst.get(2),Integer.parseInt(lst.get(3)),
-                        Integer.parseInt(lst.get(4)));
+                this.gateway.createFileReview((String) lst.get(0),(String) lst.get(1),(String)lst.get(2),
+                        Integer.parseInt((String) lst.get(3)), Integer.parseInt((String) lst.get(4)));
 
-                }
             }
         }
+    }
 
 
 //        try {
@@ -183,8 +183,8 @@ public class WriteReview implements WriteReviewInterface {
     /**
      * read the Core.Review file
      */
-    public ArrayList<String> readFile(String path){
-        ArrayList<String> lst = new ArrayList<>();
+    public ArrayList<Object> readFile(String path){
+        ArrayList<Object> lst = new ArrayList<>();
         try {
             getReview = new BufferedReader(new FileReader(path));
 
