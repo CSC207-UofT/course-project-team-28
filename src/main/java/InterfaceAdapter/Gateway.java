@@ -161,12 +161,11 @@ public class Gateway implements GatewayInterface {
 
     /**
      * Call WriteUser Class to decrease user's coin by 1 and WriteReview to increase num of coin of specific review by 1
-     * @param userName the name of user
      * @param reviewId the review id of review
      * @return return true if the num of coin in the file is successfully created. Otherwise, return false
      */
     @Override
-    public boolean editCoin(String userName, int reviewId) {
+    public boolean editCoin(int reviewId) {
         return InstanceMain.getWriteReview().addCoinsToReview(reviewId, 1);
 //                InstanceMain.getWriteUser().editProfileReadAndWrite(userName, "-1", "coin") &&
 

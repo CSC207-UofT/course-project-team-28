@@ -148,11 +148,4 @@ public class WriteReview implements WriteReviewInterface {
     }
 
 
-    /**
-     * Only for test, to delete the file.
-     */
-    public boolean deleteReviewFile(int reviewID){
-        File obj = new File(halfRvPath + reviewID + ".txt");
-        return obj.delete();
-    }
 }

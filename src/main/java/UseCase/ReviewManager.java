@@ -114,11 +114,10 @@ public class ReviewManager {
 
     /**
      * find a review with review_id, and add 1 coin
-     * @param username the name of the user who gives coin to review
      * @param reviewId ID of the review
      * @return ture iff the coin is added to the review
      */
-    public boolean addCoin(int reviewId, String username) {
+    public boolean addCoin(int reviewId) {
         int coin = 0;
         int coinAfter = 0;
         for (Review review : this.reviewList){
@@ -128,7 +127,7 @@ public class ReviewManager {
                 coinAfter = review.getNumCoin();
             }
         }
-        return coinAfter - 1 == coin && this.gateway.editCoin(username, reviewId);
+        return coinAfter - 1 == coin && this.gateway.editCoin(reviewId);
     }
 
 

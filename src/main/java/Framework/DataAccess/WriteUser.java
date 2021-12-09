@@ -235,6 +235,7 @@ public class WriteUser implements WriteUserInterface {
     /**
      * Helper method, read file
      */
+    @Override
     public ArrayList<Object> readFile(String path) {
         ArrayList<Object> lst = new ArrayList<>();
         try{
@@ -258,6 +259,7 @@ public class WriteUser implements WriteUserInterface {
     /**
      * Helper method, write file
      */
+    @Override
     public void writeFile(String path, ArrayList<Object> lst) {
         try{
             writeuser = new FileWriter(path);

@@ -89,7 +89,7 @@ public class ReviewManagerTest {
     @Test
     public void addCoin() {
         int numCoinExp = (int) rm.getRevInfoById(3)[3] + 1;
-        assertTrue(rm.addCoin(3, "ReviewManager3"));
+        assertTrue(rm.addCoin(3));
         int act = (int) rm.getRevInfoById(3)[3];
         assertEquals(numCoinExp, act);
     }
