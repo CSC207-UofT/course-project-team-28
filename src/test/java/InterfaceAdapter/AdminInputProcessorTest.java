@@ -3,6 +3,8 @@ package InterfaceAdapter;
 import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
+import UseCase.MovieManager;
+import UseCase.UserManager;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,6 +17,8 @@ import static org.junit.Assert.assertTrue;
 
 public class AdminInputProcessorTest {
     private static AdminInputProcessor adminInputProcessor;
+    private static UserManager um;
+    private static MovieManager mm;
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
 
     @BeforeClass
@@ -27,16 +31,16 @@ public class AdminInputProcessorTest {
                 str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         adminInputProcessor = InstanceMain.getAdminInputProcessor();
+        um = InstanceMain.getUserManager();
+        mm = InstanceMain.getMovieManager();
     }
 
-    public void d() {
-        // delete movie file after creation
-        InstanceMain.getWriteMovie().deleteFile("movieName", "category");
-
-
-        //delete adminuser file after creation
+    @Test
+    public void registerTest() {
+        assertTrue(adminInputProcessor.register("AdminTest1", "123", "123456"));
+        assertTrue(um.userIfExist("AdminTest1", "123", "AdminUser"));
         try {
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/AdminUser/" + "adminUsername" + ".txt")));
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/AdminUser/" + "AdminTest1" + ".txt")));
         }
         catch (IOException e){
             System.out.println("create file test for NormalCUser fails");
@@ -44,14 +48,21 @@ public class AdminInputProcessorTest {
     }
 
     @Test
-    public void register() {
+    public void loginTest() {
+        adminInputProcessor.register("AdminTest2", "123", "123456");
+        assertTrue(adminInputProcessor.login("AdminTest2", "123", "123456"));
+        try {
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/AdminUser/" + "AdminTest2" + ".txt")));
+        }
+        catch (IOException e){
+            System.out.println("create file test for NormalCUser fails");
+        }
     }
 
     @Test
-    public void login() {
-    }
-
-    @Test
-    public void uploadMovie() {
+    public void uploadMovieTest() {
+        adminInputProcessor.uploadMovie("MovieTest1", "abcdfsa", "Comedy");
+        assertTrue(mm.IfMovieExist("MovieTest1", "abcdfsa"));
+        InstanceMain.getWriteMovie().deleteFile("MovieTest1", "Comedy");
     }
 }
