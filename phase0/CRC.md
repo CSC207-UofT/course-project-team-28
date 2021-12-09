@@ -1,6 +1,7 @@
 ## CRC
 ****
 **Entity**
+https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/CA.png
 
 ![Entity.User.User CRC](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/usercrc.jpeg)
 ![Normal Entity.User.User CRC](https://github.com/CSC207-UofT/course-project-team-28/blob/main/src/CRCCards/normalusercrc.jpeg)
