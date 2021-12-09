@@ -49,6 +49,9 @@ public class WriteReviewTest {
         rm = InstanceMain.getReviewManager();
 
         fileData = InstanceMain.getWriteReview().readFile("/src/test/res/ReviewWriteReview/" + "WriteReview.txt");
+
+        ArrayList<Review> rvList = InstanceMain.getReviewManager().getReviewList();
+        assertEquals(3, rvList.size());
     }
 
     @Test
@@ -81,6 +84,7 @@ public class WriteReviewTest {
         assertEquals(9, Integer.parseInt((String) lst1.get(3)));
     }
 
+
     @Test
     public void writeNewReview() {
         assertTrue(rm.writeNewReview("ReviewManager2", "lslfj", "content to be deleted",
@@ -97,10 +101,6 @@ public class WriteReviewTest {
         InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId());
 
     }
-
-//
-//    @Test
-//    public void test
 
 
     private boolean fileContentTest(Object[] rl, ArrayList<Object> infoList) {
