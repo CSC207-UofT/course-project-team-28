@@ -18,12 +18,21 @@ public class GUIUserRegister extends SharedView {
     private final GUIChooseLanguage guiMain = (GUIChooseLanguage) previous;
     private final TextPresenter textPresenter = guiMain.getTextPresenter();
     private final JLabel adminCodeLabel = new JLabel(textPresenter.printText("Administrator Code"));
+
+    /**
+     * The constructor of GUIUserRegister.
+     * @param view the page
+     * @param isAdmin the boolean to check whether the user is admin or not.
+     */
     public GUIUserRegister(View view, Boolean isAdmin) throws IOException {
         super(view, isAdmin);
         panel = new JPanel();
         placeComponents(panel);
     }
-    //Place components on GUI
+
+    /**
+     * Place components on GUI
+     */
     @SuppressWarnings("Convert2Lambda")
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
@@ -66,6 +75,11 @@ public class GUIUserRegister extends SharedView {
         }
 
     }
+
+    /**
+     * Click the button to register
+     * @throws IOException if the user exists, it fails to register
+     */
     public void OnRegClick() throws IOException {
         userName = usernameText.getText();
         String password = passwordText.getText();
@@ -91,15 +105,26 @@ public class GUIUserRegister extends SharedView {
         }
     }
 
+    /**
+     * the inherited method, to update text.
+     */
     @Override
     protected void UpdateText() {
 
     }
 
+    /**
+     * the inherited method, to get text
+     * @return text depend on the language chosen by the user.
+     */
     public TextPresenter getTextPresenter(){
         return this.textPresenter;
     }
 
+    /**
+     * the inherited method, to get the frame
+     * @return the frame of GUI User Register Page.
+     */
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
         frame.setTitle(textPresenter.printText("Register"));
