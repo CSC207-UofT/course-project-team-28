@@ -19,7 +19,6 @@ import static org.junit.Assert.assertTrue;
 public class WriteReviewTest {
 
     private static Object[] infoList;
-    private static ArrayList<Object> fileData;
     private static ReviewManager rm;
 
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
@@ -41,8 +40,6 @@ public class WriteReviewTest {
                 str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         rm = InstanceMain.getReviewManager();
-
-        fileData = InstanceMain.getWriteReview().readFile("/src/test/res/ReviewWriteReview/" + "WriteReview.txt");
 
         ArrayList<Review> rvList = InstanceMain.getReviewManager().getReviewList();
         assertEquals(3, rvList.size());
@@ -81,18 +78,14 @@ public class WriteReviewTest {
 
     @Test
     public void writeNewReview() {
-        assertTrue(rm.writeNewReview("ReviewManager2", "lslfj", "content to be deleted",
+        assertTrue(rm.writeNewReview("ReviewManager2", "test", "content to be deleted",
                 0));
-        Object[] expect = {"ReviewManager2", "lslfj", "content to be deleted", 0, 8};
+        Object[] expect = {"ReviewManager2", "test", "content to be deleted", 0, 8};
         Object[] actual = rm.getRevInfoById(rm.getCurrMaxRevId());
         for (int i = 0; i <= 3; i++){ //skip reviewId
             assertEquals(expect[i], actual[i]);
         }
-//        assertEquals(7, rm.getReviewList().size());
-//        ReviewSort rsort = new ReviewSort();
-//        rsort.sortReviews(rm.getReviewList());
-//        assertEquals(7, rm.getReviewList().size());
-        assertTrue(InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId()));
+        InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId());
 
     }
 

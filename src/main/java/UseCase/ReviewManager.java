@@ -25,8 +25,6 @@ public class ReviewManager {
     // record the total number of review stored in ReviewManager
     private int currMaxRevId;
 
-//    private final MovieManager movieManager;
-
     // stores the gateway
     private final GatewayInterface gateway = new Gateway();
 
@@ -161,8 +159,8 @@ public class ReviewManager {
 
 
     /**
-     * find the max review Id in reviewList
-     * @return the max review Id in reviewList
+     * find the max review ID in reviewList
+     * @return the max review ID in reviewList
      */
     private int getMaxRevId() {
         int maxId = 0;
@@ -189,25 +187,6 @@ public class ReviewManager {
         }
         return null;
     }
-
-//    /**
-//     * find a review with review_id, and delete 1 coin
-//     */
-//    public void reduceCoin(int review_id) {
-//        for (Review review : this.reviewList){
-//            if (review.getID() == review_id){
-//                review.setNumCoin(review.getnumCoin() - 1);
-//            }
-//        }
-//    }
-//    /**
-//     * Called only after confirming the username is valid (i.e. the user exists)
-//     * Takes the username of Core.User.NormalUser and return a list of reviews written by the user.
-//     */
-//    public ArrayList<Review> getRevsOfUser(String username){
-//        return this.UserToRevs.get(username);
-//    }
-
 
     /**
      * update MovieToRevs by write_review
@@ -239,26 +218,5 @@ public class ReviewManager {
             this.movieToRevs.put(mName, lst);
         }
     }
-
-//    /**
-//     * update UserToRevs by write_review,
-//     * @param uname the username of the user
-//     * @param rev the review
-//     * @return ture iff successfully updated.
-//     */
-//    private boolean addUr(String uname, Review rev){
-//        if (this.UserToRevs.containsKey(uname)) {
-//            this.UserToRevs.get(uname).add(rev);
-//        }
-//        else if (! this.UserToRevs.containsKey(uname)) {
-//            ArrayList<Review> lst = new ArrayList<>();
-//            lst.add(rev);
-//            this.UserToRevs.put(uname, lst);
-//        }
-//        else {return false;}
-//
-//        return true;
-//    }
-
 
 }
