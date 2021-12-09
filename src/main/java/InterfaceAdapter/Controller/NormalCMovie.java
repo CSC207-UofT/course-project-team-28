@@ -95,6 +95,7 @@ public class NormalCMovie extends NormalController{
      * @return ture iff a review is successfully added. false otherwise
      */
     public boolean writeReview(String movieName, String revContent) {
-        return InstanceMain.getReviewManager().writeNewReview(this.currNormalName, movieName, revContent, 0);}
+        return InstanceMain.getReviewManager().writeNewReview(this.currNormalName, movieName, revContent, 0)
+                && InstanceMain.getNormalCCoin().earnCoinAfterWriteRev();}
 
 }
