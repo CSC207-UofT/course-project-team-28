@@ -54,7 +54,7 @@ public class GatewayTest {
         InstanceMain.setClearInstance();
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview(str1 +"/src/test/res/Review");
-        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/MovieData/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
         fileData1 = InstanceMain.getWriteUser().readFile(str1 + "/src/test/res/NormalUser/" + "UserManager.txt");
@@ -119,7 +119,7 @@ public class GatewayTest {
         try {
             gateway.createNewMovie("Sugar","123456789","Action");
 
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Moviedata/Action/" + "Sugar" + ".txt")));
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/MovieData/Action/" + "Sugar" + ".txt")));
         }
         catch (Exception e){
             System.out.println("Unable to create new user");
