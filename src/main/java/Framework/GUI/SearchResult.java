@@ -9,10 +9,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
-/*
+/**
   Construct the page for search result.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class SearchResult extends View{
     private final JPanel panel1;
     private final GUIProfile guiProfile = (GUIProfile) previous;

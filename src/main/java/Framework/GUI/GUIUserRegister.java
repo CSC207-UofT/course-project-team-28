@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GUIUserRegister extends SharedView {
-//    private static String userName = "";
     private static JPanel panel;
     private static JLabel RegResult;
     private static JTextField usernameText;

@@ -9,6 +9,9 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
+/**
+ * The class to construct GUIProfile
+ */
 public class GUIProfile extends View {
 
     public JLabel contactInfoLabel;

@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * Construct the GUIMain, the page consists of four buttons, to register and log in for both AdminUser and NormalUser.
+ */
 public class GUIMain extends View {
     private JButton registerButton;
     private JPanel panel1;

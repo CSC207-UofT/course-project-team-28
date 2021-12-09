@@ -14,10 +14,10 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
-/*
+/**
   Construct the Movie Page.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class MoviePage extends View {
 
     private final JPanel panel1;
