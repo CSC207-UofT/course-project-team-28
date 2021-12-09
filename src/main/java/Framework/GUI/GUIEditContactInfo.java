@@ -4,8 +4,6 @@ import InterfaceAdapter.InstanceMain;
 import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUIEditContactInfo extends View{
     private final JPanel jPanel;
@@ -44,12 +42,7 @@ public class GUIEditContactInfo extends View{
         description.setText((String)InstanceMain.getNormalCUser().profilePage(userName)[3]);
 
 
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnSaveClick(actionEvent);
-            }
-        });
+        saveButton.addActionListener(actionEvent -> OnSaveClick());
 
         p.add(jLabel);
         p.add(jTextField);
@@ -61,7 +54,7 @@ public class GUIEditContactInfo extends View{
     /**
     Save the updated information and dispose the edit window.
      */
-    public void OnSaveClick(ActionEvent e){
+    public void OnSaveClick(){
         String contactInfo = jTextField.getText();
         String des = description.getText();
         InstanceMain.getNormalCUser().editProfile(contactInfo, "contactInfo");

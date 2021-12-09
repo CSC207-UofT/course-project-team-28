@@ -6,22 +6,19 @@ import InterfaceAdapter.Presenter.TextPresenter;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Predicate;
 
 public class ChooseAvatar extends View{
-    private JPanel jPanel;
-    private JList jList;
-    private GUIUserRegister guiUserRegister = (GUIUserRegister) previous;
-    private TextPresenter textPresenter = guiUserRegister.getTextPresenter();
-    private TextPresenter textPresenterPic = new TextPresenter("ENGLISH");
-    private HashMap<Object, Object> picInDiffLan;
+    private final JPanel jPanel;
+    private JList<Object> jList;
+    private final GUIUserRegister guiUserRegister = (GUIUserRegister) previous;
+    private final TextPresenter textPresenter = guiUserRegister.getTextPresenter();
+    private final HashMap<Object, Object> picInDiffLan;
     private final String[] avatarName = {textPresenter.printText("water"),textPresenter.printText("flower"),textPresenter.printText("galaxy")
             ,textPresenter.printText("color"),textPresenter.printText("moon"),textPresenter.printText("paint")};
 
-    public ChooseAvatar(View p) throws IOException {
+    public ChooseAvatar(View p) {
         super(p);
         picInDiffLan = new HashMap<>();
         jPanel = new JPanel();
@@ -34,13 +31,13 @@ public class ChooseAvatar extends View{
         for (String str: avatarNameEng){
             picInDiffLan.put(avatarName[Arrays.asList(avatarNameEng).indexOf(str)], str);
         }
-        jList = new JList(avatarName);
+        jList = new JList<>(avatarName);
         p.setBounds(0,0,500,320);
         jList.setBounds(20,20,100,150);
         jList.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                OnSaveAvatarClicked(mouseEvent);
+                OnSaveAvatarClicked();
             }
 
             @Override
@@ -65,9 +62,10 @@ public class ChooseAvatar extends View{
         p.add(jList);
     }
 
-    private void OnSaveAvatarClicked(MouseEvent e){
+    private void OnSaveAvatarClicked(){
           String selectedAvatar = "/src/main/res/GUIPic/" + picInDiffLan.get(jList.getSelectedValue()) + ".jpg";
           InstanceMain.getNormalCUser().editProfile(selectedAvatar, "picPath");
+          JOptionPane.showMessageDialog(null, "Successfully registered, you can login now.", ":D", JOptionPane.PLAIN_MESSAGE );
           this.getFrame().dispose();
     }
 
