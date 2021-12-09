@@ -3,6 +3,6 @@ CoinManager3
 Empty contact info - cm
 Empty description - cm
 Empty category - cm
-30000021
+30000024
 [Apple,Candy,Team28,Happy Life]
 /src/main/res/GUIPic/winnie.jpg
