@@ -17,7 +17,7 @@ public class AddReview extends View{
     private JTextArea writeReview;
     private final MoviePage moviePage = (MoviePage) previous;
     private final TextPresenter textPresenter = moviePage.getTextPresenter();
-    Font font2 = new Font("SansSerif", Font.PLAIN, 20);
+    final Font font2 = new Font("SansSerif", Font.PLAIN, 20);
 
     /**
      * The constructor for this class.

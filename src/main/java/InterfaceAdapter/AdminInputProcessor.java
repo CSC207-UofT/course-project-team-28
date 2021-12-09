@@ -1,6 +1,6 @@
 package InterfaceAdapter;
 
-import java.util.*;
+import java.util.Objects;
 
 public class AdminInputProcessor {
     final private String ADMINCODE = "123456";

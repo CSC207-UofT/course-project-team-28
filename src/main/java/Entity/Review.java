@@ -1,11 +1,11 @@
 package Entity;
 
 public class Review {
-    protected String reviewer;
-    protected String movie;
-    protected String reviewContent;
+    protected final String reviewer;
+    protected final String movie;
+    protected final String reviewContent;
     protected int numCoin;
-    protected int ID;
+    protected final int ID;
 
     /**
      * Construct a new review content for the specific movie by the reviewer.

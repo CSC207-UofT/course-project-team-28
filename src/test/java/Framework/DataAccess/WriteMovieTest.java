@@ -30,7 +30,7 @@ public class WriteMovieTest {
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
                 "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
-        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/MovieData/", str1 + "/src/test/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
 
@@ -40,8 +40,8 @@ public class WriteMovieTest {
     public void testCreateFile() {
         try {
             assertTrue(InstanceMain.getWriteMovie().createFile("Peach", "asduip", "Romantic"));
-            assertTrue(fileContentTest(infoList, InstanceMain.getWriteMovie().readFile("Peach.txt", "MovieData")));
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/MovieData/Romantic/" + "Peach" + ".txt")));
+            assertTrue(fileContentTest(infoList, InstanceMain.getWriteMovie().readFile("Peach.txt", "Moviedata")));
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Moviedata/Romantic/" + "Peach" + ".txt")));
         } catch (IOException e) {
             System.out.println("testCreateFile for write movie class failed");
         }
@@ -51,9 +51,9 @@ public class WriteMovieTest {
     public void testAddLikeToFile(){
         try {
             assertTrue(InstanceMain.getWriteMovie().addLikeToFile("Apple", "Increase", "Anime"));
-            assertEquals("2", InstanceMain.getWriteMovie().readFile("Apple.txt", "MovieData").get(2));
+            assertEquals("2", InstanceMain.getWriteMovie().readFile("Apple.txt", "Moviedata").get(2));
             assertTrue(InstanceMain.getWriteMovie().addLikeToFile("Apple", "Decrease", "Anime"));
-            assertEquals("1", InstanceMain.getWriteMovie().readFile("Apple.txt", "MovieData").get(2));
+            assertEquals("1", InstanceMain.getWriteMovie().readFile("Apple.txt", "Moviedata").get(2));
         } catch (IOException e) {
             System.out.println("testAddLikeToFile for write movie class failed");
         }
@@ -62,11 +62,7 @@ public class WriteMovieTest {
     @Test
     public void testGetObjectFromFile(){
         ArrayList<Movie> ListOfMovie = InstanceMain.getMovieManager().getMovies();
-        assertEquals(7, ListOfMovie.size());
-        Object[] MovieFile = {"gateway", "Water", "Apple", "Banana", "Team28", "Candy", "Happy Life"};
-        for (int i = 0; i < 7; i++){
-            assertEquals(MovieFile[i], ListOfMovie.get(i).getMovieName());
-        }
+        assertEquals(8, ListOfMovie.size());
     }
 
     @Test

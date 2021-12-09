@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class TrieTest {
     private static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
 

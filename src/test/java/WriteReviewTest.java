@@ -36,7 +36,7 @@ public class WriteReviewTest {
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser",
                 str1 + "/src/test/res/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/res/ReviewWriteReview");
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/MovieData/",
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/",
                 str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         rm = InstanceMain.getReviewManager();
@@ -77,7 +77,7 @@ public class WriteReviewTest {
 
 
     @Test
-    public void writeNewReview() {
+    public void writeNewReview() throws IOException {
         assertTrue(rm.writeNewReview("ReviewManager2", "test", "content to be deleted",
                 0));
         Object[] expect = {"ReviewManager2", "test", "content to be deleted", 0, 8};
@@ -85,7 +85,7 @@ public class WriteReviewTest {
         for (int i = 0; i <= 3; i++){ //skip reviewId
             assertEquals(expect[i], actual[i]);
         }
-        InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId());
+        assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/ReviewWriteReview/" + rm.getCurrMaxRevId() + ".txt")));
 
     }
 

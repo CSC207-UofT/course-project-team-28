@@ -14,14 +14,6 @@ public class NormalCMovie extends NormalController{
         super();
     }
 
-    /**
-     * check if the movieName exists
-     * @param movieName the name of the movie.
-     * @return ture iff the movie exists
-     */
-    public boolean ifMovieExist(String movieName){
-        return InstanceMain.getMovieManager().getMovie(movieName) != null;
-    }
 
     /**
      * Should be only called when the movie name <movieName> exists in the database
@@ -68,16 +60,6 @@ public class NormalCMovie extends NormalController{
         }
         else {return false;}
     }
-
-//    /**
-//     * @return ture iff the user's playlist is empty.
-//     */
-//    @SuppressWarnings("unchecked")
-//    public boolean emptyPlaylist() {
-//        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
-//        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
-//        return userPlaylist.isEmpty();
-//    }
 
 
     /**

@@ -7,10 +7,11 @@ import java.nio.file.Path;
 import static org.junit.Assert.assertEquals;
 
 public class WritePicTest {
-    protected static Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+    protected static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
 
-    WritePic writePic = new WritePic("/src/test/res/GUIPic/");
+    final WritePic writePic = new WritePic("/src/test/res/GUIPic/");
 
+    @SuppressWarnings("AccessStaticViaInstance")
     @Test
     public void testGetPic(){
         assertEquals(str1 + "/src/test/res/GUIPic/" + "1.jpg", writePic.getPic("1.jpg"));
@@ -18,6 +19,7 @@ public class WritePicTest {
 
     @Test
     public void testGetUserPic(){
+        //noinspection AccessStaticViaInstance
         assertEquals(str1 + "/src/test/res/GUIPic/moon.jpg",
                 writePic.getPicUser("/src/test/res/GUIPic/moon.jpg"));
     }

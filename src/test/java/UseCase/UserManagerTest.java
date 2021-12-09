@@ -46,7 +46,7 @@ public class UserManagerTest {
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 +
                 "/src/test/res/AdminUser");
         WriteReview wr = new WriteReview();
-        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/MovieData/", str1 + "/src/test/res/");
+        WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
         //save original file data

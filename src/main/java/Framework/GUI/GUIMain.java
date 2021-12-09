@@ -65,13 +65,6 @@ public class GUIMain extends View {
 
     }
 
-    /**
-     * Inherited method, to get class. It helps change languages
-     * @return the text depend on the chosen language.
-     */
-    public TextPresenter getTextPresenter(){
-        return this.textPresenter;
-    }
 
     /**
     Add four buttons on the Panel.

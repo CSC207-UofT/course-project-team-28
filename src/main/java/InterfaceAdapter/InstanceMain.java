@@ -1,11 +1,11 @@
 package InterfaceAdapter;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteReview;
-import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.Controller.NormalCCoin;
 import InterfaceAdapter.Controller.NormalCMovie;
 import InterfaceAdapter.Controller.NormalCUser;
+import InterfaceAdapter.Interface.WriteMovieInterface;
+import InterfaceAdapter.Interface.WriteReviewInterface;
+import InterfaceAdapter.Interface.WriteUserInterface;
 import UseCase.CoinManager;
 import UseCase.MovieManager;
 import UseCase.ReviewManager;
@@ -23,9 +23,9 @@ public class InstanceMain {
 
     private static class InstanceMainHolder {
         //data access instance
-        private static WriteUser WRITEUSER;
-        private static WriteMovie WRITEMOVIE;
-        private static WriteReview WRITEREVIEW;
+        private static WriteUserInterface WRITEUSER;
+        private static WriteMovieInterface WRITEMOVIE;
+        private static WriteReviewInterface WRITEREVIEW;
 
         //Controller instance
         private static NormalCUser NORMALCUSER;
@@ -45,13 +45,13 @@ public class InstanceMain {
     public static AdminInputProcessor getAdminInputProcessor(){
         return InstanceMainHolder.ADMININPUTPROCESSOR;
     }
-    public static WriteUser getWriteUser(){
+    public static WriteUserInterface getWriteUser(){
         return InstanceMainHolder.WRITEUSER;
     }
-    public static WriteMovie getWriteMovie(){
+    public static WriteMovieInterface getWriteMovie(){
         return InstanceMainHolder.WRITEMOVIE;
     }
-    public static WriteReview getWriteReview(){
+    public static WriteReviewInterface getWriteReview(){
         return InstanceMainHolder.WRITEREVIEW;
     }
 
@@ -107,7 +107,7 @@ public class InstanceMain {
      * @param writeMovie the instance of WriteMovie
      * @param writeReview the instance of WriteReview
      */
-    public static void setWriteFileClass(WriteUser writeUser, WriteMovie writeMovie, WriteReview writeReview){
+    public static void setWriteFileClass(WriteUserInterface writeUser, WriteMovieInterface writeMovie, WriteReviewInterface writeReview){
         InstanceMainHolder.WRITEUSER = writeUser;
         InstanceMainHolder.WRITEMOVIE = writeMovie;
         InstanceMainHolder.WRITEREVIEW = writeReview;

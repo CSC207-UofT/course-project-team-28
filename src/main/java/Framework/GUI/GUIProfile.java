@@ -23,9 +23,9 @@ public class GUIProfile extends View {
     private final JPanel panel3;
     private final GUIUserLogin guiUserLogin = (GUIUserLogin) previous;
     private final TextPresenter textPresenter = guiUserLogin.getTextPresenter();
-    Font font1 = new Font("SansSerif", Font.BOLD, 30);
-    Font font2 = new Font("SansSerif", Font.PLAIN, 20);
-    Font font3 = new Font("SansSerif", Font.PLAIN, 15);
+    final Font font1 = new Font("SansSerif", Font.BOLD, 30);
+    final Font font2 = new Font("SansSerif", Font.PLAIN, 20);
+    final Font font3 = new Font("SansSerif", Font.PLAIN, 15);
 
     /**
     constructor of this class

@@ -4,6 +4,9 @@ import Framework.DataAccess.WriteMovie;
 import Framework.DataAccess.WriteReview;
 import Framework.DataAccess.WriteUser;
 import InterfaceAdapter.InstanceMain;
+import InterfaceAdapter.Interface.WriteMovieInterface;
+import InterfaceAdapter.Interface.WriteReviewInterface;
+import InterfaceAdapter.Interface.WriteUserInterface;
 import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
@@ -121,9 +124,9 @@ public class GUIChooseLanguage extends View{
      */
     public static void main(String[] args) throws IOException {
         InstanceMain.setClearInstance();
-        WriteUser writeUser = new WriteUser();
-        WriteReview writeReview = new WriteReview();
-        WriteMovie writeMovie = new WriteMovie();
+        WriteUserInterface writeUser = new WriteUser();
+        WriteReviewInterface writeReview = new WriteReview();
+        WriteMovieInterface writeMovie = new WriteMovie();
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
 
         View gui = new GUIChooseLanguage(null);

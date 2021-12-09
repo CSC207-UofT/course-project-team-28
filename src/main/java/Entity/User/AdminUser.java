@@ -18,7 +18,6 @@ public class AdminUser extends User{
     /**
      * @return return all the info of user.
      */
-    @Override
     public Object[] getObject() {
         Object[] au = new Object[2];
         au[0] = this.username;
@@ -30,12 +29,10 @@ public class AdminUser extends User{
     /**
      * @return getter of Core.User.AdminUser
      */
-    @Override
     public String getUsername(){
         return this.username;
     }
 
-    @Override
     public String getUserPassword(){
         return this.password;
     }

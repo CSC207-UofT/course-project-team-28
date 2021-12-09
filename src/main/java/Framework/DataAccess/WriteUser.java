@@ -18,12 +18,12 @@ public class WriteUser implements WriteUserInterface {
 
     protected BufferedReader userlogin;
     protected FileWriter writeuser;
-    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected File AdminUserFolderPath = new File(str1 + "/src/main/res/AdminUser"); //get full path for AdminUser folder
     protected File NormalUserFolderPath = new File(str1 + "/src/main/res/NormalUser"); //get full path for NormalUser folder
     protected String halfAuPath = str1 + "/src/main/res/AdminUser/"; //get half path for AdminUser file
     protected String halfNuPath = str1 + "/src/main/res/NormalUser/"; //get half path for NormalUser file
-    protected Gateway gateway = new Gateway();
+    protected final Gateway gateway = new Gateway();
 
 
     /**
@@ -235,6 +235,7 @@ public class WriteUser implements WriteUserInterface {
     /**
      * Helper method, read file
      */
+    @Override
     public ArrayList<Object> readFile(String path) {
         ArrayList<Object> lst = new ArrayList<>();
         try{
@@ -258,6 +259,7 @@ public class WriteUser implements WriteUserInterface {
     /**
      * Helper method, write file
      */
+    @Override
     public void writeFile(String path, ArrayList<Object> lst) {
         try{
             writeuser = new FileWriter(path);

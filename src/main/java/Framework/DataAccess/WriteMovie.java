@@ -17,15 +17,14 @@ import java.util.HashMap;
 
 @SuppressWarnings("SingleStatementInBlock")
 public class WriteMovie implements WriteMovieInterface {
-    protected Gateway gateway = new Gateway();
+    protected final Gateway gateway = new Gateway();
 
     protected FileReader movieReader;
     protected BufferedReader getMovie;
     protected FileWriter writeMovie;
-    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
-    protected File MovieFolderPath = new File(str1 + "/src/main/res/MovieData"); //get full path for MovieData folder
+    protected final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected String ReadPath = str1 + "/src/main/res/"; //get path for readFile method
-    protected String MoviePath = str1 + "/src/main/res/MovieData/"; //get path to movieData folder
+    protected String MoviePath = str1 + "/src/main/res/Moviedata/"; //get path to moviedata folder
 
 
     /**
@@ -43,7 +42,6 @@ public class WriteMovie implements WriteMovieInterface {
      * @param readPath test res folder Path
      */
     public WriteMovie(String moviePath, String readPath){
-        this.MovieFolderPath = new File(moviePath);
         this.MoviePath = moviePath;
         this.ReadPath = readPath;
 
@@ -93,7 +91,7 @@ public class WriteMovie implements WriteMovieInterface {
     @Override
     public boolean addLikeToFile(String movieName, String state, String category) {
         try {
-            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "MovieData/"));
+            ArrayList<String> lst = new ArrayList<>(readFile(movieName + ".txt", "Moviedata/"));
             writeMovie = new FileWriter(MoviePath + category + "/" + movieName + ".txt");
             if (state.equals("Increase")){
 
@@ -135,7 +133,7 @@ public class WriteMovie implements WriteMovieInterface {
                 lstOfMovie.addAll(Arrays.asList(lstOfMovies));
             }
             for (String m : lstOfMovie) {
-                ArrayList<String> lst = readFile(m, "MovieData");
+                ArrayList<String> lst = readFile(m, "Moviedata");
 
                 // create object for a single movie
                 this.gateway.createFileMovie(lst.get(0), lst.get(1), lst.get(3), Integer.parseInt(lst.get(2)));
@@ -153,6 +151,7 @@ public class WriteMovie implements WriteMovieInterface {
      * @param category the category of the movie
      * @return true if the movie file had been successfully deleted, false if not
      */
+    @Override
     public boolean deleteFile(String movie, String category) {
         File movieFile = new File(MoviePath + category + "/" + movie + ".txt");
         return movieFile.delete();
@@ -164,6 +163,7 @@ public class WriteMovie implements WriteMovieInterface {
      * @param folder the name of the folder containing the movie data, mostly MovieData
      * @return An arraylist contains all the data of a single movie
      */
+    @Override
     @SuppressWarnings({"Duplicates", "rawtypes", "unchecked"})
     public ArrayList<String> readFile(String fn, String folder) throws IOException {
         try{

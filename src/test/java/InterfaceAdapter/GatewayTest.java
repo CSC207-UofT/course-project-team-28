@@ -163,7 +163,7 @@ public class GatewayTest {
 
     @Test
     public void editCoin() {
-        assertTrue(gateway.editCoin("UserManager",2));
+        assertTrue(gateway.editCoin(2));
         InstanceMain.getWriteReview().addCoinsToReview(2,-1);
     }
 
