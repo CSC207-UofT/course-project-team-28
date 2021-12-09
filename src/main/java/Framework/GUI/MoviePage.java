@@ -43,6 +43,7 @@ public class MoviePage extends View {
     /**
      Panel 1 is the user profile panel, this method palaces the relevant components on panel 1.
      */
+    @SuppressWarnings("ConstantConditions")
     private void PlaceThingsOnP1(JPanel p1){
         try {
             SearchResult searchResult = (SearchResult) previous;
@@ -92,19 +93,9 @@ public class MoviePage extends View {
         movieCategory.setFont(font2);
         movieLink.setFont(font2);
 
-        giveLikeToMovie.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnEditButtonClick(actionEvent);
-            }
-        });
+        giveLikeToMovie.addActionListener(this::OnEditButtonClick);
 
-        addReview.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OnAddButtonClick(e);
-            }
-        });
+        addReview.addActionListener(this::OnAddButtonClick);
 
 
         p1.add(movieName);
@@ -122,7 +113,7 @@ public class MoviePage extends View {
      */
     private void PlaceThingsOnP2(JPanel p2){
         p2.setLayout(null);
-        List lst = new ArrayList();
+        List<String> lst = new ArrayList<>();
         if (!InstanceMain.getNormalCMovie().movieReviews(searchedMovie).isEmpty()) {
             ArrayList<Object[]> list = InstanceMain.getNormalCMovie().movieReviews(searchedMovie);
             for (Object a : list) {
