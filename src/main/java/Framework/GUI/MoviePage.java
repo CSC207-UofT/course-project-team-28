@@ -96,6 +96,7 @@ public class MoviePage extends View {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 OnEditButtonClick(actionEvent);
+                giveLikeToMovie.setEnabled(false);
             }
         });
 
@@ -188,6 +189,7 @@ public class MoviePage extends View {
      */
     private void OnEditButtonClick(ActionEvent e) {
         InstanceMain.getNormalCMovie().likeMovie(searchedMovie);
+
     }
 
     private void OnAddButtonClick(ActionEvent e) {
