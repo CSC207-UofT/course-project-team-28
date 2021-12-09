@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MovieRankingTest {
     private static MovieRanking mr;
@@ -16,7 +17,7 @@ public class MovieRankingTest {
     public static void setUp() {
         ReviewManager rm = new ReviewManager();
         MovieManager mm = new MovieManager(rm);
-        mm.addMovie("Apple", "shdjhadshjasfhkasf", "Anime", 1);
+        assertTrue(mm.addMovie("Apple", "shdjhadshjasfhkasf", "Anime", 1));
         mm.addMovie("Water", "hshauihasjhjk", "Action", 0);
         mm.addMovie("Bananaa", "hshauihasjhjkww", "Action", 2);
         mm.addMovie("Bananab", "hshauihasjhjkw", "Action", 3);
@@ -27,7 +28,7 @@ public class MovieRankingTest {
     public void getMovieRankTest() {
         ArrayList<Movie> listMov = mr.getMovieRank();
         ArrayList<Movie> newlistMov = new ArrayList<>();
-        newlistMov.add(new Movie("Bananab", "hshauihasjhjkw", 3, "Action"));
+        assertTrue(newlistMov.add(new Movie("Bananab", "hshauihasjhjkw", 3, "Action")));
         newlistMov.add(new Movie("Bananaa", "hshauihasjhjkww", 2, "Action"));
         newlistMov.add(new Movie("Apple", "shdjhadshjasfhkasf", 1, "Anime"));
         newlistMov.add(new Movie("Water", "hshauihasjhjk", 0, "Action"));
