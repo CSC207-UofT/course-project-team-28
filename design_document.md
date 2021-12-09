@@ -111,6 +111,9 @@ To follow clean architecture, a new class InstanceMain is added in the Interface
 For the logic of our program.
 Before phase 2, we also followed this clean architecture, but there is not clear data flow between each layer and each class. However, in phase 2, we figured out a clear data flow diagram and got approval from our TA, which is the diagram shown below.
 
+![Clean Architecture](https://github.com/CSC207-UofT/course-project-team-28/blob/Joanna/phase0/CRCCards/CA.png)
+
+
 Following the Dependency Rule, source code dependencies point only toward higher-level policies (from Frameworks & Drivers to Entity).
 
 According to this diagram, I add a gateway class as a middle man class, it processes I/O of entities and file data. In order to stick with Clean architecture, I create two new interfaces to gateway and data access class, one is called GatewayInterface (Use Case Layer), the other one is called DataAccessInterface (Interface Adapter Layer),  so that according to the dependency inversion principle / dependency injection, the program in some way, can points from “inside” to “outside” without violating the Clean architecture.
@@ -154,4 +157,80 @@ Phase2:
 
 The four layers from phase 1 remained the same while some sub-packages became more reasonable. First, Entity layers had no change from the last design. Use cases now have all the managers in it and also the Gateway Interface, which calls WiteFile classes to create or edit files. Interface Adapter now has all the Controllers, Interface-Adapter layer Interfaces and also the Presenters. The most significant change to Interface Adapter is the addition of a new Gateway class, which links Framework and Use Case. Framework now has three different sub-packages: GUI, UI and DataAccess, where DataAccess contains the WriteFile classes. 
 
-###
+### Design Pattern
+####State machine design pattern:
+GUI using state machine design pattern. It is a behavioral design pattern that allows an object to change the behavior when its internal state changes. When the user selects if the user wants to login as normal user or admin user, an object isAdmin is changed and will affect how the next page is shown. One problem during phase 0 and phase 1 was that UI had too many if-else statements, and the state machine design pattern allows the GUI to remain clear without them.
+
+####Singleton design pattern:
+Our Program will read data from files and store their entities in the corresponding Manager classes (use case) when the program is about to run, and the entities stored in the Manager may be changed during the process of Program. These all kinds of changes will apply to the only one instance of Manager classes, if somewhere in the program creates the new instance of Manager class, this new Manager class will not have any entities stored inside, which will have bugs. In other words, the change applied on one of the instances is not a real-time change.
+In order to solve this program, I use the Singleton design pattern, which allows the program to have only one instance of my Manager classes, and provides a global point of access to it.
+This pattern will need to create a new class (which is the InstanceMain class in our program), and store the instance of classes I need inside as static variables, so that if some classes want to interact with other classes, they only need to use the getter method and get the instance I store in the InstanceMain class without creating new instance
+For convenience, I also store the instances of controller and data access classes in the InstanceMain since it is not necessary to frequently create their instances.
+
+I did not use the design pattern for our three data access class/ WriteFile class, they seem like they are related, but our implementations are almost different, using some design pattern may make it complicated, so it is not necessary to use the design pattern.
+
+### Progress Report
+Question:Is there a better way to design GUI other than swing?
+
+Solution: GUI is still using Swing during phase 2. We have studied JavaFX but an API must be manually installed in IntelliJ, which could be a potential issue since all members and TA have to install it as well.
+
+Swing is not “thread safe”.
+Solution: By using the built-in method “pack”, thread is protected. Also, our program is a single-thread program, which makes this question less important.
+
+After putting classes in packages, errors occurred as some classes cannot be called due to the fact that they are not in the same package, but importing them would change their type. For example, Movie type now changed to Core.Movie type. Is there any way to avoid these errors?
+Solution: Solved, after importing all the classes needed for each class, the types become acceptable automatically.
+
+To save data from Hashmap and keep its structure, we used properties for WriteMovie, however, when running, a line of “ava.io.FileOutputStream@dc24521Check your review” appeared. Though it does not affect the code running, it is annoying. Is there any way to delete that?
+Solution: Solved, property is no longer needed.
+
+When adding coins to review, we can’t update the number of coins on the user's page dynamically.. We can only update the number of coins after a user re-login to their page. The update of coin number is dynamic to files but GUI can’t really show it as soon as a coin is given out.
+
+The changing of language would sometimes cause NullPointerExceptions.
+Solution: Surrounded with try catch and provided another way to avoid the exception.
+
+Question: Which layer should the WriteFile classes belong to?
+
+Solution: After We talked to TA, we decided to put the WriteFile classes to the Frameworks & drivers layer, which became data access classes. Then, we created a class called gateway as the middle-man in the interface Adapter layer, the details have been explained in the clean architecture section.
+
+
+What has worked well:
+
+We have updated all functions to the program, which supports users to give coins to reviews, and users will be rewarded after giving comments to movies.
+Interaction with GUI to create/read userfile to register/login
+Users can edit stuff on their user profile and GUI is able to update new info dynamically.
+We have a fantastic associative-word searching system which allows users to search their desired movie with even ONLY ONE LETTER!
+Our GUI has beautiful and well-organized pages with many features. The pages follow each other in a way which makes the features very reasonable to be shown step by step. The buttons and pictures on each page are all beautifully set and these together composed pages very comfortable for users to access. The design strictly followed SOLID principle and accessibility rules. We have also added two languages available, which is also easy to expand.
+Our project is clean and minimizes the number of warnings as much as possible. We have tests covering most of the classes except for GUI, which basically tests itself while the program is running. We have JavaDoc on every method and class we have in our project, which makes whoever reads our code much easier to understand them.
+
+###Group work in Phase 2:
+
+**Fan Pan (Joanna)** worked on the overall GUI creation, page design, structure, page switching and writing design documents, modifying databases, and fixed code style and warnings.
+
+**Yuxuan Li** worked on updating a controller class AdminInputProcessor and a new use case class CoinManager, also working on implementing a use case called MovieRanking. In addition, Yuxuan also worked on writing related tests.
+
+**Jacquelyn Wang** updated the MovieManager, ReviewManager, NormalController, NormalCCoin, NormalCUser, NormalCMovie for the altered file structure and updated methods to corporate with newly added GUI. Also, Jacquelyn implemented the ReviewSort class to support display of reviews in the decreasing order of the number of coins, and all the test cases for these classes.
+
+**Jiaxi Li** worked on GUI design, fixing and updating some features in Review and Write Review class, and completed tests for Review and WriteReview Class. Also fixed code style and warnings in these classes.
+
+**Jing Pan (Ella)** worked on three WriteFile Classes, changing the layer of WriteFile Classes from Interface Adapter Layer to Framework & drivers layer.  Reorganized the logic/data flow of the program, making it strictly follow the Clean architecture, used Singleton design Pattern to create a static class called InstanceMain.
+Updated the features of the coin system in User Classes and UserManager. Updated the feature of user profile photo and category in user entity.
+Refactored all the naming problems in the program, written tests for WriteUser, gateway, instanceMain, UserManager, NormalUser and AdminUser.
+
+**Andy Han** Worked on designing packages, refactoring some of the variable names and file names. Added a new variable, Category, to the movie entity and sorted movie files into folders named with categories. Made changes to Movie and WriteMovie classes to make them work with the new folder setting of movie. Created new class WritePic for GUI to get picture path from file. Created new class ReadGUI for GUI to get path of language folder. Created presenter class, which makes the GUI able to change language. Worked together with Joanna and Jiaxi to create other classes and added other features to GUI, UserPage, SearchResult, MoviePage, Adding Review Page and changing language, for example.
+
+**Haitao Qiu** worked mostly on developing a more advanced search feature, which can suggest and auto-complete the movie name based on the input user entered and the movie names in the database, using Trie data structure which is self-learnt by myself. Wrote the tests for search and moviemanager, and fixed some bugs, code style and warnings.
+
+### Significant Pull Request
+Notice: Due to our group's own development workflow, in order not to mess up the main branch, we create a new branch called TestBranch, which is used to test the newest version code. Our pull requests are all sent from our own branch to the TestBranch. Some teammates might work together and merge all of their code into one person's branch, and then send a pull request to the TestBranch. Thus, some of them may share the same link of one pull request.
+
+**Jing Pan**: https://github.com/CSC207-UofT/course-project-team-28/pull/5
+This is the earliest pull request in our group in phase 2. In this pull request, I reorganized the logic / data flow of our program, created four new Interfaces, one is for gateway class and the other three are for data access classes. I also changed all the corresponding places in all classes about which class and method they should call due to the new data flow of the program. All the works of phase 2 are all based on this new organized program.
+
+**Jacquelyn Wang**: https://github.com/CSC207-UofT/course-project-team-28/pull/10
+In this pull request, I added the ReviewSort class, so that the review can be displayed according to the number of coins. In addition, the information stored in the entity was relayed to the user interface in the form as String, since it was needed by the command line interface. But for GUI, we want to display, for example, each part (i.e. review content, reviewer, number of coins) of a review separately. Thus, the controller needs to relay them in the form of Arrays of Strings, which is changed in this pull request. In addition, I also helped to fix bugs, including the username of the logged-in user is not properly stored (which causes bugs in GUI).
+
+**Yuxuan Li**: https://github.com/CSC207-UofT/course-project-team-28/pull/13
+In the pull request, I added the latest version of MovieRanking and CoinManager classes; also, related test files are updated in it. A lot bugs and errors are fixed in that version, and some incorrect names of methods and variables are fixed as well. After that pull request, related functions of displaying movie recommendations are able to work. In addition, the class descriptions and method descriptions are added in it.
+
+**Fan Pan**: https://github.com/CSC207-UofT/course-project-team-28/pull/14
+This pull request was created during our last meeting. This pull request was important because each of the group members had their own modification and updates to their own part, and these changes were merged together and checked for any errors. Also, as a version that was very close to the due date, this pull request included style fixing such as Javadoc and warning fixing for GUI.
