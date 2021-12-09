@@ -1,10 +1,5 @@
 package InterfaceAdapter;
 
-import Framework.DataAccess.WriteMovie;
-import Framework.DataAccess.WriteUser;
-import UseCase.MovieManager;
-import UseCase.UserManager;
-
 import java.util.*;
 
 public class AdminInputProcessor {
@@ -14,7 +9,7 @@ public class AdminInputProcessor {
      * Return true if the given string (username or password) is alphanumeric,
      * also it is nonempty.
      */
-    private boolean isnonemptyalpnum(String s) {
+    private boolean isNonEmptyAlpNum(String s) {
         if (s.length() < 1) {
             return false;
         }
@@ -34,10 +29,10 @@ public class AdminInputProcessor {
      * the account will be created.
      */
     public boolean register(String userName, String password, String code) {
-        if (! this.isnonemptyalpnum(userName)){
+        if (! this.isNonEmptyAlpNum(userName)){
             return false;
         }
-        else if (! this.isnonemptyalpnum(password)){
+        else if (! this.isNonEmptyAlpNum(password)){
             return false;
         }
         // check if the admincode is correct
