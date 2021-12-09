@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-/**
- * Construct the Movie Page.
+/*
+  Construct the Movie Page.
  */
 public class MoviePage extends View {
 
@@ -169,10 +169,16 @@ public class MoviePage extends View {
 
     }
 
+    /**
+     * click the button and switch to the review page.
+     */
     private void OnReviewClick(){
         nextView(new ReviewPage(this),false);
     }
 
+    /**
+     * @return the selected review.
+     */
     public int getSelectedReview(){
         String result = (String) reviewList.getSelectedValue();
         String[] lst = result.split(": ");

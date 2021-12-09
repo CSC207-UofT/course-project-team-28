@@ -6,6 +6,11 @@ public abstract class SharedView extends View {
      */
     protected boolean isAdmin;
 
+    /**
+     *
+     * @param previous the previous page
+     * @param isAdmin the boolean to check whether it is an admin user.
+     */
     public SharedView(View previous, boolean isAdmin) {
         super(previous);
         this.isAdmin = isAdmin;
