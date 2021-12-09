@@ -3,6 +3,6 @@ CoinManager2
 Empty contact info - cm
 Empty description - cm
 Empty category - cm
-29999994
+29999989
 [Apple,Candy,Team28,Happy Life]
 /src/main/res/GUIPic/winnie.jpg

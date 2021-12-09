@@ -19,7 +19,7 @@ public class GUIAdminUser extends View{
     private final GUIUserLogin guiUserLogin = (GUIUserLogin) previous;
     private final TextPresenter textPresenter = guiUserLogin.getTextPresenter();
     private final String[] cate = {"Action", "Anime", "Comedy", "Horror", "Romantic"};
-    Font font1 = new Font("SansSerif", Font.PLAIN, 20);
+    final Font font1 = new Font("SansSerif", Font.PLAIN, 20);
 
     /**
      * The constructor for this class.

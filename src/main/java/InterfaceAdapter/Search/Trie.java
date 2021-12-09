@@ -11,7 +11,7 @@ public class Trie {
      * a node of Trie
      */
     public static class TrieNode {
-        Map<Character, TrieNode> children;
+        final Map<Character, TrieNode> children;
         char c;
         boolean isEndWord;
 

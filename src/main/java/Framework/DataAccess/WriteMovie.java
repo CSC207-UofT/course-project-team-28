@@ -17,12 +17,12 @@ import java.util.HashMap;
 
 @SuppressWarnings("SingleStatementInBlock")
 public class WriteMovie implements WriteMovieInterface {
-    protected Gateway gateway = new Gateway();
+    protected final Gateway gateway = new Gateway();
 
     protected FileReader movieReader;
     protected BufferedReader getMovie;
     protected FileWriter writeMovie;
-    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected File MovieFolderPath = new File(str1 + "/src/main/res/Moviedata"); //get full path for MovieData folder
     protected String ReadPath = str1 + "/src/main/res/"; //get path for readFile method
     protected String MoviePath = str1 + "/src/main/res/Moviedata/"; //get path to moviedata folder

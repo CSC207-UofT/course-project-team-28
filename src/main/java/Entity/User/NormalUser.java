@@ -12,7 +12,7 @@ public class NormalUser extends User{
     protected String description;
     protected String category;
     protected int coin;
-    protected ArrayList<String> playlist;
+    protected final ArrayList<String> playlist;
     protected String picPath;
 
     /**

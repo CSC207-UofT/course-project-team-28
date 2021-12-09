@@ -1,6 +1,9 @@
 package Framework.DataAccess;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  * Should be called by Presenter.
  */
 public class ReadGUI {
-    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected File TextFile = new File(str1 + "/src/main/res/GUIText"); //get full path for GUIText folder
     protected FileReader textReader;
     protected BufferedReader getText;

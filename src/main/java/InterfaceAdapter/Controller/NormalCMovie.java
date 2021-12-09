@@ -69,16 +69,6 @@ public class NormalCMovie extends NormalController{
         else {return false;}
     }
 
-//    /**
-//     * @return ture iff the user's playlist is empty.
-//     */
-//    @SuppressWarnings("unchecked")
-//    public boolean emptyPlaylist() {
-//        Object[] userInfo = InstanceMain.getUserManager().getUserInfoList(this.currNormalName, "NormalUser");
-//        ArrayList<String> userPlaylist = (ArrayList<String>) userInfo[6];
-//        return userPlaylist.isEmpty();
-//    }
-
 
     /**
      * return ranked movies

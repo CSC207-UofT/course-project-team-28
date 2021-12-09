@@ -31,10 +31,6 @@ public class NormalCMovieTest {
         assertEquals("NormalController", ncu.currNormalName);
     }
 
-//    @Test
-//    public void ifMovieExist() {
-//    }
-
     @Test
     public void movieProfile() {
         Object[] actual = ncm.movieProfile("Happy Life");
@@ -88,10 +84,6 @@ public class NormalCMovieTest {
         assertTrue(playlist.contains("Water"));
         assertEquals(1, ((Object[]) InstanceMain.getMovieManager().getMovieProfile("Water"))[3]);
     }
-
-//    @Test
-//    public void emptyPlaylist() {
-//    }
 
 
     @Test

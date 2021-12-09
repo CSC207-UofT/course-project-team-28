@@ -62,30 +62,6 @@ public class ReviewManager {
         return result;
     }
 
-//    /**
-//     * Called only after confirming the movieName is valid (i.e. the movie exists)
-//     * Takes the name of Core.Movie and return a string form of reviews for the Core.Movie.
-//     */
-//    public String revsOfMovieString(String movieName){
-//        ArrayList<Review> lst = this.MovieToRevs.get(movieName);
-//        StringBuilder temp = new StringBuilder();
-//        // add content of reviews to temp
-//        if(lst != null){
-//            for (Review rev : lst){
-//                temp.append("\n[");
-//                temp.append(rev.toString());
-//                temp.append("]");
-//            }
-//            return String.valueOf(temp);
-//        }
-//        else {
-//            temp.append("\n[");
-//            temp.append("No review");
-//            temp.append("]");
-//            return String.valueOf(temp);
-//        }
-//    }
-
 
     /**
      * Called when initiate the system from database.

@@ -62,11 +62,7 @@ public class WriteMovieTest {
     @Test
     public void testGetObjectFromFile(){
         ArrayList<Movie> ListOfMovie = InstanceMain.getMovieManager().getMovies();
-        assertEquals(7, ListOfMovie.size());
-        Object[] MovieFile = {"gateway", "Water", "Apple", "Banana", "Team28", "Candy", "Happy Life"};
-        for (int i = 0; i < 7; i++){
-            assertEquals(MovieFile[i], ListOfMovie.get(i).getMovieName());
-        }
+        assertEquals(8, ListOfMovie.size());
     }
 
     @Test

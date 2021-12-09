@@ -4,6 +4,7 @@ import InterfaceAdapter.InstanceMain;
 
 import java.util.List;
 
+@SuppressWarnings("AccessStaticViaInstance")
 public class Search {
 
     /**

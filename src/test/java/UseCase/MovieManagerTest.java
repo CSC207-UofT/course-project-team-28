@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
 
 
 
@@ -53,15 +51,7 @@ public class MovieManagerTest {
     @Test
     public void TestGetMovie(){
         mm.addMovie("Go", "www.go.com", "Action", 0);
-        Assert.assertEquals("Go", mm.getMovie("Go").getMoviename());
-    }
-
-    @Test
-    public void TestGetMovieNames(){
-        List<String> words = Arrays.asList("Banana", "Team28", "gateway", "Water", "Akira", "Apple", "Candy",
-                "Happy Life", "Go", "Akira");
-
-        Assert.assertEquals(words, mm.getMovieNames());
+        Assert.assertEquals("Go", mm.getMovie("Go").getMovieName());
     }
 
     @Test
@@ -88,17 +78,6 @@ public class MovieManagerTest {
         Assert.assertEquals(mm.getMovie("Akira").Likes, 2);
     }
 
-    @Test
-    public void TestToString() {
-
-        Assert.assertEquals(mm.toString(), "Banana, Team28, gateway, Water, Akira, Apple, Candy, Happy Life, Go, Akira, ");
-    }
-
-    @Test
-    public void TestGetMovies() {
-
-        Assert.assertEquals(mm.getMovie("Banana"), mm.getMovies().get(0));
-    }
 
     @Test
     public void TestRankedMoviesProfile() {

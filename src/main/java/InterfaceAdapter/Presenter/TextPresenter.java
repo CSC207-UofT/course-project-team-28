@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class TextPresenter extends SecurityManager {
     public ArrayList<String> lstText;
-    public ReadGUI readGUI;
+    public final ReadGUI readGUI;
     public ArrayList<String> lstIni;
 
     /**
