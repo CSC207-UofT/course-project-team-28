@@ -37,7 +37,7 @@ public class WriteReviewTest {
         infoList[1] = "TestMovie";
         infoList[2] = "TestReviewContent";
         infoList[3] = 0;
-        infoList[4] = 1;
+        infoList[4] = 4;
 
         InstanceMain.setClearInstance();
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser",
@@ -55,17 +55,30 @@ public class WriteReviewTest {
     public void testCreateFile() {
         try {
             assertTrue(InstanceMain.getWriteReview().createFile("TestReviewer", "TestMovie",
-                    "TestReviewContent",1));
+                    "TestReviewContent",4));
 
             ArrayList<Object> result = InstanceMain.getWriteReview().readFile(str1 +
-                    "/src/test/res/ReviewWriteReview/" + "1.txt");
+                    "/src/test/res/ReviewWriteReview/" + "4.txt");
             assertTrue(fileContentTest(infoList, result));
 
             assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/ReviewWriteReview/" +
-                    "1.txt")));
+                    "4.txt")));
         } catch (IOException e) {
             System.out.println("createFile test for Review fails");
         }
+    }
+
+
+    @Test
+    public void testAddCoinsToReview(){
+        ArrayList<Object> lst1 = InstanceMain.getWriteReview().readFile(str1 + "/src/test/res/ReviewWriteReview/"
+                + "1.txt");
+
+        assertTrue(InstanceMain.getWriteReview().addCoinsToReview(1, 1));
+
+        assertTrue(InstanceMain.getWriteReview().addCoinsToReview(1, -1));
+
+        assertEquals(9, Integer.parseInt((String) lst1.get(3)));
     }
 
     @Test
@@ -84,6 +97,11 @@ public class WriteReviewTest {
         InstanceMain.getWriteReview().deleteReviewFile(rm.getCurrMaxRevId());
 
     }
+
+//
+//    @Test
+//    public void test
+
 
     private boolean fileContentTest(Object[] rl, ArrayList<Object> infoList) {
         for (int i = 0; i < rl.length; i++){
