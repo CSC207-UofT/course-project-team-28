@@ -12,7 +12,7 @@ public class NormalUser extends User{
     protected String description;
     protected String category;
     protected int coin;
-    protected ArrayList<String> playlist;
+    protected final ArrayList<String> playlist;
     protected String picPath;
 
     /**
@@ -40,7 +40,6 @@ public class NormalUser extends User{
     /**
      * @return return all the info of user.
      */
-    @Override
     public Object[] getObject() {
         Object[] nu = new Object[8];
         nu[0] = this.username;
@@ -58,12 +57,10 @@ public class NormalUser extends User{
     /**
      * getter of user
      */
-    @Override
     public String getUsername(){
         return this.username;
     }
 
-    @Override
     public String getUserPassword(){
         return this.password;
     }

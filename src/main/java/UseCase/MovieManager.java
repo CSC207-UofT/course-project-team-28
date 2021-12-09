@@ -28,6 +28,7 @@ public class MovieManager {
      * @param movieName name of Core.Movie
      * @param movieLink the link of the movie
      */
+    @SuppressWarnings("SameReturnValue")
     public boolean addMovie(String movieName, String movieLink, String category, int numLikes) {
         Movie m = new Movie(movieName, movieLink, numLikes, category);
         this.Movies.add(m);
@@ -151,9 +152,14 @@ public class MovieManager {
         return res.toString(); //includes a trailing ", "
     }
 
+    /**
+     * Return the movies in MovieManager
+     * @return a list of movies in MovieManager
+     */
     public ArrayList<Movie> getMovies(){
         return Movies;
     }
+
 
     public ArrayList<Object[]> rankedMoviesProfile() {
         MovieRanking mr = new MovieRanking();

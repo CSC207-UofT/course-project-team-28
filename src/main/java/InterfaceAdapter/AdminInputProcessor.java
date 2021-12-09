@@ -1,6 +1,6 @@
 package InterfaceAdapter;
 
-import java.util.*;
+import java.util.Objects;
 
 public class AdminInputProcessor {
     final private String ADMINCODE = "123456";
@@ -11,6 +11,7 @@ public class AdminInputProcessor {
      * @return true if the given string (username or password) is alphanumeric,
      *      * also it is nonempty.
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean isNonEmptyAlpNum(String s) {
         if (s.length() < 1) {
             return false;

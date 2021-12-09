@@ -8,7 +8,7 @@ import java.nio.file.Path;
  * Should be called by GUI.
  */
 public class WritePic {
-    protected static Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
+    protected static final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath();
     protected static String filepath = "/src/main/res/GUIPic/";
 
     /**

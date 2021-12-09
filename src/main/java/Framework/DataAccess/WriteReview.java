@@ -18,10 +18,10 @@ public class WriteReview implements WriteReviewInterface {
 
     protected BufferedReader getReview;
     protected FileWriter writeReview;
-    protected Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
+    protected final Path str1 = FileSystems.getDefault().getPath("").toAbsolutePath(); //get absolute path for src folder
     protected File ReviewFolderPath = new File(str1 + "/src/main/res/Review"); //get full path for Review folder
     protected String halfRvPath = str1 + "/src/main/res/Review/"; //get half path for Review file
-    protected Gateway gateway = new Gateway();
+    protected final Gateway gateway = new Gateway();
 
 
 
@@ -57,6 +57,7 @@ public class WriteReview implements WriteReviewInterface {
      * @param ID the ID of review
      * @return true if create review file successfully
      */
+    @SuppressWarnings("unused")
     @Override
     public boolean createFile(String currUserName, String movieName, String revContent, int ID){
         File file_if_exist;
@@ -76,6 +77,7 @@ public class WriteReview implements WriteReviewInterface {
 
     /** add coins to the review.
      */
+    @SuppressWarnings("unused")
     @Override
     public boolean addCoinsToReview(int id, int numCoin) {
         ArrayList<Object> revLst = new ArrayList<>(readFile(halfRvPath + id + ".txt"));
@@ -148,11 +150,4 @@ public class WriteReview implements WriteReviewInterface {
     }
 
 
-    /**
-     * Only for test, to delete the file.
-     */
-    public boolean deleteReviewFile(int reviewID){
-        File obj = new File(halfRvPath + reviewID + ".txt");
-        return obj.delete();
-    }
 }

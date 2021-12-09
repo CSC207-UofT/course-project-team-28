@@ -4,9 +4,9 @@ package Entity;
  * Represent Movies in Entity.
  */
 public class Movie {
-    protected String movieName;
-    protected String movieLink;
-    public String category;
+    protected final String movieName;
+    protected final String movieLink;
+    public final String category;
     public int Likes;
 
 

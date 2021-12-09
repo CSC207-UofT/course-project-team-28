@@ -25,7 +25,7 @@ public class ReviewManagerTest {
         WriteUser writeUser = new WriteUser(str1 + "/src/test/res/NormalUser",
                 str1 + "/src/test/res/AdminUser");
         WriteReview writeReview = new WriteReview(str1 + "/src/test/res/Review");
-        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/MovieData/",
+        WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/res/Moviedata/",
                 str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
         rm = InstanceMain.getReviewManager();
@@ -89,7 +89,7 @@ public class ReviewManagerTest {
     @Test
     public void addCoin() {
         int numCoinExp = (int) rm.getRevInfoById(3)[3] + 1;
-        assertTrue(rm.addCoin(3, "ReviewManager3"));
+        assertTrue(rm.addCoin(3));
         int act = (int) rm.getRevInfoById(3)[3];
         assertEquals(numCoinExp, act);
     }

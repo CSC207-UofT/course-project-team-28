@@ -2,7 +2,6 @@ package UseCase;
 
 import Entity.Movie;
 import InterfaceAdapter.InstanceMain;
-//import UseCase.MovieManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,7 +55,6 @@ public class MovieRanking {
      *      * (Helper method)
      */
     private Movie MostPopMovie(ArrayList<HashMap<Movie, Integer>> previousMovLik) {
-        ArrayList<HashMap<Movie, Integer>> newLMovLik = new ArrayList<>();
         int currMaxLike = 0;
         for (HashMap<Movie, Integer> each: previousMovLik) {
             for (Movie m: each.keySet()) {

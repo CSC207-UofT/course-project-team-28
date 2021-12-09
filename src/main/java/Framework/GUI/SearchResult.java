@@ -18,7 +18,7 @@ public class SearchResult extends View{
     private final GUIProfile guiProfile = (GUIProfile) previous;
     private JList searchList;
     private final TextPresenter textPresenter = guiProfile.getTextPresenter();
-    Font font1 = new Font("SansSerif", Font.BOLD, 50);
+    final Font font1 = new Font("SansSerif", Font.BOLD, 50);
 
     /**
      * the constructor

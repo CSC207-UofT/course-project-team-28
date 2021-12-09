@@ -23,8 +23,7 @@ public interface GatewayInterface {
     boolean updateInfo(String userName, String updateInfo, String updateType);
     boolean editPlayList(String movieName, String userName, String editType);
     boolean editLikeToMovieFile(String movieName, String state, String category);
-    boolean editCoin(String userName, int reviewid);
-    boolean deleteMovie(String movieName, String category);
+    boolean editCoin(int reviewId);
 
 
 }
