@@ -9,6 +9,9 @@ import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * This class functions as a page for user to select avatar after registration.
+ */
 public class ChooseAvatar extends View{
     private final JPanel jPanel;
     private JList<Object> jList;
@@ -18,6 +21,10 @@ public class ChooseAvatar extends View{
     private final String[] avatarName = {textPresenter.printText("water"),textPresenter.printText("flower"),textPresenter.printText("galaxy")
             ,textPresenter.printText("color"),textPresenter.printText("moon"),textPresenter.printText("paint")};
 
+    /**
+     * The constructor for this class.
+     * @param p The View parameter from the super class.
+     */
     public ChooseAvatar(View p) {
         super(p);
         picInDiffLan = new HashMap<>();
@@ -25,6 +32,10 @@ public class ChooseAvatar extends View{
         PlaceThingsOnPanel(jPanel);
     }
 
+    /**
+     * Add components to panel.
+     * @param p The Jpanel to be modified.
+     */
     private void PlaceThingsOnPanel(JPanel p){
         p.setLayout(null);
         String[] avatarNameEng = {"water","flower","galaxy","color","moon","paint"};
@@ -62,6 +73,9 @@ public class ChooseAvatar extends View{
         p.add(jList);
     }
 
+    /**
+     * This is the action when the user press the Save button.
+     */
     private void OnSaveAvatarClicked(){
           String selectedAvatar = "/src/main/res/GUIPic/" + picInDiffLan.get(jList.getSelectedValue()) + ".jpg";
           InstanceMain.getNormalCUser().editProfile(selectedAvatar, "picPath");
@@ -71,8 +85,11 @@ public class ChooseAvatar extends View{
 
     @Override
     protected void UpdateText() {
-
     }
+
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();

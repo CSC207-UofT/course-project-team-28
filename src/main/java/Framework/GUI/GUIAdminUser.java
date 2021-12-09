@@ -7,6 +7,9 @@ import InterfaceAdapter.Presenter.TextPresenter;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class functions as a page for admin user to upload movie after admin registration.
+ */
 public class GUIAdminUser extends View{
 
     private JTextField mNameText;
@@ -18,12 +21,20 @@ public class GUIAdminUser extends View{
     private final String[] cate = {"Action", "Anime", "Comedy", "Horror", "Romantic"};
     Font font1 = new Font("SansSerif", Font.PLAIN, 20);
 
+    /**
+     * The constructor for this class.
+     * @param previous The View parameter from the super class.
+     */
     public GUIAdminUser(View previous){
         super(previous);
         panel1 = new JPanel();
         PlaceThingsOnP1(panel1);
     }
 
+    /**
+     * Add components to panel.
+     * @param p1 The Jpanel to be modified.
+     */
     private void PlaceThingsOnP1(JPanel p1) {
 
         JLabel movieName = new JLabel(); // The first letter of the movie must be capitalized.
@@ -72,6 +83,9 @@ public class GUIAdminUser extends View{
         p1.add(uploadMovies);
     }
 
+    /**
+     * This is the action when the admin user press the Upload button.
+     */
     public void OnUploadClick() {
         String mName = mNameText.getText();
         String link = mLinkText.getText();
@@ -93,7 +107,9 @@ public class GUIAdminUser extends View{
 
     }
 
-
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame () {
         JFrame frame = super.getFrame();
