@@ -74,4 +74,4 @@ For our program, the main targeting users would be those who not only like watch
 ### 3.
 **Write a paragraph about whether or not your program is less likely to be used by certain demographics. For example, a program that converts txt files to files that can be printed by a braille printer are less likely to be used by people who do not read braille.**
 
-Our program is less likely to be used by people who do not watch movies. 
+Our program is less likely to be used by people who do not watch movies. For those people, it is unlikely for them to use our app to search for a movie, since they usually do not watch movies. Similarly, it is unlikely for them to read or write reviews for movies. 
