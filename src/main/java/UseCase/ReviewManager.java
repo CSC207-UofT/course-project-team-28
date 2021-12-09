@@ -72,14 +72,12 @@ public class ReviewManager {
      * @param content the content of the review
      * @param numCoin the number of coins that the review received
      * @param ID the ID of the review
-     * @return a boolean, return ture iff the review has been successfully created and added to MovieToRevs,
-     *         UserToRevs, reviewList.
      */
-    public boolean writeReview(String userName, String movieName, String content, int numCoin , int ID) {
+    public void writeReview(String userName, String movieName, String content, int numCoin , int ID) {
         Review rev = new Review(userName, movieName, content, numCoin, ID);
         this.reviewList.add(rev);
         this.currMaxRevId = this.getMaxRevId();
-        return addMr(movieName, rev); // && addUr(userName, rev);
+        addMr(movieName, rev); // && addUr(userName, rev);
     }
 
 

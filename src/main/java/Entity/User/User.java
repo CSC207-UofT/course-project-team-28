@@ -13,10 +13,4 @@ abstract class User {
         this.password = password;
     }
 
-    /**
-     * getter
-     */
-    abstract Object[] getObject();
-    abstract String getUsername();
-    abstract String getUserPassword();
 }

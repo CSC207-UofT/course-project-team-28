@@ -172,16 +172,6 @@ public class Gateway implements GatewayInterface {
 
     }
 
-    /**
-     * Call WriteMovie Class to delete the corresponding movie file.
-     * @param movieName the name of movie
-     * @param category the category of movie
-     * @return return true if the file of movie is successfully deleted. Otherwise, return false
-     */
-    @Override
-    public boolean deleteMovie(String movieName, String category){
-        return InstanceMain.getWriteMovie().deleteFile(movieName, category);
-    }
 
 
 }

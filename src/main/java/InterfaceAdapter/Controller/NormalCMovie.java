@@ -14,14 +14,6 @@ public class NormalCMovie extends NormalController{
         super();
     }
 
-    /**
-     * check if the movieName exists
-     * @param movieName the name of the movie.
-     * @return ture iff the movie exists
-     */
-    public boolean ifMovieExist(String movieName){
-        return InstanceMain.getMovieManager().getMovie(movieName) != null;
-    }
 
     /**
      * Should be only called when the movie name <movieName> exists in the database
