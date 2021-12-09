@@ -1,4 +1,4 @@
-## Notes Before running the program
+## Notes Before anything
 
 Note:
 
