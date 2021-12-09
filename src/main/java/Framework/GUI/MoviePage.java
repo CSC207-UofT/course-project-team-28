@@ -93,7 +93,13 @@ public class MoviePage extends View {
         movieCategory.setFont(font2);
         movieLink.setFont(font2);
 
-        giveLikeToMovie.addActionListener(this::OnEditButtonClick);
+        giveLikeToMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                OnEditButtonClick(actionEvent);
+                giveLikeToMovie.setEnabled(false);
+            }
+        });
 
         addReview.addActionListener(this::OnAddButtonClick);
 
