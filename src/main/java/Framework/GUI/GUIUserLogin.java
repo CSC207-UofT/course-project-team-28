@@ -5,13 +5,13 @@ import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * This class contributes to the user log in page.
+ */
 public class GUIUserLogin extends SharedView {
     private static JPanel panel;
-    private static JLabel usernameLabel;
-    private static JLabel pswLabel;
     private static JLabel loginResult;
     private static JTextField usernameText;
     private static JTextField passwordText;
@@ -20,7 +20,7 @@ public class GUIUserLogin extends SharedView {
     private final TextPresenter textPresenter = guiMain.getTextPresenter();
     private final JLabel adminCodeLabel = new JLabel(textPresenter.printText("Administrator Code"));
 
-    /*
+    /**
     Constructor of this class.
      */
     public GUIUserLogin(View view, Boolean isAdmin) throws IOException {
@@ -29,18 +29,18 @@ public class GUIUserLogin extends SharedView {
         placeComponents(panel);
     }
 
-    /*
-    place components on GUI
+    /**
+    place components on the page.
      */
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
-        usernameLabel = new JLabel(textPresenter.printText("Username"));
+        JLabel usernameLabel = new JLabel(textPresenter.printText("Username"));
         usernameLabel.setBounds(10,20,80,25);
         panel.add(usernameLabel);
         usernameText = new JTextField(20);
         usernameText.setBounds(130,20,165,25);
         panel.add(usernameText);
-        pswLabel = new JLabel(textPresenter.printText("Password"));
+        JLabel pswLabel = new JLabel(textPresenter.printText("Password"));
         pswLabel.setBounds(10,50,80,25);
         panel.add(pswLabel);
         passwordText = new JPasswordField(20);
@@ -48,12 +48,7 @@ public class GUIUserLogin extends SharedView {
         panel.add(passwordText);
         JButton loginButton = new JButton(textPresenter.printText("login"));
         loginButton.setBounds(10, 110, 80, 25);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                OnLoginClick(actionEvent);
-            }
-        });
+        loginButton.addActionListener(this::OnLoginClick);
         panel.add(loginButton);
         loginResult = new JLabel("");
         loginResult.setBounds(10, 130, 300, 25);
@@ -66,13 +61,13 @@ public class GUIUserLogin extends SharedView {
         }
     }
 
-    /*
+    /**
     Check whether the user is AdminUser or NormalUser, and Login.
      */
     public void OnLoginClick(ActionEvent e) {
         userName = usernameText.getText();
         String password = passwordText.getText();
-        boolean login = false;
+        boolean login;
         if(isAdmin){
             String code = adminCodeText.getText();
             login = (InstanceMain.getAdminInputProcessor().login(userName, password, code));
@@ -94,15 +89,26 @@ public class GUIUserLogin extends SharedView {
         }
     }
 
+    /**
+     * Inherited method, to update text.
+     */
     @Override
     protected void UpdateText() {
 
     }
 
+    /**
+     * Inherited method, to get text, which contributes to change language.
+     * @return text according to the chosen language.
+     */
     public TextPresenter getTextPresenter(){
         return this.textPresenter;
     }
 
+    /**
+     * Inherited method, to get the frame of this page
+     * @return the frame of the page
+     */
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
         frame.setTitle(textPresenter.printText("Login"));
