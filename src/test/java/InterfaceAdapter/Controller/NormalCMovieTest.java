@@ -24,9 +24,9 @@ public class NormalCMovieTest {
         WriteReview writeReview = new WriteReview(str1 + "/src/test/resNormalControllers/Review");
         WriteMovie writeMovie = new WriteMovie(str1 + "/src/test/resNormalControllers/Moviedata/", str1 + "/src/test/resNormalControllers/");
         InstanceMain.setWriteFileClass(writeUser, writeMovie, writeReview);
-        NormalCUser ncu = InstanceMain.getNormalCUser();
         ncm = InstanceMain.getNormalCMovie();
-
+        // login
+        NormalCUser ncu = InstanceMain.getNormalCUser();
         assertTrue(ncu.login("NormalController", "123yu"));
         assertEquals("NormalController", ncu.currNormalName);
     }
@@ -48,7 +48,7 @@ public class NormalCMovieTest {
     public void movieReviews() {
         ArrayList<Object[]> actual = ncm.movieReviews("Apple");
         assertEquals(4, actual.size());
-        Object[] rev0 = {"ReviewManager2", "Apple", "content7", 8, 7};
+        Object[] rev0 = {"ReviewManager2", "Apple", "content7", 8, 22};
         Object[] rev1 = {"ReviewManager2", "Apple", "hahahahha", 7, 1};
         Object[] rev2 = {"ReviewManager3", "Apple", "content4", 3, 4};
         Object[] rev3 = {"ReviewManager2", "Apple", "content6", 3, 6};
@@ -81,23 +81,41 @@ public class NormalCMovieTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void likeMovie() {
-        assertFalse(ncm.likeMovie("Team28"));
+        ncm.likeMovie("Water");
+        ArrayList<String> playlist = (ArrayList<String>) InstanceMain.getNormalCUser().profilePage("NormalController")[6];
+        assertTrue(playlist.contains("Water"));
+        assertEquals(1, ((Object[]) InstanceMain.getMovieManager().getMovieProfile("Water"))[3]);
     }
 
-    @Test
-    public void emptyPlaylist() {
-    }
+//    @Test
+//    public void emptyPlaylist() {
+//    }
 
-    @Test
-    public void undoLike() {
-    }
 
-    @Test
-    public void rankMovie() {
-    }
+//    @Test
+//    public void rankMovie() {
+//        ArrayList<Object[]> actual = ncm.rankMovie();
+//        String[] expect = {"Candy", "Apple", "Team28", "Happy Life", "Water", "Banana"};
+//        for (int i = 0; i <= 5; i++){
+//            assertEquals(expect[i], actual.get(i)[0]);
+//        }
+//    }
 
     @Test
     public void writeReview() {
+        int preUser = (int) InstanceMain.getNormalCUser().profilePage("NormalController")[5];
+        assertTrue(ncm.writeReview("Team28", "delete content after"));
+        int aftUser = (int) InstanceMain.getNormalCUser().profilePage("NormalController")[5];
+        assertEquals(1, aftUser-preUser);
+        int revId = InstanceMain.getReviewManager().getCurrMaxRevId();
+        Object[] expect = {"NormalController", "Team28", "delete content after", 0, revId};
+        Object[] actual = InstanceMain.getReviewManager().getRevInfoById(revId);
+        for (int i = 0; i <= 4; i++){
+            assertEquals(expect[i], actual[i]);
+        }
+        InstanceMain.getWriteReview().deleteReviewFile(revId);
+        assertEquals(1, aftUser-preUser);
     }
 }

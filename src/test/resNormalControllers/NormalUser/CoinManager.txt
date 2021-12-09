@@ -3,6 +3,6 @@ CoinManager
 Empty contact info - cm
 Empty description - cm
 Empty category - cm
-300
+150
 [Apple,Candy,Team28,Happy Life]
 /src/main/res/GUIPic/winnie.jpg
