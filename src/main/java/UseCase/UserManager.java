@@ -98,14 +98,14 @@ public class UserManager {
         }
 
         if(writeType.equals("contactInfo")){
-            if(normalUser.getContactinfo().equals(updateInfo)){
+            if(normalUser.getContactInfo().equals(updateInfo)){
                 return true;
             }
             else{
-                normalUser.updateContactinfo(updateInfo);
+                normalUser.updateContactInfo(updateInfo);
 
 
-                return normalUser.getContactinfo().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
+                return normalUser.getContactInfo().equals(updateInfo) && this.gateway.updateInfo(username, updateInfo, writeType);
             }
         }
         else if(writeType.equals("description")){

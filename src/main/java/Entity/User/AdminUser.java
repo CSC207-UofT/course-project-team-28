@@ -7,7 +7,7 @@ public class AdminUser extends User{
 
     /**
      * create the object for user
-     * @param username the user name of user
+     * @param username the username of user
      * @param password the password of user
      */
     public AdminUser(String username, String password) {

@@ -1,7 +1,5 @@
 package Entity;
 
-import java.util.Objects;
-
 public class Review {
     protected String reviewer;
     protected String movie;
@@ -26,8 +24,8 @@ public class Review {
      * "ID: {ID}, for movie {movie} - {reviewer}  with {numCoin} coins: {review content}."
      */
     public String toString() {
-        String idstr = String.valueOf(this.ID);
-        return "ID: " + idstr + ", for movie " + this.movie + " - " + this.reviewer + " with " + this.numCoin
+        String idStr = String.valueOf(this.ID);
+        return "ID: " + idStr + ", for movie " + this.movie + " - " + this.reviewer + " with " + this.numCoin
                 + " coins: " + this.reviewContent;
     }
 
