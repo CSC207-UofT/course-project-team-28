@@ -14,4 +14,4 @@ For example, you should have a directory that looks like --- [The name of Your o
 
 5. Please do not look at the crc cards, since phase 2 did not require updating it. We moved it into phase 1 folder.
 
-6. If you want to look st the UML diagram of our code, we have a pdf version in design document and a .uml diagram in the github --> src --> main 
+6. If you want to look st the UML diagram of our code, we have a pdf version in design document and a .uml diagram in the front page of our github
