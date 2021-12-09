@@ -53,7 +53,7 @@ public class GatewayTest {
 
         InstanceMain.setClearInstance();
         WriteUser wu = new WriteUser(str1 + "/src/test/res/NormalUser", str1 + "/src/test/res/AdminUser");
-        WriteReview wr = new WriteReview();
+        WriteReview wr = new WriteReview(str1 +"/src/test/res/Review");
         WriteMovie wm = new WriteMovie(str1 + "/src/test/res/Moviedata/", str1 + "/src/test/res/");
         InstanceMain.setWriteFileClass(wu, wm, wr);
 
@@ -129,8 +129,8 @@ public class GatewayTest {
     @Test
     public void createNewReview() {
         try {
-            gateway.createNewReview("UserManager", "Apple","I like this movie",10);
-            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Review" + "10" + ".txt")));
+            gateway.createNewReview("UserManager", "Apple","I like this movie",30);
+            assertTrue(Files.deleteIfExists(Path.of(str1 + "/src/test/res/Review/" + "30" + ".txt")));
         }
         catch (Exception e){
             System.out.println("Unable to create new review");
