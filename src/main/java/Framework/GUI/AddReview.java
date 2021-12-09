@@ -7,11 +7,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AddReview extends View{
-    private JPanel p1;
+    private final JPanel p1;
     private String thisMovie;
     private JTextArea writeReview;
     private final MoviePage moviePage = (MoviePage) previous;
@@ -42,24 +40,14 @@ public class AddReview extends View{
         giveUPWrite.setText(textPresenter.printText("Nah, maybe next time!"));
         finishWrite.setBounds(30, 650, 370, 50);
         giveUPWrite.setBounds(440, 650, 370, 50);
-        finishWrite.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OnFinishButtonClick(e);
-            }
-        });
-        giveUPWrite.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OnGiveUpButtonClick(e);
-            }
-        });
+        finishWrite.addActionListener(e -> OnFinishButtonClick());
+        giveUPWrite.addActionListener(e -> OnGiveUpButtonClick());
         p1.add(giveUPWrite);
         p1.add(finishWrite);
         p1.add(writeReview);
     }
 
-    private void OnFinishButtonClick(ActionEvent e){
+    private void OnFinishButtonClick(){
         InstanceMain.getNormalCMovie().writeReview(thisMovie, writeReview.getText());
         nextView(new MoviePage(this), true);
     }
@@ -69,7 +57,7 @@ public class AddReview extends View{
     }
     public TextPresenter getTextPresenter() { return this.textPresenter;}
 
-    private void OnGiveUpButtonClick(ActionEvent e){
+    private void OnGiveUpButtonClick(){
         nextView(new MoviePage(this), true);
     }
 

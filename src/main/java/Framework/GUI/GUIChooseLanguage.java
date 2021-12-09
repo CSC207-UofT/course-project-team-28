@@ -7,8 +7,6 @@ import InterfaceAdapter.InstanceMain;
 import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
@@ -44,25 +42,19 @@ public class GUIChooseLanguage extends View{
         mandarin.setBounds(30, 200, 120, 60);
         english.setText("English");
         mandarin.setText("中文");
-        english.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    OnClickButtonEng(e);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        english.addActionListener(e -> {
+            try {
+                OnClickButtonEng();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
 
-        mandarin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    OnClickButtonMan(e);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        mandarin.addActionListener(e -> {
+            try {
+                OnClickButtonMan();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
         p1.add(english);
@@ -71,9 +63,8 @@ public class GUIChooseLanguage extends View{
 
     /**
      * This is the action when the user press the 'English' button.
-     * @param e An action for the click on the button.
      */
-    private void OnClickButtonEng(ActionEvent e) throws IOException {
+    private void OnClickButtonEng() throws IOException {
         Language = "ENGLISH";
         GUIMain g = new GUIMain(this);
         nextView(g, false);
@@ -81,9 +72,8 @@ public class GUIChooseLanguage extends View{
     }
     /**
      * This is the action when the user press the '中文' button.
-     * @param e An action for the click on the button.
      */
-    private void OnClickButtonMan(ActionEvent e) throws IOException {
+    private void OnClickButtonMan() throws IOException {
         Language = "MANDARIN";
         GUIMain g = new GUIMain(this);
         nextView(g, false);
@@ -101,8 +91,7 @@ public class GUIChooseLanguage extends View{
      * The getter method for getting the text from the presenter layer.
      */
     public TextPresenter getTextPresenter() throws IOException {
-        TextPresenter textPresenter = new TextPresenter(this.Language);
-        return textPresenter;
+        return new TextPresenter(this.Language);
     }
 
     /**

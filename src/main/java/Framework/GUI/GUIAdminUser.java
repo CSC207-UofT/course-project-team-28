@@ -6,20 +6,13 @@ import InterfaceAdapter.Presenter.TextPresenter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUIAdminUser extends View{
 
-    private JLabel movieName;
-    private JLabel movieLink;
-    private JLabel category;
     private JTextField mNameText;
     private JTextField mLinkText;
-    private JList categoryChoice;
-    private JButton selectPics;
-    private JButton uploadMovies;
-    private JPanel panel1;
+    private JList<Object> categoryChoice;
+    private final JPanel panel1;
     private final GUIUserLogin guiUserLogin = (GUIUserLogin) previous;
     private final TextPresenter textPresenter = guiUserLogin.getTextPresenter();
     private final String[] cate = {"Action", "Anime", "Comedy", "Horror", "Romantic"};
@@ -33,16 +26,16 @@ public class GUIAdminUser extends View{
 
     private void PlaceThingsOnP1(JPanel p1) {
 
-        movieName = new JLabel(); // The first letter of the movie must be capitalized.
-        movieLink = new JLabel();
-        category = new JLabel();
+        JLabel movieName = new JLabel(); // The first letter of the movie must be capitalized.
+        JLabel movieLink = new JLabel();
+        JLabel category = new JLabel();
         mNameText = new JTextField();
         mLinkText = new JTextField();
 
-        selectPics = new JButton(textPresenter.printText("Select Pictures for the Movie"));
+        JButton selectPics = new JButton(textPresenter.printText("Select Pictures for the Movie"));
         ImageIcon icon = new ImageIcon(WritePic.getPic("shake hand.jpg"));
         JLabel i = new JLabel(textPresenter.printText("Movie Image"), icon, JLabel.CENTER);
-        uploadMovies = new JButton(textPresenter.printText("Upload Movies"));
+        JButton uploadMovies = new JButton(textPresenter.printText("Upload Movies"));
 
         movieName.setText(textPresenter.printText("Movie Name"));
         movieLink.setText(textPresenter.printText("Movie Link"));
@@ -66,13 +59,7 @@ public class GUIAdminUser extends View{
         movieLink.setFont(font1);
         category.setFont(font1);
 
-        uploadMovies.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OnUploadClick(e);
-
-            }
-        });
+        uploadMovies.addActionListener(e -> OnUploadClick());
 
         p1.add(movieName);
         p1.add(movieLink);
@@ -85,10 +72,10 @@ public class GUIAdminUser extends View{
         p1.add(uploadMovies);
     }
 
-    public void OnUploadClick(ActionEvent e) {
+    public void OnUploadClick() {
         String mName = mNameText.getText();
         String link = mLinkText.getText();
-        String category = (String) categoryChoice.getSelectedValue(); //!!!!!!
+        String category = (String) categoryChoice.getSelectedValue();
         if (InstanceMain.getAdminInputProcessor().uploadMovie(mName, link, category)) {
             previous.UpdateText();
 
