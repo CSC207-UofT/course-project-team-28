@@ -96,11 +96,13 @@ To follow clean architecture, a new class InstanceMain is added in the Interface
 
    UserManager, MovieManager, CoinManager, ReviewManager
 
-   GatewayInterface
+   **GatewayInterface**
 
-   MovieRanking
+   **MovieRanking**
 
-4. Entity
+   **ReviewSort**
+
+5. Entity
 
    **User**:  NormalUser, AdminUser
 
