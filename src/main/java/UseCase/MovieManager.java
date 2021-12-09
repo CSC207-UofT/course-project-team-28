@@ -151,9 +151,14 @@ public class MovieManager {
         return res.toString(); //includes a trailing ", "
     }
 
+    /**
+     * Return the movies in MovieManager
+     * @return a list of movies in MovieManager
+     */
     public ArrayList<Movie> getMovies(){
         return Movies;
     }
+
 
     public ArrayList<Object[]> rankedMoviesProfile() {
         MovieRanking mr = new MovieRanking();
