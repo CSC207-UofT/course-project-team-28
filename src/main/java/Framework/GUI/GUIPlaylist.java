@@ -7,17 +7,28 @@ import javax.swing.*;
 
 import java.util.ArrayList;
 
+/**
+ * This class functions as a page for demonstrating user's playlist.
+ */
 public class GUIPlaylist extends View{
     private final JPanel jPanel;
     private final GUIProfile guiProfile = (GUIProfile) previous;
     private final TextPresenter textPresenter = guiProfile.getTextPresenter();
 
+    /**
+     * The constructor for this class.
+     * @param previous The View parameter from the super class.
+     */
     public GUIPlaylist(View previous) {
         super(previous);
         jPanel = new JPanel();
         PlaceThingsOnPanel(jPanel);
     }
 
+    /**
+     * Add components to panel.
+     * @param p The Jpanel to be modified.
+     */
     @SuppressWarnings("unchecked")
     private void PlaceThingsOnPanel(JPanel p){
         p.setLayout(null);
@@ -38,15 +49,20 @@ public class GUIPlaylist extends View{
         p.add(returnButton);
     }
 
+    /**
+     * This is the action when the user press the Return button.
+     */
     public void OnReturnClick(){
         this.getFrame().dispose();
     }
 
     @Override
     protected void UpdateText() {
-
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();

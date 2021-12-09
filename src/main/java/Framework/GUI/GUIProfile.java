@@ -10,7 +10,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
- * The class to construct GUIProfile
+ * This is the class responsible for generating the main page.
  */
 public class GUIProfile extends View {
 
@@ -208,6 +208,9 @@ public class GUIProfile extends View {
         return this.textPresenter;
     }
 
+    /**
+     *The method in super class for generating a new frame.
+     */
     @Override
     public JFrame getFrame() {
         JFrame frame = super.getFrame();
