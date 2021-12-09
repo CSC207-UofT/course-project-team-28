@@ -1,7 +1,8 @@
 Ella
 123
-511
-haha
+511291
+I like movie blablabla  1
 Empty category
-301
-[Apple]
+298
+[Apple,Candy,Team28,Happy Life]
+/src/main/res/GUIPic/moon.jpg

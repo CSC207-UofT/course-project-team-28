@@ -1,0 +1,72 @@
+Our App
+Action
+Anime
+Comedy
+Horror
+Romantic
+Select Pictures for the Movie
+Movie Image
+Upload Movies
+Movie Name
+Movie Link
+Category
+Successfully uploaded
+Your movie already exists
+AdminUser Page
+Enter your new phone number:
+Enter your new description:
+Save
+contactInfo
+description
+Edit Contact Info
+Back
+Playlist
+Edit your profile
+Go to your playlist
+Your Profile
+Recommendation
+Happy Life
+Team 28
+Candy
+Apple
+Search movie by name
+Search
+Contact Info:
+TEReview
+Administrator Code
+Username
+Password
+login
+Username or password incorrect, please try again.
+Login successful.
+Login
+(numbers and letters only)
+Register
+Successfully registered, you can login now.
+:D
+Something is wrong with your username or password.
+Add Review
+Enter your review here...
+Done with my review!
+Nah, maybe next time!
+water
+flower
+galaxy
+color
+moon
+paint
+Please enter a movie name
+Like the movie & add to your playlist
+Movie Info
+number of likes:
+Category:
+Add review to this movie
+Review Ranking
+Search Result
+Choose your Avatar
+language
+English
+Mandarin
+coins:
+Admin Register
+Admin Login

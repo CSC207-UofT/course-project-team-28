@@ -1,0 +1,1783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/MOKILA/Desktop/csc207/course-project-team-28/src/main/java</OriginalElement>
+  <nodes>
+    <node x="551.3125" y="1254.0">Framework.DataAccess.WritePic</node>
+    <node x="2083.690282473943" y="1532.0">Framework.GUI.GUIMain</node>
+    <node x="3306.440282473943" y="1388.0">Framework.GUI.DemoMain</node>
+    <node x="1307.5624999999998" y="1388.0">InterfaceAdapter.Search.Search</node>
+    <node x="3109.940282473943" y="420.0">InterfaceAdapter.Interface.WriteReviewInterface</node>
+    <node x="1704.6874999999998" y="226.0">InterfaceAdapter.Controller.NormalController</node>
+    <node x="2199.440282473943" y="1254.0">Framework.DataAccess.WriteUser</node>
+    <node x="1783.6874999999998" y="1388.0">Framework.GUI.GUIChooseLanguage</node>
+    <node x="1871.837894477325" y="1646.0">Framework.GUI.ChooseAvatar</node>
+    <node x="1940.7424626655463" y="718.0">InterfaceAdapter.InstanceMain</node>
+    <node x="2313.7291666666665" y="956.0">UseCase.MovieManager</node>
+    <node x="2071.3125" y="504.0">InterfaceAdapter.Controller.NormalCMovie</node>
+    <node x="411.69206114399185" y="1748.0">Framework.GUI.GUIPlaylist</node>
+    <node x="1238.8124999999998" y="1254.0">InterfaceAdapter.Search.Trie</node>
+    <node x="2177.4375" y="82.0">UseCase.ReviewSort</node>
+    <node x="669.0624999999998" y="504.0">InterfaceAdapter.Controller.NormalCUser</node>
+    <node x="537.5625" y="956.0">Framework.DataAccess.ReadGUI</node>
+    <node x="2322.229166666666" y="862.0">UseCase.MovieRanking</node>
+    <node x="1864.4374999999998" y="82.0">Entity.User.NormalUser</node>
+    <node x="787.7128944773251" y="1532.0">Framework.GUI.SearchResult</node>
+    <node x="83.5625" y="1254.0">Framework.GUI.GUIEditContactInfo</node>
+    <node x="1633.5624999999998" y="504.0">InterfaceAdapter.Controller.NormalCCoin</node>
+    <node x="732.8124999999999" y="1254.0">Framework.GUI.ReviewPage</node>
+    <node x="1047.8125" y="1254.0">Framework.GUI.RendererHelper</node>
+    <node x="2023.4374999999998" y="82.0">Entity.User.AdminUser</node>
+    <node x="2381.6041666666665" y="82.0">UseCase.GatewayInterface</node>
+    <node x="2041.0624999999998" y="226.0">UseCase.UserManager</node>
+    <node x="306.3125" y="1388.0">Framework.GUI.GUIAdminUser</node>
+    <node x="2033.770833333333" y="1070.0">InterfaceAdapter.Interface.WriteUserInterface</node>
+    <node x="2258.3541666666665" y="226.0">UseCase.ReviewManager</node>
+    <node x="1548.9374999999998" y="1388.0">Framework.GUI.SharedView</node>
+    <node x="3141.940282473943" y="504.0">Framework.DataAccess.WriteReview</node>
+    <node x="2192.9375" y="0.0">Entity.Review</node>
+    <node x="2346.229166666666" y="718.0">Entity.Movie</node>
+    <node x="349.19028247394317" y="1532.0">Framework.GUI.GUIUserLogin</node>
+    <node x="1339.8124999999998" y="1070.0">Framework.GUI.View</node>
+    <node x="1969.4374999999998" y="0.0">Entity.User.User</node>
+    <node x="480.42122781065837" y="1646.0">Framework.GUI.GUIProfile</node>
+    <node x="2886.940282473943" y="420.0">InterfaceAdapter.Interface.WriteMovieInterface</node>
+    <node x="2077.3125" y="420.0">UseCase.CoinManager</node>
+    <node x="2901.4495984784453" y="1070.0">InterfaceAdapter.Gateway</node>
+    <node x="2918.940282473943" y="504.0">Framework.DataAccess.WriteMovie</node>
+    <node x="892.8124999999999" y="1254.0">Framework.GUI.AddReview</node>
+    <node x="518.0625" y="1070.0">InterfaceAdapter.Presenter.TextPresenter</node>
+    <node x="1802.5624999999998" y="504.0">InterfaceAdapter.AdminInputProcessor</node>
+    <node x="1751.1902824739432" y="1532.0">Framework.GUI.GUIUserRegister</node>
+    <node x="793.7128944773251" y="1388.0">Framework.GUI.MoviePage</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Framework.DataAccess.WriteMovie" target="InterfaceAdapter.Gateway" relationship="TO_ONE">
+      <point x="46.0" y="15.0" />
+      <point x="3033.940282473943" y="646.0" />
+      <point x="3224.940282473943" y="646.0" />
+      <point x="3224.940282473943" y="1038.0" />
+      <point x="2972.6995984784453" y="1038.0" />
+      <point x="14.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.ReviewPage" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="35.0" y="-15.0" />
+      <point x="837.8124999999999" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="Entity.User.NormalUser" target="Entity.User.User" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="1933.9374999999998" y="56.0" />
+      <point x="2011.9374999999998" y="56.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.ReviewManager" target="Entity.Review" relationship="CREATE">
+      <point x="0.0" y="-15.0" />
+      <point x="2342.8541666666665" y="194.0" />
+      <point x="2283.9375" y="194.0" />
+      <point x="2283.9375" y="134.0" />
+      <point x="2322.9375" y="134.0" />
+      <point x="2322.9375" y="56.0" />
+      <point x="2279.6041666666665" y="56.0" />
+      <point x="34.66666666666663" y="15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteUser" target="InterfaceAdapter.Gateway" relationship="TO_ONE">
+      <point x="46.875" y="-15.0" />
+      <point x="2308.815282473943" y="1172.0" />
+      <point x="2996.4495984784453" y="1172.0" />
+      <point x="38.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Search.Search" target="UseCase.MovieManager" relationship="DEPENDENCY">
+      <point x="25.25" y="-15.0" />
+      <point x="1383.3124999999998" y="1316.0" />
+      <point x="1437.3124999999998" y="1316.0" />
+      <point x="1437.3124999999998" y="1048.0" />
+      <point x="2250.895833333333" y="1048.0" />
+      <point x="2250.895833333333" y="1028.0" />
+      <point x="2354.4791666666665" y="1028.0" />
+      <point x="-40.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SharedView" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="1617.9374999999998" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Presenter.TextPresenter" target="Framework.DataAccess.ReadGUI" relationship="CREATE">
+      <point x="-38.5" y="-15.0" />
+      <point x="556.5625" y="1048.0" />
+      <point x="566.3125" y="1048.0" />
+      <point x="-28.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="InterfaceAdapter.Gateway" relationship="CREATE">
+      <point x="50.0" y="15.0" />
+      <point x="2166.0625" y="288.0" />
+      <point x="2394.8569491406097" y="288.0" />
+      <point x="2394.8569491406097" y="378.0" />
+      <point x="2876.440282473943" y="378.0" />
+      <point x="2876.440282473943" y="1008.0" />
+      <point x="2973.3541666666665" y="1008.0" />
+      <point x="2973.3541666666665" y="1048.0" />
+      <point x="2944.1995984784453" y="1048.0" />
+      <point x="-14.25" y="-15.0" />
+    </edge>
+    <edge source="UseCase.ReviewManager" target="InterfaceAdapter.Gateway" relationship="CREATE">
+      <point x="56.33333333333337" y="15.0" />
+      <point x="2399.1875" y="278.0" />
+      <point x="2404.8569491406097" y="278.0" />
+      <point x="2404.8569491406097" y="368.0" />
+      <point x="3099.440282473943" y="368.0" />
+      <point x="3099.440282473943" y="1008.0" />
+      <point x="2973.3541666666665" y="1008.0" />
+      <point x="2973.3541666666665" y="1048.0" />
+      <point x="2944.1995984784453" y="1048.0" />
+      <point x="-14.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteReview" target="InterfaceAdapter.Interface.WriteReviewInterface" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1837.1902824739432" y="1510.0" />
+      <point x="1824.4374999999998" y="1510.0" />
+      <point x="1824.4374999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1222.0" />
+      <point x="384.3125" y="1222.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="Framework.GUI.MoviePage" relationship="CREATE">
+      <point x="18.25" y="-15.0" />
+      <point x="878.9628944773251" y="1460.0" />
+      <point x="894.2128944773251" y="1460.0" />
+      <point x="33.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="-48.0" y="-15.0" />
+      <point x="427.69206114399185" y="1727.0" />
+      <point x="0.25" y="1727.0" />
+      <point x="0.0" y="1222.0" />
+      <point x="384.3125" y="1222.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="Framework.DataAccess.WritePic" relationship="DEPENDENCY">
+      <point x="-50.25" y="-15.0" />
+      <point x="810.4628944773251" y="1366.0" />
+      <point x="641.5624999999999" y="1366.0" />
+      <point x="641.5624999999999" y="1336.0" />
+      <point x="607.8124999999999" y="1336.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="19.0" y="-15.0" />
+      <point x="444.19028247394317" y="1510.0" />
+      <point x="519.8125" y="1510.0" />
+      <point x="520.0625" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCMovie" target="UseCase.MovieManager" relationship="DEPENDENCY">
+      <point x="-40.5" y="15.0" />
+      <point x="2111.8125" y="556.0" />
+      <point x="1476.6902824739432" y="556.0" />
+      <point x="1476.6902824739432" y="676.0" />
+      <point x="2488.729166666666" y="676.0" />
+      <point x="2488.729166666666" y="914.0" />
+      <point x="2409.418445336715" y="914.0" />
+      <point x="2409.418445336715" y="934.0" />
+      <point x="2395.2291666666665" y="934.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="InterfaceAdapter.AdminInputProcessor" relationship="DEPENDENCY">
+      <point x="-19.0" y="-15.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="408.3125" y="1460.0" />
+      <point x="295.8125" y="1460.0" />
+      <point x="295.8125" y="686.0" />
+      <point x="1390.3125" y="686.0" />
+      <point x="1390.3125" y="576.0" />
+      <point x="1855.0624999999998" y="576.0" />
+      <point x="-52.5" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="UseCase.UserManager" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2915.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1018.0" />
+      <point x="2854.940282473943" y="1018.0" />
+      <point x="2854.940282473943" y="388.0" />
+      <point x="2116.0625" y="388.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="UseCase.GatewayInterface" relationship="REALIZATION">
+      <point x="42.75" y="-15.0" />
+      <point x="3001.1995984784453" y="1028.0" />
+      <point x="3328.440282473943" y="1028.0" />
+      <point x="3328.440282473943" y="144.0" />
+      <point x="2529.9374999999995" y="144.0" />
+      <point x="59.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteReview" target="InterfaceAdapter.Gateway" relationship="TO_ONE">
+      <point x="48.0" y="15.0" />
+      <point x="3261.940282473943" y="646.0" />
+      <point x="3234.940282473943" y="646.0" />
+      <point x="3234.940282473943" y="1018.0" />
+      <point x="3224.940282473943" y="1018.0" />
+      <point x="3224.940282473943" y="1038.0" />
+      <point x="2972.6995984784453" y="1038.0" />
+      <point x="14.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIMain" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="42.75" y="-15.0" />
+      <point x="2183.440282473943" y="1510.0" />
+      <point x="2563.065282473943" y="1510.0" />
+      <point x="2563.065282473943" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.ReviewManager" target="Entity.Review" relationship="TO_MANY">
+      <point x="-56.33333333333337" y="-15.0" />
+      <point x="2286.520833333333" y="204.0" />
+      <point x="2200.9375" y="204.0" />
+      <point x="2200.9375" y="154.0" />
+      <point x="2166.9375" y="154.0" />
+      <point x="2166.9375" y="56.0" />
+      <point x="2210.270833333333" y="56.0" />
+      <point x="-34.666666666666686" y="15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteUser" target="InterfaceAdapter.Interface.WriteUserInterface" relationship="REALIZATION">
+      <point x="-46.875" y="-15.0" />
+      <point x="2215.065282473943" y="1172.0" />
+      <point x="2128.270833333333" y="1172.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="Framework.GUI.SharedView" relationship="GENERALIZATION">
+      <point x="-57.33333333333334" y="-15.0" />
+      <point x="1779.85694914061" y="1500.0" />
+      <point x="1617.9374999999998" y="1500.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="InterfaceAdapter.Gateway" relationship="CREATE">
+      <point x="40.75" y="15.0" />
+      <point x="2435.9791666666665" y="1008.0" />
+      <point x="2973.3541666666665" y="1008.0" />
+      <point x="2973.3541666666665" y="1048.0" />
+      <point x="2944.1995984784453" y="1048.0" />
+      <point x="-14.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.DemoMain" target="Framework.DataAccess.WriteReview" relationship="CREATE">
+      <point x="33.0" y="-15.0" />
+      <point x="3405.440282473943" y="1366.0" />
+      <point x="3352.0416666666665" y="1366.0" />
+      <point x="3352.0416666666665" y="666.0" />
+      <point x="3213.940282473943" y="666.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="-50.25" y="-15.0" />
+      <point x="810.4628944773251" y="1366.0" />
+      <point x="641.5624999999999" y="1366.0" />
+      <point x="641.5624999999999" y="1346.0" />
+      <point x="674.8124999999999" y="1346.0" />
+      <point x="674.8124999999999" y="1222.0" />
+      <point x="384.3125" y="1222.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="UseCase.ReviewManager" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="2326.065282473943" y="586.0" />
+      <point x="2326.065282473943" y="368.0" />
+      <point x="2404.8569491406097" y="368.0" />
+      <point x="2404.8569491406097" y="278.0" />
+      <point x="2399.1875" y="278.0" />
+      <point x="56.33333333333337" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="InterfaceAdapter.Controller.NormalCUser" relationship="DEPENDENCY">
+      <point x="-63.66666666666663" y="-15.0" />
+      <point x="115.39583333333348" y="1232.0" />
+      <point x="104.5625" y="1232.0" />
+      <point x="104.5625" y="696.0" />
+      <point x="226.5625" y="696.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="InterfaceAdapter.Controller.NormalCUser" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="780.8124999999998" y="586.0" />
+      <point x="37.25" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="Framework.GUI.GUIChooseLanguage" relationship="TO_ONE">
+      <point x="57.33333333333334" y="-15.0" />
+      <point x="1894.5236158072767" y="1510.0" />
+      <point x="1920.6902824739432" y="1510.0" />
+      <point x="1920.6902824739432" y="1480.0" />
+      <point x="1885.6874999999998" y="1480.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="57.75" y="-15.0" />
+      <point x="2006.587894477325" y="1624.0" />
+      <point x="3001.6370984784453" y="1624.0" />
+      <point x="3001.6370984784453" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.CoinManager" target="UseCase.ReviewManager" relationship="TO_ONE">
+      <point x="0.0" y="-15.0" />
+      <point x="2152.3125" y="338.0" />
+      <point x="2162.3125" y="338.0" />
+      <point x="2162.3125" y="298.0" />
+      <point x="2286.520833333333" y="298.0" />
+      <point x="-56.333333333333314" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="UseCase.ReviewManager" relationship="TO_ONE">
+      <point x="54.33333333333337" y="-15.0" />
+      <point x="2449.5625" y="934.0" />
+      <point x="2808.940282473943" y="934.0" />
+      <point x="2808.940282473943" y="924.0" />
+      <point x="2813.940282473943" y="924.0" />
+      <point x="2813.940282473943" y="308.0" />
+      <point x="2162.3125" y="308.0" />
+      <point x="2162.3125" y="298.0" />
+      <point x="2286.520833333333" y="298.0" />
+      <point x="-56.333333333333314" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="Framework.GUI.GUIProfile" relationship="CREATE">
+      <point x="50.666666666666515" y="15.0" />
+      <point x="475.8569491406097" y="1584.0" />
+      <point x="870.712894477325" y="1584.0" />
+      <point x="870.712894477325" y="1624.0" />
+      <point x="558.5462278106584" y="1624.0" />
+      <point x="15.625" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIMain" target="Framework.DataAccess.WritePic" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2097.940282473943" y="1510.0" />
+      <point x="2071.895833333333" y="1510.0" />
+      <point x="2071.895833333333" y="1356.0" />
+      <point x="607.8124999999999" y="1356.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="InterfaceAdapter.Controller.NormalCUser" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1837.1902824739432" y="1510.0" />
+      <point x="1824.4374999999998" y="1510.0" />
+      <point x="1824.4374999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="696.0" />
+      <point x="226.5625" y="696.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCMovie" target="UseCase.UserManager" relationship="DEPENDENCY">
+      <point x="40.5" y="-15.0" />
+      <point x="2192.8125" y="482.0" />
+      <point x="2237.8125" y="482.0" />
+      <point x="2237.8125" y="388.0" />
+      <point x="2116.0625" y="388.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="960.3124999999999" y="1232.0" />
+      <point x="894.0624999999999" y="1232.0" />
+      <point x="894.0624999999999" y="1172.0" />
+      <point x="978.4402824739432" y="1172.0" />
+      <point x="978.4402824739432" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCUser" target="UseCase.UserManager" relationship="DEPENDENCY">
+      <point x="37.25" y="-15.0" />
+      <point x="780.5329318117786" y="388.0" />
+      <point x="2116.0625" y="388.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.DemoMain" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-33.0" y="-15.0" />
+      <point x="3339.440282473943" y="1366.0" />
+      <point x="3341.0416666666665" y="1366.0" />
+      <point x="3341.0416666666665" y="830.0" />
+      <point x="1183.1579318117788" y="830.0" />
+      <point x="1183.1579318117788" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="InterfaceAdapter.Controller.NormalCMovie" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="960.3124999999999" y="1232.0" />
+      <point x="894.0624999999999" y="1232.0" />
+      <point x="894.0624999999999" y="676.0" />
+      <point x="1476.6902824739432" y="676.0" />
+      <point x="1476.6902824739432" y="556.0" />
+      <point x="2111.8125" y="556.0" />
+      <point x="-40.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-57.75" y="-15.0" />
+      <point x="1891.087894477325" y="1624.0" />
+      <point x="1708.6874999999998" y="1624.0" />
+      <point x="1708.4374999999998" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="UseCase.ReviewManager" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2915.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1018.0" />
+      <point x="2854.940282473943" y="1018.0" />
+      <point x="2854.940282473943" y="358.0" />
+      <point x="2342.8541666666665" y="358.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="-46.875" y="-15.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="51.5625" y="1604.0" />
+      <point x="51.5625" y="1222.0" />
+      <point x="384.3125" y="1222.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="Framework.GUI.GUIUserLogin" relationship="TO_ONE">
+      <point x="53.00000000000023" y="15.0" />
+      <point x="438.8125000000002" y="1450.0" />
+      <point x="519.8125" y="1450.0" />
+      <point x="519.8125" y="1510.0" />
+      <point x="444.19028247394317" y="1510.0" />
+      <point x="19.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="Framework.GUI.GUIUserRegister" relationship="DEPENDENCY">
+      <point x="-19.25" y="-15.0" />
+      <point x="1929.587894477325" y="1614.0" />
+      <point x="1788.9402824739432" y="1614.0" />
+      <point x="1788.9402824739432" y="1604.0" />
+      <point x="1837.1902824739432" y="1604.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-54.75" y="-15.0" />
+      <point x="805.9628944773251" y="1460.0" />
+      <point x="529.8125" y="1460.0" />
+      <point x="529.8125" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCCoin" target="UseCase.CoinManager" relationship="DEPENDENCY">
+      <point x="37.25" y="-15.0" />
+      <point x="1745.3124999999998" y="482.0" />
+      <point x="2114.8125" y="482.0" />
+      <point x="-37.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1837.1902824739432" y="1510.0" />
+      <point x="1824.4374999999998" y="1510.0" />
+      <point x="1824.4374999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ReviewPage" target="Framework.GUI.MoviePage" relationship="TO_ONE">
+      <point x="0.0" y="15.0" />
+      <point x="802.8124999999999" y="1316.0" />
+      <point x="853.1874999999999" y="1316.0" />
+      <point x="853.1874999999999" y="1366.0" />
+      <point x="843.9628944773251" y="1366.0" />
+      <point x="-16.75" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="-19.0" y="-15.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="408.3125" y="1460.0" />
+      <point x="295.8125" y="1460.0" />
+      <point x="295.8125" y="1222.0" />
+      <point x="384.3125" y="1222.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="Framework.GUI.GUIProfile" relationship="DEPENDENCY">
+      <point x="-63.666666666666515" y="15.0" />
+      <point x="115.39583333333348" y="1346.0" />
+      <point x="62.0625" y="1346.0" />
+      <point x="62.0625" y="1604.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="-46.875" y="-15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="UseCase.MovieManager" relationship="CREATE">
+      <point x="37.0" y="15.0" />
+      <point x="2051.7424626655466" y="800.0" />
+      <point x="2285.729166666666" y="800.0" />
+      <point x="2285.729166666666" y="924.0" />
+      <point x="2290.979166666666" y="924.0" />
+      <point x="2290.979166666666" y="934.0" />
+      <point x="2340.895833333333" y="934.0" />
+      <point x="-54.33333333333337" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="2.2737367544323206E-13" y="-15.0" />
+      <point x="385.8125000000002" y="1366.0" />
+      <point x="367.8125" y="1366.0" />
+      <point x="367.8125" y="1336.0" />
+      <point x="384.3125" y="1336.0" />
+      <point x="384.3125" y="1162.0" />
+      <point x="486.5625" y="1162.0" />
+      <point x="486.5625" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="UseCase.GatewayInterface" relationship="DEPENDENCY">
+      <point x="50.0" y="-15.0" />
+      <point x="2166.0625" y="184.0" />
+      <point x="2470.6041666666665" y="184.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="InterfaceAdapter.Controller.NormalCCoin" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="1745.3124999999998" y="586.0" />
+      <point x="37.25" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="Framework.GUI.GUIProfile" relationship="DEPENDENCY">
+      <point x="-48.66666666666674" y="15.0" />
+      <point x="812.0462278106584" y="1604.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="-46.875" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="InterfaceAdapter.AdminInputProcessor" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1837.1902824739432" y="1510.0" />
+      <point x="1824.4374999999998" y="1510.0" />
+      <point x="1824.4374999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="800.0" />
+      <point x="1930.2424626655463" y="800.0" />
+      <point x="1930.2424626655463" y="686.0" />
+      <point x="1390.3125" y="686.0" />
+      <point x="1390.3125" y="576.0" />
+      <point x="1855.0624999999998" y="576.0" />
+      <point x="-52.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="Framework.GUI.RendererHelper" relationship="CREATE">
+      <point x="16.75" y="-15.0" />
+      <point x="877.4628944773251" y="1366.0" />
+      <point x="1034.6875" y="1366.0" />
+      <point x="1034.6875" y="1306.0" />
+      <point x="1132.8125" y="1306.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-16.0" y="-15.0" />
+      <point x="459.69206114399185" y="1727.0" />
+      <point x="470.69206114399185" y="1727.0" />
+      <point x="470.69206114399185" y="1697.0" />
+      <point x="11.0" y="1697.0" />
+      <point x="11.0" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.ReviewManager" target="UseCase.GatewayInterface" relationship="DEPENDENCY">
+      <point x="56.33333333333337" y="-15.0" />
+      <point x="2399.1875" y="184.0" />
+      <point x="2470.6041666666665" y="184.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-48.0" y="-15.0" />
+      <point x="427.69206114399185" y="1727.0" />
+      <point x="0.25" y="1727.0" />
+      <point x="0.25" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-16.75" y="-15.0" />
+      <point x="843.9628944773251" y="1366.0" />
+      <point x="853.1874999999999" y="1366.0" />
+      <point x="853.1874999999999" y="1316.0" />
+      <point x="722.3124999999999" y="1316.0" />
+      <point x="722.3124999999999" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-52.99999999999977" y="-15.0" />
+      <point x="332.8125000000002" y="1346.0" />
+      <point x="356.8125" y="1346.0" />
+      <point x="356.8125" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="Framework.GUI.AddReview" relationship="CREATE">
+      <point x="16.75" y="-15.0" />
+      <point x="877.4628944773251" y="1366.0" />
+      <point x="1034.6875" y="1366.0" />
+      <point x="1034.6875" y="1306.0" />
+      <point x="994.0624999999999" y="1306.0" />
+      <point x="33.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.GUI.GUIEditContactInfo" relationship="CREATE">
+      <point x="15.625" y="-15.0" />
+      <point x="558.5462278106584" y="1624.0" />
+      <point x="870.712894477325" y="1624.0" />
+      <point x="870.712894477325" y="1584.0" />
+      <point x="1538.4374999999998" y="1584.0" />
+      <point x="1538.4374999999998" y="1326.0" />
+      <point x="242.72916666666652" y="1326.0" />
+      <point x="63.66666666666663" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="Framework.GUI.MoviePage" relationship="CREATE">
+      <point x="33.75" y="15.0" />
+      <point x="994.0624999999999" y="1306.0" />
+      <point x="1034.6875" y="1306.0" />
+      <point x="1034.6875" y="1366.0" />
+      <point x="877.4628944773251" y="1366.0" />
+      <point x="16.75" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="63.66666666666663" y="-15.0" />
+      <point x="242.72916666666652" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="Entity.Movie" relationship="TO_MANY">
+      <point x="54.33333333333337" y="-15.0" />
+      <point x="2449.5625" y="934.0" />
+      <point x="2808.940282473943" y="934.0" />
+      <point x="2808.940282473943" y="924.0" />
+      <point x="2803.940282473943" y="924.0" />
+      <point x="2803.940282473943" y="820.0" />
+      <point x="2405.229166666666" y="820.0" />
+      <point x="2405.229166666666" y="810.0" />
+      <point x="2427.895833333333" y="810.0" />
+      <point x="32.66666666666663" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCMovie" target="InterfaceAdapter.Controller.NormalController" relationship="GENERALIZATION">
+      <point x="-40.5" y="-15.0" />
+      <point x="2111.8125" y="472.0" />
+      <point x="1995.8124999999998" y="472.0" />
+      <point x="1995.8124999999998" y="398.0" />
+      <point x="1794.6874999999998" y="398.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="InterfaceAdapter.Controller.NormalCUser" relationship="DEPENDENCY">
+      <point x="-46.875" y="-15.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="29.5625" y="1604.0" />
+      <point x="29.5625" y="696.0" />
+      <point x="226.5625" y="696.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCUser" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-37.25" y="15.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="226.5625" y="626.0" />
+      <point x="2009.7424626655463" y="626.0" />
+      <point x="2009.7424626655463" y="696.0" />
+      <point x="1977.7424626655463" y="696.0" />
+      <point x="-37.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.DemoMain" target="Framework.DataAccess.WriteMovie" relationship="CREATE">
+      <point x="33.0" y="-15.0" />
+      <point x="3405.440282473943" y="1366.0" />
+      <point x="3352.0416666666665" y="1366.0" />
+      <point x="3352.0416666666665" y="656.0" />
+      <point x="2987.940282473943" y="656.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="Framework.DataAccess.WriteReview" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2915.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1018.0" />
+      <point x="2865.440282473943" y="1018.0" />
+      <point x="2865.440282473943" y="606.0" />
+      <point x="3165.940282473943" y="606.0" />
+      <point x="-48.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="Framework.GUI.GUIChooseLanguage" relationship="TO_ONE">
+      <point x="19.0" y="-15.0" />
+      <point x="444.19028247394317" y="1510.0" />
+      <point x="519.8125" y="1510.0" />
+      <point x="519.8125" y="1490.0" />
+      <point x="1885.6874999999998" y="1490.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="InterfaceAdapter.Controller.NormalCUser" relationship="DEPENDENCY">
+      <point x="-19.25" y="-15.0" />
+      <point x="1929.587894477325" y="1614.0" />
+      <point x="1788.9402824739432" y="1614.0" />
+      <point x="1788.9402824739432" y="1604.0" />
+      <point x="2023.270833333333" y="1604.0" />
+      <point x="2023.270833333333" y="790.0" />
+      <point x="1891.4374999999998" y="790.0" />
+      <point x="1891.4374999999998" y="696.0" />
+      <point x="226.5625" y="696.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="46.875" y="-15.0" />
+      <point x="589.7962278106584" y="1614.0" />
+      <point x="1697.4374999999998" y="1614.0" />
+      <point x="1697.4374999999998" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIMain" target="Framework.GUI.GUIChooseLanguage" relationship="TO_ONE">
+      <point x="-14.25" y="-15.0" />
+      <point x="2126.440282473943" y="1500.0" />
+      <point x="2082.895833333333" y="1500.0" />
+      <point x="2082.895833333333" y="1450.0" />
+      <point x="1885.6874999999998" y="1450.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.GUI.GUIUserLogin" relationship="DEPENDENCY">
+      <point x="-46.875" y="-15.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="374.5236158072764" y="1604.0" />
+      <point x="-50.66666666666666" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="InterfaceAdapter.Controller.NormalCMovie" relationship="DEPENDENCY">
+      <point x="-50.25" y="-15.0" />
+      <point x="810.4628944773251" y="1366.0" />
+      <point x="641.5624999999999" y="1366.0" />
+      <point x="641.5624999999999" y="1346.0" />
+      <point x="711.3124999999999" y="1346.0" />
+      <point x="711.3124999999999" y="676.0" />
+      <point x="1476.6902824739432" y="676.0" />
+      <point x="1476.6902824739432" y="556.0" />
+      <point x="2111.8125" y="556.0" />
+      <point x="-40.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="Framework.GUI.View" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1837.1902824739432" y="1510.0" />
+      <point x="1824.4374999999998" y="1510.0" />
+      <point x="1824.4374999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1460.0" />
+      <point x="1773.1874999999998" y="1212.0" />
+      <point x="1361.5624999999998" y="1212.0" />
+      <point x="-21.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="Framework.GUI.ChooseAvatar" relationship="CREATE">
+      <point x="57.33333333333337" y="15.0" />
+      <point x="1894.5236158072767" y="1594.0" />
+      <point x="1953.837894477325" y="1594.0" />
+      <point x="1953.837894477325" y="1624.0" />
+      <point x="1968.087894477325" y="1624.0" />
+      <point x="19.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.ReviewPage" target="Framework.GUI.MoviePage" relationship="DEPENDENCY">
+      <point x="-46.66666666666674" y="15.0" />
+      <point x="756.1458333333331" y="1346.0" />
+      <point x="641.5624999999999" y="1346.0" />
+      <point x="641.5624999999999" y="1366.0" />
+      <point x="810.4628944773251" y="1366.0" />
+      <point x="-50.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteMovie" target="InterfaceAdapter.Gateway" relationship="CREATE">
+      <point x="0.0" y="15.0" />
+      <point x="2987.940282473943" y="1008.0" />
+      <point x="2973.3541666666665" y="1008.0" />
+      <point x="2973.3541666666665" y="1048.0" />
+      <point x="2944.1995984784453" y="1048.0" />
+      <point x="-14.25" y="-15.0" />
+    </edge>
+    <edge source="Entity.User.AdminUser" target="Entity.User.User" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="2089.9375" y="56.0" />
+      <point x="2011.9374999999998" y="56.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="-18.25" y="-15.0" />
+      <point x="842.4628944773251" y="1510.0" />
+      <point x="850.7128944773251" y="1510.0" />
+      <point x="850.7128944773251" y="1450.0" />
+      <point x="540.8125" y="1450.0" />
+      <point x="540.8125" y="1222.0" />
+      <point x="384.3125" y="1222.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Search.Search" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="25.25" y="-15.0" />
+      <point x="1383.3124999999998" y="1316.0" />
+      <point x="1329.3124999999998" y="1316.0" />
+      <point x="1329.3124999999998" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="Framework.GUI.GUIProfile" relationship="TO_ONE">
+      <point x="-16.0" y="-15.0" />
+      <point x="459.69206114399185" y="1727.0" />
+      <point x="470.69206114399185" y="1727.0" />
+      <point x="470.69206114399185" y="1697.0" />
+      <point x="542.9212278106584" y="1697.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.CoinManager" target="UseCase.ReviewManager" relationship="DEPENDENCY">
+      <point x="50.0" y="-15.0" />
+      <point x="2202.3125" y="398.0" />
+      <point x="2162.3125" y="398.0" />
+      <point x="2162.3125" y="348.0" />
+      <point x="2342.8541666666665" y="348.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieRanking" target="Entity.Movie" relationship="TO_MANY">
+      <point x="39.0" y="-15.0" />
+      <point x="2439.229166666666" y="820.0" />
+      <point x="2405.229166666666" y="820.0" />
+      <point x="2405.229166666666" y="810.0" />
+      <point x="2427.895833333333" y="810.0" />
+      <point x="32.66666666666663" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1885.6874999999998" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="Entity.User.AdminUser" relationship="TO_MANY">
+      <point x="0.0" y="-15.0" />
+      <point x="2116.0625" y="204.0" />
+      <point x="2094.9375" y="204.0" />
+      <point x="2094.9375" y="154.0" />
+      <point x="2123.1875" y="154.0" />
+      <point x="33.25" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Search.Search" target="InterfaceAdapter.Search.Trie" relationship="CREATE">
+      <point x="-25.25" y="-15.0" />
+      <point x="1332.8124999999998" y="1346.0" />
+      <point x="1278.8124999999998" y="1346.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="Framework.GUI.View" relationship="DEPENDENCY">
+      <point x="-19.0" y="-15.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="408.3125" y="1460.0" />
+      <point x="509.0625" y="1460.0" />
+      <point x="509.0625" y="1212.0" />
+      <point x="1361.5624999999998" y="1212.0" />
+      <point x="-21.75" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="UseCase.MovieManager" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2915.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1038.0" />
+      <point x="2250.895833333333" y="1038.0" />
+      <point x="2250.895833333333" y="1028.0" />
+      <point x="2354.4791666666665" y="1028.0" />
+      <point x="-40.75" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.AdminInputProcessor" target="UseCase.MovieManager" relationship="DEPENDENCY">
+      <point x="-52.5" y="15.0" />
+      <point x="1855.0624999999998" y="576.0" />
+      <point x="1390.3125" y="576.0" />
+      <point x="1390.3125" y="686.0" />
+      <point x="2306.729166666666" y="686.0" />
+      <point x="2306.729166666666" y="914.0" />
+      <point x="2409.418445336715" y="914.0" />
+      <point x="2409.418445336715" y="934.0" />
+      <point x="2395.2291666666665" y="934.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-50.25" y="-15.0" />
+      <point x="810.4628944773251" y="1366.0" />
+      <point x="641.5624999999999" y="1366.0" />
+      <point x="641.5624999999999" y="1346.0" />
+      <point x="711.3124999999999" y="1346.0" />
+      <point x="711.3124999999999" y="1172.0" />
+      <point x="759.8124999999999" y="1172.0" />
+      <point x="759.8124999999999" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Presenter.TextPresenter" target="Framework.DataAccess.ReadGUI" relationship="TO_ONE">
+      <point x="38.5" y="-15.0" />
+      <point x="633.5625" y="1048.0" />
+      <point x="623.8125" y="1048.0" />
+      <point x="28.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.ReviewSort" target="Entity.Review" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="45.0" y="-15.0" />
+      <point x="1005.3124999999999" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="Framework.DataAccess.WriteReview" relationship="DEPENDENCY">
+      <point x="-37.0" y="-15.0" />
+      <point x="1977.7424626655463" y="696.0" />
+      <point x="2009.7424626655463" y="696.0" />
+      <point x="2009.7424626655463" y="646.0" />
+      <point x="2865.440282473943" y="646.0" />
+      <point x="2865.440282473943" y="606.0" />
+      <point x="3165.940282473943" y="606.0" />
+      <point x="-48.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="InterfaceAdapter.Controller.NormalCUser" relationship="DEPENDENCY">
+      <point x="-19.0" y="-15.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="408.3125" y="1460.0" />
+      <point x="285.0625" y="1460.0" />
+      <point x="285.0625" y="1142.0" />
+      <point x="226.5625" y="1142.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="2.2737367544323206E-13" y="-15.0" />
+      <point x="385.8125000000002" y="1366.0" />
+      <point x="367.8125" y="1366.0" />
+      <point x="367.8125" y="1336.0" />
+      <point x="384.3125" y="1336.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="Framework.DataAccess.WriteUser" relationship="CREATE">
+      <point x="68.0" y="-15.0" />
+      <point x="1953.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="1346.0" />
+      <point x="2261.940282473943" y="1346.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="Framework.GUI.GUIAdminUser" relationship="CREATE">
+      <point x="-57.0" y="-15.0" />
+      <point x="368.19028247394317" y="1510.0" />
+      <point x="332.8125" y="1510.0" />
+      <point x="-53.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="InterfaceAdapter.Presenter.TextPresenter" relationship="CREATE">
+      <point x="19.25" y="-15.0" />
+      <point x="1968.087894477325" y="1624.0" />
+      <point x="1953.837894477325" y="1624.0" />
+      <point x="1953.837894477325" y="1594.0" />
+      <point x="2574.065282473943" y="1594.0" />
+      <point x="2574.065282473943" y="1192.0" />
+      <point x="2093.895833333333" y="1192.0" />
+      <point x="2093.895833333333" y="1132.0" />
+      <point x="646.3958333333333" y="1132.0" />
+      <point x="51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-19.0" y="-15.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="408.3125" y="1460.0" />
+      <point x="475.8125" y="1460.0" />
+      <point x="475.8125" y="1172.0" />
+      <point x="507.5625" y="1172.0" />
+      <point x="507.5625" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="Framework.GUI.SharedView" relationship="GENERALIZATION">
+      <point x="57.0" y="-15.0" />
+      <point x="482.19028247394317" y="1500.0" />
+      <point x="1617.9374999999998" y="1500.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="InterfaceAdapter.AdminInputProcessor" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="1960.0624999999998" y="586.0" />
+      <point x="52.5" y="15.0" />
+    </edge>
+    <edge source="UseCase.ReviewManager" target="UseCase.GatewayInterface" relationship="TO_ONE">
+      <point x="-56.33333333333337" y="-15.0" />
+      <point x="2286.520833333333" y="204.0" />
+      <point x="2200.9375" y="204.0" />
+      <point x="2200.9375" y="174.0" />
+      <point x="2206.1875" y="174.0" />
+      <point x="2206.1875" y="144.0" />
+      <point x="2411.270833333333" y="144.0" />
+      <point x="-59.33333333333326" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="Framework.DataAccess.WriteUser" relationship="DEPENDENCY">
+      <point x="-37.0" y="15.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="2233.270833333333" y="830.0" />
+      <point x="2233.270833333333" y="1152.0" />
+      <point x="2283.190282473943" y="1152.0" />
+      <point x="2283.190282473943" y="1232.0" />
+      <point x="2246.315282473943" y="1232.0" />
+      <point x="-15.625" y="-15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.AdminInputProcessor" target="UseCase.UserManager" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1907.5624999999998" y="388.0" />
+      <point x="2116.0625" y="388.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserLogin" target="Framework.GUI.GUIChooseLanguage" relationship="DEPENDENCY">
+      <point x="-19.0" y="-15.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="408.3125" y="1470.0" />
+      <point x="1829.6874999999998" y="1470.0" />
+      <point x="1829.6874999999998" y="1450.0" />
+      <point x="1817.6874999999998" y="1450.0" />
+      <point x="-68.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="Entity.User.NormalUser" relationship="TO_MANY">
+      <point x="0.0" y="-15.0" />
+      <point x="2116.0625" y="204.0" />
+      <point x="2094.9375" y="204.0" />
+      <point x="2094.9375" y="154.0" />
+      <point x="1968.6874999999998" y="154.0" />
+      <point x="34.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieRanking" target="UseCase.MovieManager" relationship="DEPENDENCY">
+      <point x="39.0" y="15.0" />
+      <point x="2439.229166666666" y="914.0" />
+      <point x="2409.418445336715" y="914.0" />
+      <point x="2409.418445336715" y="934.0" />
+      <point x="2395.2291666666665" y="934.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.ReviewPage" target="InterfaceAdapter.Controller.NormalCCoin" relationship="DEPENDENCY">
+      <point x="-35.0" y="-15.0" />
+      <point x="767.8124999999999" y="1232.0" />
+      <point x="780.3124999999999" y="1232.0" />
+      <point x="780.3124999999999" y="666.0" />
+      <point x="1419.0625" y="666.0" />
+      <point x="1419.0625" y="566.0" />
+      <point x="1670.8124999999998" y="566.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCMovie" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-40.5" y="15.0" />
+      <point x="2111.8125" y="556.0" />
+      <point x="1476.6902824739432" y="556.0" />
+      <point x="1476.6902824739432" y="596.0" />
+      <point x="2009.7424626655463" y="596.0" />
+      <point x="2009.7424626655463" y="696.0" />
+      <point x="1977.7424626655463" y="696.0" />
+      <point x="-37.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteMovie" target="InterfaceAdapter.Interface.WriteMovieInterface" relationship="REALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCUser" target="InterfaceAdapter.Controller.NormalController" relationship="GENERALIZATION">
+      <point x="-37.25" y="-15.0" />
+      <point x="706.3124999999998" y="482.0" />
+      <point x="738.0624999999998" y="482.0" />
+      <point x="738.0624999999998" y="398.0" />
+      <point x="1794.6874999999998" y="398.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIMain" target="InterfaceAdapter.Presenter.TextPresenter" relationship="CREATE">
+      <point x="14.25" y="-15.0" />
+      <point x="2154.940282473943" y="1490.0" />
+      <point x="2093.895833333333" y="1490.0" />
+      <point x="2093.895833333333" y="1132.0" />
+      <point x="646.3958333333333" y="1132.0" />
+      <point x="51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.GUI.GUIUserLogin" relationship="TO_ONE">
+      <point x="-15.625" y="-15.0" />
+      <point x="527.2962278106584" y="1614.0" />
+      <point x="274.79622781065837" y="1614.0" />
+      <point x="274.79622781065837" y="1594.0" />
+      <point x="425.19028247394317" y="1594.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ReviewPage" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-35.0" y="-15.0" />
+      <point x="767.8124999999999" y="1232.0" />
+      <point x="780.3124999999999" y="1232.0" />
+      <point x="780.3124999999999" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-45.0" y="-15.0" />
+      <point x="915.3124999999999" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieRanking" target="Entity.Movie" relationship="DEPENDENCY">
+      <point x="-39.0" y="-15.0" />
+      <point x="2361.229166666666" y="840.0" />
+      <point x="2395.229166666666" y="840.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.AdminInputProcessor" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-52.5" y="15.0" />
+      <point x="1855.0624999999998" y="576.0" />
+      <point x="1390.3125" y="576.0" />
+      <point x="1390.3125" y="616.0" />
+      <point x="2009.7424626655463" y="616.0" />
+      <point x="2009.7424626655463" y="696.0" />
+      <point x="1977.7424626655463" y="696.0" />
+      <point x="-37.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.DemoMain" target="UseCase.ReviewManager" relationship="DEPENDENCY">
+      <point x="-33.0" y="-15.0" />
+      <point x="3339.440282473943" y="1366.0" />
+      <point x="3341.0416666666665" y="1366.0" />
+      <point x="3341.0416666666665" y="358.0" />
+      <point x="2342.8541666666665" y="358.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="-63.66666666666663" y="-15.0" />
+      <point x="115.39583333333348" y="1232.0" />
+      <point x="104.5625" y="1232.0" />
+      <point x="104.5625" y="1152.0" />
+      <point x="384.3125" y="1152.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="UseCase.MovieRanking" relationship="CREATE">
+      <point x="-54.33333333333337" y="-15.0" />
+      <point x="2340.895833333333" y="934.0" />
+      <point x="2290.979166666666" y="934.0" />
+      <point x="2290.979166666666" y="924.0" />
+      <point x="2361.229166666666" y="924.0" />
+      <point x="-39.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="57.33333333333334" y="-15.0" />
+      <point x="1894.5236158072767" y="1510.0" />
+      <point x="1920.6902824739432" y="1510.0" />
+      <point x="1920.6902824739432" y="1500.0" />
+      <point x="1998.1874999999998" y="1500.0" />
+      <point x="1998.1874999999998" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.CoinManager" target="UseCase.UserManager" relationship="DEPENDENCY">
+      <point x="50.0" y="-15.0" />
+      <point x="2202.3125" y="398.0" />
+      <point x="2162.3125" y="398.0" />
+      <point x="2162.3125" y="318.0" />
+      <point x="2116.0625" y="318.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteReview" target="InterfaceAdapter.Gateway" relationship="CREATE">
+      <point x="0.0" y="15.0" />
+      <point x="3213.940282473943" y="1008.0" />
+      <point x="2973.3541666666665" y="1008.0" />
+      <point x="2973.3541666666665" y="1048.0" />
+      <point x="2944.1995984784453" y="1048.0" />
+      <point x="-14.25" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="Framework.GUI.GUIProfile" relationship="TO_ONE">
+      <point x="0.0" y="15.0" />
+      <point x="860.7128944773251" y="1594.0" />
+      <point x="274.79622781065837" y="1594.0" />
+      <point x="274.79622781065837" y="1614.0" />
+      <point x="527.2962278106584" y="1614.0" />
+      <point x="-15.625" y="-15.0" />
+    </edge>
+    <edge source="Framework.DataAccess.WriteUser" target="InterfaceAdapter.Gateway" relationship="CREATE">
+      <point x="15.625" y="-15.0" />
+      <point x="2277.565282473943" y="1162.0" />
+      <point x="2958.4495984784453" y="1162.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="InterfaceAdapter.Controller.NormalCUser" relationship="DEPENDENCY">
+      <point x="-48.0" y="-15.0" />
+      <point x="427.69206114399185" y="1727.0" />
+      <point x="0.25" y="1727.0" />
+      <point x="0.0" y="696.0" />
+      <point x="226.5625" y="696.0" />
+      <point x="226.5625" y="616.0" />
+      <point x="706.3124999999998" y="616.0" />
+      <point x="-37.25" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="UseCase.GatewayInterface" relationship="TO_ONE">
+      <point x="54.33333333333337" y="-15.0" />
+      <point x="2449.5625" y="934.0" />
+      <point x="2808.940282473943" y="934.0" />
+      <point x="2808.940282473943" y="924.0" />
+      <point x="2813.940282473943" y="924.0" />
+      <point x="2813.940282473943" y="154.0" />
+      <point x="2206.1875" y="154.0" />
+      <point x="2206.1875" y="144.0" />
+      <point x="2411.270833333333" y="144.0" />
+      <point x="-59.33333333333326" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="UseCase.GatewayInterface" relationship="TO_ONE">
+      <point x="0.0" y="-15.0" />
+      <point x="2116.0625" y="204.0" />
+      <point x="2094.9375" y="204.0" />
+      <point x="2094.9375" y="164.0" />
+      <point x="2206.1875" y="164.0" />
+      <point x="2206.1875" y="144.0" />
+      <point x="2411.270833333333" y="144.0" />
+      <point x="-59.33333333333326" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2915.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1018.0" />
+      <point x="2261.395833333333" y="1018.0" />
+      <point x="2261.395833333333" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="Framework.DataAccess.WriteMovie" relationship="CREATE">
+      <point x="68.0" y="-15.0" />
+      <point x="1953.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="810.0" />
+      <point x="2099.2424626655466" y="810.0" />
+      <point x="2099.2424626655466" y="656.0" />
+      <point x="2987.940282473943" y="656.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="Framework.DataAccess.WriteMovie" relationship="DEPENDENCY">
+      <point x="-37.0" y="-15.0" />
+      <point x="1977.7424626655463" y="696.0" />
+      <point x="2009.7424626655463" y="696.0" />
+      <point x="2009.7424626655463" y="636.0" />
+      <point x="2803.440282473943" y="636.0" />
+      <point x="2803.440282473943" y="616.0" />
+      <point x="2941.940282473943" y="616.0" />
+      <point x="-46.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="Framework.DataAccess.WritePic" relationship="DEPENDENCY">
+      <point x="2.2737367544323206E-13" y="-15.0" />
+      <point x="385.8125000000002" y="1366.0" />
+      <point x="367.8125" y="1366.0" />
+      <point x="367.8125" y="1346.0" />
+      <point x="607.8124999999999" y="1346.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="InterfaceAdapter.Controller.NormalCMovie" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="2192.8125" y="586.0" />
+      <point x="40.5" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="Entity.User.NormalUser" relationship="CREATE">
+      <point x="-50.0" y="-15.0" />
+      <point x="2066.0625" y="204.0" />
+      <point x="1928.9374999999998" y="204.0" />
+      <point x="1928.9374999999998" y="194.0" />
+      <point x="1899.1874999999998" y="194.0" />
+      <point x="-34.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="Framework.GUI.GUIUserRegister" relationship="TO_ONE">
+      <point x="-57.75" y="-15.0" />
+      <point x="1891.087894477325" y="1624.0" />
+      <point x="1708.6874999999998" y="1624.0" />
+      <point x="1708.6874999999998" y="1614.0" />
+      <point x="1779.85694914061" y="1614.0" />
+      <point x="-57.333333333333336" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.GUI.GUIPlaylist" relationship="CREATE">
+      <point x="41.66666666666674" y="15.0" />
+      <point x="584.5878944773251" y="1717.0" />
+      <point x="491.69206114399185" y="1717.0" />
+      <point x="16.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="Framework.GUI.GUIMain" relationship="CREATE">
+      <point x="68.0" y="15.0" />
+      <point x="1953.6874999999998" y="1440.0" />
+      <point x="2093.895833333333" y="1440.0" />
+      <point x="2093.895833333333" y="1490.0" />
+      <point x="2154.940282473943" y="1490.0" />
+      <point x="14.25" y="-15.0" />
+    </edge>
+    <edge source="UseCase.CoinManager" target="InterfaceAdapter.Controller.NormalController" relationship="GENERALIZATION">
+      <point x="-50.0" y="-15.0" />
+      <point x="2102.3125" y="398.0" />
+      <point x="1794.6874999999998" y="398.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="InterfaceAdapter.AdminInputProcessor" relationship="DEPENDENCY">
+      <point x="2.2737367544323206E-13" y="-15.0" />
+      <point x="385.8125000000002" y="1366.0" />
+      <point x="367.8125" y="1366.0" />
+      <point x="367.8125" y="1142.0" />
+      <point x="351.3125" y="1142.0" />
+      <point x="351.3125" y="686.0" />
+      <point x="1390.3125" y="686.0" />
+      <point x="1390.3125" y="576.0" />
+      <point x="1855.0624999999998" y="576.0" />
+      <point x="-52.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.DataAccess.WritePic" relationship="DEPENDENCY">
+      <point x="-46.875" y="-15.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="62.0625" y="1604.0" />
+      <point x="62.0625" y="1356.0" />
+      <point x="607.8124999999999" y="1356.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="UseCase.CoinManager" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="2310.565282473943" y="586.0" />
+      <point x="2310.565282473943" y="472.0" />
+      <point x="2189.8125" y="472.0" />
+      <point x="37.5" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="54.75" y="-15.0" />
+      <point x="915.4628944773251" y="1460.0" />
+      <point x="1518.5624999999998" y="1460.0" />
+      <point x="1518.5624999999998" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIUserRegister" target="Framework.GUI.GUIChooseLanguage" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="1837.1902824739432" y="1510.0" />
+      <point x="1824.4374999999998" y="1510.0" />
+      <point x="1824.4374999999998" y="1480.0" />
+      <point x="1829.6874999999998" y="1480.0" />
+      <point x="1829.6874999999998" y="1450.0" />
+      <point x="1817.6874999999998" y="1450.0" />
+      <point x="-68.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.UserManager" target="Entity.User.AdminUser" relationship="CREATE">
+      <point x="-50.0" y="-15.0" />
+      <point x="2066.0625" y="204.0" />
+      <point x="1928.9374999999998" y="204.0" />
+      <point x="1928.9374999999998" y="194.0" />
+      <point x="2056.6875" y="194.0" />
+      <point x="-33.25" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="InterfaceAdapter.Presenter.TextPresenter" relationship="CREATE">
+      <point x="68.0" y="-15.0" />
+      <point x="1953.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="1192.0" />
+      <point x="2093.895833333333" y="1192.0" />
+      <point x="2093.895833333333" y="1132.0" />
+      <point x="646.3958333333333" y="1132.0" />
+      <point x="51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-46.875" y="-15.0" />
+      <point x="496.04622781065837" y="1624.0" />
+      <point x="109.81528247394317" y="1624.0" />
+      <point x="109.81528247394317" y="1604.0" />
+      <point x="51.5625" y="1604.0" />
+      <point x="51.5625" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.DemoMain" target="Framework.DataAccess.WriteUser" relationship="CREATE">
+      <point x="33.0" y="-15.0" />
+      <point x="3405.440282473943" y="1366.0" />
+      <point x="3352.0416666666665" y="1366.0" />
+      <point x="3352.0416666666665" y="1336.0" />
+      <point x="2261.940282473943" y="1336.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="Framework.GUI.GUIProfile" relationship="DEPENDENCY">
+      <point x="-48.0" y="-15.0" />
+      <point x="427.69206114399185" y="1727.0" />
+      <point x="0.25" y="1727.0" />
+      <point x="0.25" y="1707.0" />
+      <point x="501.2545611439916" y="1707.0" />
+      <point x="-41.66666666666674" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="Framework.GUI.ReviewPage" relationship="CREATE">
+      <point x="16.75" y="-15.0" />
+      <point x="877.4628944773251" y="1366.0" />
+      <point x="1034.6875" y="1366.0" />
+      <point x="1034.6875" y="1306.0" />
+      <point x="849.4791666666666" y="1306.0" />
+      <point x="46.66666666666674" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="Framework.DataAccess.WriteMovie" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2915.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1048.0" />
+      <point x="2674.6995984784453" y="1018.0" />
+      <point x="2854.940282473943" y="1018.0" />
+      <point x="2854.940282473943" y="626.0" />
+      <point x="2803.440282473943" y="626.0" />
+      <point x="2803.440282473943" y="616.0" />
+      <point x="2941.940282473943" y="616.0" />
+      <point x="-46.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIMain" target="Framework.GUI.GUIChooseLanguage" relationship="DEPENDENCY">
+      <point x="-42.75" y="-15.0" />
+      <point x="2097.940282473943" y="1510.0" />
+      <point x="2071.895833333333" y="1510.0" />
+      <point x="2071.895833333333" y="1460.0" />
+      <point x="1829.6874999999998" y="1460.0" />
+      <point x="1829.6874999999998" y="1450.0" />
+      <point x="1817.6874999999998" y="1450.0" />
+      <point x="-68.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ChooseAvatar" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-19.25" y="-15.0" />
+      <point x="1929.587894477325" y="1614.0" />
+      <point x="1788.9402824739432" y="1614.0" />
+      <point x="1788.9402824739432" y="1604.0" />
+      <point x="1719.4374999999998" y="1604.0" />
+      <point x="1719.4374999999998" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.SearchResult" target="InterfaceAdapter.Search.Search" relationship="DEPENDENCY">
+      <point x="-18.25" y="-15.0" />
+      <point x="842.4628944773251" y="1510.0" />
+      <point x="850.7128944773251" y="1510.0" />
+      <point x="850.7128944773251" y="1450.0" />
+      <point x="1358.0624999999998" y="1450.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieRanking" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-39.0" y="-15.0" />
+      <point x="2361.229166666666" y="840.0" />
+      <point x="2395.229166666666" y="840.0" />
+      <point x="2395.229166666666" y="780.0" />
+      <point x="1183.1579318117786" y="780.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="Framework.GUI.MoviePage" relationship="TO_ONE">
+      <point x="-33.75" y="15.0" />
+      <point x="926.5624999999999" y="1316.0" />
+      <point x="853.1874999999999" y="1316.0" />
+      <point x="853.1874999999999" y="1366.0" />
+      <point x="843.9628944773251" y="1366.0" />
+      <point x="-16.75" y="-15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCCoin" target="InterfaceAdapter.Controller.NormalController" relationship="GENERALIZATION">
+      <point x="-37.25" y="-15.0" />
+      <point x="1670.8124999999998" y="482.0" />
+      <point x="1702.8124999999998" y="482.0" />
+      <point x="1702.8124999999998" y="398.0" />
+      <point x="1794.6874999999998" y="398.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Gateway" target="Framework.DataAccess.WriteUser" relationship="DEPENDENCY">
+      <point x="-38.0" y="15.0" />
+      <point x="2920.4495984784453" y="1152.0" />
+      <point x="2283.190282473943" y="1152.0" />
+      <point x="2283.190282473943" y="1232.0" />
+      <point x="2246.315282473943" y="1232.0" />
+      <point x="-15.625" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.AddReview" target="InterfaceAdapter.Presenter.TextPresenter" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="960.3124999999999" y="1232.0" />
+      <point x="894.0624999999999" y="1232.0" />
+      <point x="894.0624999999999" y="1142.0" />
+      <point x="384.3125" y="1142.0" />
+      <point x="384.3125" y="1132.0" />
+      <point x="543.7291666666667" y="1132.0" />
+      <point x="-51.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="53.00000000000023" y="-15.0" />
+      <point x="438.8125" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCCoin" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-37.25" y="15.0" />
+      <point x="1670.8124999999998" y="566.0" />
+      <point x="1419.0625" y="566.0" />
+      <point x="1419.0625" y="606.0" />
+      <point x="2009.7424626655463" y="606.0" />
+      <point x="2009.7424626655463" y="696.0" />
+      <point x="1977.7424626655463" y="696.0" />
+      <point x="-37.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="Framework.GUI.SearchResult" relationship="CREATE">
+      <point x="15.625" y="-15.0" />
+      <point x="558.5462278106584" y="1624.0" />
+      <point x="870.712894477325" y="1624.0" />
+      <point x="870.712894477325" y="1584.0" />
+      <point x="909.3795611439917" y="1584.0" />
+      <point x="48.66666666666663" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.Controller.NormalCMovie" target="UseCase.ReviewManager" relationship="DEPENDENCY">
+      <point x="40.5" y="-15.0" />
+      <point x="2192.8125" y="482.0" />
+      <point x="2237.8125" y="482.0" />
+      <point x="2237.8125" y="358.0" />
+      <point x="2342.8541666666665" y="358.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIPlaylist" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="48.0" y="-15.0" />
+      <point x="523.6920611439919" y="1727.0" />
+      <point x="3021.7620984784453" y="1727.0" />
+      <point x="3021.7620984784453" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="UseCase.GatewayInterface" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="2395.2291666666665" y="934.0" />
+      <point x="2409.418445336715" y="934.0" />
+      <point x="2409.418445336715" y="914.0" />
+      <point x="2792.940282473943" y="914.0" />
+      <point x="2792.940282473943" y="184.0" />
+      <point x="2470.6041666666665" y="184.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="InterfaceAdapter.InstanceMain" relationship="DEPENDENCY">
+      <point x="-63.66666666666663" y="-15.0" />
+      <point x="115.39583333333337" y="1232.0" />
+      <point x="104.5625" y="1232.0" />
+      <point x="104.5625" y="830.0" />
+      <point x="1183.1579318117786" y="830.0" />
+      <point x="1183.1579318117786" y="770.0" />
+      <point x="1977.7424626655463" y="770.0" />
+      <point x="-37.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.CoinManager" target="UseCase.UserManager" relationship="TO_ONE">
+      <point x="0.0" y="-15.0" />
+      <point x="2152.3125" y="328.0" />
+      <point x="2066.0625" y="328.0" />
+      <point x="-50.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.ReviewPage" target="InterfaceAdapter.Controller.NormalCMovie" relationship="DEPENDENCY">
+      <point x="-35.0" y="-15.0" />
+      <point x="767.8124999999999" y="1232.0" />
+      <point x="780.3124999999999" y="1232.0" />
+      <point x="780.3124999999999" y="676.0" />
+      <point x="1476.6902824739432" y="676.0" />
+      <point x="1476.6902824739432" y="556.0" />
+      <point x="2111.8125" y="556.0" />
+      <point x="-40.5" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="UseCase.ReviewManager" relationship="DEPENDENCY">
+      <point x="0.0" y="-15.0" />
+      <point x="2395.2291666666665" y="934.0" />
+      <point x="2409.418445336715" y="934.0" />
+      <point x="2409.418445336715" y="914.0" />
+      <point x="2693.3569491406097" y="914.0" />
+      <point x="2693.3569491406097" y="358.0" />
+      <point x="2342.8541666666665" y="358.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIMain" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-14.25" y="-15.0" />
+      <point x="2126.440282473943" y="1500.0" />
+      <point x="2082.895833333333" y="1500.0" />
+      <point x="2082.895833333333" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.ReviewManager" target="UseCase.ReviewSort" relationship="CREATE">
+      <point x="0.0" y="-15.0" />
+      <point x="2342.8541666666665" y="194.0" />
+      <point x="2283.9375" y="194.0" />
+      <point x="2283.9375" y="134.0" />
+      <point x="2244.9375" y="134.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="Framework.GUI.GUIProfile" relationship="TO_ONE">
+      <point x="0.0" y="15.0" />
+      <point x="179.0625" y="1594.0" />
+      <point x="274.79622781065837" y="1594.0" />
+      <point x="274.79622781065837" y="1614.0" />
+      <point x="527.2962278106584" y="1614.0" />
+      <point x="-15.625" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="-68.0" y="-15.0" />
+      <point x="1817.6874999999998" y="1346.0" />
+      <point x="1864.9402824739432" y="1346.0" />
+      <point x="1864.9402824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIProfile" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="-15.625" y="-15.0" />
+      <point x="527.2962278106584" y="1614.0" />
+      <point x="274.79622781065837" y="1614.0" />
+      <point x="274.79622781065837" y="1594.0" />
+      <point x="73.0625" y="1594.0" />
+      <point x="73.0625" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="Framework.GUI.View" relationship="GENERALIZATION">
+      <point x="50.25" y="-15.0" />
+      <point x="910.9628944773251" y="1346.0" />
+      <point x="1228.3124999999998" y="1346.0" />
+      <point x="1228.3124999999998" y="1182.0" />
+      <point x="1548.6902824739432" y="1182.0" />
+      <point x="1548.6902824739432" y="1122.0" />
+      <point x="1405.0624999999998" y="1122.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIChooseLanguage" target="Framework.DataAccess.WriteReview" relationship="CREATE">
+      <point x="68.0" y="-15.0" />
+      <point x="1953.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="1366.0" />
+      <point x="1896.6874999999998" y="820.0" />
+      <point x="2099.2424626655466" y="820.0" />
+      <point x="2099.2424626655466" y="666.0" />
+      <point x="3213.940282473943" y="666.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIEditContactInfo" target="InterfaceAdapter.Presenter.TextPresenter" relationship="TO_ONE">
+      <point x="0.0" y="-15.0" />
+      <point x="179.0625" y="1202.0" />
+      <point x="595.0625" y="1202.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="UseCase.MovieManager" target="Entity.Movie" relationship="CREATE">
+      <point x="-54.33333333333337" y="-15.0" />
+      <point x="2340.895833333333" y="934.0" />
+      <point x="2290.979166666666" y="934.0" />
+      <point x="2290.979166666666" y="924.0" />
+      <point x="2295.729166666666" y="924.0" />
+      <point x="2295.729166666666" y="820.0" />
+      <point x="2362.5624999999995" y="820.0" />
+      <point x="-32.66666666666663" y="15.0" />
+    </edge>
+    <edge source="InterfaceAdapter.InstanceMain" target="UseCase.UserManager" relationship="CREATE">
+      <point x="37.0" y="-15.0" />
+      <point x="2051.7424626655466" y="696.0" />
+      <point x="2024.7424626655463" y="696.0" />
+      <point x="2024.7424626655463" y="586.0" />
+      <point x="2321.065282473943" y="586.0" />
+      <point x="2321.065282473943" y="378.0" />
+      <point x="2394.8569491406097" y="378.0" />
+      <point x="2394.8569491406097" y="288.0" />
+      <point x="2166.0625" y="288.0" />
+      <point x="50.0" y="15.0" />
+    </edge>
+    <edge source="Framework.GUI.GUIAdminUser" target="Framework.GUI.GUIUserLogin" relationship="DEPENDENCY">
+      <point x="0.0" y="15.0" />
+      <point x="385.8125" y="1460.0" />
+      <point x="408.3125" y="1460.0" />
+      <point x="408.3125" y="1510.0" />
+      <point x="406.19028247394317" y="1510.0" />
+      <point x="-19.0" y="-15.0" />
+    </edge>
+    <edge source="Framework.GUI.MoviePage" target="Framework.GUI.SearchResult" relationship="DEPENDENCY">
+      <point x="-33.5" y="15.0" />
+      <point x="827.2128944773251" y="1450.0" />
+      <point x="850.7128944773251" y="1450.0" />
+      <point x="850.7128944773251" y="1510.0" />
+      <point x="842.4628944773251" y="1510.0" />
+      <point x="-18.25" y="-15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.40618675917895347" showDependencies="true" x="1985.3875444839857" y="889.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
