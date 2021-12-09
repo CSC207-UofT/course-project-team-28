@@ -1,0 +1,8 @@
+CoinManager
+12
+Empty contact info - cm
+Empty description - cm
+Empty category - cm
+150
+[Apple,Candy,Team28,Happy Life]
+/src/main/res/GUIPic/winnie.jpg

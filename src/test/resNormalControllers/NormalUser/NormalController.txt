@@ -1,0 +1,8 @@
+NormalController
+123yu
+12345678ContactInfo
+test description
+Empty category - nc
+212
+[Apple,Candy,Team28,Happy Life,Water]
+/src/main/res/GUIPic/winnie.jpg
