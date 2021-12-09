@@ -1,19 +1,25 @@
 package Entity;
 
+/**
+ * Represent Movies in Entity.
+ */
 public class Movie {
-    protected String moviename;
-    protected String movielink;
+    protected String movieName;
+    protected String movieLink;
     public String category;
     public int Likes;
 
-    /**
-     * "moviereviews" is a Hashmap with review content as key and the corresponding user as value.
-     * "Likes" stores the number of likes a movie received
-     */
 
-    public Movie(String moviename, String movielink, int i, String category) {
-        this.moviename = moviename;
-        this.movielink = movielink;
+    /**
+     * Constructor for movie Class
+     * @param movieName name of the movie
+     * @param movieLink link of the movie
+     * @param i number of likes of the movie
+     * @param category category of the movie
+     */
+    public Movie(String movieName, String movieLink, int i, String category) {
+        this.movieName = movieName;
+        this.movieLink = movieLink;
         this.Likes = i;
         this.category = category;
 
@@ -22,45 +28,52 @@ public class Movie {
     /**
      * Getter Methods for Movie Class.
      */
-
     public String toString() {
-        return "Movie name: " + this.moviename + ", \n" + "Link: " + this.movielink + ", \n" + "Category: " + this.category
+        return "Movie name: " + this.movieName + ", \n" + "Link: " + this.movieLink + ", \n" + "Category: " + this.category
                 + ", \n" + "# of Likes: " + this.Likes;
     }
 
 
-    public String getMoviename(){
-        return this.moviename;
+    /**
+     * Getter method for the name of the movie.
+     * @return returns the name of the movie.
+     */
+    public String getMovieName(){
+        return this.movieName;
     }
 
+    /**
+     * Getter method for the link of the movie.
+     * @return returns the link of the movie.
+     */
     public String getLink(){
-        return this.movielink;
+        return this.movieLink;
     }
 
+    /**
+     * Getter method for the category of the movie.
+     * @return returns the category of the movie.
+     */
     public String getCategory() {return this.category; }
 
+    /**
+     * Getter method for the number of likes of the movie.
+     * @return returns the number of likes of the movie.
+     */
     public int getLikes() {return this.Likes; }
 
     /**
-     * Add or retrieve a like to a movie.
+     * Add a like to a movie.
      */
-
     public void AddLike(){
         this.Likes += 1;
     }
 
+    /**
+     * Retrieve a like from a movie.
+     */
     public void UndoLike(){
         this.Likes -= 1;
     }
-
-//    Get only the review contents of a movie and return them in an ArrayList
-//    public ArrayList<String> getReviewsContnet(){
-//        ArrayList<String> contents = new ArrayList<>();
-//        for (Object content: moviereviews.keySet()){
-//            contents.add((String) content);
-//        }
-//        return contents;
-//
-//    }
 
 }
