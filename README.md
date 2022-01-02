@@ -1,4 +1,4 @@
-## Notes Before running the program
+## Notes Before anything
 
 Note:
 
@@ -20,3 +20,7 @@ For example, you should have a directory that looks like --- [The name of Your o
 7. If you want to look at the UML diagram of our code, we have a pdf version in design document and a .uml diagram in the front page of our github
 
 8. If you want to see the movie with many reviews, please search "Apple"
+
+9. Design document is in phase 2 folder
+
+10. Thanks to my teammates for their efforts!!!!
