@@ -4,7 +4,7 @@ package InterfaceAdapter.Controller;
  * NormalController (InterfaceAdapter)
  * Parent class of all normal user controllers.
  */
-public class NormalController {
+abstract class NormalController {
     protected String currNormalName;
 
 

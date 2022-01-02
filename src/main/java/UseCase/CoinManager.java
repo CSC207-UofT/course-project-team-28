@@ -1,11 +1,9 @@
 package UseCase;
 
-import InterfaceAdapter.Controller.NormalController;
-
 /**
  * Represents the entire system of coins
  */
-public class CoinManager extends NormalController {
+public class CoinManager {
     private final UserManager userManager;
     private final ReviewManager reviewManager;
 

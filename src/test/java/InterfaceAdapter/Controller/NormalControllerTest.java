@@ -11,7 +11,7 @@ public class NormalControllerTest {
 
     @Before
     public void setUpNc() {
-        nc = new NormalController();
+        nc = new NormalCCoin();
     }
 
     @Test
